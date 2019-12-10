@@ -1,5 +1,44 @@
+# Clinica Magi  
 ## Abstract  
+1958
+Il Prof. Federico Perazzini, chirurgo ortopedico, e la moglie Imelda fondano la Clinica San Francesco. Il loro obiettivo è creare una nuova istituzione per soddisfare le crescenti necessità assistenziali dei cittadini veronesi, in campo ortopedico e traumatologico e non solo.
 
+1959
+La Clinica viene autorizzata per la gestione di 30 posti letto.
+
+1961
+I posti letto divengono 69.
+
+1985
+La struttura si amplia fino a disporre di 72 posti letto.
+
+Anni Novanta
+Sotto la guida del Dr. Perazzini, la direzione sceglie di dare alla struttura un deciso indirizzo chirurgico con le specializzazioni di Ortopedia e Traumatologia, Chirurgia Generale, Chirurgia Plastica ed Estetica e Oculistica.
+L’organico di medici e paramedici viene progressivamente ampliato e vengono avviate collaborazioni con specialisti d’eccellenza in diversi campi, che contribuiscono a consolidare l’identità della Clinica come centro di chirurgia all’avanguardia.
+
+1991
+Il Prof. Federico Perazzini e la moglie affidano al figlio Piergiuseppe il compito di continuare la tradizione famigliare. Il Dr. Perazzini ricopre da allora gli incarichi di Amministratore Delegato e Responsabile dell’Unità Funzionale di Ortopedia e Traumatologia.
+
+1992
+La Clinica arricchisce la gamma di servizi con l’apertura di una nuova ala per l’attività ambulatoriale, dando vita al Poliambulatorio San Francesco.
+
+Anni 2000
+Viene attivato il servizio di ricovero giornaliero (Day-Hospital).
+Il percorso intrapreso porta, dunque, ad un pieno sviluppo dell’attività operatoria e quindi dei ricoveri, sia in regime di degenza ordinaria sia di Day Hospital. L’attività ambulatoriale è ugualmente incrementata anche grazie all’attivazione delle più sofisticate attrezzature diagnostiche, ad esempio quelle per la risonanza magnetica nucleare (RMN) e la tomografia assiale computerizzata (TAC).
+A seguito dell’emanazione della Dgr. 3223/02 la Clinica amplia ulteriormente la propria dotazione ospedaliera, arrivando a 92 posti letto.
+Con l’apertura degli ambulatori e l’offerta di alcuni importanti servizi diagnostici come la Cardiologia, l’Endoscopia Digestiva e la Medicina di Laboratorio, la Clinica San Francesco diviene una delle più importanti cliniche della città di Verona e del Veneto, proseguendo nel suo percorso di radicamento nel territorio nazionale e perfezionamento dei servizi assistenziali per i cittadini.
+
+2011
+La Clinica è la prima struttura in Europa ad intraprendere la strada della chirurgia robotica in ortopedia.
+
+2012
+Definitiva incorporazione del Centro Diagnostico Città di Verona nella Clinica San Francesco.
+
+2013
+La Clinica è riconosciuta come primo centro ufficiale in Europa di addestramento per l’artroplastica parziale e totale del ginocchio e dell’anca con tecnica Makoplasty.
+
+2019
+La Clinica San Francesco è stata riconosciuta dalla Regione Veneto come “Struttura di riferimento per la chirurgia robotica ortopedica”. La Giunta Regionale del Veneto con deliberazione del 14 maggio 2019 ha individuato la clinica veronese come struttura ospedaliera competente, specializzata e dedicata alla chirurgia robotica ortopedica. L’attribuzione di tale ruolo è avvenuto nell’ambito della riorganizzazione della rete ospedaliera regionale prevista dal Piano socio sanitario regionale 2019-2023.
 
 
 
