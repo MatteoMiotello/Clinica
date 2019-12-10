@@ -1,6 +1,6 @@
 Operazione|Tipo|Frequenza
 -----------------------------------------------------|-------------------------------|---------------------------------------------
-Apertura Sede|B|1 Anno
+Apertura Sede| |1 Anno
 Aggiunta Reparto| |1 ogni 5 anni
 Assunzione nuovo dipendente| |2 al mese
 Aggiunta paziente| |5 al giorno
