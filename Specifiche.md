@@ -28,3 +28,10 @@ StanzaRi| Entita' figlia di Stanze, identifica le stanze adibite al ricovero| pr
 StanzaSp| Entita' figlia di Stanze, identifica le stanze specialistiche della clinica.| *Nessun Attibuto*
 Macchinari| Entita' che identifica il tipo di macchinario utilizzato per effettuare gli esami| n_serie{PK}, casa_prod, nome, ultima_rev
 Personale| Entita' che indica le persone che lavorano nella clinica| CF{PK}, nome, cognome, data_nascita, sesso, telefono, CAP, via, n_civico
+Personale non medico| Entita' figlia di Personale, specifica per il personale non medico| tipo
+Dirigente| Entita' figlia di Personale, specifica per il dirigente della sede| settore
+Infermieri| Entita' figlia di Personale, specifica per gli infermieri| grado
+Medici| Entita' figlia di Personale, specifica per i medici| specializzazione
+Primario| Entita' figlia di Medici, specifica il primario di un certo reparto| *Nessun Attributo*
+Stipendio| Entita' che identifica lo stipendio di ogni tipo di lavoratore nella Clinica| id_tipo {PK}, imp_lordo, imp_netto
+Pazienti
