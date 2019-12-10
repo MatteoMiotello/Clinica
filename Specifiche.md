@@ -1,6 +1,6 @@
 Operazione|Tipo|Frequenza
 -----------------------------------------------------|-------------------------------|---------------------------------------------
-Apertura Sede| |1 Anno
+Apertura Sede | |1 Anno
 Aggiunta Reparto| |1 ogni 5 anni
 Assunzione nuovo dipendente| |2 al mese
 Aggiunta paziente| |5 al giorno
@@ -15,3 +15,16 @@ Verifica revisione macchinari| |10 al mese
 Report incasso giornaliero| |5 al giorno
 Report incasso mensile| |5 al mese
 Incasso medio giornaliero| |5 al mese
+
+
+---
+
+Entita'|Descrizione|Attributi
+---------------|-------------------------------------------------|--------------------
+Sede| Si intende una delle sedi fisiche della clinica|id_sede{PK}, n_civico, CAP, Via, n.telefono
+Reparto| Si intendono i reparti specialistici della clinica, differenziati per tipo e per locazione|id {PK}, Tipo
+Stanze| Stanze generiche all'interno di ogni sede| n_stanza
+StanzaRi| Entita' figlia di Stanze, identifica le stanze adibite al ricovero| prezzo_notte
+StanzaSp| Entita' figlia di Stanze, identifica le stanze specialistiche della clinica.| Nessun Attibuto
+Macchinari| Entita' che identifica il tipo di macchinario utilizzato per effettuare gli esami| n_serie{PK}, casa_prod, nome, ultima_rev
+Personale| Entita' che indica le persone che lavorano nella clinica| CF{PK}, nome, cognome, data_nascita, sesso, telefono, CAP, via, n_civico
