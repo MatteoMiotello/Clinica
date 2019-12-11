@@ -6,6 +6,11 @@ Si vuole realizzare una base di dati che contenga e gestisca una clinica con pi�
 - tipo  
 - codice identificativo 
 
+Ogni sede è identificata da:  
+- località ( numero ivico, capoluogo e via )  
+- id univoco  
+- numero di telefono  
+
 Ogni sede presenta più reparti, una serie di stanze per degenze, di cui si vuole conoscere:
 - prezzo per notte  
 
