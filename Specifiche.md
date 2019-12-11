@@ -45,7 +45,22 @@ Di ogni dipendente si vuole tener traccia del:
 - telefono  
 - IBAN  
 
-ccc
+Clinica Magi tiene traccia dei pazienti che si sottopongono ai loro esami, di ogni paziene si vuole memorizzare:
+- nome  
+- cognome  
+- sesso  
+- telefono  
+- indirizzo residenza  
+
+Di ogni paziente si vuole conoscere gli esami effettuati presso la clinica, ogni esame è caratterizzatp da:
+- stanza in cui è stato effettuato l'esame  
+- diagnosi  
+- terapia consigliata  
+- medico che ha effettuato l'esame  
+- nome  
+- codice esame  
+
+
 
 
 Operazione|Tipo|Frequenza
