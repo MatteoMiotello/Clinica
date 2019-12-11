@@ -21,7 +21,7 @@ Tutte le stanze sono identificate da:
 - la sede in cui sui trovano   
 
 Ogni reparto offre una serie di esami, comuni ad ogni sede che presenta quel reparto, identificati da:  
-- nome  
+- nome che lo identifica univocamente
 - prezzo esame  
 
 In ogni sede lavorano diversi dipendenti, di ogni sede vogliamo memorizzare: i dirigenti, identificati da  
@@ -32,6 +32,7 @@ gli infermieri, identificati da:
 
 i medici con  
 - la propria specializzazione  
+
 e i restanti dipendenti. Ogni dipendente in base al ruolo che ricopre percepirà uno stipendio fisso, di cui si vogliono memorizzare:  
 - l'importo lordo  
 - l'importo netto  
@@ -44,6 +45,7 @@ Di ogni dipendente si vuole tener traccia del:
 - città di residenza  
 - telefono  
 - IBAN  
+- codice fiscale, che lo identifica univocamente  
 
 Clinica Magi tiene traccia dei pazienti che si sottopongono ai loro esami, di ogni paziene si vuole memorizzare:
 - nome  
@@ -51,17 +53,28 @@ Clinica Magi tiene traccia dei pazienti che si sottopongono ai loro esami, di og
 - sesso  
 - telefono  
 - indirizzo residenza  
+- codice fiscale, che lo identifica univocamente
 
-Di ogni paziente si vuole conoscere gli esami effettuati presso la clinica, ogni esame è caratterizzatp da:
+Di ogni paziente si vuole conoscere gli esami effettuati presso la clinica, ogni esame è caratterizzato da:
 - stanza in cui è stato effettuato l'esame  
 - diagnosi  
 - terapia consigliata  
 - medico che ha effettuato l'esame  
-- nome  
-- codice esame  
+- nome (mettiamo anche se stanno nella gneraizzazione?)  
+- codice esame (idem)  
+- codice fiscale per identificarlo univocamente  
 
+Un paziente può effettuare prenotazioni, sia per esami che per il ricovero. Per ogni prenotazione ci interessa conoscere:  
+- data prenotazione  
+- id univoco  
+- se il pagamento è stato o meno effettuato  
 
+Per la prenotazione i una stanza per il ricovero ci interessa conoscere:  
+- la data inizio del ricovero  
+- data fine ricovero  
 
+Per la prenotazione dell'esame è di nostro interesse memorizzare:  
+- orario in cui si effettuerà l'esame  
 
 Operazione|Tipo|Frequenza
 -----------------------------------------------------|-------------------------------|---------------------------------------------
