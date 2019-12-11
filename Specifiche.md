@@ -6,7 +6,7 @@ Si vuole realizzare una base di dati che contenga e gestisca una clinica con pi�
 - tipo  
 - codice identificativo 
 
-Ogni sede presenta più reparti, una serie di stanze per degeneze, di cui si vuole conoscere:
+Ogni sede presenta più reparti, una serie di stanze per degenze, di cui si vuole conoscere:
 - prezzo per notte  
 
 e una serie di stanze in cui avvengono gli esami. In ogni stanza per esami ( o stanze specializzate ) sono presenti una serie di macchinari che vengono utilizzati per gli esami specifici, di ogni macchinario si vogliono memorizzare:
@@ -24,7 +24,28 @@ Ogni reparto offre una serie di esami, comuni ad ogni sede che presenta quel rep
 - nome  
 - prezzo esame  
 
-In ogni sede lavorano diversi dipendenti, di ogni sede vogliamo memorizzare: i dirigenti, identificati dal settore, gli infermieri, identificati dal grado, i medici con la propria specializzazione e i restanti dipendenti. Ogni dipendente in base al ruolo che ricopre percepirà uno stipendio fisso, di cui si vogliono memorizzare l'importo lordo e l'importo netto. di ogni  ad ognuno dei quali è assegnato un ruolo. Di ogni dipendente si vogliono memorizzare: nome, cognome, data di nascita, sesso, città di residenza, telefono e IBAN.  
+In ogni sede lavorano diversi dipendenti, di ogni sede vogliamo memorizzare: i dirigenti, identificati da  
+- settore   
+
+gli infermieri, identificati da:  
+- grado   
+
+i medici con  
+- la propria specializzazione  
+e i restanti dipendenti. Ogni dipendente in base al ruolo che ricopre percepirà uno stipendio fisso, di cui si vogliono memorizzare:  
+- l'importo lordo  
+- l'importo netto  
+
+Di ogni dipendente si vuole tener traccia del:  
+- nome   
+- cognome  
+- data di nascita  
+- sesso  
+- città di residenza  
+- telefono  
+- IBAN  
+
+ccc
 
 
 Operazione|Tipo|Frequenza
