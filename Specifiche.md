@@ -86,7 +86,7 @@ Per la prenotazione dell'esame è di nostro interesse memorizzare:
 - orario in cui si effettuerà l'esame  
 
 ## Glossario dei termini  
-<!-- mettiamo solo le entita' principali o anchge le generalizzazioni? -->
+
 | Termine | Descrizione | Collegamento |
 |:-------:|:-------|:-------:|
 | Sede | Una sede della clinica Magi | Reparto, Stanza, Persona |
@@ -150,38 +150,29 @@ PrenotazioneStanza| Entita' figlia di Prenotazione, specifica per la prenotazion
 
 ### Analisi delle entita'
 
+
 Sede||||
 -----------------|-------|----------------------------|----------
 id_Sede|VARCHAR| identifica univocamente le sedi| **Chiave**
 Indirizzo|VARCHAR| attributo composto: Citta', Via, n_civico, CAP
 n_telefono|VARCHAR| numero di telefono di ogni sede
 
-<p>
-
 Reparto||||
 -----------------|-------|----------------------------|----------
 id| VARCHAR| identifica univocamente il repartodi ogni sede | **Chiave**
 Tipo| VARCHAR| identifica la specialita' medica che viene trattata
 
-<p>
-
-Stanza||||
------------------|-------|----------------------------|----------
+Stanza|||
+-----------------|-------|--------------------------------------
 id_stanza|VARCHAR|chiave composta: n_stanza, id_reparto, id_sede
-
-<p>
 
 StanzaRi||||
 -----------------|-------|----------------------------|----------
 prezzo_notte|SMALLINT| prezzo di ogni stanza a notte
 
-<p>
-
 StanzaSp|
-|--------------------------------------------------------------|
+--------------------------------------------------------------|
 Nessun attributo|
-
-
 
 Macchinari||||
 -----------------|-------|----------------------------|----------
@@ -189,8 +180,6 @@ n_serie|VARCHAR |codice identificativo univoco del macchinario| **Chiave**
 casa_prod| VARCHAR| nome della casa produttrice
 nome| VARCHAR | nome rappresentativo del macchinario
 ultima_rev| DATE| data dell'ultima revisione effettuata
-
-
 
 Personale||||
 -----------------|-------|----------------------------|----------
@@ -267,18 +256,21 @@ Id|VARCHAR| chiave identificativa univoca di ogni prenotazione| **Chiave**
 data| DATE| data in cui è stata effettuata la prenotazione
 pagamento|BOOL| check che identifica l'avvenuto pagamento
 
+
 PrenotazioneEsame|
 |---------------|
 Nessun Attributo
+
 
 PrenotazioneStanza|
 |---------------|
 Nessun Attributo
 
+
 ## Generalizzazione  
-Personale e' generalizzazione totale non esclusiva di: PersonaleNonMedico, Dirigente, Infermiere, Medico.  
-Prenotazione e' generalizzazione totale ed esclusiva di PrenotazioneEsame e PrenotazioneStanza.  
-TipoEsame e' generalizzazione non totatale ed esclusiva di EsameEffettuato.  
-Stanze e' generalizzazione non totale esclusiva di StanzaRi e StanzaSp.  
+- Personale e' generalizzazione totale non esclusiva di: PersonaleNonMedico,  Dirigente, Infermiere, Medico.  
+- Prenotazione e' generalizzazione totale ed esclusiva di PrenotazioneEsame e PrenotazioneStanza.  
+- TipoEsame e' generalizzazione non totatale ed esclusiva di EsameEffettuato.  
+- Stanze e' generalizzazione non totale esclusiva di StanzaRi e StanzaSp.  
 
 
