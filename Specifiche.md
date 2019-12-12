@@ -100,8 +100,9 @@ Per la prenotazione dell'esame è di nostro interesse memorizzare:
 
 
 
-Operazione|Tipo|Frequenza
------------------------------------------------------|-------------------------------|---------------------------------------------
+
+Operazione|Tipo|Frequenza 
+------------------------------|--------------------------------|--------------------------------------------------------------
 Apertura Sede | |1 Anno
 Aggiunta Reparto| |1 ogni 5 anni
 Assunzione nuovo dipendente| |2 al mese
