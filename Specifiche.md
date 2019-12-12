@@ -171,8 +171,8 @@ id_stanza|VARCHAR|chiave composta: n_stanza, id_reparto, id_sede
 
 <p>
 
-StanzaRi||||
------------------|-------|----------------------------|----------
+StanzaRi|||
+-----------------|-------|--------------------------------------
 prezzo_notte|SMALLINT| prezzo di ogni stanza a notte
 
 <p>
