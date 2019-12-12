@@ -94,8 +94,8 @@ Per la prenotazione dell'esame è di nostro interesse memorizzare:
 | Stanza | Una stanza di una Sede, si suddivide in Stanza Ricovero e Stanza <br> Specialistica. | 
 
 
-Operazione|Tipo|Frequenza
------------------------------------------------------|-------------------------------|---------------------------------------------
+<table width="100%">Operazione|Tipo|Frequenza 
+--------|---------------------|------------
 Apertura Sede | |1 Anno
 Aggiunta Reparto| |1 ogni 5 anni
 Assunzione nuovo dipendente| |2 al mese
@@ -111,7 +111,7 @@ Verifica revisione macchinari| |10 al mese
 Report incasso giornaliero| |5 al giorno
 Report incasso mensile| |5 al mese
 Incasso medio giornaliero| |5 al mese
-
+</p>
 
 ---
 
