@@ -81,6 +81,12 @@ Per la prenotazione i una stanza per il ricovero ci interessa conoscere:
 Per la prenotazione dell'esame è di nostro interesse memorizzare:  
 - orario in cui si effettuerà l'esame  
 
+## Glossario dei termini  
+<!-- mettiamo solo le entita' principali o anchge le generalizzazioni? -->
+| Termine | Descrizione | Collegamento |
+|:-------:|:-------:|:-------:|
+| ciao1 | ciao2 | ciao3 |
+
 Operazione|Tipo|Frequenza
 -----------------------------------------------------|-------------------------------|---------------------------------------------
 Apertura Sede | |1 Anno
