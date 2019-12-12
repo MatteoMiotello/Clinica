@@ -181,7 +181,7 @@ StanzaSp||||
 -----------------|-------|----------------------------|----------
 Nessun attributo||||
 
-<p>
+
 
 Macchinari||||
 -----------------|-------|----------------------------|----------
@@ -190,7 +190,7 @@ casa_prod| VARCHAR| nome della casa produttrice
 nome| VARCHAR | nome rappresentativo del macchinario
 ultima_rev| DATE| data dell'ultima revisione effettuata
 
-<p>
+
 
 Personale||||
 -----------------|-------|----------------------------|----------
@@ -202,43 +202,42 @@ sesso |ENUM| sesso della persona fisica
 telefono|VARCHAR| numero di telefono del dipendente
 Indirizzo|VARCHAR| attributo composto: CAP, via, n_civico
 
-<p>
 
-<th colspan> |PersonaleNonMedico|</th>
+
+PersonaleNonMedico|||
 -----------------|-------|--------------------------------------
 tipo|VARCHAR| indica la mansione di ogni dipendente che non svolge un ruolo inerente alla medicina
 
-<p>
 
-<th colspan> |Dirigente|</th>
+
+Dirigente|||
 -----------------|-------|--------------------------------------
 settore| VARCHAR| indica il settore di competenza del dirigente
 
-<p>
 
-<th colspan> |Infermiere|</th>
+
+Infermiere|||
 -----------------|-------|--------------------------------------
 grado|VARCHAR|indica il grado di anzianita' di ogni infermiere
 
-<p>
 
-<th colspan> |Medico|</th>
+
+Medico|||
 -----------------|-------|--------------------------------------
 specializzazione|VARCHAR|indica la specializzazione medica
 
-<p>
 
-<th colspan> |Primario|</th>
------------------|-------|----------------------------|----------
-<td colspan> Nessun Attributo </td>
 
-<p>
+Primario|
+|--------------------------------------------------------------
+Nessun Attributo 
 
-<th colspan> |Stipendio||</th>
+
+Stipendio||||
 -----------------|-------|---------------------------|-----------
 tipo| VARCHAR| chiave identificativa univoca di ogni tipo di stipendio| **Chiave**
 imp_lordo|INT| importo lordo di ogni stipendio
-imp_netto|INT| importo netto di ogni stipendio
+imp_netto|INT| importo netto di ogni stipendio|
 
 
 
