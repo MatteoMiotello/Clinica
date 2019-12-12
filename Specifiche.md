@@ -84,9 +84,10 @@ Per la prenotazione dell'esame è di nostro interesse memorizzare:
 ## Glossario dei termini  
 <!-- mettiamo solo le entita' principali o anchge le generalizzazioni? -->
 | Termine | Descrizione | Collegamento |
-|:-------:|:-------:|:-------:|
-| Sede | Una sede della clinica Magi <br> porcaccia la madonna | Reparto, Stanza, Persona |
-
+|:-------:|:-------|:-------:|
+| Sede | Una sede della clinica Magi | Reparto, Stanza, Persona |
+| Personale | Lavoratore della clinca, si suddivide in Personale non Medico <br> Dirigenti, Infermieri e Medici. Primario è una specializzazione di Medici | Reparto, Stanza, Persona |
+| Stanza | Una stanza di una Sede, si suddivide in Stanza Ricovero e Stanza <br> Specialistica. | 
 
 
 Operazione|Tipo|Frequenza
