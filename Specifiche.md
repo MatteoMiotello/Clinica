@@ -91,25 +91,25 @@ Per la prenotazione dell'esame è di nostro interesse memorizzare:
 |:-------:|:-------|:-------:|
 | Sede | Una sede della clinica Magi | Reparto, Stanza, Persona |
 | Personale | Lavoratore della clinca, si suddivide in Personale non Medico <br> Dirigenti, Infermieri e Medici. Primario è una specializzazione di Medici | Reparto, Stanza, Persona |
-| Stanza | Una stanza di una Sede, si suddivide in Stanza Ricovero e Stanza Specialistica. | Prenotazione Stanza (Stanza Ricovero), Prenotazione Esame(Stanza Specialistica), Macchinario (Stanza Specialistica)| 
+| Stanza | Una stanza di una Sede, si suddivide in StanzaRi e StanzaSp. | Prenotazione Stanza (StanzaRi), Prenotazione Esame(StanzaSp), Macchinario (StanzaSp)| 
 | Reparto | Reparto contiene tutti i reparti che la clinica possiede(NB: non e' detto che all'interno di una sede vi siano tutti i Reparti) | Sede, Primario, Stanze, Tipo Esame |
 | Paziente | Un paziente della clinica | Esame Effettuato, Prenotazione |
 | Tipo Esame | Rappresenta tutti gli esami che sono possibili fare nella clinica Magi. <br> Esame Effettuato e' una specializzazione di Tipo Esame | Prenotazione Esame |
-| Prenotazione | Rappresenta le prenotazioni che l'utente puo' fare (Prenotazione Esame) <br> e quelle che vengono fatte dal personale interno (Prenotazion Stanze) |
+| Prenotazione | Rappresenta le prenotazioni che l'utente puo' fare (Prenotazione Esame) <br> e quelle che vengono fatte dal personale interno (Prenotazione Stanze) |
+StanzaRi(Prenotazione Stanza), StanzaSp |
 
 
 
 
-
-Operazione|Tipo|Frequenza 
-------------------------------|--------------------------------|--------------------------------------------------------------
+Operazione|Tipo|Frequenza
+-----------------------------------------------------|-------------------------------|---------------------------------------------
 Apertura Sede | |1 Anno
 Aggiunta Reparto| |1 ogni 5 anni
 Assunzione nuovo dipendente| |2 al mese
 Aggiunta paziente| |5 al giorno
 Prenotazione esame| |100 al giorno
-Prenotazione stanza ricovero| |30 al giorno
-Verifica stanza ricovero| |5000 al giorno
+Prenotazione StanzaRi| |30 al giorno
+Verifica StanzaRi| |5000 al giorno
 Verifica stanze disponibili| |100 al giorno
 Calcolo busta paga dipendente| |100 al mese
 Calcolo spese totali paziente| |50 al giorno
