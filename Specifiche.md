@@ -177,9 +177,9 @@ prezzo_notte|SMALLINT| prezzo di ogni stanza a notte
 
 <p>
 
-StanzaSp||||
------------------|-------|----------------------------|----------
-Nessun attributo||||
+StanzaSp|
+|--------------------------------------------------------------|
+Nessun attributo|
 
 
 
@@ -239,8 +239,41 @@ tipo| VARCHAR| chiave identificativa univoca di ogni tipo di stipendio| **Chiave
 imp_lordo|INT| importo lordo di ogni stipendio
 imp_netto|INT| importo netto di ogni stipendio|
 
+Pazienti||||
+-----------------|-------|---------------------------|-----------
+CF|VARCHAR|codice fiscale univoco per ogni paziente| **Chiave**
+nome| VARCHAR| nome di ogni paziente
+cognome| VARCHAR| cognome di ogni paziente
+sesso| ENUM| sesso di ogni paziente
+telefono|VARCHAR| numero di telefono di ogni paziente
+indirizzo|VARCHAR| attributo composto per l'indirizzo di residenza: CAP, via, n_civico
 
+EsameEffettuato||||
+-----------------|-------|---------------------------|-----------
+id|VARCHAR| chiave identificatva univoca per indicare ogni esame effettuato| **Chiave**
+stanza| VARCHAR| stanza in cui è stato effettuato l'esame
+diagnosi| VARCHAR| diagnosi indicata a seguito dell'esame 
+medico| VARCHAR| medico che ha effettuato l'esame
+terapia| VARCHAR| terapia indicata dal medico a seguito dell'esame
 
+TipoEsame||||
+-----------------|-------|---------------------------|-----------
+nome|VARCHAR| chiave che indica il nome dell'esame| **Chiave**
+prezzo|INT| intero che indica il prezzo di ogni esame
+
+Prenotazione||||
+-----------------|-------|---------------------------|-----------
+Id|VARCHAR| chiave identificativa univoca di ogni prenotazione| **Chiave**
+data| DATE| data in cui è stata effettuata la prenotazione
+pagamento|BOOL| check che identifica l'avvenuto pagamento
+
+PrenotazioneEsame|
+|---------------|
+Nessun Attributo
+
+PrenotazioneStanza|
+|---------------|
+Nessun Attributo
 
 ## Generalizzazione  
 Personale e' generalizzazione totale non esclusiva di: PersonaleNonMedico, Dirigente, Infermiere, Medico.  
