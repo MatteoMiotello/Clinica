@@ -97,7 +97,7 @@ Per la prenotazione dell'esame è di nostro interesse memorizzare:
 | Tipo Esame | Rappresenta tutti gli esami che sono possibili fare nella clinica Magi. <br> Esame Effettuato e' una specializzazione di Tipo Esame | Prenotazione Esame |
 | Prenotazione | Rappresenta le prenotazioni che l'utente puo' fare (Prenotazione Esame) <br> e quelle che vengono fatte dal personale interno (Prenotazione Stanze)|StanzaRi(Prenotazione Stanza), StanzaSp |
 | Stipendio | Lo stipendio percepito dal personale | Personale |
-
+| Macchinario | Macchinario usato per gli esami | StanzaSp |
 
 
 Operazione|Tipo|Frequenza
