@@ -85,7 +85,7 @@ Per la prenotazione dell'esame è di nostro interesse memorizzare:
 <!-- mettiamo solo le entita' principali o anchge le generalizzazioni? -->
 | Termine | Descrizione | Collegamento |
 |:-------:|:-------:|:-------:|
-| Sede | Una sede della clinica Magi oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo | Reparto, Stanza, Persona |
+| Sede | Una sede della clinica Magi <br> porcaccia la madonna | Reparto, Stanza, Persona |
 
 
 
