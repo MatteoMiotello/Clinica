@@ -85,7 +85,9 @@ Per la prenotazione dell'esame è di nostro interesse memorizzare:
 <!-- mettiamo solo le entita' principali o anchge le generalizzazioni? -->
 | Termine | Descrizione | Collegamento |
 |:-------:|:-------:|:-------:|
-| ciao1 | ciao2 | ciao3 |
+| Sede | Una sede della clinica Magi oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo | Reparto, Stanza, Persona |
+
+
 
 Operazione|Tipo|Frequenza
 -----------------------------------------------------|-------------------------------|---------------------------------------------
