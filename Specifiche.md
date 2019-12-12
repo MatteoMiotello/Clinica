@@ -97,8 +97,9 @@ all'interno di una sede vi siano tutti i Reparti) | Sede, Primario, Stanze, Tipo
 
 
 
-<table width="100%">Operazione|Tipo|Frequenza 
---------|---------------------|------------
+
+Operazione|Tipo|Frequenza 
+------------------------------|--------------------------------|--------------------------------------------------------------
 Apertura Sede | |1 Anno
 Aggiunta Reparto| |1 ogni 5 anni
 Assunzione nuovo dipendente| |2 al mese
@@ -114,7 +115,7 @@ Verifica revisione macchinari| |10 al mese
 Report incasso giornaliero| |5 al giorno
 Report incasso mensile| |5 al mese
 Incasso medio giornaliero| |5 al mese
-</p>
+
 
 ---
 
