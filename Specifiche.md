@@ -95,9 +95,8 @@ Per la prenotazione dell'esame è di nostro interesse memorizzare:
 | Reparto | Reparto contiene tutti i reparti che la clinica possiede(NB: non e' detto che all'interno di una sede vi siano tutti i Reparti) | Sede, Primario, Stanze, Tipo Esame |
 | Paziente | Un paziente della clinica | Esame Effettuato, Prenotazione |
 | Tipo Esame | Rappresenta tutti gli esami che sono possibili fare nella clinica Magi. <br> Esame Effettuato e' una specializzazione di Tipo Esame | Prenotazione Esame |
-| Prenotazione | Rappresenta le prenotazioni che l'utente puo' fare (Prenotazione Esame) <br> e quelle che vengono fatte dal personale interno (Prenotazione Stanze) |
-StanzaRi(Prenotazione Stanza), StanzaSp |
-
+| Prenotazione | Rappresenta le prenotazioni che l'utente puo' fare (Prenotazione Esame) <br> e quelle che vengono fatte dal personale interno (Prenotazione Stanze)|StanzaRi(Prenotazione Stanza), StanzaSp |
+| Stipendio | Lo stipendio percepito dal personale | Personale |
 
 
 
