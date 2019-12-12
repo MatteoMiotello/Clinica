@@ -91,9 +91,12 @@ Per la prenotazione dell'esame è di nostro interesse memorizzare:
 |:-------:|:-------|:-------:|
 | Sede | Una sede della clinica Magi | Reparto, Stanza, Persona |
 | Personale | Lavoratore della clinca, si suddivide in Personale non Medico <br> Dirigenti, Infermieri e Medici. Primario è una specializzazione di Medici | Reparto, Stanza, Persona |
-| Stanza | Una stanza di una Sede, si suddivide in Stanza Ricovero e Stanza <br> Specialistica. | Prenotazione Stanza (Stanza Ricovero), Prenotazione Esame(Stanza Specialistica), Macchinari (Stanza Specialistica)| 
-| Reparto | Reparto contiene tutti i reparti che la clinica possiede(NB: non e' detto che 
-all'interno di una sede vi siano tutti i Reparti) | Sede, Primario, Stanze, Tipo Esame |
+| Stanza | Una stanza di una Sede, si suddivide in Stanza Ricovero e Stanza Specialistica. | Prenotazione Stanza (Stanza Ricovero), Prenotazione Esame(Stanza Specialistica), Macchinario (Stanza Specialistica)| 
+| Reparto | Reparto contiene tutti i reparti che la clinica possiede(NB: non e' detto che all'interno di una sede vi siano tutti i Reparti) | Sede, Primario, Stanze, Tipo Esame |
+| Paziente | Un paziente della clinica | Esame Effettuato, Prenotazione |
+| Tipo Esame | Rappresenta tutti gli esami che sono possibili fare nella clinica Magi. <br> Esame Effettuato e' una specializzazione di Tipo Esame | Prenotazione Esame |
+| Prenotazione | Rappresenta le prenotazioni che l'utente puo' fare (Prenotazione Esame) <br> e quelle che vengono fatte dal personale interno (Prenotazion Stanze) |
+
 
 
 
