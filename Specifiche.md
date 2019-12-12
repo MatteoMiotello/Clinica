@@ -166,15 +166,10 @@ Stanza|||
 -----------------|-------|--------------------------------------
 id_stanza|VARCHAR|chiave composta: n_stanza, id_reparto, id_sede
 
-<<<<<<< HEAD
-StanzaRi||||
------------------|-------|----------------------------|----------
-=======
-<p>
+
 
 StanzaRi|||
 -----------------|-------|--------------------------------------
->>>>>>> 113e4214842e80c8e39a92ffba862d6b9e42e81d
 prezzo_notte|SMALLINT| prezzo di ogni stanza a notte
 
 StanzaSp|
