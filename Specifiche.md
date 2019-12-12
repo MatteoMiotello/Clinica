@@ -90,33 +90,25 @@ Per la prenotazione dell'esame è di nostro interesse memorizzare:
 | Termine | Descrizione | Collegamento |
 |:-------:|:-------|:-------:|
 | Sede | Una sede della clinica Magi | Reparto, Stanza, Persona |
-| Personale | Lavoratore della clinca, si suddivide in Personale non Medico <br> Dirigenti, Infermieri e Medici. Primario è una specializzazione di Medici | Reparto, Stanza, Persona |
-| Stanza | Una stanza di una Sede, si suddivide in StanzaRi e StanzaSp. | Prenotazione Stanza (StanzaRi), Prenotazione Esame(StanzaSp), Macchinario (StanzaSp)| 
+| Personale | Lavoratore della clinca, si suddivide in PersonaleNonMedico <br> Dirigenti, Infermieri e Medici. Primario è una specializzazione di Medici | Reparto, Stanza, Persona |
+| Stanza | Una stanza di una Sede, si suddivide in StanzaRi e StanzaSp. | PrenotazioneStanza (StanzaRi), PrenotazioneEsame(StanzaSp), Macchinario (StanzaSp)| 
 | Reparto | Reparto contiene tutti i reparti che la clinica possiede(NB: non e' detto che all'interno di una sede vi siano tutti i Reparti) | Sede, Primario, Stanze, Tipo Esame |
 | Paziente | Un paziente della clinica | Esame Effettuato, Prenotazione |
-| Tipo Esame | Rappresenta tutti gli esami che sono possibili fare nella clinica Magi. <br> Esame Effettuato e' una specializzazione di Tipo Esame | Prenotazione Esame |
-| Prenotazione | Rappresenta le prenotazioni che l'utente puo' fare (Prenotazione Esame) <br> e quelle che vengono fatte dal personale interno (Prenotazione Stanze)|StanzaRi(Prenotazione Stanza), StanzaSp |
+| Tipo Esame | Rappresenta tutti gli esami che sono possibili fare nella clinica Magi. <br> Esame Effettuato e' una specializzazione di Tipo Esame | PrenotazioneEsame |
+| Prenotazione | Rappresenta le prenotazioni che l'utente puo' fare (PrenotazioneEsame) <br> e quelle che vengono fatte dal personale interno (Prenotazione Stanze)|StanzaRi(PrenotazioneStanza), StanzaSp |
 | Stipendio | Lo stipendio percepito dal personale | Personale |
 | Macchinario | Macchinario usato per gli esami | StanzaSp |
 
 ---
 
-<<<<<<< HEAD
-## Operazioni previste
-
-
-Operazione|Tipo|Frequenza 
-------------------------------|--------------------------------|--------------------------------------------------------------
-=======
 Operazione|Tipo|Frequenza
 -----------------------------------------------------|-------------------------------|---------------------------------------------
->>>>>>> 78ce7b28b524e2b31ae0a8ca8d996902627788b5
 Apertura Sede | |1 Anno
 Aggiunta Reparto| |1 ogni 5 anni
 Assunzione nuovo dipendente| |2 al mese
 Aggiunta paziente| |5 al giorno
-Prenotazione esame| |100 al giorno
-Prenotazione StanzaRi| |30 al giorno
+Prenotazioneesame| |100 al giorno
+PrenotazioneStanzaRi| |30 al giorno
 Verifica StanzaRi| |5000 al giorno
 Verifica stanze disponibili| |100 al giorno
 Calcolo busta paga dipendente| |100 al mese
@@ -207,5 +199,14 @@ data_nascita|DATE | data di nascita della persona fisica
 sesso |ENUM| sesso della persona fisica
 telefono|VARCHAR| numero di telefono del dipendente
 CAP|TINYINT|
+
+
+
+
+## Generalizzazione  
+Personale e' generalizzazione totale non esclusiva di: PersonaleNonMedico, Dirigente, Infermiere, Medico.  
+Prenotazione e' generalizzazione totale ed esclusiva di PrenotazioneEsame e PrenotazioneStanza.  
+TipoEsame e' generalizzazione non totatale ed esclusiva di EsameEffettuato.  
+Stanze e' generalizzazione non totale esclusiva di StanzaRi e StanzaSp.  
 
 
