@@ -268,22 +268,70 @@ PrenotazioneStanza|
 |---------------:|
 Nessun Attributo
 
+---
+
 ## Generalizzazione  
 - Personale e' generalizzazione totale non esclusiva di: PersonaleNonMedico,  Dirigente, Infermiere, Medico.  
 - Prenotazione e' generalizzazione totale ed esclusiva di PrenotazioneEsame e PrenotazioneStanza.  
 - TipoEsame e' generalizzazione non totatale ed esclusiva di EsameEffettuato.  
 - Stanze e' generalizzazione non totale esclusiva di StanzaRi e StanzaSp.  
 
+---
 
 ## Analisi delle relazioni e delle cardinalita'
 
->*Sede-Personale*: Lavora
->   - In una sede lavora piu personale
->   - Un membro di personale lavora in una sola sede
+*Sede-Personale*: Lavora
+   - In una sede lavora piu personale
+   - Un membro di personale lavora in una sola sede
 
->*Personale-Stipendio*: Percepisce
->   - Un membro del personale percepisce uno stipendio (1,1)
->   - Uno stesso stipendio (stesso codice e quindi stesso importo) può essere percepito da più membri del personale (1,N)
+*Personale-Stipendio*: Percepisce
+   - Un membro del personale percepisce uno stipendio (1,1)
+   - Uno stesso stipendio (stesso codice e quindi stesso importo) può essere percepito da più membri del personale (1,N)
+
+
+*Sede-Reparto*: Possiede
+- una sede può possedere più reparti (1,N)
+- un reparto puo' essere posseduto da piu' sedi (1,N)
+
+*Sede-Stanza*: Possiede
+- una sede può possedere molte stane (1,N)
+- una stanza fa parte di una sola sede (1,1)
+
+*Reparto-Stanza*: Contiene
+- un reparto può contere molte stanze (1,N)
+- una stanza può essere contenuta in un solo reparto (1,1)
+
+*Reparto-TipoEsame*: Effettua
+- in un reparto si possono effettuare molti esami (1,n)
+- un esame può essere effettuato in un solo reparto (1,1) <!--da controllare-->
+
+*Reparto-Primario*: Presiede
+- un Primario presiede un solo reparto (1,1)
+- un Reparto è presieduto da un solo Primario (1,1) <!--controllare-->
+
+*TipoEsame-PrenotazioneEsame*: Riferisce
+- una PrenotazioneEsame può riferirsi ad un solo esame (1,1)
+- un TipoEsame può essere riferito a più PrenotazioniEsami (1,N)
+
+*PrenotazioneEsame-StanzaSp*: Riserva
+- una PrenotazioneEsame può riservare una sola StanzaSp (1,1)
+- una Stanzasp può essere riservata da più PrenotazioneEsame (1,N)
+
+*StanzaSp-Macchinario*: Contiene
+- una StanzaSp contiene molti Macchinario (1,N)
+- un Macchinario puo' essere contenuto in una sola StanzaSp (1,1)
+
+*Paziente-Prenotazione*: Richiede
+- un Paziente può richiedere più prenotazioni (1,N)
+- una Prenotazione è richiesta da un solo Paziente (1,1)
+
+*Paziente-EsameEffettuato*: Effettua
+- un Paziente effettua molti EsamiEffettuati (1,N)
+- un EsameEffettuato viene effettuato da un solo Paziente (1,1)
+
+
+
+
 
 
 
