@@ -87,7 +87,8 @@ Per la prenotazione dell'esame è di nostro interesse memorizzare:
 |:-------:|:-------|:-------:|
 | Sede | Una sede della clinica Magi | Reparto, Stanza, Persona |
 | Personale | Lavoratore della clinca, si suddivide in Personale non Medico <br> Dirigenti, Infermieri e Medici. Primario è una specializzazione di Medici | Reparto, Stanza, Persona |
-| Stanza | Una stanza di una Sede, si suddivide in Stanza Ricovero e Stanza <br> Specialistica. | 
+| Stanza | Una stanza di una Sede, si suddivide in Stanza Ricovero e Stanza <br> Specialistica. | Reparto, Sede, Prenotazione Stanza(Stanza Ricovero), Prenotazione Esame(Stanza Specializzazione), Macchinari(Stanza Specialistica)| 
+| Reparto 
 
 
 Operazione|Tipo|Frequenza
