@@ -95,7 +95,9 @@ Per la prenotazione dell'esame è di nostro interesse memorizzare:
 | Reparto | Reparto contiene tutti i reparti che la clinica possiede(NB: non e' detto che 
 all'interno di una sede vi siano tutti i Reparti) | Sede, Primario, Stanze, Tipo Esame |
 
+---
 
+## Operazioni previste
 
 
 Operazione|Tipo|Frequenza 
@@ -119,11 +121,13 @@ Incasso medio giornaliero| |5 al mese
 
 ---
 
+## Tabella delle entità 
+
 Entita'|Descrizione|Attributi
 ---------------|-------------------------------------------------|--------------------
 Sede| Si intende una delle sedi fisiche della clinica|id_sede{PK}, n_civico, CAP, Via, n.telefono
 Reparto| Si intendono i reparti specialistici della clinica, differenziati per tipo e per locazione|id {PK}, Tipo
-Stanze| Stanze generiche all'interno di ogni sede| n_stanza
+Stanza| Stanze generiche all'interno di ogni sede| n_stanza
 StanzaRi| Entita' figlia di Stanze, identifica le stanze adibite al ricovero| prezzo_notte
 StanzaSp| Entita' figlia di Stanze, identifica le stanze specialistiche della clinica.| *Nessun Attibuto*
 Macchinari| Entita' che identifica il tipo di macchinario utilizzato per effettuare gli esami| n_serie{PK}, casa_prod, nome, ultima_rev
@@ -131,11 +135,68 @@ Personale| Entita' che indica le persone che lavorano nella clinica| CF{PK}, nom
 Personale non medico| Entita' figlia di Personale, specifica per il personale non medico| tipo
 Dirigente| Entita' figlia di Personale, specifica per il dirigente della sede| settore
 Infermieri| Entita' figlia di Personale, specifica per gli infermieri| grado
-Medici| Entita' figlia di Personale, specifica per i medici| specializzazione
+Medico| Entita' figlia di Personale, specifica per i medici| specializzazione
 Primario| Entita' figlia di Medici, specifica il primario di un certo reparto| *Nessun Attributo*
-Stipendio| Entita' che identifica lo stipendio di ogni tipo di lavoratore nella Clinica| id_tipo {PK}, imp_lordo, imp_netto
+Stipendio| Entita' che identifica lo stipendio di ogni tipo di lavoratore nella Clinica| tipo {PK}, imp_lordo, imp_netto
 Pazienti| Entita' che racchiude le generalita' di un paziente| CF {PK}, nome, cognome, sesso, telefono, CAP, ind_residenza, n_civico
 EsameEffettuato| Entita' che indica un esame che e' stato effettuato ad un paziente| id {PK}, stanza, diagnosi, medico, terapia
 TipoEsame| Entita' che indica le varie tipologie di esame che sono disponibili nella Clinica| nome {PK}, prezzo
-Prenotazione 
+Prenotazione| Entita' che indica la prenotazione avvenuta| Id{PK}, tipo, data, pagamento
+PrenotazioneEsame| Entita' figlia di Prenotazione, specifica per la prenotazione di un esame| *Nessun attributo*
+PrenotazioneStanza| Entita' figlia di Prenotazione, specifica per la prenotazione di una stanza| *Nessun attributo*
+
+## Progettazione concettuale
+
+### Analisi delle entita'
+
+Sede||||
+-----------------|-------|----------------------------|----------
+id_Sede|VARCHAR| identifica univocamente le sedi| **Chiave**
+Indirizzo|VARCHAR| attributo composto: Citta', Via, n_civico, CAP
+n_telefono|VARCHAR| numero di telefono di ogni sede
+
+<p>
+
+Reparto||||
+-----------------|-------|----------------------------|----------
+id| VARCHAR| identifica univocamente il repartodi ogni sede | **Chiave**
+Tipo| VARCHAR| identifica la specialita' medica che viene trattata
+
+<p>
+
+Stanza||||
+-----------------|-------|----------------------------|----------
+id_stanza|VARCHAR|chiave composta: n_stanza, id_reparto, id_sede
+
+<p>
+
+StanzaRi||||
+-----------------|-------|----------------------------|----------
+prezzo_notte|SMALLINT| prezzo di ogni stanza a notte
+
+<p>
+
+StanzaSp||||
+-----------------|-------|----------------------------|----------
+Nessun attributo||||
+
+<p>
+
+Macchinari||||
+-----------------|-------|----------------------------|----------
+n_serie|VARCHAR |codice identificativo univoco del macchinario| **Chiave**
+casa_prod| VARCHAR| nome della casa produttrice
+nome| VARCHAR | nome rappresentativo del macchinario
+ultima_rev| DATE| data dell'ultima revisione effettuata
+
+Personale||||
+-----------------|-------|----------------------------|----------
+CF| VARCHAR| codice fiscale identificativo per ogni dipendente| **Chiave**
+nome|VARCHAR| nome della persona fisica
+cognome|VARCHAR| cognome della persona fisica
+data_nascita|DATE | data di nascita della persona fisica
+sesso |ENUM| sesso della persona fisica
+telefono|VARCHAR| numero di telefono del dipendente
+CAP|TINYINT|
+
 
