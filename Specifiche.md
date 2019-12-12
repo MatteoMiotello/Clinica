@@ -252,8 +252,8 @@ TipoEsame||||
 nome|VARCHAR| chiave che indica il nome dell'esame| **Chiave**
 prezzo|INT| intero che indica il prezzo di ogni esame
 
-Prenotazione||||
------------------|-------|---------------------------|-----------
+|Prenotazione||||
+|-----------------|-------|---------------------------:|-----------:|
 Id|VARCHAR| chiave identificativa univoca di ogni prenotazione| **Chiave**
 data| DATE| data in cui è stata effettuata la prenotazione
 pagamento|BOOL| check che identifica l'avvenuto pagamento
@@ -265,14 +265,27 @@ Nessun Attributo
 
 
 PrenotazioneStanza|
-|---------------|
+|---------------:|
 Nessun Attributo
-
 
 ## Generalizzazione  
 - Personale e' generalizzazione totale non esclusiva di: PersonaleNonMedico,  Dirigente, Infermiere, Medico.  
 - Prenotazione e' generalizzazione totale ed esclusiva di PrenotazioneEsame e PrenotazioneStanza.  
 - TipoEsame e' generalizzazione non totatale ed esclusiva di EsameEffettuato.  
 - Stanze e' generalizzazione non totale esclusiva di StanzaRi e StanzaSp.  
+
+
+## Analisi delle relazioni e delle cardinalita'
+
+>*Sede-Personale*: Lavora
+>   - In una sede lavora piu personale
+>   - Un membro di personale lavora in una sola sede
+
+>*Personale-Stipendio*: Percepisce
+>   - Un membro del personale percepisce uno stipendio (1,1)
+>   - Uno stesso stipendio (stesso codice e quindi stesso importo) può essere percepito da più membri del personale (1,N)
+
+
+
 
 
