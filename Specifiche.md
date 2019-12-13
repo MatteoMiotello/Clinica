@@ -4,7 +4,6 @@
 Il Prof. Federico Perazzini, chirurgo ortopedico, e la moglie Imelda fondano la Clinica San Francesco. Il loro obiettivo è creare una nuova istituzione per soddisfare le crescenti necessità assistenziali dei cittadini veronesi, in campo ortopedico e traumatologico e non solo.
 
 1959
-La Clinica viene autorizzata per la gestione di 30 posti letto.
 
 1961
 I posti letto divengono 69.
