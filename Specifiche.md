@@ -12,7 +12,7 @@ Si vuole realizzare una base di dati che contenga e gestisca una clinica con pi�
 - codice identificativo 
 
 Ogni sede è identificata da:  
-- località ( numero ivico, capoluogo e via )  
+- località ( numero civico, capoluogo e via )  
 - id univoco  
 - numero di telefono  
 
@@ -108,7 +108,7 @@ Apertura Sede | |1 Anno
 Aggiunta Reparto| |1 ogni 5 anni
 Assunzione nuovo dipendente| |2 al mese
 Aggiunta paziente| |5 al giorno
-Prenotazioneesame| |100 al giorno
+Prenotazione esame| |100 al giorno
 PrenotazioneStanzaRi| |30 al giorno
 Verifica StanzaRi| |5000 al giorno
 Verifica stanze disponibili| |100 al giorno
@@ -122,6 +122,8 @@ Incasso medio giornaliero| |5 al mese
 
 
 ---
+
+
 
 ## Tabella delle entità 
 
@@ -329,7 +331,23 @@ Nessun Attributo
 *Paziente-EsameEffettuato*: Effettua
 - un Paziente effettua molti EsamiEffettuati (1,N)
 - un EsameEffettuato viene effettuato da un solo Paziente (1,1)
+<p>
 
+</p>
+---
+
+## Tabella dei volumi
+
+|Concetto|Tipo|Volume|
+|---------|:----:|-----:|
+Sede | E | 5
+Reparto| E | 10
+Personale| E | 100
+Paziente|E| 4000
+Stanza|E| 160
+Stipendio|E| 10
+TipoEsame|E| 30
+Macchinario|E| 50
 
 
 
