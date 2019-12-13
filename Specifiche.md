@@ -18,7 +18,7 @@ Si vuole realizzare una base di dati che contenga e gestisca una clinica con pi√
 | Reparto | Reparto contiene tutti i reparti che la clinica possiede(NB: non e' detto che all'interno di una sede vi siano tutti i Reparti) | Sede, Primario, Stanze, Tipo Esame |
 | Paziente | Un paziente della clinica | Esame Effettuato, Prenotazione |
 | Tipo Esame | Rappresenta tutti gli esami che sono possibili fare nella clinica Magi. <br> Esame Effettuato e' una specializzazione di Tipo Esame | PrenotazioneEsame |
-| Prenotazione | Rappresenta le prenotazioni che l'utente puo' fare (PrenotazioneEsame) <br> e quelle che vengono fatte dal personale interno (Prenotazione Stanze)|StanzaRi(PrenotazioneStanza), StanzaSp |
+| Prenotazione | Rappresenta le prenotazioni che l'utente puo' fare (PrenotazioneEsame) <br> e quelle che vengono fatte dal personale interno (PrenotazioneStanze)|StanzaRi(PrenotazioneStanza), StanzaSp |
 | Stipendio | Lo stipendio percepito dal personale | Personale |
 | Macchinario | Macchinario usato per gli esami | StanzaSp |
 
