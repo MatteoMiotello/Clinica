@@ -40,7 +40,7 @@ Si vuole realizzare una base di dati che contenga e gestisca una clinica con pi�
 | Vengono identificate due tipi di stanze, la stanza per il ricovero, nel caso in cui un paziente debba intrattenersi più giorni nella clinica per effettuare esami o per degenza, che presenta un prezzo per notte in base al tipo di stanza che il paziente sceglie; e la stanza specializzata, in cui vengono effettuati gli esami. | 
 
 | Frasi relative a Stipendio |
-| : ------------------------ |
+| :------------------------ |
 | Ogni dipendente (personale) in base al ruolo che ricopre percepirà uno stipendio fisso, di cui si vogliono memorizzare l'importo lordo e l'importo netto. |
 
 | Frasi relative a Macchinario |
