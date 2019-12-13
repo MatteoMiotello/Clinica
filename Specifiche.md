@@ -35,7 +35,7 @@ Si vuole realizzare una base di dati che contenga e gestisca una clinica con pi√
 | :------------------------- |
 | In ogni sede lavorano diversi dipendenti (personale), di ogni sede vogliamo memorizzare: i dirigenti, identificati dal settore, gli infermieri, identificati dal grado, i medici con la propria specializzazione, i primari per ogni reparto (un reparto ha piu' primari perche' ogni reparto in ogni sede ha il suo) e i restanti dipendenti (personale non medico)[...] |
 
-| Frasi relative a Stanze |
+| Frasi relative a Stanza |
 | :---------------------- |
 | Vengono identificate due tipi di stanze, la stanza per il ricovero, nel caso in cui un paziente debba intrattenersi pi√π giorni nella clinica per effettuare esami o per degenza, che presenta un prezzo per notte in base al tipo di stanza che il paziente sceglie; e la stanza specializzata, in cui vengono effettuati gli esami. | 
 
@@ -54,6 +54,10 @@ Si vuole realizzare una base di dati che contenga e gestisca una clinica con pi√
 | Frasi relative a Prenotazione |
 | :---------------------------- |
 | Un paziente[...] puo' effettuare delle prenotazioni. [...] Ogni prenotazione e' identificata da una data in cui e' stata fatta la prenotazione e un campo pagamento usato per capire se e' gia' stato effettuato o meno il versamento dei soldi. [...]Ogni prenotazione di un esame e' riferito ad un tipo di esame specifico, per tale tipo di prenotazione si vuole memorizzare l'ora in cui verra' effettuato[...]  Ogni prenotazione di una stanza riserva una stanza ricovero, di tale prenotazione vogliamo conoscere la data di inizio prenotazione e la data in cui la stanza verra' liberata[...] |
+
+| Frasi relative a Paziente |
+| :------------------------ |
+| Un paziente, di cui si vuole memorizzare il nome, il cognome, il sesso, l'indirizzo di residenza (numero civico, capoluogo e via), il numero di telefono e il codice fiscale[..] |
 
 
 Operazione|Tipo|Frequenza
