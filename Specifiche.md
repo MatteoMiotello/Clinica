@@ -7,77 +7,7 @@ Siamo nel 1958, il Prof. Vitangelo Moscarda, chirurgo ortopedico, e la moglie Ad
 </p>
 
 ## Analisi dei requisiti  
-Si vuole realizzare una base di dati che contenga e gestisca una clinica con più sedi sparse per il torritorio. La clinica presenta una serie di reparti, identificati dal tipo di reparto e da un codice identificativo. La clinica presenta più sedi, ognuna di esse deve essere identificata dalla località in cui si trova (numero ivico, capoluogo e via), un id univoco, e un numero di telefono, in modo tale da poter essere contattati. Ogni sede presenta uno o più reparti, ogni reparto in ogni sede presenta più stanze, identificate da un numero, dal reparto a cui appartengno e dalla sede in cui si trovano. Vengono identificate due tipi di stanze, la stanza per il ricovero, nel caso in cui un paziente debba intrattenersi più giorni nella clinica per effettuare esami o per degenza, che presenta un prezzo per notte in base al tipo di stanza che il paziente sceglie; e la stanza specializzata, in cui vengono effettuati gli esami. Ogni stanza specializzata contiene al suo interno una serie di macchinari, identificati dal nome, dalla casa produttrice, un numero di serie e una data dell'ultima revisione effettuata su tal macchinario. Un paziente, di cui si vuole memoriare il nome, il cognome, il sesso, l'indirizzo di residenza (numero civico, capoluogo e via) e il codice fiscale per identificarlo univocamente, può effettuare delle prenotazioni. Ogni prenotazione e' identificata da un id univoco, dalla data in cui e' stata fatta la prenotazione e un campo pagamento usato per capire se e' gia' stato effettuato o meno il versamento dei soldi. Ogni prenotazione di un esame e' riferito ad un tipo di esame specifico. Ogni tipo di esame e' memorizzato con un nome, che lo identifica univocamente, e un prezzo. 
-Ogni sede presenta più reparti, una serie di stanze per ricovero, di cui si vuole conoscere:
-- prezzo per notte  
-
-e una serie di stanze in cui avvengono gli esami. In ogni stanza per esami ( o stanze specializzate ) sono presenti una serie di macchinari che vengono utilizzati per gli esami specifici, di ogni macchinario si vogliono memorizzare:
-- dati relativi alla casa produttrice  
-- il numero di serie  
-- il nome del macchinario  
-- la data dell'ultima revisione 
-
-Tutte le stanze sono identificate da:  
-- un numero  
-- il reparto  
-- la sede in cui sui trovano   
-
-Ogni reparto offre una serie di esami, comuni ad ogni sede che presenta quel reparto, identificati da:  
-- nome che lo identifica univocamente
-- prezzo esame  
-
-In ogni sede lavorano diversi dipendenti, di ogni sede vogliamo memorizzare: i dirigenti, identificati da  
-- settore   
-
-gli infermieri, identificati da:  
-- grado   
-
-i medici con  
-- la propria specializzazione  
-
-e i restanti dipendenti. Ogni dipendente in base al ruolo che ricopre percepirà uno stipendio fisso, di cui si vogliono memorizzare:  
-- l'importo lordo  
-- l'importo netto  
-
-Di ogni dipendente si vuole tener traccia del:  
-- nome   
-- cognome  
-- data di nascita  
-- sesso  
-- città di residenza  
-- telefono  
-- IBAN  
-- codice fiscale, che lo identifica univocamente  
-
-Clinica Magi tiene traccia dei pazienti che si sottopongono ai loro esami, di ogni paziene si vuole memorizzare:
-- nome  
-- cognome  
-- sesso  
-- telefono  
-- indirizzo residenza  
-- codice fiscale, che lo identifica univocamente
-
-Di ogni paziente si vuole conoscere gli esami effettuati presso la clinica, ogni esame è caratterizzato da:
-- stanza in cui è stato effettuato l'esame  
-- diagnosi  
-- terapia consigliata  
-- medico che ha effettuato l'esame  
-- nome (mettiamo anche se stanno nella gneraizzazione?)  
-- codice esame (idem)  
-- codice fiscale per identificarlo univocamente  
-
-Un paziente può effettuare prenotazioni, sia per esami che per il ricovero. Per ogni prenotazione ci interessa conoscere:  
-- data prenotazione  
-- id univoco  
-- se il pagamento è stato o meno effettuato  
-
-Per la prenotazione i una stanza per il ricovero ci interessa conoscere:  
-- la data inizio del ricovero  
-- data fine ricovero  
-
-Per la prenotazione dell'esame è di nostro interesse memorizzare:  
-- orario in cui si effettuerà l'esame  
-
+Si vuole realizzare una base di dati che contenga e gestisca una clinica con più sedi sparse per il torritorio. La clinica presenta una serie di reparti, identificati dal tipo di reparto e da un codice identificativo. La clinica presenta più sedi, ognuna di esse deve essere identificata dalla località in cui si trova (numero civico, capoluogo e via), un id univoco, e un numero di telefono, in modo tale da poter essere contattati. Ogni sede presenta uno o più reparti, ogni reparto in ogni sede presenta più stanze, identificate da un numero, dal reparto a cui appartengno e dalla sede in cui si trovano. Vengono identificate due tipi di stanze, la stanza per il ricovero, nel caso in cui un paziente debba intrattenersi più giorni nella clinica per effettuare esami o per degenza, che presenta un prezzo per notte in base al tipo di stanza che il paziente sceglie; e la stanza specializzata, in cui vengono effettuati gli esami. Ogni stanza specializzata contiene al suo interno una serie di macchinari, identificati dal nome, dalla casa produttrice, un numero di serie e una data dell'ultima revisione effettuata su tal macchinario. Un paziente, di cui si vuole memoriare il nome, il cognome, il sesso, l'indirizzo di residenza (numero civico, capoluogo e via) e il codice fiscale per identificarlo univocamente, può effettuare delle prenotazioni. Ogni prenotazione e' identificata da un id univoco, dalla data in cui e' stata fatta la prenotazione e un campo pagamento usato per capire se e' gia' stato effettuato o meno il versamento dei soldi. Ogni prenotazione di un esame e' riferito ad un tipo di esame specifico, per tale tipo di prenotazione si vuole memorizzare l'ora in cui verra' effettuato, in modo da poter gestire le prenotazioni e le stanze disponibili. Ogni tipo di esame e' comune ad ogni sede che presenta quel reparto, e si vuole memorizzare il nome, che lo identifica univocamente, e il prezzo. Ogni prenotazione di una stanza riserva una stanza ricovero, di tale prenotazione vogliamo conoscere la data di inizio prenotazione e la data in cui la stanza verra' liberata. Un paziente puo' effetturare degli esami. Degli esami effettuati vogliamo memorizzare la stanza in cui e' stata effettuato, la diagnosi, la terapia, il medico che ha effettuato l'esame, il nome e il prezzo dell'esame. In ogni sede lavorano diversi dipendenti, di ogni sede vogliamo memorizzare: i dirigenti, identificati dal settore, gli infermieri, identificati dal grado , i medici con la propria specializzazione e i restanti dipendenti. Ogni dipendente in base al ruolo che ricopre percepirà uno stipendio fisso, di cui si vogliono memorizzare l'importo lordo e l'importo netto. Di ogni dipendente si vuole tener traccia del: nome, cognome, data di nascita, sesso, residenza (numero civico, capoluogo e via), telefono, IBAN per versare mensilmente lo stipendio e codice fiscale che lo identifica in modo univoco.  
 ## Glossario dei termini  
 
 | Termine | Descrizione | Collegamento |
