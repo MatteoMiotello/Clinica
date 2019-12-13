@@ -265,7 +265,7 @@ Nessun Attributo
 
 
 PrenotazioneStanza|
-|---------------:|
+|---------------|
 Nessun Attributo
 
 ---
