@@ -7,15 +7,7 @@ Siamo nel 1958, il Prof. Vitangelo Moscarda, chirurgo ortopedico, e la moglie Ad
 </p>
 
 ## Analisi dei requisiti  
-Si vuole realizzare una base di dati che contenga e gestisca una clinica con più sedi sparse per il torritorio. La clinica presenta una serie di reparti, identificati da:  
-- tipo  
-- codice identificativo 
-
-Ogni sede è identificata da:  
-- località ( numero ivico, capoluogo e via )  
-- id univoco  
-- numero di telefono  
-
+Si vuole realizzare una base di dati che contenga e gestisca una clinica con più sedi sparse per il torritorio. La clinica presenta una serie di reparti, identificati dal tipo di reparto e da un codice identificativo. La clinica presenta più sedi, ognuna di esse deve essere identificata dalla località in cui si trova (numero ivico, capoluogo e via), un id univoco, e un numero di telefono, in modo tale da poter essere contattati. Ogni sede presenta uno o più reparti, ogni reparto in ogni sede presenta più stanze, identificate da un numero, dal reparto a cui appartengno e dalla sede in cui si trovano. Vengono identificate due tipi di stanze, la stanza per il ricovero, nel caso in cui un paziente debba intrattenersi più giorni nella clinica per effettuare esami o per degenza, che preseenterà un prezzo per notte in base ; e la stanza specializzata, in cui vengono effettuati gli esami. Ogni stanza specializzata contiene al suo interno una serie di macchinari, identificati dal nome, dalla casa produttrice, un numero di serie e dall'ultima revisione effettuata su tal macchinario. 
 Ogni sede presenta più reparti, una serie di stanze per degenze, di cui si vuole conoscere:
 - prezzo per notte  
 
