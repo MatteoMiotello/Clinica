@@ -339,15 +339,25 @@ Nessun Attributo
 ## Tabella dei volumi
 
 |Concetto|Tipo|Volume|
-|---------|:----:|-----:|
+|---------|:----:|-----|
 Sede | E | 5
 Reparto| E | 10
 Personale| E | 100
+Prenotazione|E| 16000 (4 prenotazioni/paziente)
 Paziente|E| 4000
 Stanza|E| 160
 Stipendio|E| 10
 TipoEsame|E| 30
 Macchinario|E| 50
+Prenota|R| 16000
+Contiene|R| 160
+Suddivide|R| 20
+Possiede(St)|R| 140
+Lavora |R| 100
+Percepisce |R| 100
+Effettua |R| 30
+
+
 
 
 
