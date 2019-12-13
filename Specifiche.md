@@ -25,7 +25,7 @@ Si vuole realizzare una base di dati che contenga e gestisca una clinica con pi�
 ---
 ## Strutturazione dei requisiti  
 | Frasi relative a Sede |
-| : ------------------- |
+| :------------------- |
 | La clinica presenta più sedi, ognuna di esse deve essere identificata dalla località in cui si trova (numero civico, capoluogo e via), un id univoco, e un numero di telefono, in modo tale da poter essere contattati. Ogni sede presenta uno o più reparti.. In ogni sede lavorano diversi dipendenti, di ogni sede vogliamo memorizzare: i dirigenti, identificati dal settore, gli infermieri, identificati dal grado , i medici con la propria specializzazione e i restanti dipendenti |
 
 Operazione|Tipo|Frequenza
