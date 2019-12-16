@@ -66,7 +66,7 @@ Apertura Sede | |1 Anno
 Aggiunta Reparto| |1 ogni 5 anni
 Assunzione nuovo dipendente| |2 al mese
 Aggiunta paziente| |5 al giorno
-Prenotazioneesame| |100 al giorno
+Prenotazione esame| |100 al giorno
 PrenotazioneStanzaRi| |30 al giorno
 Verifica StanzaRi| |5000 al giorno
 Verifica stanze disponibili| |100 al giorno
@@ -80,6 +80,8 @@ Incasso medio giornaliero| |5 al mese
 
 
 ---
+
+
 
 ## Tabella delle entità 
 
@@ -287,6 +289,32 @@ Nessun Attributo
 *Paziente-EsameEffettuato*: Effettua
 - un Paziente effettua molti EsamiEffettuati (1,N)
 - un EsameEffettuato viene effettuato da un solo Paziente (1,1)
+<p>
+
+</p>
+---
+
+## Tabella dei volumi
+
+|Concetto|Tipo|Volume|
+|---------|:----:|-----|
+Sede | E | 5
+Reparto| E | 10
+Personale| E | 100
+Prenotazione|E| 16000 (4 prenotazioni/paziente)
+Paziente|E| 4000
+Stanza|E| 160
+Stipendio|E| 10
+TipoEsame|E| 30
+Macchinario|E| 50
+Prenota|R| 16000
+Contiene|R| 160
+Suddivide|R| 20
+Possiede(St)|R| 140
+Lavora |R| 100
+Percepisce |R| 100
+Effettua |R| 30
+
 
 
 
