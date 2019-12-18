@@ -111,32 +111,47 @@ PrenotazioneStanza| Entita' figlia di Prenotazione, specifica per la prenotazion
 ## Progettazione concettuale
 
 ### Analisi delle entita'
-
+<table>
+<td>
+<tr>
 
 Sede||||
 -----------------|-------|----------------------------|----------
 id_Sede|VARCHAR| identifica univocamente le sedi| **Chiave**
 Indirizzo|VARCHAR| attributo composto: Citta', Via, n_civico, CAP
 n_telefono|VARCHAR| numero di telefono di ogni sede
+</tr>
+
+<tr>
 
 Reparto||||
 -----------------|-------|----------------------------|----------
 id| VARCHAR| identifica univocamente il repartodi ogni sede | **Chiave**
 Tipo| VARCHAR| identifica la specialita' medica che viene trattata
 
+</tr>
+<tr>
+
 Stanza|||
 -----------------|-------|--------------------------------------
 id_stanza|VARCHAR|chiave composta: n_stanza, id_reparto, id_sede
 
-
+</tr>
+<tr>
 
 StanzaRi|||
 -----------------|-------|--------------------------------------
 prezzo_notte|SMALLINT| prezzo di ogni stanza a notte
 
+</tr>
+<tr>
+
 StanzaSp|
 --------------------------------------------------------------|
 Nessun attributo|
+
+</tr>
+<tr>
 
 Macchinari||||
 -----------------|-------|----------------------------|----------
@@ -144,6 +159,9 @@ n_serie|VARCHAR |codice identificativo univoco del macchinario| **Chiave**
 casa_prod| VARCHAR| nome della casa produttrice
 nome| VARCHAR | nome rappresentativo del macchinario
 ultima_rev| DATE| data dell'ultima revisione effettuata
+
+</tr>
+<tr>
 
 Personale||||
 -----------------|-------|----------------------------|----------
@@ -155,42 +173,52 @@ sesso |ENUM| sesso della persona fisica
 telefono|VARCHAR| numero di telefono del dipendente
 Indirizzo|VARCHAR| attributo composto: CAP, via, n_civico
 
-
+</tr>
+<tr>
 
 PersonaleNonMedico|||
 -----------------|-------|--------------------------------------
 tipo|VARCHAR| indica la mansione di ogni dipendente che non svolge un ruolo inerente alla medicina
 
-
+</tr>
+<tr>
 
 Dirigente|||
 -----------------|-------|--------------------------------------
 settore| VARCHAR| indica il settore di competenza del dirigente
 
-
+</tr>
+<tr>
 
 Infermiere|||
 -----------------|-------|--------------------------------------
 grado|VARCHAR|indica il grado di anzianita' di ogni infermiere
 
-
+</tr>
+<tr>
 
 Medico|||
 -----------------|-------|--------------------------------------
 specializzazione|VARCHAR|indica la specializzazione medica
 
-
+</tr>
+<tr>
 
 Primario|
 |--------------------------------------------------------------
 Nessun Attributo 
 
+</tr>
+<tr>
 
 Stipendio||||
 -----------------|-------|---------------------------|-----------
 tipo| VARCHAR| chiave identificativa univoca di ogni tipo di stipendio| **Chiave**
 imp_lordo|INT| importo lordo di ogni stipendio
 imp_netto|INT| importo netto di ogni stipendio|
+
+</tr>
+<tr>
 
 Pazienti||||
 -----------------|-------|---------------------------|-----------
@@ -201,6 +229,9 @@ sesso| ENUM| sesso di ogni paziente
 telefono|VARCHAR| numero di telefono di ogni paziente
 indirizzo|VARCHAR| attributo composto per l'indirizzo di residenza: CAP, via, n_civico
 
+</tr>
+<tr>
+
 EsameEffettuato||||
 -----------------|-------|---------------------------|-----------
 id|VARCHAR| chiave identificatva univoca per indicare ogni esame effettuato| **Chiave**
@@ -209,10 +240,16 @@ diagnosi| VARCHAR| diagnosi indicata a seguito dell'esame
 medico| VARCHAR| medico che ha effettuato l'esame
 terapia| VARCHAR| terapia indicata dal medico a seguito dell'esame
 
+</tr>
+<tr>
+
 TipoEsame||||
 -----------------|-------|---------------------------|-----------
 nome|VARCHAR| chiave che indica il nome dell'esame| **Chiave**
 prezzo|INT| intero che indica il prezzo di ogni esame
+
+</tr>
+<tr>
 
 |Prenotazione||||
 |-----------------|-------|---------------------------:|-----------:|
@@ -220,15 +257,23 @@ Id|VARCHAR| chiave identificativa univoca di ogni prenotazione| **Chiave**
 data| DATE| data in cui è stata effettuata la prenotazione
 pagamento|BOOL| check che identifica l'avvenuto pagamento
 
+</tr>
+<tr>
 
 PrenotazioneEsame|
 |---------------|
 Nessun Attributo
 
+</tr>
+<tr>
 
 PrenotazioneStanza|
 |---------------|
 Nessun Attributo
+
+</tr>
+</td>
+</table>
 
 ---
 
