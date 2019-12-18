@@ -150,7 +150,7 @@ StanzaSp|
 Nessun attributo|
 
 </td></tr>
-<tr>
+<tr><td>
 
 Macchinari||||
 -----------------|-------|----------------------------|----------
@@ -159,8 +159,8 @@ casa_prod| VARCHAR| nome della casa produttrice
 nome| VARCHAR | nome rappresentativo del macchinario
 ultima_rev| DATE| data dell'ultima revisione effettuata
 
-</tr>
-<tr>
+</td></tr>
+<tr><td>
 
 Personale||||
 -----------------|-------|----------------------------|----------
@@ -172,43 +172,43 @@ sesso |ENUM| sesso della persona fisica
 telefono|VARCHAR| numero di telefono del dipendente
 Indirizzo|VARCHAR| attributo composto: CAP, via, n_civico
 
-</tr>
-<tr>
+</td></tr>
+<tr><td>
 
 PersonaleNonMedico|||
 -----------------|-------|--------------------------------------
 tipo|VARCHAR| indica la mansione di ogni dipendente che non svolge un ruolo inerente alla medicina
 
-</tr>
-<tr>
+</td></tr>
+<tr><td>
 
 Dirigente|||
 -----------------|-------|--------------------------------------
 settore| VARCHAR| indica il settore di competenza del dirigente
 
-</tr>
-<tr>
+</td></tr>
+<tr><td>
 
 Infermiere|||
 -----------------|-------|--------------------------------------
 grado|VARCHAR|indica il grado di anzianita' di ogni infermiere
 
-</tr>
-<tr>
+</td></tr>
+<tr><td>
 
 Medico|||
 -----------------|-------|--------------------------------------
 specializzazione|VARCHAR|indica la specializzazione medica
 
-</tr>
-<tr>
+</td></tr>
+<tr><td>
 
 Primario|
 |--------------------------------------------------------------
 Nessun Attributo 
 
-</tr>
-<tr>
+</td></tr>
+<tr><td>
 
 Stipendio||||
 -----------------|-------|---------------------------|-----------
@@ -216,8 +216,8 @@ tipo| VARCHAR| chiave identificativa univoca di ogni tipo di stipendio| **Chiave
 imp_lordo|INT| importo lordo di ogni stipendio
 imp_netto|INT| importo netto di ogni stipendio|
 
-</tr>
-<tr>
+</td></tr>
+<tr><td>
 
 Pazienti||||
 -----------------|-------|---------------------------|-----------
@@ -228,8 +228,8 @@ sesso| ENUM| sesso di ogni paziente
 telefono|VARCHAR| numero di telefono di ogni paziente
 indirizzo|VARCHAR| attributo composto per l'indirizzo di residenza: CAP, via, n_civico
 
-</tr>
-<tr>
+</td></tr>
+<tr><td>
 
 EsameEffettuato||||
 -----------------|-------|---------------------------|-----------
@@ -239,16 +239,16 @@ diagnosi| VARCHAR| diagnosi indicata a seguito dell'esame
 medico| VARCHAR| medico che ha effettuato l'esame
 terapia| VARCHAR| terapia indicata dal medico a seguito dell'esame
 
-</tr>
-<tr>
+</td></tr>
+<tr><td>
 
 TipoEsame||||
 -----------------|-------|---------------------------|-----------
 nome|VARCHAR| chiave che indica il nome dell'esame| **Chiave**
 prezzo|INT| intero che indica il prezzo di ogni esame
 
-</tr>
-<tr>
+</td></tr>
+<tr><td>
 
 |Prenotazione||||
 |-----------------|-------|---------------------------:|-----------:|
@@ -256,21 +256,21 @@ Id|VARCHAR| chiave identificativa univoca di ogni prenotazione| **Chiave**
 data| DATE| data in cui è stata effettuata la prenotazione
 pagamento|BOOL| check che identifica l'avvenuto pagamento
 
-</tr>
-<tr>
+</td></tr>
+<tr><td>
 
 PrenotazioneEsame|
 |---------------|
 Nessun Attributo
 
-</tr>
-<tr>
+</td></tr>
+<tr><td>
 
 PrenotazioneStanza|
 |---------------|
 Nessun Attributo
 
-</tr>
+</td></tr>
 </table>
 
 ---
