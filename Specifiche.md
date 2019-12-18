@@ -73,6 +73,7 @@ Verifica stanze disponibili| 100 al giorno
 Calcolo busta paga dipendente |100 al mese
 Calcolo spese totali paziente|50 al giorno
 Verifica pagamento| 5 al giorno
+Verifica importo totale| 100 al giorno
 Verifica revisione macchinari| 10 al mese
 Report incasso giornaliero| 5 al giorno
 Report incasso mensile| 5 al mese
@@ -315,8 +316,25 @@ Possiede(St)|R| 140
 Lavora |R| 100
 Percepisce |R| 100
 Effettua |R| 30
+Richiede |R| 16000
 
 
+## Analisi delle ridondanza
+
+### Operazione: **Verifica importo totale**
+<table>
+<tr><th>Senza Ridondanza</th><th> Con Ridondanza </th> </tr>
+<tr><td>
+
+|Concetto|Costrutto|Accesso|Tipo|   
+|--------|:-------:|-------|----|   
+
+</td><td>
+
+|Concetto|Costrutto|Accesso|Tipo|   
+|--------|:-------:|-------|----|   
+
+</td> </tr> </table>
 
 
 
