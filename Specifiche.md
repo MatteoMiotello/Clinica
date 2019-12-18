@@ -399,6 +399,7 @@ Richiede |R| 16000
 
 <table>
 <tr><th> <p align="centre">Con Ridondanza </p> </th> </tr>
+<tr><td>
 
 |Concetto|Costrutto|Accesso|Tipo|   
 |--------|:-------:|:-------:|:----:| 
