@@ -61,7 +61,7 @@ Si vuole realizzare una base di dati che contenga e gestisca una clinica con pi√
 
 
 Operazione|Frequenza
------------------------------------------------------|-------------------------------|---------------------------------------------
+-----------------------------------------------------|----------------------------------------------------------------------------
 Apertura Sede  B |1 Anno
 Aggiunta Reparto|1 ogni 5 anni
 Assunzione nuovo dipendente|2 al mese
