@@ -110,26 +110,25 @@ PrenotazioneStanza| Entita' figlia di Prenotazione, specifica per la prenotazion
 
 ## Progettazione concettuale
 
-### Analisi delle entita'
 <table>
-<td>
-<tr>
-
+   <tr><th><h3> Analisi delle entita'</h3></th></tr>
+<tr align= "centre"><td>
+   
 Sede||||
 -----------------|-------|----------------------------|----------
 id_Sede|VARCHAR| identifica univocamente le sedi| **Chiave**
 Indirizzo|VARCHAR| attributo composto: Citta', Via, n_civico, CAP
 n_telefono|VARCHAR| numero di telefono di ogni sede
-</tr>
 
-<tr>
-
+</td></tr>
+<tr><td>
+   
 Reparto||||
 -----------------|-------|----------------------------|----------
 id| VARCHAR| identifica univocamente il repartodi ogni sede | **Chiave**
 Tipo| VARCHAR| identifica la specialita' medica che viene trattata
 
-</tr>
+</td></tr>
 <tr>
 
 Stanza|||
@@ -137,20 +136,20 @@ Stanza|||
 id_stanza|VARCHAR|chiave composta: n_stanza, id_reparto, id_sede
 
 </tr>
-<tr>
+<tr><td>
 
 StanzaRi|||
 -----------------|-------|--------------------------------------
 prezzo_notte|SMALLINT| prezzo di ogni stanza a notte
 
-</tr>
-<tr>
+</td></tr>
+<tr><td>
 
 StanzaSp|
 --------------------------------------------------------------|
 Nessun attributo|
 
-</tr>
+</td></tr>
 <tr>
 
 Macchinari||||
@@ -272,7 +271,6 @@ PrenotazioneStanza|
 Nessun Attributo
 
 </tr>
-</td>
 </table>
 
 ---
