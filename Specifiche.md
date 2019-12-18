@@ -129,13 +129,13 @@ id| VARCHAR| identifica univocamente il repartodi ogni sede | **Chiave**
 Tipo| VARCHAR| identifica la specialita' medica che viene trattata
 
 </td></tr>
-<tr>
+<tr><td>
 
 Stanza|||
 -----------------|-------|--------------------------------------
 id_stanza|VARCHAR|chiave composta: n_stanza, id_reparto, id_sede
 
-</tr>
+</tr></tr>
 <tr><td>
 
 StanzaRi|||
