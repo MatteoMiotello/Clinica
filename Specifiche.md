@@ -374,14 +374,68 @@ Richiede |R| 16000
 <tr><td>
 
 |Concetto|Costrutto|Accesso|Tipo|   
-|--------|:-------:|-------|----|   
-
+|--------|:-------:|:-------:|:----:|   
+|Paziente|E| 1 |L|
+|Richiede|R| 4 |L|
+|Prenotazione|E| 4 |L|
+|StanzaRi|E| 1 |L|
+|Riserva|R| 1|L|
+|Riferito| R| 3|L|
+|TipoEsame|E| 3|L|
 </td><td>
 
 |Concetto|Costrutto|Accesso|Tipo|   
-|--------|:-------:|-------|----|   
+|--------|:-------:|:-------:|:----:| 
+|Paziente|E|1|L|  
+|Richiede|R|4|L|
+
+
+
+
+</td> </tr>
+</table>
+
+### Operazione: **Update Importo totale**
+
+<table>
+<tr><th> <p align="centre">Con Ridondanza </p> </th> </tr>
+
+|Concetto|Costrutto|Accesso|Tipo|   
+|--------|:-------:|:-------:|:----:| 
+|Richiede|R|1|L
+|Richiede|R|2|S|
+|Prenotazione|E|1|L|
+|riferito|R|1|L|
+|TipoEsame|E|1|L|
+|Riserva|R|1|L|
+|StanzaRi|E|1|L
 
 </td> </tr> </table>
+
+</table>
+
+### *Senza Ridondanza:*
+
+<p align="justify">
+In assenza di ridondanza si hanno 17 accessi in lettura, non è presente l'attributo importo_totale e quindi non sarà necessario aggiornare ad ogni prenotazione quel valore.
+
+- Totale Scritture/accessi: 17*100 = 1.700
+
+### *Senza Ridondanza:*
+
+<p align="justify">
+Con la presenza di ridondanza si hanno 11 accessi in lettura e 2 in scrittura. In questo caso si sono calcolate le operazioni che riguardano anche l'aggiornamento dell'attributo "importo_totale" che prevede vari accessi in lettura per quanto riguarda l'entita' prenotazione, TipoEsame e StanzaRi e degli accessi in scrittura per quanto riguarda la relazione Richiede, tutto questo è riportato nella tabella "Update Importo Totale". Infatti è necessario che l'aggiornamento avvenga ogni volta che si effettua una nuova prenotazione.
+
+- Totale Scritture: 4*100 = 400 (le scritture si contano due volte)
+- Totale Letture: 11*100 = 1.100 
+- Totale Accessi: 400+1.100= 1.500
+
+<p align="justify">
+Considerando che per memorizzare ogni importototale sono necessari 4byte,la tabella creatasi avrebbe un peso totale di 64kB e che una differenza di 200 accessi risulta minima e trascurabile, abbiamo deciso di optare per una soluzione senza ridondanza. 
+
+<p align="justify"> Facciamo notare però che la situazione cambierebbe aumentando di almeno un ordine il numero di pazienti e prenotazioni, in questo caso la soluzione con ridondanza sarebbe la più adatta.
+
+
 
 
 
