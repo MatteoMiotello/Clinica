@@ -431,8 +431,12 @@ Con la presenza di ridondanza si hanno 11 accessi in lettura e 2 in scrittura. I
 - Totale Letture: 11*100 = 1.100 
 - Totale Accessi: 400+1.100= 1.500
 
+<p>
+
+</p>
+
 <p align="justify">
-Considerando che per memorizzare ogni importototale sono necessari 4byte,la tabella creatasi avrebbe un peso totale di 64kB e che una differenza di 200 accessi risulta minima e trascurabile, abbiamo deciso di optare per una soluzione senza ridondanza. 
+Considerando che per memorizzare ogni importo_totale sono necessari 4byte,la tabella creatasi avrebbe un peso totale di 64kB e che una differenza di 200 accessi risulta minima e trascurabile, abbiamo deciso di optare per una soluzione senza ridondanza. 
 
 <p align="justify"> Facciamo notare però che la situazione cambierebbe aumentando di almeno un ordine il numero di pazienti e prenotazioni, in questo caso la soluzione con ridondanza sarebbe la più adatta.
 
