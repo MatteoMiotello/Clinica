@@ -8,56 +8,23 @@ CREATE TABLE Sede (
     PRIMARY KEY (ID)
 )ENGINE=InnoDb;
 
-CREATE TABLE PrenotazioneStanza (
-    ID INT(11),
-    data_inizio DATETIME NOT NULL,
-    data_fine DATETIME NOT NULL,
-    data_p DATETIME NOT NULL,
-    pagamento BOOLEAN,
-    paziente VARCHAR(16),
-    stanza TINYINT,
-    reparto CHAR(4),
-    sede VARCHAR(2),
-    PRIMARY KEY (ID),
-    FOREIGN KEY (stanza) REFERENCES StanzaSP(n_stanza),
-    FOREIGN KEY (reparto) REFERENCES StanzaSP(reparto),
-    FOREIGN KEY (sede) REFERENCES StanzaSP(sede),
-    FOREIGN KEY (paziente) REFERENCES Paziente(CF)
+CREATE TABLE Stipendio (
+    tipo VARCHAR (15),
+    imp_lordo DECIMAL NOT NULL,
+    imp_netto DECIMAL,
+    PRIMARY KEY (tipo)
 )ENGINE=InnoDb;
 
-CREATE TABLE PrenotazioneEsame (
-    ID INT(11),
-    data_p  DATETIME NOT NULL,
-    orario TIME NOT NULL,    
-    pagamento BOOLEAN,
-    paziente VARCHAR(16),
-    stanza TINYINT,
-    reparto CHAR(4),
-    sede VARCHAR(2),
-    PRIMARY KEY(ID),
-    FOREIGN KEY (stanza) REFERENCES StanzaSP(n_stanza),
-    FOREIGN KEY (reparto) REFERENCES StanzaSP(reparto),
-    FOREIGN KEY (sede) REFERENCES StanzaSP(sede),
-    FOREIGN KEY (paziente) REFERENCES Paziente(CF)
+CREATE TABLE Paziente (
+    CF VARCHAR (16),
+    nome VARCHAR (20),
+    cognome VARCHAR (30),
+    telefono VARCHAR (13) NOT NULL, 
+    via VARCHAR (25) NOT NULL,
+    n_civico TINYINT NOT NULL,
+    CAP CHAR (5) NOT NULL,
+    PRIMARY KEY (CF)
 )ENGINE=InnoDb;
-
-CREATE TABLE EsameEffettuato (
-    ID INT(11),
-    paziente VARCHAR(16),
-    tipo_esame VARCHAR(10),
-    stanza TINYINT NOT NULL,
-    terapia VARCHAR(100) NOT NULL, 
-    diagnosi VARCHAR(100) NOT NULL,
-    medico VARCHAR(20) NOT NULL,
-    FOREIGN KEY(tipo_esame) REFERENCES TipoEsame(nome),
-    FOREIGN KEY (paziente) REFERENCES Paziente(CF),
-    PRIMARY KEY(ID)
-)ENGINE=InnoDb;
-
-CREATE TABLE TipoEsame (
-    nome VARCHAR(10),
-    prezzo DECIMAL NOT NULL
-) ENGINE=InnoDb;
 
 CREATE TABLE Personale ( 
     CF VARCHAR (16),
@@ -76,15 +43,76 @@ CREATE TABLE Personale (
     sede VARCHAR (3),
     PRIMARY KEY (CF),
     FOREIGN KEY (sede) REFERENCES Sede (ID),
-    FOREIGN KEY (stipendio) REFERENCES Stipendio (tipo),
+    FOREIGN KEY (stipendio) REFERENCES Stipendio (tipo)
 )ENGINE=InnoDb;
 
-CREATE TABLE Stipendio (
-    tipo VARCHAR (15),
-    imp_lordo DECIMAL NOT NULL,
-    imp_netto DECIMAL,
-    PRIMARY KEY (tipo)
+CREATE TABLE Reparto (
+    codice CHAR (4),
+    tipo VARCHAR (15) UNIQUE,
+    primario VARCHAR (16),
+    FOREIGN KEY (primario) REFERENCES Personale (CF),
+    PRIMARY KEY (codice)
 )ENGINE=InnoDb;
+
+CREATE TABLE StanzaSp ( 
+    n_stanza TINYINT,
+    sede VARCHAR (3),
+    reparto CHAR (4),
+    FOREIGN KEY (sede) REFERENCES Sede (ID) ON DELETE CASCADE,
+    FOREIGN KEY (reparto) REFERENCES Reparto (codice),
+    PRIMARY KEY (n_stanza, sede, reparto)
+)ENGINE=InnoDb;
+
+CREATE TABLE StanzaRi ( 
+    n_stanza TINYINT,
+    sede VARCHAR (3),
+    reparto CHAR (4),
+    prezzo_notte DECIMAL (6,2) NOT NULL,
+    tipo VARCHAR (15),
+    FOREIGN KEY (sede) REFERENCES Sede (ID) ON DELETE CASCADE,
+    FOREIGN KEY (reparto) REFERENCES Reparto (codice),
+    PRIMARY KEY (n_stanza, sede, reparto)
+
+)ENGINE=InnoDb;
+
+CREATE TABLE PrenotazioneStanza (
+    ID INT(11),
+    data_inizio DATETIME NOT NULL,
+    data_fine DATETIME NOT NULL,
+    data_p DATETIME NOT NULL,
+    pagamento BOOLEAN,
+    paziente VARCHAR(16),
+    stanza TINYINT,
+    reparto CHAR(4),
+    sede VARCHAR(2),
+    PRIMARY KEY (ID),
+    FOREIGN KEY (stanza) REFERENCES StanzaSP(n_stanza),
+    FOREIGN KEY (reparto) REFERENCES StanzaSP(reparto),
+    FOREIGN KEY (sede) REFERENCES StanzaSP(sede) ON DELETE CASCADE,
+    FOREIGN KEY (paziente) REFERENCES Paziente(CF)
+)ENGINE=InnoDb;
+
+CREATE TABLE PrenotazioneEsame (
+    ID INT(11),
+    data_p  DATETIME NOT NULL,
+    orario TIME NOT NULL,    
+    pagamento BOOLEAN,
+    paziente VARCHAR(16),
+    stanza TINYINT,
+    reparto CHAR(4),
+    sede VARCHAR(2),
+    PRIMARY KEY(ID),
+    FOREIGN KEY (stanza) REFERENCES StanzaSP(n_stanza),
+    FOREIGN KEY (reparto) REFERENCES StanzaSP(reparto),
+    FOREIGN KEY (sede) REFERENCES StanzaSP(sede) ON DELETE CASCADE,
+    FOREIGN KEY (paziente) REFERENCES Paziente(CF)
+)ENGINE=InnoDb;
+
+CREATE TABLE TipoEsame (
+    nome VARCHAR(10),
+    prezzo DECIMAL NOT NULL,
+    PRIMARY KEY (nome)
+) ENGINE=InnoDb;
 
 CREATE TABLE Macchinario (
     n_serie INT (11),
@@ -100,50 +128,25 @@ CREATE TABLE Macchinario (
     PRIMARY KEY (n_serie)
 )ENGINE=InnoDb;
 
-CREATE TABLE StanzaSp ( 
-    n_stanza TINYINT,
-    sede VARCHAR (3),
-    reparto CHAR (4),
-    FOREIGN KEY (sede) REFERENCES Sede (ID),
-    FOREIGN KEY (reparto) REFERENCES Reparto (codice),
-    PRIMARY KEY (n_stanza, sede, reparto)
-)ENGINE=InnoDb;
-
-CREATE TABLE StanzaRi ( 
-    n_stanza TINYINT,StanzaRi
-    sede VARCHAR (3),
-    reparto CHAR (4),
-    prezzo_notte DECIMAL NOT NULL,
-    tipo VARCHAR (15),
-    FOREIGN KEY (sede) REFERENCES Sede (ID),
-    FOREIGN KEY (reparto) REFERENCES Reparto (codice),
-    PRIMARY KEY (n_stanza, sede, reparto)
-
-)ENGINE=InnoDb;
-
-CREATE TABLE Reparto (
-    codice CHAR (4),
-    tipo VARCHAR (15) UNIQUE,
-    primario VARCHAR (16),
-    FOREIGN KEY (primario) REFERENCES Personale (CF),
-    PRIMARY KEY (codice)
-)ENGINE=InnoDb;
-
 CREATE TABLE Costituisce ( 
     sede VARCHAR(3),
     reparto CHAR (4),
-    FOREIGN KEY (sede) REFERENCES Sede (ID),
+    FOREIGN KEY (sede) REFERENCES Sede (ID) ON DELETE CASCADE,
     FOREIGN KEY (reparto) REFERENCES Reparto (codice),
     PRIMARY KEY (sede, reparto)
 )ENGINE=InnoDb;
 
-CREATE TABLE Paziente (
-    CF VARCHAR (16),
-    nome VARCHAR (20),
-    cognome VARCHAR (30),
-    telefono VARCHAR (13) NOT NULL, 
-    via VARCHAR (25) NOT NULL,
-    n_civico TINYINT NOT NULL,
-    CAP CHAR (5) NOT NULL,
-    PRIMARY KEY (CF)
+CREATE TABLE EsameEffettuato (
+    ID INT(11),
+    paziente VARCHAR(16),
+    tipo_esame VARCHAR(10),
+    stanza TINYINT NOT NULL,
+    terapia VARCHAR(100) NOT NULL, 
+    diagnosi VARCHAR(100) NOT NULL,
+    medico VARCHAR(20) NOT NULL,
+    FOREIGN KEY(tipo_esame) REFERENCES TipoEsame(nome),
+    FOREIGN KEY (paziente) REFERENCES Paziente(CF),
+    PRIMARY KEY(ID)
 )ENGINE=InnoDb;
+
+
