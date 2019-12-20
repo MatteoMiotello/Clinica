@@ -1,7 +1,7 @@
 **Sede**  
 telefono not null e unique  
 indirizzo not null  
-id primary key   
+IDprimary key   
 **Personale**  
 IBAN not null   
 CF primary key  
@@ -19,10 +19,10 @@ CF primary key
 telefono not null  
 indirizzo not null  
 **Prenotazione**  
-id primary key  
+IDprimary key  
 data not null  
 **EsameEffettuato**  
-id primary key  
+IDprimary key  
 terapia not null  
 diagnosi not null  
 stanza not null  

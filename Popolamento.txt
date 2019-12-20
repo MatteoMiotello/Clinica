@@ -9,7 +9,7 @@ CREATE TABLE Sede (
 )ENGINE=InnoDb;
 
 CREATE TABLE PrenotazioneStanza (
-    id INT(11),
+    ID INT(11),
     data_inizio DATETIME NOT NULL,
     data_fine DATETIME NOT NULL,
     data_p data_fine DATETIME NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE PrenotazioneStanza (
 )ENGINE=InnoDb;
 
 CREATE TABLE PrenotazioneEsame (
-    id INT(11),
+    ID INT(11),
     data_p data_fine DATETIME NOT NULL,
     orario TIME NOT NULL,    
     pagamento BOOLEAN,
@@ -42,7 +42,7 @@ CREATE TABLE PrenotazioneEsame (
 )ENGINE=InnoDb;
 
 CREATE TABLE EsameEffettuato (
-    id INT(11),
+    ID INT(11),
     paziente VARCHAR(16),
     tipo_esame VARCHAR(10),
     stanza TINYINT NOT NULL,
