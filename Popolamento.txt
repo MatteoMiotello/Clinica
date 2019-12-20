@@ -1,37 +1,98 @@
-CREATE TABLE Sede
-(ID VARCHAR (11),
-CAP CHAR (5) not null,
-via VARCHAR (25) not null,
-n_civico SMALLINT not null,
-telefono VARCHAR (13) not null,
-UNIQUE (telefono),
-PRIMARY KEY (ID)
+CREATE TABLE Sede (
+    ID VARCHAR (3),
+    CAP CHAR (5) not null,
+    via VARCHAR (25) not null,
+    n_civico SMALLINT not null,
+    telefono VARCHAR (13) not null,
+    UNIQUE (telefono),
+    PRIMARY KEY (ID)
 );
 
-CREATE TABLE Personale
-(CF VARCHAR (16),
-nome VARCHAR (20),
-cognome VARCHAR (30),
-datadinascita DATE,
-sesso ENUM ('M','F'),
-telefono VARCHAR (13),
-tipo VARCHAR (30),
-grado VARCHAR (30),
-CAP CHAR (5),
-via VARCHAR (25),
-n_civico SMALLINT,
-IBAN VARCHAR (27) not null,
-stipendio VARCHAR (15),
-sede VARCHAR (11),
-PRIMARY KEY (CF),
-FOREIGN KEY (sede) REFERENCES Sede (ID),
-FOREIGN KEY (stipendio) REFERENCES Stipendio (tipo),
+CREATE TABLE Personale ( 
+    CF VARCHAR (16),
+    nome VARCHAR (20),
+    cognome VARCHAR (30),
+    datadinascita DATE,
+    sesso ENUM ('M','F'),
+    telefono VARCHAR (13),
+    tipo VARCHAR (30),
+    grado VARCHAR (30),
+    CAP CHAR (5),
+    via VARCHAR (25),
+    n_civico SMALLINT,
+    IBAN VARCHAR (27) not null,
+    stipendio VARCHAR (15),
+    sede VARCHAR (3),
+    PRIMARY KEY (CF),
+    FOREIGN KEY (sede) REFERENCES Sede (ID),
+    FOREIGN KEY (stipendio) REFERENCES Stipendio (tipo),
 );
 
-CREATE TABLE Stipendio
-(tipo VARCHAR (15),
-imp_lordo DECIMAL,
-imp_netto DECIMAL,
-PRIMARY KEY (tipo)
+CREATE TABLE Stipendio (
+    tipo VARCHAR (15),
+    imp_lordo DECIMAL,
+    imp_netto DECIMAL,
+    PRIMARY KEY (tipo)
 );
 
+CREATE TABLE Macchinario (
+    n_serie INT (11),
+    nome VARCHAR (15),
+    casa_prod VARCHAR (15),
+    ultima_revisione DATE,
+    n_stanza TINYINT,
+    reparto CHAR (4),
+    sede VARCHAR (3),
+    FOREIGN KEY (n_stanza) REFERENCES StanzaSp (n_stanza),
+    FOREIGN KEY (reparto) REFERENCES StanzaSp (reparto),
+    FOREIGN KEY (sede) REFERENCES StanzaSp (sede),
+    PRIMARY KEY (n_serie)
+);
+
+CREATE TABLE StanzaSp ( 
+    n_stanza TINYINT,
+    sede VARCHAR (3),
+    reparto CHAR (4),
+    FOREIGN KEY (sede) REFERENCES Sede (ID),
+    FOREIGN KEY (reparto) REFERENCES Reparto (codice),
+    PRIMARY KEY (n_stanza, sede, reparto)
+);
+
+CREATE TABLE StanzaRi ( 
+    n_stanza TINYINT,
+    sede VARCHAR (3),
+    reparto CHAR (4),
+    prezzo_notte DECIMAL,
+    tipo VARCHAR (15),
+    FOREIGN KEY (sede) REFERENCES Sede (ID),
+    FOREIGN KEY (reparto) REFERENCES Reparto (codice),
+    PRIMARY KEY (n_stanza, sede, reparto)
+
+);
+
+CREATE TABLE Reparto (
+    codice CHAR (4),
+    tipo VARCHAR (15),
+    primario VARCHAR (16),
+    FOREIGN KEY primario REFERENCES Personale (CF),
+    PRIMARY KEY (codice)
+);
+
+CREATE TABLE Costituisce ( 
+    sede VARCHAR(3),
+    reparto CHAR (4),
+    FOREIGN KEY (sede) REFERENCES Sede (ID),
+    FOREIGN KEY (reparto) REFERENCES Reparto (codice),
+    PRIMARY KEY (sede, reparto)
+);
+
+CREATE TABLE Paziente (
+    CF VARCHAR (16),
+    nome VARCHAR (20),
+    cognome VARCHAR (30),
+    telefono VARCHAR (13), 
+    via VARCHAR (25),
+    n_civico TINYINT,
+    CAP CHAR (5),
+    PRIMARY KEY (CF)
+);
