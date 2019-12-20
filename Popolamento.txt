@@ -110,10 +110,10 @@ CREATE TABLE StanzaSp (
 )ENGINE=InnoDb;
 
 CREATE TABLE StanzaRi ( 
-    n_stanza TINYINT,
+    n_stanza TINYINT,StanzaRi
     sede VARCHAR (3),
     reparto CHAR (4),
-    prezzo_notte DECIMAL,
+    prezzo_notte DECIMAL NOT NULL,
     tipo VARCHAR (15),
     FOREIGN KEY (sede) REFERENCES Sede (ID),
     FOREIGN KEY (reparto) REFERENCES Reparto (codice),
