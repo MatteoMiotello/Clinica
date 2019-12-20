@@ -1,0 +1,37 @@
+CREATE TABLE Sede
+(ID VARCHAR (11),
+CAP CHAR (5) not null,
+via VARCHAR (25) not null,
+n_civico SMALLINT not null,
+telefono VARCHAR (13) not null,
+UNIQUE (telefono),
+PRIMARY KEY (ID)
+);
+
+CREATE TABLE Personale
+(CF VARCHAR (16),
+nome VARCHAR (20),
+cognome VARCHAR (30),
+datadinascita DATE,
+sesso ENUM ('M','F'),
+telefono VARCHAR (13),
+tipo VARCHAR (30),
+grado VARCHAR (30),
+CAP CHAR (5),
+via VARCHAR (25),
+n_civico SMALLINT,
+IBAN VARCHAR (27) not null,
+stipendio VARCHAR (15),
+sede VARCHAR (11),
+PRIMARY KEY (CF),
+FOREIGN KEY (sede) REFERENCES Sede (ID),
+FOREIGN KEY (stipendio) REFERENCES Stipendio (tipo),
+);
+
+CREATE TABLE Stipendio
+(tipo VARCHAR (15),
+imp_lordo DECIMAL,
+imp_netto DECIMAL,
+PRIMARY KEY (tipo)
+);
+
