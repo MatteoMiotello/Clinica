@@ -27,7 +27,7 @@ CREATE TABLE PrenotazioneStanza (
 
 CREATE TABLE PrenotazioneEsame (
     ID INT(11),
-    data_p data_fine DATETIME NOT NULL,
+    data_p  DATETIME NOT NULL,
     orario TIME NOT NULL,    
     pagamento BOOLEAN,
     paziente VARCHAR(16),
