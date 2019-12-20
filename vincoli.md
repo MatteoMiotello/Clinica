@@ -1,8 +1,8 @@
-**SEDE**  
+**Sede**  
 telefono not null e unique  
 indirizzo not null  
 id primary key   
-**PERSONALE**  
+**Personale**  
 IBAN not null   
 CF primary key  
 **Stipendio**  
@@ -32,4 +32,5 @@ orario not null
 **PrenotazioneStanza**  
 data_inizio not null  
 data_fine not null  
-
+**StanzaRi**  
+prezzo_notte not null  
