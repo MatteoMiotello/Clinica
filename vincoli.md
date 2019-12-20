@@ -34,3 +34,6 @@ data_inizio not null
 data_fine not null  
 **StanzaRi**  
 prezzo_notte not null  
+**TipoEsame**  
+nome primary key  
+prezzo not null  
