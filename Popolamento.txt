@@ -12,7 +12,7 @@ CREATE TABLE PrenotazioneStanza (
     ID INT(11),
     data_inizio DATETIME NOT NULL,
     data_fine DATETIME NOT NULL,
-    data_p data_fine DATETIME NOT NULL,
+    data_p DATETIME NOT NULL,
     pagamento BOOLEAN,
     paziente VARCHAR(16),
     stanza TINYINT,
