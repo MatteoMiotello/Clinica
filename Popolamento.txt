@@ -20,7 +20,7 @@ CREATE TABLE PrenotazioneStanza (
     sede VARCHAR(2),
     PRIMARY KEY(id),
     FOREIGN KEY (stanza) REFERENCES StanzaSP(n_stanza),
-    FOREIGN KEY (reparto) REFERENCES StanzaSP(repartp),
+    FOREIGN KEY (reparto) REFERENCES StanzaSP(reparto),
     FOREIGN KEY (sede) REFERENCES StanzaSP(sede),
     FOREIGN KEY (paziente) REFERENCES Paziente(CF)
 )ENGINE=InnoDb;
