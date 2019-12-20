@@ -53,10 +53,12 @@ CREATE TABLE EsameEffettuato (
     FOREIGN KEY (paziente) REFERENCES Paziente(CF),
     PRIMARY KEY(id)
 )ENGINE=InnoDb;
+
 CREATE TABLE TipoEsame (
     nome VARCHAR(10),
     prezzo DECIMAL NOT NULL
 ) ENGINE=InnoDb;
+
 CREATE TABLE Personale ( 
     CF VARCHAR (16),
     nome VARCHAR (20),
@@ -69,7 +71,7 @@ CREATE TABLE Personale (
     CAP CHAR (5),
     via VARCHAR (25),
     n_civico SMALLINT,
-    IBAN VARCHAR (27) not null,
+    IBAN VARCHAR (27) NOT NULL,
     stipendio VARCHAR (15),
     sede VARCHAR (3),
     PRIMARY KEY (CF),
@@ -79,7 +81,7 @@ CREATE TABLE Personale (
 
 CREATE TABLE Stipendio (
     tipo VARCHAR (15),
-    imp_lordo DECIMAL,
+    imp_lordo DECIMAL NOT NULL,
     imp_netto DECIMAL,
     PRIMARY KEY (tipo)
 )ENGINE=InnoDb;
@@ -121,7 +123,7 @@ CREATE TABLE StanzaRi (
 
 CREATE TABLE Reparto (
     codice CHAR (4),
-    tipo VARCHAR (15),
+    tipo VARCHAR (15) UNIQUE,
     primario VARCHAR (16),
     FOREIGN KEY primario REFERENCES Personale (CF),
     PRIMARY KEY (codice)
@@ -139,9 +141,9 @@ CREATE TABLE Paziente (
     CF VARCHAR (16),
     nome VARCHAR (20),
     cognome VARCHAR (30),
-    telefono VARCHAR (13), 
-    via VARCHAR (25),
-    n_civico TINYINT,
-    CAP CHAR (5),
+    telefono VARCHAR (13) NOT NULL, 
+    via VARCHAR (25) NOT NULL,
+    n_civico TINYINT NOT NULL,
+    CAP CHAR (5) NOT NULL,
     PRIMARY KEY (CF)
 )ENGINE=InnoDb;
