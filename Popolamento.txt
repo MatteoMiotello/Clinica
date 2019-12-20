@@ -18,7 +18,7 @@ CREATE TABLE PrenotazioneStanza (
     stanza TINYINT,
     reparto CHAR(4),
     sede VARCHAR(2),
-    PRIMARY KEY(id),
+    PRIMARY KEY (ID),
     FOREIGN KEY (stanza) REFERENCES StanzaSP(n_stanza),
     FOREIGN KEY (reparto) REFERENCES StanzaSP(repartp),
     FOREIGN KEY (sede) REFERENCES StanzaSP(sede),
@@ -34,7 +34,7 @@ CREATE TABLE PrenotazioneEsame (
     stanza TINYINT,
     reparto CHAR(4),
     sede VARCHAR(2),
-    PRIMARY KEY(id),
+    PRIMARY KEY(ID),
     FOREIGN KEY (stanza) REFERENCES StanzaSP(n_stanza),
     FOREIGN KEY (reparto) REFERENCES StanzaSP(reparto),
     FOREIGN KEY (sede) REFERENCES StanzaSP(sede),
@@ -51,7 +51,7 @@ CREATE TABLE EsameEffettuato (
     medico VARCHAR(20) NOT NULL,
     FOREIGN KEY(tipo_esame) REFERENCES TipoEsame(nome),
     FOREIGN KEY (paziente) REFERENCES Paziente(CF),
-    PRIMARY KEY(id)
+    PRIMARY KEY(ID)
 )ENGINE=InnoDb;
 
 CREATE TABLE TipoEsame (
