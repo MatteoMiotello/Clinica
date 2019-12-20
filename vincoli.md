@@ -13,14 +13,12 @@ n_serie primary key
 **Stanza**  
 chiave di stanza  
 **Reparto**  
-tipo unique 
+tipo unique  
+codice primary key
 **Paziente**  
 CF primary key  
 telefono not null  
 indirizzo not null  
-**Prenotazione**  
-IDprimary key  
-data not null  
 **EsameEffettuato**  
 IDprimary key  
 terapia not null  
@@ -29,7 +27,11 @@ stanza not null
 medico not null  
 **Prenotazione Esame**  
 orario not null  
+ID primary key  
+data not null  
 **PrenotazioneStanza**  
+ID primary key  
+data_p not null  
 data_inizio not null  
 data_fine not null  
 **StanzaRi**  
