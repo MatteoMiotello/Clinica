@@ -58,7 +58,7 @@ CREATE TABLE StanzaSp (
     n_stanza TINYINT,
     sede VARCHAR (3),
     reparto CHAR (4),
-    FOREIGN KEY (sede) REFERENCES Sede (ID) ON DELETE CASCADE,
+    FOREIGN KEY (sede) REFERENCES Sede (ID),
     FOREIGN KEY (reparto) REFERENCES Reparto (codice),
     PRIMARY KEY (n_stanza, sede, reparto)
 )ENGINE=InnoDb;
@@ -69,7 +69,7 @@ CREATE TABLE StanzaRi (
     reparto CHAR (4),
     prezzo_notte DECIMAL (6,2) NOT NULL,
     tipo VARCHAR (15),
-    FOREIGN KEY (sede) REFERENCES Sede (ID) ON DELETE CASCADE,
+    FOREIGN KEY (sede) REFERENCES Sede (ID),
     FOREIGN KEY (reparto) REFERENCES Reparto (codice),
     PRIMARY KEY (n_stanza, sede, reparto)
 
@@ -88,7 +88,7 @@ CREATE TABLE PrenotazioneStanza (
     PRIMARY KEY (ID),
     FOREIGN KEY (stanza) REFERENCES StanzaSP(n_stanza),
     FOREIGN KEY (reparto) REFERENCES StanzaSP(reparto),
-    FOREIGN KEY (sede) REFERENCES StanzaSP(sede) ON DELETE CASCADE,
+    FOREIGN KEY (sede) REFERENCES StanzaSP(sede),
     FOREIGN KEY (paziente) REFERENCES Paziente(CF)
 )ENGINE=InnoDb;
 
@@ -104,7 +104,7 @@ CREATE TABLE PrenotazioneEsame (
     PRIMARY KEY(ID),
     FOREIGN KEY (stanza) REFERENCES StanzaSP(n_stanza),
     FOREIGN KEY (reparto) REFERENCES StanzaSP(reparto),
-    FOREIGN KEY (sede) REFERENCES StanzaSP(sede) ON DELETE CASCADE,
+    FOREIGN KEY (sede) REFERENCES StanzaSP(sede),
     FOREIGN KEY (paziente) REFERENCES Paziente(CF)
 )ENGINE=InnoDb;
 
@@ -131,7 +131,7 @@ CREATE TABLE Macchinario (
 CREATE TABLE Costituisce ( 
     sede VARCHAR(3),
     reparto CHAR (4),
-    FOREIGN KEY (sede) REFERENCES Sede (ID) ON DELETE CASCADE,
+    FOREIGN KEY (sede) REFERENCES Sede (ID),
     FOREIGN KEY (reparto) REFERENCES Reparto (codice),
     PRIMARY KEY (sede, reparto)
 )ENGINE=InnoDb;
