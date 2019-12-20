@@ -35,3 +35,52 @@ imp_netto DECIMAL,
 PRIMARY KEY (tipo)
 );
 
+CREATE TABLE PrenotazioneStanza (
+    id INT(11),
+    data_inizio DATETIME NOT NULL,
+    data_fine DATETIME NOT NULL,
+    data_p data_fine DATETIME NOT NULL,
+    pagamento BOOLEAN,
+    paziente VARCHAR(16),
+    stanza TINYINT,
+    reparto CHAR(4),
+    sede VARCHAR(2),
+    PRIMARY KEY(id),
+    FOREIGN KEY (stanza) REFERENCES StanzaSP(n_stanza),
+    FOREIGN KEY (reparto) REFERENCES StanzaSP(repartp),
+    FOREIGN KEY (sede) REFERENCES StanzaSP(sede),
+    FOREIGN KEY (paziente) REFERENCES Paziente(CF)
+)ENGINE=InnoDb;
+
+CREATE TABLE PrenotazioneEsame (
+    id INT(11),
+    data_p data_fine DATETIME NOT NULL,
+    orario TIME NOT NULL,    
+    pagamento BOOLEAN,
+    paziente VARCHAR(16),
+    stanza TINYINT,
+    reparto CHAR(4),
+    sede VARCHAR(2),
+    PRIMARY KEY(id),
+    FOREIGN KEY (stanza) REFERENCES StanzaSP(n_stanza),
+    FOREIGN KEY (reparto) REFERENCES StanzaSP(reparto),
+    FOREIGN KEY (sede) REFERENCES StanzaSP(sede),
+    FOREIGN KEY (paziente) REFERENCES Paziente(CF)
+)ENGINE=InnoDb;
+
+CREATE TABLE EsameEffettuato (
+    id INT(11),
+    paziente VARCHAR(16),
+    tipo_esame VARCHAR(10),
+    stanza TINYINT NOT NULL,
+    terapia VARCHAR(100) NOT NULL, 
+    diagnosi VARCHAR(100) NOT NULL,
+    medico VARCHAR(20) NOT NULL,
+    FOREIGN KEY(tipo_esame) REFERENCES TipoEsame(nome),
+    FOREIGN KEY (paziente) REFERENCES Paziente(CF),
+    PRIMARY KEY(id)
+)ENGINE=InnoDb;
+CREATE TABLE TipoEsame (
+    nome VARCHAR(10),
+    prezzo DECIMAL NOT NULL
+) ENGINE=InnoDb;
