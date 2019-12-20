@@ -125,7 +125,7 @@ CREATE TABLE Reparto (
     codice CHAR (4),
     tipo VARCHAR (15) UNIQUE,
     primario VARCHAR (16),
-    FOREIGN KEY primario REFERENCES Personale (CF),
+    FOREIGN KEY (primario) REFERENCES Personale (CF),
     PRIMARY KEY (codice)
 )ENGINE=InnoDb;
 
