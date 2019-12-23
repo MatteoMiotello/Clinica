@@ -39,11 +39,10 @@ CREATE TABLE Personale (
     via VARCHAR (25),
     n_civico SMALLINT,
     IBAN VARCHAR (27) NOT NULL,
-    stipendio VARCHAR (15),
     sede VARCHAR (3),
     PRIMARY KEY (CF),
     FOREIGN KEY (sede) REFERENCES Sede (ID),
-    FOREIGN KEY (stipendio) REFERENCES Stipendio (tipo)
+    FOREIGN KEY (tipo) REFERENCES Stipendio (tipo)
 )ENGINE=InnoDb;
 
 CREATE TABLE Reparto (
