@@ -34,7 +34,7 @@ CREATE TABLE Personale (
     sesso ENUM ('M','F'),
     telefono VARCHAR (13),
     tipo VARCHAR (30),
-    grado VARCHAR (30),
+    grado VARCHAR (30) default null,
     CAP CHAR (5),
     via VARCHAR (25),
     n_civico SMALLINT,
