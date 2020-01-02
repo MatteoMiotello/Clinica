@@ -280,10 +280,10 @@ PrenotazioneStanza|
 ---
 
 ## Generalizzazione  
-- Personale e' generalizzazione totale non esclusiva di: PersonaleNonMedico,  Dirigente, Infermiere, Medico.  
-- Prenotazione e' generalizzazione totale ed esclusiva di PrenotazioneEsame e PrenotazioneStanza.  
-- TipoEsame e' generalizzazione non totatale ed esclusiva di EsameEffettuato.  
-- Stanze e' generalizzazione non totale esclusiva di StanzaRi e StanzaSp.  
+- **Personale** e' generalizzazione totale non esclusiva di: **PersonaleNonMedico**,  **Dirigente**, **Infermiere**, **Medico**.  
+- **Prenotazione** e' generalizzazione totale ed esclusiva di **PrenotazioneEsame** e **PrenotazioneStanza**.  
+- **TipoEsame** e' generalizzazione non totatale ed esclusiva di **EsameEffettuato**.  
+- **Stanze** e' generalizzazione non totale esclusiva di **StanzaRi** e **StanzaSp**.  
 
 ---
 
