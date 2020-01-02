@@ -75,6 +75,12 @@ CREATE TABLE StanzaRi (
 
 )ENGINE=InnoDb;
 
+CREATE TABLE TipoEsame (
+    nome VARCHAR(10),
+    prezzo DECIMAL NOT NULL,
+    PRIMARY KEY (nome)
+) ENGINE=InnoDb;
+
 CREATE TABLE PrenotazioneStanza (
     ID INT(11),
     data_inizio DATETIME NOT NULL,
@@ -99,20 +105,14 @@ CREATE TABLE PrenotazioneEsame (
     pagamento BOOLEAN,
     paziente VARCHAR(16),
     stanza TINYINT,
-    reparto CHAR(4),
-    sede VARCHAR(2),
+    reparto CHAR (4),
+    sede VARCHAR (3),
     PRIMARY KEY(ID),
     FOREIGN KEY (stanza) REFERENCES StanzaSP(n_stanza),
     FOREIGN KEY (reparto) REFERENCES StanzaSP(reparto),
     FOREIGN KEY (sede) REFERENCES StanzaSP(sede),
     FOREIGN KEY (paziente) REFERENCES Paziente(CF)
 )ENGINE=InnoDb;
-
-CREATE TABLE TipoEsame (
-    nome VARCHAR(10),
-    prezzo DECIMAL NOT NULL,
-    PRIMARY KEY (nome)
-) ENGINE=InnoDb;
 
 CREATE TABLE Macchinario (
     n_serie INT (11),
