@@ -441,8 +441,42 @@ Considerando che per memorizzare ogni importo_totale sono necessari 4byte,la tab
 <p align="justify"> Facciamo notare però che la situazione cambierebbe aumentando di almeno un ordine il numero di pazienti e prenotazioni, in questo caso la soluzione con ridondanza sarebbe la più adatta.
 
 ## Traduzione verso il modello relazione  
-Sede( __id__, )
-
+Sede( **id**, cap, via, n_civico, telefono);  
+Personale(**CF**, *sede, *stipendio, nome, cognome, sesso, data_nascita, telefono, IBAN, tipo, grado, n_civico, via, cap);  
+*v1.* Personale.sede -> Sede.id  
+*v2.* Personale.stipndio -> Stipendio.tipo   
+Stipendio(**tipo**, imp_lordo, imp_netto);  
+StanzaSp(***sede**, ***reparto**, **n_stanza**);  
+*v3.* StanzaSp.sede -> Sede.id  
+*v4.* StanzaSp.reparto -> Reparto.codice  
+Macchinario(**N_serie**, *n_stanza, *reparto, *sede, nome, casa_prod, ultima_revisione);  
+*v5.* Macchinario.n_stanza->StanzaSp.n_stanza  
+*v6.* Macchinario.reparto->StanzaSp.reparto    
+*v7.* Macchinario.sede->StanzaSp.sede  
+StanzaRi(**n_stanza**,***sede**, ***reparto**, prezzo_notte, tipo)   
+*v8.* StanzaRi.sede->Sede.id  
+*v9.* StanzaRi.reparto->Sede.codice  
+Reparto(**codice**, tipo, *primario);  
+*v10.* Reparto.primario->Personale.CF  
+Costituisce(***sede**, ***reparto**);  
+*v11.* Costituisce.sede->Sede.id  
+*v12.* Costituisce.reparto->Reparto.codice  
+Paziente(**CF**, nome, cognome,sesso, telefono, via, n_civico, cap);  
+EsameEffettuato(**id**, *paziente, *tipo_esame, stanza, terapia, diagnosi, medico);  
+*v13.* EsameEffettuato.paziente->Paziente.CF  
+*v14.* EsameEffettuato.tipo_esame->TipoEsame.nome  
+TipoEsame(**nome**, prezzo)  
+PrenotazioneEsame(**id**, *nome, *stanza, *reparto, *sede,*paziente, data_p, orario, pagamento)  
+*v15.* PrenotazioneEsame.tipo->TipoEsame.nome  
+*v16.* PrenotazioneEsame.stanza->StanzaSp.n_stanza  
+*v17.* PrenotazioneEsame.reparto->StanzaSp.reparto  
+*v18.* PrenotazioneEsame.sede->StanzaSp.sede  
+*v19.* PrenotazioneEsame.paziente->Paziente.CF  
+PrenotazioneStanza(**id**, *paziente, *stanza, *reparto, *sede, data_inizio, data_fine, data_p, pagamento)  
+*v20.* Prenotazione.paziente->Paziente.CF  
+*v21.* Prenotazione.sede->StanzaSp.sede  
+*v22.* Prenotazione.reparto->StanzaSp.reparto  
+*v23.* Prenotazione.stanza->StanzaSp.n_stanza  
 
 
 
