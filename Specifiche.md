@@ -440,7 +440,8 @@ Considerando che per memorizzare ogni importo_totale sono necessari 4byte,la tab
 
 <p align="justify"> Facciamo notare però che la situazione cambierebbe aumentando di almeno un ordine il numero di pazienti e prenotazioni, in questo caso la soluzione con ridondanza sarebbe la più adatta.
 
-
+## Traduzione verso il modello relazione  
+Sede( __id__, )
 
 
 
