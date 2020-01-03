@@ -63,25 +63,25 @@ Si vuole realizzare una base di dati che contenga e gestisca una clinica con pi√
 | :------------------------ |
 | <p align= "justify"> Un paziente, di cui si vuole memorizzare il nome, il cognome, il sesso, l'indirizzo di residenza (numero civico, capoluogo e via), il numero di telefono e il codice fiscale[..] |
 
-
-Operazione|Frequenza
+## Operazioni previste sulla base di dati  
+Operazione|Tipo|Frequenza
 -----------------------------------------------------|----------------------------------------------------------------------------
-Apertura Sede  B |1 Anno
-Aggiunta Reparto|1 ogni 5 anni
-Assunzione nuovo dipendente|2 al mese
-Aggiunta paziente| 5 al giorno
-Prenotazione esame| 100 al giorno
-PrenotazioneStanzaRi| 30 al giorno
-Verifica StanzaRi| 5000 al giorno
-Verifica stanze disponibili| 100 al giorno
-Calcolo busta paga dipendente |100 al mese
-Calcolo spese totali paziente|50 al giorno
-Verifica pagamento| 5 al giorno
-Verifica importo totale| 100 al giorno
-Verifica revisione macchinari| 10 al mese
-Report incasso giornaliero| 5 al giorno
-Report incasso mensile| 5 al mese
-Incasso medio giornaliero| 5 al mese
+Apertura Sede  B |I|1 Anno
+Aggiunta Reparto|I|1 ogni 5 anni
+Assunzione nuovo dipendente|I|2 al mese
+Aggiunta paziente|I| 5 al giorno
+Prenotazione esame|I| 100 al giorno
+Prenotazione StanzaRi|I| 30 al giorno
+Verifica StanzaRi|B| 5000 al giorno
+Verifica stanze disponibili|B| 100 al giorno
+Calcolo busta paga dipendente|B|100 al mese
+Calcolo spese totali paziente|B|50 al giorno
+Verifica pagamento|B| 5 al giorno
+Verifica importo totale|B| 100 al giorno
+Verifica revisione macchinari|B| 10 al mese
+Report incasso giornaliero|B| 5 al giorno
+Report incasso mensile|B| 5 al mese
+Incasso medio giornaliero|B| 5 al mese
 
 
 ---
