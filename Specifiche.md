@@ -455,27 +455,28 @@ StanzaSp(***sede**, ***reparto**, **n_stanza**);
 
 Macchinario(**N_serie**, *n_stanza, *reparto, *sede, nome, casa_prod, ultima_revisione);  
 
-*v5.* Macchinario.n_stanza->StanzaSp.n_stanza  
-*v6.* Macchinario.reparto->StanzaSp.reparto    
-*v7.* Macchinario.sede->StanzaSp.sede  
+> *v5.* Macchinario.n_stanza->StanzaSp.n_stanza  
+> *v6.* Macchinario.reparto->StanzaSp.reparto    
+> *v7.* Macchinario.sede->StanzaSp.sede  
 
 StanzaRi(**n_stanza**,***sede**, ***reparto**, prezzo_notte, tipo)   
 
-*v8.* StanzaRi.sede->Sede.id  
-*v9.* StanzaRi.reparto->Sede.codice  
+> *v8.* StanzaRi.sede->Sede.id  
+> *v9.* StanzaRi.reparto->Sede.codice  
 Reparto(**codice**, tipo, *primario);  
 
-*v10.* Reparto.primario->Personale.CF  
+> *v10.* Reparto.primario->Personale.CF  
+
 Costituisce(***sede**, ***reparto**);  
 
-*v11.* Costituisce.sede->Sede.id  
-*v12.* Costituisce.reparto->Reparto.codice  
+> *v11.* Costituisce.sede->Sede.id  
+> *v12.* Costituisce.reparto->Reparto.codice  
 
 Paziente(**CF**, nome, cognome,sesso, telefono, via, n_civico, cap);  
 EsameEffettuato(**id**, *paziente, *tipo_esame, stanza, terapia, diagnosi, medico);  
 
-*v13.* EsameEffettuato.paziente->Paziente.CF  
-*v14.* EsameEffettuato.tipo_esame->TipoEsame.nome  
+> *v13.* EsameEffettuato.paziente->Paziente.CF  
+> *v14.* EsameEffettuato.tipo_esame->TipoEsame.nome  
 
 TipoEsame(**nome**, prezzo)  
 PrenotazioneEsame(**id**, *nome, *stanza, *reparto, *sede,*paziente, data_p, orario, pagamento)  
