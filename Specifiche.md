@@ -443,12 +443,12 @@ Considerando che per memorizzare ogni importo_totale sono necessari 4byte,la tab
 ## Traduzione verso il modello relazione  
 Sede( **id**, cap, via, n_civico, telefono);  
 Personale(**CF**, *sede, *stipendio, nome, cognome, sesso, data_nascita, telefono, IBAN, tipo, grado, n_civico, via, cap);  
-*v1.* Personale.sede -> Sede.id  
-*v2.* Personale.stipndio -> Stipendio.tipo   
+> *v1.* Personale.sede -> Sede.id  
+>*v2.* Personale.stipndio -> Stipendio.tipo   
 Stipendio(**tipo**, imp_lordo, imp_netto);  
 StanzaSp(***sede**, ***reparto**, **n_stanza**);  
-*v3.* StanzaSp.sede -> Sede.id  
-*v4.* StanzaSp.reparto -> Reparto.codice  
+>*v3.* StanzaSp.sede -> Sede.id  
+>*v4.* StanzaSp.reparto -> Reparto.codice  
 Macchinario(**N_serie**, *n_stanza, *reparto, *sede, nome, casa_prod, ultima_revisione);  
 *v5.* Macchinario.n_stanza->StanzaSp.n_stanza  
 *v6.* Macchinario.reparto->StanzaSp.reparto    
