@@ -63,25 +63,25 @@ Si vuole realizzare una base di dati che contenga e gestisca una clinica con pi�
 | :------------------------ |
 | <p align= "justify"> Un paziente, di cui si vuole memorizzare il nome, il cognome, il sesso, l'indirizzo di residenza (numero civico, capoluogo e via), il numero di telefono e il codice fiscale[..] |
 
-
-Operazione|Frequenza
------------------------------------------------------|----------------------------------------------------------------------------
-Apertura Sede  B |1 Anno
-Aggiunta Reparto|1 ogni 5 anni
-Assunzione nuovo dipendente|2 al mese
-Aggiunta paziente| 5 al giorno
-Prenotazione esame| 100 al giorno
-PrenotazioneStanzaRi| 30 al giorno
-Verifica StanzaRi| 5000 al giorno
-Verifica stanze disponibili| 100 al giorno
-Calcolo busta paga dipendente |100 al mese
-Calcolo spese totali paziente|50 al giorno
-Verifica pagamento| 5 al giorno
-Verifica importo totale| 100 al giorno
-Verifica revisione macchinari| 10 al mese
-Report incasso giornaliero| 5 al giorno
-Report incasso mensile| 5 al mese
-Incasso medio giornaliero| 5 al mese
+## Operazioni previste sulla base di dati  
+Operazione|Tipo|Frequenza
+|:-------|:-------|:-------|
+Apertura Sede  B |I|1 Anno
+Aggiunta Reparto|I|1 ogni 5 anni
+Assunzione nuovo dipendente|I|2 al mese
+Aggiunta paziente|I| 5 al giorno
+Prenotazione esame|I| 100 al giorno
+Prenotazione StanzaRi|I| 30 al giorno
+Verifica StanzaRi|B| 5000 al giorno
+Verifica stanze disponibili|B| 100 al giorno
+Calcolo busta paga dipendente|B|100 al mese
+Calcolo spese totali paziente|B|50 al giorno
+Verifica pagamento|B| 5 al giorno
+Verifica importo totale|B| 100 al giorno
+Verifica revisione macchinari|B| 10 al mese
+Report incasso giornaliero|B| 5 al giorno
+Report incasso mensile|B| 5 al mese
+Incasso medio giornaliero|B| 5 al mese
 
 
 ---
@@ -280,10 +280,10 @@ PrenotazioneStanza|
 ---
 
 ## Generalizzazione  
-- Personale e' generalizzazione totale non esclusiva di: PersonaleNonMedico,  Dirigente, Infermiere, Medico.  
-- Prenotazione e' generalizzazione totale ed esclusiva di PrenotazioneEsame e PrenotazioneStanza.  
-- TipoEsame e' generalizzazione non totatale ed esclusiva di EsameEffettuato.  
-- Stanze e' generalizzazione non totale esclusiva di StanzaRi e StanzaSp.  
+- **Personale** e' generalizzazione totale non esclusiva di: **PersonaleNonMedico**,  **Dirigente**, **Infermiere**, **Medico**.  
+- **Prenotazione** e' generalizzazione totale ed esclusiva di **PrenotazioneEsame** e **PrenotazioneStanza**.  
+- **TipoEsame** e' generalizzazione non totatale ed esclusiva di **EsameEffettuato**.  
+- **Stanze** e' generalizzazione non totale esclusiva di **StanzaRi** e **StanzaSp**.  
 
 ---
 
@@ -440,8 +440,59 @@ Considerando che per memorizzare ogni importo_totale sono necessari 4byte,la tab
 
 <p align="justify"> Facciamo notare però che la situazione cambierebbe aumentando di almeno un ordine il numero di pazienti e prenotazioni, in questo caso la soluzione con ridondanza sarebbe la più adatta.
 
+## Traduzione verso il modello relazione  
+Sede( **id**, cap, via, n_civico, telefono);  
+Personale(**CF**, *sede, *stipendio, nome, cognome, sesso, data_nascita, telefono, IBAN, tipo, grado, n_civico, via, cap); 
 
+> *v1.* Personale.sede -> Sede.id  
+> *v2.* Personale.stipndio -> Stipendio.tipo   
 
+Stipendio(**tipo**, imp_lordo, imp_netto);  
+StanzaSp(***sede**, ***reparto**, **n_stanza**);  
+
+> *v3.* StanzaSp.sede -> Sede.id  
+> *v4.* StanzaSp.reparto -> Reparto.codice  
+
+Macchinario(**N_serie**, *n_stanza, *reparto, *sede, nome, casa_prod, ultima_revisione);  
+
+> *v5.* Macchinario.n_stanza->StanzaSp.n_stanza  
+> *v6.* Macchinario.reparto->StanzaSp.reparto    
+> *v7.* Macchinario.sede->StanzaSp.sede  
+
+StanzaRi(**n_stanza**,***sede**, ***reparto**, prezzo_notte, tipo)   
+
+> *v8.* StanzaRi.sede->Sede.id  
+> *v9.* StanzaRi.reparto->Sede.codice  
+Reparto(**codice**, tipo, *primario);  
+
+> *v10.* Reparto.primario->Personale.CF  
+
+Costituisce(***sede**, ***reparto**);  
+
+> *v11.* Costituisce.sede->Sede.id  
+> *v12.* Costituisce.reparto->Reparto.codice  
+
+Paziente(**CF**, nome, cognome,sesso, telefono, via, n_civico, cap);  
+EsameEffettuato(**id**, *paziente, *tipo_esame, stanza, terapia, diagnosi, medico);  
+
+> *v13.* EsameEffettuato.paziente->Paziente.CF  
+> *v14.* EsameEffettuato.tipo_esame->TipoEsame.nome  
+
+TipoEsame(**nome**, prezzo)  
+PrenotazioneEsame(**id**, *nome, *stanza, *reparto, *sede,*paziente, data_p, orario, pagamento)  
+
+> *v15.* PrenotazioneEsame.tipo->TipoEsame.nome  
+> *v16.* PrenotazioneEsame.stanza->StanzaSp.n_stanza  
+> *v17.* PrenotazioneEsame.reparto->StanzaSp.reparto  
+> *v18.* PrenotazioneEsame.sede->StanzaSp.sede  
+> *v19.* PrenotazioneEsame.paziente->Paziente.CF  
+
+PrenotazioneStanza(**id**, *paziente, *stanza, *reparto, *sede, data_inizio, data_fine, data_p, pagamento)  
+
+> *v20.* Prenotazione.paziente->Paziente.CF  
+> *v21.* Prenotazione.sede->StanzaSp.sede  
+> *v22.* Prenotazione.reparto->StanzaSp.reparto  
+> *v23.* Prenotazione.stanza->StanzaSp.n_stanza  
 
 
 
