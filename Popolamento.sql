@@ -83,7 +83,7 @@ CREATE TABLE TipoEsame (
 ) ENGINE=InnoDb;
 DROP TABLE IF EXISTS PrenotazioneStanza,
 CREATE TABLE PrenotazioneStanza (
-    ID INT(11),
+    ID INT(11) auto_increment,
     data_inizio DATETIME NOT NULL,
     data_fine DATETIME NOT NULL,
     data_p DATETIME NOT NULL,
@@ -100,7 +100,7 @@ CREATE TABLE PrenotazioneStanza (
 )ENGINE=InnoDb;
 DROP TABLE IF EXISTS PrenotazioneEsame,
 CREATE TABLE PrenotazioneEsame (
-    ID INT(11),
+    ID INT(11)auto_increment,
     data_p  DATETIME NOT NULL,
     orario TIME NOT NULL,    
     pagamento BOOLEAN,
@@ -140,7 +140,7 @@ CREATE TABLE Costituisce (
 )ENGINE=InnoDb;
 DROP TABLE IF EXISTS EsameEffettuato,
 CREATE TABLE EsameEffettuato (
-    ID INT(11),
+    ID INT(11)auto_increment,
     paziente VARCHAR(16),
     tipo_esame VARCHAR(10),
     stanza TINYINT NOT NULL,
