@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS Sede,
+DROP TABLE IF EXISTS Sede;
 CREATE TABLE Sede(
     ID VARCHAR (3),
     CAP CHAR (5) not null,
@@ -8,14 +8,14 @@ CREATE TABLE Sede(
     UNIQUE (telefono),
     PRIMARY KEY (ID)
 )ENGINE=InnoDb;
-DROP TABLE IF EXISTS Stipendio,
+DROP TABLE IF EXISTS Stipendio;
 CREATE TABLE Stipendio (
     tipo VARCHAR (15),
     imp_lordo DECIMAL NOT NULL,
     imp_netto DECIMAL,
     PRIMARY KEY (tipo)
 )ENGINE=InnoDb;
-DROP TABLE IF EXISTS Paziente,
+DROP TABLE IF EXISTS Paziente;
 CREATE TABLE Paziente (
     CF VARCHAR (16),
     nome VARCHAR (20),
@@ -26,9 +26,7 @@ CREATE TABLE Paziente (
     CAP CHAR (5) NOT NULL,
     PRIMARY KEY (CF)
 )ENGINE=InnoDb;
-
-DROP TABLE IF EXISTS Personale,
-
+DROP TABLE IF EXISTS Personale;
 CREATE TABLE Personale ( 
     CF VARCHAR (16),
     nome VARCHAR (20),
@@ -47,7 +45,7 @@ CREATE TABLE Personale (
     FOREIGN KEY (sede) REFERENCES Sede (ID),
     FOREIGN KEY (tipo) REFERENCES Stipendio (tipo)
 )ENGINE=InnoDb;
-DROP TABLE IF EXISTS Reparto,
+DROP TABLE IF EXISTS Reparto;
 CREATE TABLE Reparto (
     codice CHAR (4),
     tipo VARCHAR (15) UNIQUE,
@@ -55,7 +53,7 @@ CREATE TABLE Reparto (
     FOREIGN KEY (primario) REFERENCES Personale (CF),
     PRIMARY KEY (codice)
 )ENGINE=InnoDb;
-DROP TABLE IF EXISTS StanzaSp,
+DROP TABLE IF EXISTS StanzaSp;
 CREATE TABLE StanzaSp ( 
     n_stanza TINYINT,
     sede VARCHAR (3),
@@ -64,7 +62,7 @@ CREATE TABLE StanzaSp (
     FOREIGN KEY (reparto) REFERENCES Reparto (codice),
     PRIMARY KEY (n_stanza, sede, reparto)
 )ENGINE=InnoDb;
-DROP TABLE IF EXISTS StanzaRi,
+DROP TABLE IF EXISTS StanzaRi;
 CREATE TABLE StanzaRi ( 
     n_stanza TINYINT,
     sede VARCHAR (3),
@@ -75,13 +73,13 @@ CREATE TABLE StanzaRi (
     FOREIGN KEY (reparto) REFERENCES Reparto (codice),
     PRIMARY KEY (n_stanza, sede, reparto)
 )ENGINE=InnoDb;
-DROP TABLE IF EXISTS TipoEsame,
+DROP TABLE IF EXISTS TipoEsame;
 CREATE TABLE TipoEsame (
     nome VARCHAR(10),
     prezzo DECIMAL NOT NULL,
     PRIMARY KEY (nome)
 ) ENGINE=InnoDb;
-DROP TABLE IF EXISTS PrenotazioneStanza,
+DROP TABLE IF EXISTS PrenotazioneStanza;
 CREATE TABLE PrenotazioneStanza (
     ID INT(11) auto_increment,
     data_inizio DATETIME NOT NULL,
@@ -91,14 +89,14 @@ CREATE TABLE PrenotazioneStanza (
     paziente VARCHAR(16),
     stanza TINYINT,
     reparto CHAR(4),
-    sede VARCHAR(3),
+    sede VARCHAR(2),
     PRIMARY KEY (ID),
     FOREIGN KEY (stanza) REFERENCES StanzaSP(n_stanza),
     FOREIGN KEY (reparto) REFERENCES StanzaSP(reparto),
     FOREIGN KEY (sede) REFERENCES StanzaSP(sede),
     FOREIGN KEY (paziente) REFERENCES Paziente(CF)
 )ENGINE=InnoDb;
-DROP TABLE IF EXISTS PrenotazioneEsame,
+DROP TABLE IF EXISTS PrenotazioneEsame;
 CREATE TABLE PrenotazioneEsame (
     ID INT(11)auto_increment,
     data_p  DATETIME NOT NULL,
@@ -116,7 +114,7 @@ CREATE TABLE PrenotazioneEsame (
     FOREIGN KEY (paziente) REFERENCES Paziente(CF),
     FOREIGN KEY (tipo) REFERENCES TipoEsame(nome)
 )ENGINE=InnoDb;
-DROP TABLE IF EXISTS Macchinario,
+DROP TABLE IF EXISTS Macchinario;
 CREATE TABLE Macchinario (
     n_serie INT (11),
     nome VARCHAR (15),
@@ -130,7 +128,7 @@ CREATE TABLE Macchinario (
     FOREIGN KEY (sede) REFERENCES StanzaSp (sede),
     PRIMARY KEY (n_serie)
 )ENGINE=InnoDb;
-DROP TABLE IF EXISTS Costituisce,
+DROP TABLE IF EXISTS Costituisce;
 CREATE TABLE Costituisce ( 
     sede VARCHAR(3),
     reparto CHAR (4),
@@ -138,7 +136,7 @@ CREATE TABLE Costituisce (
     FOREIGN KEY (reparto) REFERENCES Reparto (codice),
     PRIMARY KEY (sede, reparto)
 )ENGINE=InnoDb;
-DROP TABLE IF EXISTS EsameEffettuato,
+DROP TABLE IF EXISTS EsameEffettuato;
 CREATE TABLE EsameEffettuato (
     ID INT(11)auto_increment,
     paziente VARCHAR(16),
@@ -151,6 +149,7 @@ CREATE TABLE EsameEffettuato (
     FOREIGN KEY (paziente) REFERENCES Paziente(CF),
     PRIMARY KEY(ID)
 )ENGINE=InnoDb;
+DROP TABLE IF EXISTS PrenotazioneStanza;
 CREATE TABLE PrenotazioneStanza (
     ID INT(11) auto_increment,
     data_inizio DATETIME NOT NULL,
