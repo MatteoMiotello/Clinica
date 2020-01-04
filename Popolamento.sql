@@ -1,9 +1,9 @@
-CREATE TABLE Sede(
+CREATE TABLE Sede (
     ID VARCHAR (3),
-    CAP CHAR (5) not null,
-    via VARCHAR (25) not null,
-    n_civico SMALLINT not null,
-    telefono VARCHAR (13) not null,
+    CAP CHAR (5) NOT NULL,
+    via VARCHAR (25) NOT NULL,
+    n_civico SMALLINT NOT NULL,
+    telefono VARCHAR (13) NOT NULL,
     UNIQUE (telefono),
     PRIMARY KEY (ID)
 )ENGINE=InnoDb;
@@ -17,7 +17,7 @@ CREATE TABLE Paziente (
     CF VARCHAR (16),
     nome VARCHAR (20),
     cognome VARCHAR (30),
-    telefono VARCHAR (13) NOT NULL, 
+    telefono VARCHAR (13),
     via VARCHAR (25) NOT NULL,
     n_civico TINYINT NOT NULL,
     CAP CHAR (5) NOT NULL,
