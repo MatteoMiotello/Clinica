@@ -479,7 +479,7 @@ EsameEffettuato(**id**, *paziente, *tipo_esame, stanza, terapia, diagnosi, medic
 > *v14.* EsameEffettuato.tipo_esame->TipoEsame.nome  
 
 TipoEsame(**nome**, prezzo)  
-PrenotazioneEsame(**id**, *nome, *stanza, *reparto, *sede,*paziente, data_p, orario, pagamento)  
+PrenotazioneEsame(**id**, *nome, *stanza, *reparto, *sede,*paziente, data_p, data_e, pagamento)  
 
 > *v15.* PrenotazioneEsame.tipo->TipoEsame.nome  
 > *v16.* PrenotazioneEsame.stanza->StanzaSp.n_stanza  
