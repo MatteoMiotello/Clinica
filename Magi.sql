@@ -1,1102 +1,1094 @@
-Insert into Sede ('ID','CAP', 'via', 'n_civico' ,'telefono') values(							
-("VI1",	"36100", "	Via roma	",	2,	"0444977328"),	
-("VI2",	"36040","Via dellindustria",		24	,"0444354022"	),
-("PD1",	"35100","Via IV novembre"	,	39	,"0492314458"	),
-("TR1",	"38014","Via Venezia	",	3	,"0461556321"	),
-("BL1",	"32100","Via Col di Lana", 102,	"0437823145"	);
+INSERT INTO Sede VALUES
+("VI1","36100", "Via roma", 2,"0444977328"),
+("VI2","36040", "Via dellindustria", 24 ,"0444354022"),
+("PD1","35100", "Via IV novembre", 39, "0492314458"),
+("TR1","38014", "Via Venezia",3 ,"0461556321"),
+("BL1","32100", "Via Col di Lana", 102, "0437823145");
 
 
-Insert Into Stipendio (tipo, imp_netto, imp_lordo) values (	'medico'	,	'2800'	,	'3360'	),
-(	"primario"	,	3180	,	3816	),
-(	"infermiere"	,	2100	,	2520	),
-(	"c.infermiere"	,	2310	,	2772	),
-(	"segreteria"	,	1750	,	2100	),
-(	"ata"	,	1820	,	2184	),
-(	"tecnico"	,	1960	,	2352	);
+INSERT INTO Stipendio VALUES 
+("medico",2800,3360),
+("primario",3180, 3816),
+("infermiere",2100,2520),
+("c.infermiere",2310,2772),
+("segreteria",1750,2100),
+("ata",1820,2184),
+("tecnico",1960,2352);
 
 
-Insert into Personale( nome cognome datadinascita sesso CF tipo telefono n_civico cap via Sede IBAN) values 
-(	"	INNOCENZA	","	MOHAMMADIAN	","	2/3/1937	","	F	","	MHMNCN37C42A001Z	","	ata	","	3937815668	","	36033	","	Brioli	","	VI1	","	IT 60 X054 2811 1010 0000 0123 456	"),
-(	"	CRISTIAN	","	GASTALDON	","	5/6/2006	","	M	","	MHMNCN37C42A001Z	","	medico	","	3737815668	","	36032	","	Roma	","	VI2	","	IT 60 X054 2811 1010 0000 0123 455	"),
-(	"	SARA	","	FORALOSSO	","	1/12/1999	","	F	","	FNC GLG 68E05 F399E	","	primario	","	3537815668	","	36031	","	Firenze	","	PD1	","	IT 60 X054 2811 1010 0000 0123 457"),
-(	"	GIANNI	","	HU	","	12/7/2000	","	M	","	DND SVT 65T22 L477D	","	infermiere 	","	3337815668	","	36030	","	Pino	","	TR1	","	IT 60 X054 2811 1010 0000 0123 456	"),
-(	"	SALVATORE	","	CARRINO	","	27/02/1956	","	M	","	CRR SVT 56B27 F399B	","	ata	","	3137815668	","	36029	","	Ragazzi del 99	","	BL	","		IT 60 X054 2811 1010 0000 0123 458	"),
-(	"	MAURA ROSARIA	","	DONADIO	","	20/09/1964	","	F	","	DND MRS 64P60 F399G	","	segreteria	","	2937815668	","	36028	","	All'acqua	","	PD1	","	IT 60 X054 2811 1010 0000 0123 457	"),
-(	"	NICOLA	","	DONADIO	","	24/07/1976	","	M	","	DND NCL 76L24 G786K	","	segreteria	","	2737815668	","	36027	","	Chiodo	","	TR1	","		IT 60 X054 2811 1010 0000 0123 459	"),
-(	"	DOMENICO SANTO	","	TUCCI	","	25/04/1973	","	M	","	TCC DNC 73D25 F052A	","	tecnico	","	2537815668	","	36026	","	Napoleone	","	PD1	","	IT 60 X054 2811 1010 0000 0123 458	"),
-(	"	ANTONIO ROCCO	","	MONTESANO	","	15/08/1966	","	M	","	MNT NNR 66M15 F052I	","	c.infermiere	","	2337815668	","	36025	","	Mazzini	","	PD1	","	IT 60 X054 2811 1010 0000 0123 460"),
-(	"	SALVATORE	","	DONADIO	","	22/12/1965	","	M	","	DND SVT 65T22 L477D	","	medico	","	2137815668	","	36024	","	Parigini	","	VI1	","	IT 60 X054 2811 1010 0000 0123 459	"),
-(	"	GIANLUIGI	","	FINOCCHIARO	","	05/05/2008	","	M	","	FNC GLG 68E05 F399E	","	primario	","	1937815668	","	36023	","	Sassolini	","	PD1	","	IT 60 X054 2811 1010 0000 0123 461"),
-(	"	ANDREA	","	BENEDETTO	","	15/05/1990	","	F	","	BND NDR 90E15 G712A	","	medico	","	1737815668	","	36022	","	Pisa	","	TR1	","	IT 60 X054 2811 1010 0000 0123 460	"),
-(	"	VINCENZO	","	BELLINO	","	22/07/1972	","	M	","	BLL VCN 72L22 F052W	","	tecnico	","	1537815668	","	36021	","	Milano	","	BL	","	IT 60 X054 2811 1010 0000 0123 462"),
-(	"	GIUSEPPE	","	PIZZOLLA	","	15/06/1979	","	M	","	PZZ GPP 79H15 G786W	","	c.infermiere	","	1337815668	","	36020	","	Torino	","	TR1	","	IT 60 X054 2811 1010 0000 0123 461	"),
-(	"	VITO MAURIZIO ANTONIO	","	TUCCI	","	20/09/1966	","	M	","	TCC VMR 66P20 F052Q	","	infermire	","	1137815668	","	36019	","	Giotto	","	VI2	","	IT 60 X054 2811 1010 0000 0123 463"),
-(	"	ROCCO	","	SIFREDI	","	16/06/1966	","	M	","	SCR RCC 66H16 F052M	","	ata	","	6937815668	","	36018	","	Leopardi	","	BL	","	IT 60 X054 2811 1010 0000 0123 462	"),
-(	"	MICHELE	","	IANNUZZI	","	28/08/1973	","	M	","	NNZ MHL 73M28 L477R	","	ata	","	8737815668	","	36017	","	Navon	","	BL	","	IT 60 X054 2811 1010 0000 0123 464"),
-(	"	STEFANO GIOVANNI	","	SANTARCANGELO	","	24/06/1961	","	M	","	SNT SFN 61H24 A942B	","	ata	","	5378156689	","	36016	","	4 novembre	","	VI1	","	IT 60 X054 2811 1010 0000 0123 463	"),
-(	"	RAFFAELE	","	CONTE	","	08/11/1958	","	M	","	CNT RFL 58S08 F399L	","	tecnico	","	3378156689	","	36015	","	Gesù   Cristo	","	BL	","	IT 60 X054 2811 1010 0000 0123 465"),
-(	"	GIUSEPPE	","	STIGLIANO	","	28/01/1961	","	M	","	STG GPP 61A28 A801X	","	segreteria	","	1378156688	","	36014	","	Dei santi	","	BL	","	IT 60 X054 2811 1010 0000 0123 464	"),
-(	"	NICOLA	","	LOMBARDI	","	09/07/1967	","	M	","	LMB NCL 67L09 I954F	","	infermiere	","	4621843326	","	36013	","	Giuseppe Maria 	","	TR1	","	IT 60 X054 2811 1010 0000 0123 466"),
-(	"	MARCO IGINO NICOLA	","	D'ANDREA	","	20/05/1978	","	M	","	DND MRC 78E20 F839E	","	ata	","	4621843326	","	36012	","	Firenze	","	VI2	","	IT 60 X054 2811 1010 0000 0123 465	"),
-(	"	ROCCO	","	MATARRESE	","	16/07/1978	","	M	","	MTR RCC 76L16 I954B	","	segreteria	","	4621843326	","	36011	","	 Ologna	","	BL	","	IT 60 X054 2811 1010 0000 0123 467"),
-(	"	GIOVANNI	","	MATARRESE	","	17/12/1950	","	M	","	MTR GNN 50T17 I954Q	","	medico	","	4621843326	","	36010	","	Bologna	","	VI1	","	IT 60 X054 2811 1010 0000 0123 466	"),
-(	"	GINO PROSPERO	","	TRUNCELLITO	","	01/09/1964	","	M	","	TRC GPR 64P01 F907M	","	medico	","	4621843326	","	36009	","	Lucrezia	","	TR1	","	IT 60 X054 2811 1010 0000 0123 468"),
-(	"	VINCENZO	","	ANTEZZA	","	13/08/1954	","	M	","	NTZ VCN 54M13 F052E	","	c.infermiere	","	4621843326	","	36008	","	Miotello	","	BL	","	IT 60 X054 2811 1010 0000 0123 467	"),
-(	"	VINCENZO FABIO	","	RUSSO	","	24/04/1963	","	M	","	RSS VCN 63D28 G712W	","	tecnico	","	4621843326	","	36007	","	Vicenza	","	VI2	","	IT 60 X054 2811 1010 0000 0123 469"),
-(	"	SALVATORE GAETANO	","	QUINTO	","	09/09/1969	","	M	","	QNT SVT 69P09 G712B	","	primario	","	4621843326	","	36006	","	Francesco Guardi	","	BL	","	IT 60 X054 2811 1010 0000 0123 468	"),
-(	"	NICOLA	","	VIGGIANO	","	13/09/1976	","	M	","	VGG NCL 76P13 I954H	","	infermiere	","	4621843326	","	36005	","	Fornaci	","	PD1	","	IT 60 X054 2811 1010 0000 0123 470"),
-(	"	DOMENICO	","	PIZZOLLA	","	17/04/1953	","	M	","	PZZ DNC 53D17 F201X	","	segreteria	","	4621843326	","	36004	","	Murano	","	TR1	","	IT 60 X054 2811 1010 0000 0123 469	"),
-(	"	GIUSEPPE	","	BARTOLOMEO	","	27/06/1969	","	M	","	BRT GPP 69H27 E093G	","	ata	","	4621843326	","	36003	","	Bologna	","	VI1	","	IT 60 X054 2811 1010 0000 0123 471"),
-(	"	MARIO SALVATORE	","	LIUZZI	","	17/02/1969	","	M	","	LZZ MSL 69B17 I954Q	","	tecnico	","	4621843326	","	36002	","	Cristo Re	","	VI1	","	IT 60 X054 2811 1010 0000 0123 470	"),
-(	"	ANTONIO	","	DARAIA	","	23/08/1961	","	M	","	DRA NTN 61M23 F052U	","	infermiere	","	4621843326	","	36001	","	4 novembre	","	PD1	","	IT 60 X054 2811 1010 0000 0123 472"),
-(	"	NICOLA	","	PACILIO	","	31/01/1963	","	M	","	PCL NCL 63A31 D128G	","	primario	","	4621843326	","	36000	","	 Ologna	","	PD1	","	IT 60 X054 2811 1010 0000 0123 471	"),
-(	"	FRANCESCO	","	MARINO	","	01/02/1951	","	M	","	MRN FNC 51B01 G786M	","	tecnico	","	4621843326	","	35999	","	Ragazzi del 99	","	VI1	","	IT 60 X054 2811 1010 0000 0123 473"),
-(	"	NICOLA	","	MARINO	","	27/02/1956	","	M	","	MRN NCL 56B27 H591V	","	primario	","	4621843326	","	35998	","	Vicenza	","	BL	","	IT 60 X054 2811 1010 0000 0123 472	"),
-(	"	ETTORE ANTONIO	","	MARINO	","	28/09/1980	","	M	","	MRN TRN 80P28 L049T	","	primario	","	4621843326	","	35997	","	Leopardi	","	VI1	","	IT 60 X054 2811 1010 0000 0123 474"),
-(	"	DOMENICO	","	MARINO	","	09/05/1986	","	M	","	MRN DNC 86E09 G786Z	","	ata	","	4621843326	","	35996	","	Giuseppe Maria 	","	VI1	","	IT 60 X054 2811 1010 0000 0123 473	"),
-(	"	VITO	","	MAGNANTE	","	30/01/1948	","	M	","	MGN VTI 48A30 F839B	","	medico	","	4621843326	","	35995	","	Miotello	","	VI1	","	IT 60 X054 2811 1010 0000 0123 475"),
-(	"	GIOVANNI	","	MANOLIO	","	18/08/1987	","	M	","	MNL GNN 87M18 I954Z	","	c.infermiere	","	4621843326	","	35994	","	Firenze	","	VI1	","	IT 60 X054 2811 1010 0000 0123 474	"),
-(	"	FABIO	","	QUINTO	","	23/08/1984	","	M	","	QNT FBA 84M23 F052A	","	infermiere	","	4621843326	","	35993	","	Napoleone	","	PD1	","	IT 60 X054 2811 1010 0000 0123 476"),
+INSERT INTO Personale VALUES
+("MHMNCN37C42A001Z","INNOCENZA","MOHAMMADIAN","1937-03-02","F","3937815668","ata",NULL,"36033","Brioli",51,"IT60X0542811101000000123456","VI1"),
+("MHDNCN37C42A001Z","CRISTIAN","GASTALDON","2006-06-05","M","3737815668","medico",NULL,"36032","Roma",50,"IT60X0542811101000000123455","VI2"),
+("FNCGLG68E05F399E","SARA","FORALOSSO","1999-12-01","F","3537815668","primario",NULL,"36031","Firenze",8,"IT60X0542811101000000123457","PD1"),
+("DNDSVT65T22L477D","GIANNI","HU","2000-07-12","M","3337815668","infermiere ",NULL,"36030","Pino",98,"IT60X0542811101000000123456","TR1"),
+("CRRSVT56B27F399B","SALVATORE","CARRINO","1956-02-27","M","3137815668","ata",NULL,"36029","Ragazzi del 99",32,"IT60X0542811101000000123458","BL"),
+("DNDMRS64P60F399G","MAURA ROSARIA","DONADIO","1964-09-20","F","2937815668","segreteria",NULL,"36028","All'acqua",37,"IT60X0542811101000000123457","PD1"),
+("DNDNCL76L24G786K","NICOLA","DONADIO","1976-07-24","M","2737815668","segreteria",NULL,"36027","Chiodo",21,"IT60X0542811101000000123459","TR1"),
+("TCCDNC73D25F052A","DOMENICO SANTO","TUCCI","1973-04-25","M","2537815668","tecnico",NULL,"36026","Napoleone",94,"IT60X0542811101000000123458","PD1"),
+("MNTNNR66M15F052I","ANTONIO ROCCO","MONTESANO","1966-08-15","M","2337815668","c.infermiere",NULL,"36025","Mazzini",47,"IT60X0542811101000000123460","PD1"),
+("DNDSVT65T22L477D","SALVATORE","DONADIO","1965-12-22","M","2137815668","medico",NULL,"36024","Parigini",70,"IT60X0542811101000000123459","VI1"),
+("FNCGLG68E05F399E","GIANLUIGI","FINOCCHIARO","2008-05-05","M","1937815668","primario",NULL,"36023","Sassolini",98,"IT60X0542811101000000123461","PD1"),
+("BNDNDR90E15G712A","ANDREA","BENEDETTO","1990-05-15","F","1737815668","medico",NULL,"36022","Pisa",35,"IT60X0542811101000000123460","TR1"),
+("BLLVCN72L22F052W","VINCENZO","BELLINO","1972-07-22","M","1537815668","tecnico",NULL,"36021","Milano",83,"IT60X0542811101000000123462","BL"),
+("PZZGPP79H15G786W","GIUSEPPE","PIZZOLLA","1979-06-15","M","1337815668","c.infermiere",NULL,"36020","Torino",39,"IT60X0542811101000000123461","TR1"),
+("TCCVMR66P20F052Q","VITO MAURIZIO ANTONIO","TUCCI","1966-09-20","M","1137815668","infermire",NULL,"36019","Giotto",15,"IT60X0542811101000000123463","VI2"),
+("SCRRCC66H16F052M","ROCCO","SIFREDI","1966-06-16","M","6937815668","ata",NULL,"36018","Leopardi",69,"IT60X0542811101000000123462","BL"),
+("NNZMHL73M28L477R","MICHELE","IANNUZZI","1973-08-28","M","8737815668","ata",NULL,"36017","Navon",19,"IT60X0542811101000000123464","BL"),
+("SNTSFN61H24A942B","STEFANO GIOVANNI","SANTARCANGELO","1961-06-24","M","5378156689","ata",NULL,"36016","4 novembre",56,"IT60X0542811101000000123463","VI1"),
+("CNTRFL58S08F399L","RAFFAELE","CONTE","1958-11-08","M","3378156689","tecnico",NULL,"36015","Gesù   Cristo",11,"IT60X0542811101000000123465","BL"),
+("STGGPP61A28A801X","GIUSEPPE","STIGLIANO","1961-01-28","M","1378156688","segreteria",NULL,"36014","Dei santi",89,"IT60X0542811101000000123464","BL"),
+("LMBNCL67L09I954F","NICOLA","LOMBARDI","1967-07-09","M","4621843326","infermiere",NULL,"36013","Giuseppe Maria ",26,"IT60X0542811101000000123466","TR1"),
+("DNDMRC78E20F839E","MARCO IGINO NICOLA","D'ANDREA","1978-05-20","M","4621843326","ata",NULL,"36012","Firenze",84,"IT60X0542811101000000123465","VI2"),
+("MTRRCC76L16I954B","ROCCO","MATARRESE","1978-07-16","M","4621843326","segreteria",NULL,"36011"," Ologna",12,"IT60X0542811101000000123467","BL"),
+("MTRGNN50T17I954Q","GIOVANNI","MATARRESE","1950-12-17","M","4621843326","medico",NULL,"36010","Bologna",91,"IT60X0542811101000000123466","VI1"),
+("TRCGPR64P01F907M","GINO PROSPERO","TRUNCELLITO","1964-09-01","M","4621843326","medico",NULL,"36009","Lucrezia",51,"IT60X0542811101000000123468","TR1"),
+("NTZVCN54M13F052E","VINCENZO","ANTEZZA","1954-08-13","M","4621843326","c.infermiere",NULL,"36008","Miotello",70,"IT60X0542811101000000123467","BL"),
+("RSSVCN63D28G712W","VINCENZO FABIO","RUSSO","1963-04-24","M","4621843326","tecnico",NULL,"36007","Vicenza",99,"IT60X0542811101000000123469","VI2"),
+("QNTSVT69P09G712B","SALVATORE GAETANO","QUINTO","1969-09-09","M","4621843326","primario",NULL,"36006","Francesco Guardi",61,"IT60X0542811101000000123468","BL"),
+("VGGNCL76P13I954H","NICOLA","VIGGIANO","1976-09-13","M","4621843326","infermiere",NULL,"36005","Fornaci",96,"IT60X0542811101000000123470","PD1"),
+("PZZDNC53D17F201X","DOMENICO","PIZZOLLA","1953-04-17","M","4621843326","segreteria",NULL,"36004","Murano",28,"IT60X0542811101000000123469","TR1"),
+("BRTGPP69H27E093G","GIUSEPPE","BARTOLOMEO","1969-06-27","M","4621843326","ata",NULL,"36003","Bologna",17,"IT60X0542811101000000123471","VI1"),
+("LZZMSL69B17I954Q","MARIO SALVATORE","LIUZZI","1969-02-17","M","4621843326","tecnico",NULL,"36002","Cristo Re",56,"IT60X0542811101000000123470","VI1"),
+("DRANTN61M23F052U","ANTONIO","DARAIA","1961-08-23","M","4621843326","infermiere",NULL,"36001","4 novembre",91,"IT60X0542811101000000123472","PD1"),
+("PCLNCL63A31D128G","NICOLA","PACILIO","1963-01-31","M","4621843326","primario",NULL,"36000"," Ologna",84,"IT60X0542811101000000123471","PD1"),
+("MRNFNC51B01G786M","FRANCESCO","MARINO","1951-02-01","M","4621843326","tecnico",NULL,"35999","Ragazzi del 99",46,"IT60X0542811101000000123473","VI1"),
+("MRNNCL56B27H591V","NICOLA","MARINO","1956-02-27","M","4621843326","primario",NULL,"35998","Vicenza",76,"IT60X0542811101000000123472","BL"),
+("MRNTRN80P28L049T","ETTORE ANTONIO","MARINO","1980-09-28","M","4621843326","primario",NULL,"35997","Leopardi",50,"IT60X0542811101000000123474","VI1"),
+("MRNDNC86E09G786Z","DOMENICO","MARINO","1986-05-09","M","4621843326","ata",NULL,"35996","Giuseppe Maria ",80,"IT60X0542811101000000123473","VI1"),
+("MGNVTI48A30F839B","VITO","MAGNANTE","1948-01-30","M","4621843326","medico",NULL,"35995","Miotello",65,"IT60X0542811101000000123475","VI1"),
+("MNLGNN87M18I954Z","GIOVANNI","MANOLIO","1987-08-18","M","4621843326","c.infermiere",NULL,"35994","Firenze",17,"IT60X0542811101000000123474","VI1"),
+("QNTFBA84M23F052A","FABIO","QUINTO","1984-08-23","M","4621843326","infermiere",NULL,"35993","Napoleone",27,"IT60X0542811101000000123476","PD1"),
 
 
+INSERT INTO Paziente VALUES
+("JNNPRM52C18B921X","Priamo","Janner","68341185402","Via Gorizia",28,"10028"),
+("TRNGTN93M02A861A","Gastone","Troncia","99645678313","Corso Lamarmora",86,"15121"),
+("NLZGNR50T67B808E","Gennara","Naluzzo","54902208452","Via Madre Teresa Di Calcutta",65,"27020"),
+("VRCMRM58M50C473E","Miriam","Avarucci","40004004363","Via Emilia",34,"27058"),
+("SCHLVN58R61G128E","Livia","Floreal","52152320946","Via Della Pace",46,"40010"),
+("LAVSCH31D34A106D","Lavinia","Schepici","77597343743","Via Pio La Torre",7,"56025"),
+("CLACAM31D34A106D","Claudia","Camolese","2181696846","Via Quiete",16,"91100"),
+("BRUFIO31D34A106D","Bruto","Fiorentino","84452750017","VIA DELL'ABBONDANZA",45,"81044"),
+("DANROM31D34A106D","Danilo","Romani","17634387501","VIA BARLETE",64,"10050"),
+("ANNTRE31D34A106D","Annunziata","Trentino","4227707213","VICOLO BISSI",73,"87070"),
+("CHRMON31D34A106D","Christian","Monaldo","82155487972","VIA BENELLI BRUNO",33,"73040"),
+("ANTDAV31D34A106D","Antonio","Davide","13227721540","VIALE LOMBARDO MARCO",71,"66030"),
+("BRUMIL31D34A106D","Brunilde","Milani","42570001303","VIA MISSIROLI ICILIO",34,"56126"),
+("GABRUS31D34A106D","Gabriella","Russo","5823912728","VIA TOBAGI WALTER",6,"51020"),
+("BIBFIO31D34A106D","Bibiana","Fiorentino","61397750338","VIA FIUMICELLO",28,"66010"),
+("RENCOS31D34A106D","Renato","Costa","84736497298","VIA ALDINI ALDO",75,"10090"),
+("ANGDEL31D34A106D","Angelico","Dellucci","21361937835","VIA RE FILIPPO",56,"60010"),
+("BENLO31D34A106D","Benedetta","Lo Duca","73854443055","VIA PIZZETTI ILDEBRANDO",70,"14037"),
+("PIEGAL31D34A106D","Piera","Gallo","23171045025","VIA SEGURINI TERZO",58,"33029"),
+("PIEBAR31D34A106D","Pietro","Barese","13794306649","VIA SAMARITANI AGIDE",16,"81057"),
+("NAZBON31D34A106D","Nazzareno","Boni","67579368351","VIA ARGINE DESTRO SAVIO",12,"27020"),
+("LIBONI31D34A106D","Liberata","Onio","19453743037","VIA DEL LAVORO",77,"2047"),
+("ROBBER31D34A106D","Roberta","Bergamaschi","87658703108","VIA DE GASPERI ALCIDE",22,"89865"),
+("CARGRE31D34A106D","Carmela","Greece","59641408364","VIA LA PALISSE JACQUES",17,"63030"),
+("VALMON31D34A106D","Valter","Monaldo","99002373588","VIA HOLBEIN HANS",8,"56020"),
+("VITGRE31D34A106D","Vitale","Greece","85781211448","VIA CHIESA DAMIANO",64,"31055"),
+("RINNAP31D34A106D","Rina","Napolitani","67455762111","VIA CALLEGATI ARRIGO",57,"41013"),
+("SARBEL31D34A106D","Sara","Bellucci","78074164643","VIA PRATO",31,"12040"),
+("OMEBEN31D34A106D","Omero","Beneventi","85709755867","VIA MESINI DON GIOVANNI",73,"25014"),
+("ADOFOL31D34A106D","Adolfa","Folliero","70796720462","VIA LAMA LUCIANO",30,"8020"),
+("GERRIZ31D34A106D","Gerardo","Rizzo","83053008689","VIA BALDINI SANTI",50,"18100"),
+("LIAMAZ31D34A106D","Lia","Mazzanti","55124530767","VIA TREDICI MARZO 1987",75,"44000"),
+("IGODAV31D34A106D","Igor","Davide","24665355101","VIA FELISATTI GIROLAMO",8,"36063"),
+("ORTPAL31D34A106D","Ortensia","Palerma","68561143190","VIA SILVAGNI DON NICOLA",65,"36050"),
+("ALFIAD31D34A106D","Alfreda","Iadanza","47521221563","VIA TURCI DON MARIO",59,"12030"),
+("NICCAS31D34A106D","Nicodemo","Castiglione","59351556688","VIA SALIETTI ALBERTO",69,"89861"),
+("ABETOS31D34A106D","Abele","Toscano","15293247694","VIA GRANDI ACHILLE",83,"89812"),
+("MARRIC31D34A106D","Maria Teresa","Ricci","45861853480","VIA MINGUZZI",0,"10095"),
+("PATDEL31D34A106D","Patrizio","Dellucci","92200471867","VIA MATTEOTTI GIACOMO",91,"10144"),
+("PIOMAN31D34A106D","Pio","Manfrin","72562370814","PIAZZALE SOPRANI WILMA",61,"9040"),
+("MELMIL31D34A106D","Melania","Milanesi","49692302726","VIALE VIRGILIO PUBLIO MARONE",27,"86084"),
+("EMICAL31D34A106D","Emiliano","Calabresi","32779508608","VIALE LUCANO ANNEO MARCO",65,"66030"),
+("VIRGEN31D34A106D","Virgilio","Genovese","45921924111","PIAZZA COSTA ANDREA",4,"27010"),
+("CARBRU31D34A106D","Carmela","Bruno","84659111411","VIA BARBONI ORAZIO",6,"60020"),
+("ANTLON31D34A106D","Antonietta","Longo","98425798853","PIAZZALE ROSSI GIOVANNI BATTISTA",80,"46040"),
+("DOLBRU31D34A106D","Dolcelino","Bruno","20753849309","VIA BUSMANTI DARIO",14,"56026"),
+("SAVCAL31D34A106D","Saverio","Calabresi","99137259661","VIA ORIOLI LUIGI",8,"64010"),
+("VIOSCH31D34A106D","Viola","Schiavone","67312077700","VIA CAPPI ALESSANDRO",96,"34075"),
+("CORLOR31D34A106D","Corinna","Lorenzo","68231910192","VIA BAGNOLO",77,"16012"),
+("ADATRE31D34A106D","Adalgisa","Trevisan","29772691677","VIA BIANCOLI FRATELLI",79,"26040"),
+("SIMCAT31D34A106D","Simonetta","Cattaneo","81303508581","VIA MARIGNOLLI GIOVANNI",40,"12070"),
+("MICBIA31D34A106D","Michelino","Bianchi","73288349719","VIA GARAVINI BRUNO",65,"44042"),
+("FEDNAP31D34A106D","Fedra","Napolitani","31536033385","PIAZZA MAMELI GOFFREDO",48,"6070"),
+("BEAFAL31D34A106D","Beatrice","Fallaci","27499627010","VIA LA TORRE PIO",82,"45010"),
+("LEALON31D34A106D","Leardo","Longo","54968734011","VIA ABBA CESARE",17,"73030"),
+("FABFER31D34A106D","Fabrizia","Ferrari","43518987503","VIA ACQUARA SUPERIORE",98,"74010"),
+("ADAEND31D34A106D","Adalfredo","Endrizzi","79306122736","VIA COSTANTINI MARIO",43,"15020"),
+("PLAFER31D34A106D","Placido","Ferri","57472406356","VIA DEI TRE LATI",14,"47824"),
+("TIMMIL31D34A106D","Timotea","Milani","83226613607","VIA FABBRI",61,"81012"),
+("WALCAS31D34A106D","Walter","Castiglione","42366873049","VIA SAVINIO ALBERTO",6,"61030"),
+("CIRBIA31D34A106D","Ciriaco","Bianchi","28577311097","VICOLO CHIESA",68,"24060"),
+("CESDEL31D34A106D","Cesare","Dellucci","60945384407","CARRAIA VANGATICCIO",8,"55010"),
+("OLIFAN31D34A106D","Olinto","Fanucci","58555742013","CARRAIA CANOVA",48,"17026"),
+("SANTRE31D34A106D","Santina","Trevisan","83061106308","VICOLO DEL SALE",74,"25041"),
+("AMBTOS31D34A106D","Ambrosino","Toscano","23882231191","CARRARONE CHIESA",17,"28070"),
+("ELIMAN31D34A106D","Elisa","Manfrin","57515766892","VICOLO CHIESA",85,"36070"),
+("GIOFER31D34A106D","Gioele","Ferrari","90531980858","VIA SINISTRA CANALE MOLINETTO",90,"30035"),
+("SANROM31D34A106D","Sandro","Romano","49892820550","CARRAIA GRAZIANI",84,"27020"),
+("VINMIL31D34A106D","Vincenza","Milanesi","7858737672","CARRAIA SORBOLI",93,"61020"),
+("EMAMAZ31D34A106D","Emanuela","Mazzi","83364853878","VIALE CABOTO",4,"36012"),
+("DIOPIC31D34A106D","Dionisio","Piccio","37499965635","VIA MONTAGNOLA",93,"59100"),
+("REBMAR31D34A106D","Rebecca","Marcelo","71521188089","PIAZZA MAZZINI GIUSEPPE",2,"46041"),
+("BONFER31D34A106D","Bonacata","Ferrari","466675485","VIA DEL DOTTORE",80,"45100"),
+("DEMLOM31D34A106D","Demetrio","Lombardo","72761868952","VIA DEL BORGO",74,"52030"),
+("MAUMIL31D34A106D","Maura","Milano","33012466724","VIA DORSO GUIDO",0,"41010"),
+("NARFIO31D34A106D","Narciso","Fiorentino","50617226435","VIA NOCE TERESA",99,"16121"),
+("CASLOR31D34A106D","Cassandra","Lori","18530703607","VIA FORLIVESE",6,"23035"),
+("FACBER31D34A106D","Facino","Bergamaschi","8419346660","VIA BAGNOLO",62,"47018"),
+("BERPIA31D34A106D","Berenice","Piazza","1693976434","VIA DISMANO",67,"95030"),
+("GIOPIS31D34A106D","Giovanni","Pisani","9077035015","VIA STANDIANA",65,"61024"),
+("BERSAG31D34A106D","Berengario","Sagese","87736216961","VIA DISMANINO",18,"6057"),
+("IOLROS31D34A106D","Iolanda","Rossi","59355482127","VIA SANT'ALBERTO",89,"74020"),
+("MACNAP31D34A106D","Macaria","Napolitani","81157553766","VIA FARINI EPAMINONDA",17,"12060"),
+("FILBEL31D34A106D","Filomena","Bellucci","65164898660","VIA SAN VITALE STRADA STATALE",96,"41021"),
+("ARTARC31D34A106D","Arturo","Arcuri","47740578022","VIA CASTELLO",72,"28040"),
+("ANGCAL31D34A106D","Angelico","Calabrese","71110251261","VIA TORRES CAMILLO",21,"27020"),
+("GINDER31D34A106D","Gina","DeRose","66701611358","VIA BUOZZI BRUNO",16,"55030"),
+("NORLI31D34A106D","Norberto","Li Fonti","19200630373","VIA PIERO DELLA FRANCESCA",79,"59011"),
+("GAEMON31D34A106D","Gaetana","Monaldo","27722091581","VIA BALLARDINI GIUSEPPE",70,"17037"),
+("ALVNAP31D34A106D","Alvisa","Napolitano","72478489071","VIA DEL TEATRO SOCJALE",97,"31059"),
+("MELARC31D34A106D","Melissa","Arcuri","73735986413","VIA DALLA CHIESA CARLO ALBERTO",64,"24040"),
+("OREBEL31D34A106D","Orestilla","Bellucci","87784468780","PARCO DEL SOLE",75,"88837"),
+("MARPIC31D34A106D","Maria","Piccio","74474215068","PARCO PASSO DI SAN GERVASIO",70,"15021"),
+("AMAMIL31D34A106D","Amaranto","Milanesi","15364571467","PARCO DELLA PACE",25,"38050"),
+("ILDSAL31D34A106D","Ilda","Sal","69234290564","PARCO DEGLI ALBERI FATATI",64,"90121"),
+("LINDE31D34A106D","Lina","De Luca","93056714642","VIA CHIESA",16,"21052"),
+("VIVNAP31D34A106D","Vivaldo","Napolitano","48062753507","VIA DELLA CILLA",44,"39056"),
+("QUIPAD31D34A106D","Quirino","Padovesi","69929690461","VIA RICCI CORRADO",6,"165"),
+("ISAGAL31D34A106D","Isaia","Gallo","57982185548","VIA SCHIAPPARELLI GIOVANNI VIRGILIO",25,"31020"),
+("LODPIC31D34A106D","Lodovica","Piccio","83118182738","VIA FRISI PAOLO",28,"11020"),
+("GERPIS31D34A106D","Gerardino","Pisani","61098856516","VIA BOZZI ALDO",71,"10010"),
+("ERMLUC31D34A106D","Ermes","Lucchesi","55894162840","VIA BACCARINI ALFREDO",73,"73012"),
+("ALISCH31D34A106D","Alighiero","Schiavone","21988916439","VIA QUASIMODO SALVATORE",80,"23865"),
+("STACAL31D34A106D","Stanislao","Calabrese","32491496112","VIA PACIOLI LUCA",30,"87060"),
+("ADRBRU31D34A106D","Adriana","Bruno","26840854664","LUNGOMARE COLOMBO CRISTOFORO",48,"19010"),
+("ORAUDI31D34A106D","Orazio","Udinesi","2673610265","VICOLO CHIESA",37,"10068"),
+("OFERIC31D34A106D","Ofelia","Ricci","2152037385","VIALE ALBERTI LEON BATTISTA",52,"12010");
 
-
-Insert into Paziente (CF nome cognome telefono via n_civico CAP) insert (																												
-("	FRGLLI43H50H807Q	","	Lilia	","	Fragomena	","	Via Monte Amiata	","	00013	"	)	,																
-("	BRRMTA62T13C849G	","	Amato	","	Oberarzbacher	","	Via Gino Cervi	","	40133	"	)	,																
-("	DNCNZR40B03H524V	","	Nazzareno	","	Dinicuta	","	Via Enzo Ferrari	","	40138	"	)	,																
-("	VRTGLL30H56F782L	","	Gisella	","	Vertua	","	Via Salita Ai Montesei	","	38057	"	)	,																
-("	GRSDMN53H08C025S	","	Damiano	","	Geroso	","	Via Crocetta	","	41122	"	)	,																
-("	JNNPRM52C18B921X	","	Priamo	","	Janner	","	Via Gorizia	","	10028	"	)	,																
-("	TRNGTN93M02A861A	","	Gastone	","	Troncia	","	Corso Lamarmora	","	15121	"	)	,																
-("	NLZGNR50T67B808E	","	Gennara	","	Naluzzo	","	Via Madre Teresa Di Calcutta	","	27020	"	)	,																
-("	VRCMRM58M50C473E	","	Miriam	","	Avarucci	","	Via Emilia	","	27058	"	)	,																
-("	SCHLVN58R61G128E	","	Livia	","	Floreal	","	Via Della Pace	","	40010	"	)	,																
-("	LAVSCH31D34A106D	","	Lavinia	","	Schepici	","	Via Pio La Torre	","	56025	"	)	,																
-("	CLACAM31D34A106D	","	Claudia	","	Camolese	","	Via Quiete	","	91100	"	)	,																
-("	BRUFIO31D34A106D	","	Bruto	","	Fiorentino	","	VIA DELL'ABBONDANZA	","	81044	"	)	,																
-("	DANROM31D34A106D	","	Danilo	","	Romani	","	VIA BARLETE	","	10050	"	)	,																
-("	ANNTRE31D34A106D	","	Annunziata	","	Trentino	","	VICOLO BISSI	","	87070	"	)	,																
-("	CHRMON31D34A106D	","	Christian	","	Monaldo	","	VIA BENELLI BRUNO	","	73040	"	)	,																
-("	ANTDAV31D34A106D	","	Antonio	","	Davide	","	VIALE LOMBARDO MARCO	","	66030	"	)	,																
-("	BRUMIL31D34A106D	","	Brunilde	","	Milani	","	VIA MISSIROLI ICILIO	","	56126	"	)	,																
-("	GABRUS31D34A106D	","	Gabriella	","	Russo	","	VIA TOBAGI WALTER	","	51020	"	)	,																
-("	BIBFIO31D34A106D	","	Bibiana	","	Fiorentino	","	VIA FIUMICELLO	","	66010	"	)	,																
-("	RENCOS31D34A106D	","	Renato	","	Costa	","	VIA ALDINI ALDO	","	10090	"	)	,																
-("	ANGDEL31D34A106D	","	Angelico	","	Dellucci	","	VIA RE FILIPPO	","	60010	"	)	,																
-("	BENLO 31D34A106D	","	Benedetta	","	Lo Duca	","	VIA PIZZETTI ILDEBRANDO	","	14037	"	)	,																
-("	PIEGAL31D34A106D	","	Piera	","	Gallo	","	VIA SEGURINI TERZO	","	33029	"	)	,																
-("	PIEBAR31D34A106D	","	Pietro	","	Barese	","	VIA SAMARITANI AGIDE	","	81057	"	)	,																
-("	NAZBON31D34A106D	","	Nazzareno	","	Boni	","	VIA ARGINE DESTRO SAVIO	","	27020	"	)	,																
-("	LIBONI31D34A106D	","	Liberata	","	Onio	","	VIA DEL LAVORO	","	2047	"	)	,																
-("	ROBBER31D34A106D	","	Roberta	","	Bergamaschi	","	VIA DE GASPERI ALCIDE	","	89865	"	)	,																
-("	CARGRE31D34A106D	","	Carmela	","	Greece	","	VIA LA PALISSE JACQUES	","	63030	"	)	,																
-("	VALMON31D34A106D	","	Valter	","	Monaldo	","	VIA HOLBEIN HANS	","	56020	"	)	,																
-("	VITGRE31D34A106D	","	Vitale	","	Greece	","	VIA CHIESA DAMIANO	","	31055	"	)	,																
-("	RINNAP31D34A106D	","	Rina	","	Napolitani	","	VIA CALLEGATI ARRIGO	","	41013	"	)	,																
-("	SARBEL31D34A106D	","	Sara	","	Bellucci	","	VIA PRATO	","	12040	"	)	,																
-("	OMEBEN31D34A106D	","	Omero	","	Beneventi	","	VIA MESINI DON GIOVANNI	","	25014	"	)	,																
-("	ADOFOL31D34A106D	","	Adolfa	","	Folliero	","	VIA LAMA LUCIANO	","	8020	"	)	,																
-("	GERRIZ31D34A106D	","	Gerardo	","	Rizzo	","	VIA BALDINI SANTI	","	18100	"	)	,																
-("	LIAMAZ31D34A106D	","	Lia	","	Mazzanti	","	VIA TREDICI MARZO 1987	","	44000	"	)	,																
-("	IGODAV31D34A106D	","	Igor	","	Davide	","	VIA FELISATTI GIROLAMO	","	36063	"	)	,																
-("	ORTPAL31D34A106D	","	Ortensia	","	Palerma	","	VIA SILVAGNI DON NICOLA	","	36050	"	)	,																
-("	ALFIAD31D34A106D	","	Alfreda	","	Iadanza	","	VIA TURCI DON MARIO	","	12030	"	)	,																
-("	NICCAS31D34A106D	","	Nicodemo	","	Castiglione	","	VIA SALIETTI ALBERTO	","	89861	"	)	,																
-("	ABETOS31D34A106D	","	Abele	","	Toscano	","	VIA GRANDI ACHILLE	","	89812	"	)	,																
-("	MARRIC31D34A106D	","	Maria Teresa	","	Ricci	","	VIA MINGUZZI	","	10095	"	)	,																
-("	PATDEL31D34A106D	","	Patrizio	","	Dellucci	","	VIA MATTEOTTI GIACOMO	","	10144	"	)	,																
-("	PIOMAN31D34A106D	","	Pio	","	Manfrin	","	PIAZZALE SOPRANI WILMA	","	9040	"	)	,																
-("	MELMIL31D34A106D	","	Melania	","	Milanesi	","	VIALE VIRGILIO PUBLIO MARONE	","	86084	"	)	,																
-("	EMICAL31D34A106D	","	Emiliano	","	Calabresi	","	VIALE LUCANO ANNEO MARCO	","	66030	"	)	,																
-("	VIRGEN31D34A106D	","	Virgilio	","	Genovese	","	PIAZZA COSTA ANDREA	","	27010	"	)	,																
-("	CARBRU31D34A106D	","	Carmela	","	Bruno	","	VIA BARBONI ORAZIO	","	60020	"	)	,																
-("	ANTLON31D34A106D	","	Antonietta	","	Longo	","	PIAZZALE ROSSI GIOVANNI BATTISTA	","	46040	"	)	,																
-("	DOLBRU31D34A106D	","	Dolcelino	","	Bruno	","	VIA BUSMANTI DARIO	","	56026	"	)	,																
-("	SAVCAL31D34A106D	","	Saverio	","	Calabresi	","	VIA ORIOLI LUIGI	","	64010	"	)	,																
-("	VIOSCH31D34A106D	","	Viola	","	Schiavone	","	VIA CAPPI ALESSANDRO	","	34075	"	)	,																
-("	CORLOR31D34A106D	","	Corinna	","	Lorenzo	","	VIA BAGNOLO	","	16012	"	)	,																
-("	ADATRE31D34A106D	","	Adalgisa	","	Trevisan	","	VIA BIANCOLI FRATELLI	","	26040	"	)	,																
-("	SIMCAT31D34A106D	","	Simonetta	","	Cattaneo	","	VIA MARIGNOLLI GIOVANNI	","	12070	"	)	,																
-("	MICBIA31D34A106D	","	Michelino	","	Bianchi	","	VIA GARAVINI BRUNO	","	44042	"	)	,																
-("	FEDNAP31D34A106D	","	Fedra	","	Napolitani	","	PIAZZA MAMELI GOFFREDO	","	6070	"	)	,																
-("	BEAFAL31D34A106D	","	Beatrice	","	Fallaci	","	VIA LA TORRE PIO	","	45010	"	)	,																
-("	LEALON31D34A106D	","	Leardo	","	Longo	","	VIA ABBA CESARE	","	73030	"	)	,																
-("	FABFER31D34A106D	","	Fabrizia	","	Ferrari	","	VIA ACQUARA SUPERIORE	","	74010	"	)	,																
-("	ADAEND31D34A106D	","	Adalfredo	","	Endrizzi	","	VIA COSTANTINI MARIO	","	15020	"	)	,																
-("	PLAFER31D34A106D	","	Placido	","	Ferri	","	VIA DEI TRE LATI	","	47824	"	)	,																
-("	TIMMIL31D34A106D	","	Timotea	","	Milani	","	VIA FABBRI	","	81012	"	)	,																
-("	WALCAS31D34A106D	","	Walter	","	Castiglione	","	VIA SAVINIO ALBERTO	","	61030	"	)	,																
-("	CIRBIA31D34A106D	","	Ciriaco	","	Bianchi	","	VICOLO CHIESA	","	24060	"	)	,																
-("	CESDEL31D34A106D	","	Cesare	","	Dellucci	","	CARRAIA VANGATICCIO	","	55010	"	)	,																
-("	OLIFAN31D34A106D	","	Olinto	","	Fanucci	","	CARRAIA CANOVA	","	17026	"	)	,																
-("	SANTRE31D34A106D	","	Santina	","	Trevisan	","	VICOLO DEL SALE	","	25041	"	)	,																
-("	AMBTOS31D34A106D	","	Ambrosino	","	Toscano	","	CARRARONE CHIESA	","	28070	"	)	,																
-("	ELIMAN31D34A106D	","	Elisa	","	Manfrin	","	VICOLO CHIESA	","	36070	"	)	,																
-("	GIOFER31D34A106D	","	Gioele	","	Ferrari	","	VIA SINISTRA CANALE MOLINETTO	","	30035	"	)	,																
-("	SANROM31D34A106D	","	Sandro	","	Romano	","	CARRAIA GRAZIANI	","	27020	"	)	,																
-("	VINMIL31D34A106D	","	Vincenza	","	Milanesi	","	CARRAIA SORBOLI	","	61020	"	)	,																
-("	EMAMAZ31D34A106D	","	Emanuela	","	Mazzi	","	VIALE CABOTO	","	36012	"	)	,																
-("	DIOPIC31D34A106D	","	Dionisio	","	Piccio	","	VIA MONTAGNOLA	","	59100	"	)	,																
-("	REBMAR31D34A106D	","	Rebecca	","	Marcelo	","	PIAZZA MAZZINI GIUSEPPE	","	46041	"	)	,																
-("	BONFER31D34A106D	","	Bonacata	","	Ferrari	","	VIA DEL DOTTORE	","	45100	"	)	,																
-("	DEMLOM31D34A106D	","	Demetrio	","	Lombardo	","	VIA DEL BORGO	","	52030	"	)	,																
-("	MAUMIL31D34A106D	","	Maura	","	Milano	","	VIA DORSO GUIDO	","	41010	"	)	,																
-("	NARFIO31D34A106D	","	Narciso	","	Fiorentino	","	VIA NOCE TERESA	","	16121	"	)	,																
-("	CASLOR31D34A106D	","	Cassandra	","	Lori	","	VIA FORLIVESE	","	23035	"	)	,																
-("	FACBER31D34A106D	","	Facino	","	Bergamaschi	","	VIA BAGNOLO	","	47018	"	)	,																
-("	BERPIA31D34A106D	","	Berenice	","	Piazza	","	VIA DISMANO	","	95030	"	)	,																
-("	GIOPIS31D34A106D	","	Giovanni	","	Pisani	","	VIA STANDIANA	","	61024	"	)	,																
-("	BERSAG31D34A106D	","	Berengario	","	Sagese	","	VIA DISMANINO	","	6057	"	)	,																
-("	IOLROS31D34A106D	","	Iolanda	","	Rossi	","	VIA SANT'ALBERTO	","	74020	"	)	,																
-("	MACNAP31D34A106D	","	Macaria	","	Napolitani	","	VIA FARINI EPAMINONDA	","	12060	"	)	,																
-("	FILBEL31D34A106D	","	Filomena	","	Bellucci	","	VIA SAN VITALE STRADA STATALE	","	41021	"	)	,																
-("	ARTARC31D34A106D	","	Arturo	","	Arcuri	","	VIA CASTELLO	","	28040	"	)	,																
-("	ANGCAL31D34A106D	","	Angelico	","	Calabrese	","	VIA TORRES CAMILLO	","	27020	"	)	,																
-("	GINDER31D34A106D	","	Gina	","	DeRose	","	VIA BUOZZI BRUNO	","	55030	"	)	,																
-("	NORLI 31D34A106D	","	Norberto	","	Li Fonti	","	VIA PIERO DELLA FRANCESCA	","	59011	"	)	,																
-("	GAEMON31D34A106D	","	Gaetana	","	Monaldo	","	VIA BALLARDINI GIUSEPPE	","	17037	"	)	,																
-("	ALVNAP31D34A106D	","	Alvisa	","	Napolitano	","	VIA DEL TEATRO SOCJALE	","	31059	"	)	,																
-("	MELARC31D34A106D	","	Melissa	","	Arcuri	","	VIA DALLA CHIESA CARLO ALBERTO	","	24040	"	)	,																
-("	OREBEL31D34A106D	","	Orestilla	","	Bellucci	","	PARCO DEL SOLE	","	88837	"	)	,																
-("	MARPIC31D34A106D	","	Maria	","	Piccio	","	PARCO PASSO DI SAN GERVASIO	","	15021	"	)	,																
-("	AMAMIL31D34A106D	","	Amaranto	","	Milanesi	","	PARCO DELLA PACE	","	38050	"	)	,																
-("	ILDSAL31D34A106D	","	Ilda	","	Sal	","	PARCO DEGLI ALBERI FATATI	","	90121	"	)	,																
-("	LINDE 31D34A106D	","	Lina	","	De Luca	","	VIA CHIESA	","	21052	"	)	,																
-("	VIVNAP31D34A106D	","	Vivaldo	","	Napolitano	","	VIA DELLA CILLA	","	39056	"	)	,																
-("	QUIPAD31D34A106D	","	Quirino	","	Padovesi	","	VIA RICCI CORRADO	","	165	"	)	,																
-("	ISAGAL31D34A106D	","	Isaia	","	Gallo	","	VIA SCHIAPPARELLI GIOVANNI VIRGILIO	","	31020	"	)	,																
-("	LODPIC31D34A106D	","	Lodovica	","	Piccio	","	VIA FRISI PAOLO	","	11020	"	)	,																
-("	GERPIS31D34A106D	","	Gerardino	","	Pisani	","	VIA BOZZI ALDO	","	10010	"	)	,																
-("	ERMLUC31D34A106D	","	Ermes	","	Lucchesi	","	VIA BACCARINI ALFREDO	","	73012	"	)	,																
-("	ALISCH31D34A106D	","	Alighiero	","	Schiavone	","	VIA QUASIMODO SALVATORE	","	23865	"	)	,																
-("	STACAL31D34A106D	","	Stanislao	","	Calabrese	","	VIA PACIOLI LUCA	","	87060	"	)	,																
-("	ADRBRU31D34A106D	","	Adriana	","	Bruno	","	LUNGOMARE COLOMBO CRISTOFORO	","	19010	"	)	,																
-("	ORAUDI31D34A106D	","	Orazio	","	Udinesi	","	VICOLO CHIESA	","	10068	"	)	,																
-("	OFERIC31D34A106D	","	Ofelia	","	Ricci	","	VIALE ALBERTI LEON BATTISTA	","	12010	"	)	;																
-																												
-																												
-INSERT INTO StanzaRi ( n_stanza, sede, reparto, prezzo_notte, tipo) VALUES																												
-(	1	,"	VI1	","	CHMA	",	20	,"	standard	"	),																	
-(	2	,"	VI1	","	CHVA	",	20	,"	standard	"	),																	
-(	3	,"	VI1	","	MEDE	",	20	,"	standard	"	),																	
-(	4	,"	VI1	","	MEFI	",	20	,"	standard	"	),																	
-(	5	,"	VI1	","	CHGE	",	30	,"	comfort	"	),																	
-(	6	,"	VI1	","	CHMA	",	30	,"	comfort	"	),																	
-(	7	,"	VI1	","	CHVA	",	30	,"	comfort	"	),																	
-(	8	,"	VI1	","	MEDE	",	30	,"	comfort	"	),																	
-(	9	,"	VI1	","	MEFI	",	30	,"	comfort	"	),																	
-(	10	,"	VI1	","	CHGE	",	50	,"	suite	"	),																	
-(	11	,"	VI1	","	CHMA	",	50	,"	suite	"	),																	
-(	12	,"	VI1	","	CHVA	",	50	,"	suite	"	),																	
-(	13	,"	VI1	","	MEDE	",	50	,"	suite	"	),																	
-(	14	,"	VI1	","	MEFI	",	50	,"	suite	"	),																	
-(	15	,"	VI1	","	CHGE	",	50	,"	suite	"	),																	
-(	1	,"	VI2	","	CHMA	",	20	,"	standard	"	),																	
-(	2	,"	VI2	","	CHVA	",	20	,"	standard	"	),																	
-(	3	,"	VI2	","	MEDE	",	20	,"	standard	"	),																	
-(	4	,"	VI2	","	MEFI	",	20	,"	standard	"	),																	
-(	5	,"	VI2	","	CHGE	",	30	,"	comfort	"	),																	
-(	6	,"	VI2	","	CHMA	",	30	,"	comfort	"	),																	
-(	7	,"	VI2	","	CHVA	",	30	,"	comfort	"	),																	
-(	8	,"	VI2	","	MEDE	",	30	,"	comfort	"	),																	
-(	9	,"	VI2	","	MEFI	",	30	,"	comfort	"	),																	
-(	10	,"	VI2	","	CHGE	",	50	,"	suite	"	),																	
-(	11	,"	VI2	","	CHMA	",	50	,"	suite	"	),																	
-(	12	,"	VI2	","	CHVA	",	50	,"	suite	"	),																	
-(	13	,"	VI2	","	MEDE	",	50	,"	suite	"	),																	
-(	14	,"	VI2	","	MEFI	",	50	,"	suite	"	),																	
-(	15	,"	VI2	","	CHGE	",	50	,"	suite	"	),																	
-(	1	,"	PD1	","	CHMA	",	20	,"	standard	"	),																	
-(	2	,"	PD1	","	CHVA	",	20	,"	standard	"	),																	
-(	3	,"	PD1	","	MEDE	",	20	,"	standard	"	),																	
-(	4	,"	PD1	","	MEFI	",	20	,"	standard	"	),																	
-(	5	,"	PD1	","	CHGE	",	30	,"	comfort	"	),																	
-(	6	,"	PD1	","	CHMA	",	30	,"	comfort	"	),																	
-(	7	,"	PD1	","	CHVA	",	30	,"	comfort	"	),																	
-(	8	,"	PD1	","	MEDE	",	30	,"	comfort	"	),																	
-(	9	,"	PD1	","	MEFI	",	30	,"	comfort	"	),																	
-(	10	,"	PD1	","	CHGE	",	50	,"	suite	"	),																	
-(	11	,"	PD1	","	CHMA	",	50	,"	suite	"	),																	
-(	12	,"	PD1	","	CHVA	",	50	,"	suite	"	),																	
-(	13	,"	PD1	","	MEDE	",	50	,"	suite	"	),																	
-(	14	,"	PD1	","	MEFI	",	50	,"	suite	"	),																	
-(	15	,"	PD1	","	CHGE	",	50	,"	suite	"	),																	
-(	1	,"	TR1	","	CHMA	",	20	,"	standard	"	),																	
-(	2	,"	TR1	","	CHVA	",	20	,"	standard	"	),																	
-(	3	,"	TR1	","	MEDE	",	20	,"	standard	"	),																	
-(	4	,"	TR1	","	MEFI	",	20	,"	standard	"	),																	
-(	5	,"	TR1	","	CHGE	",	30	,"	comfort	"	),																	
-(	6	,"	TR1	","	CHMA	",	30	,"	comfort	"	),																	
-(	7	,"	TR1	","	CHVA	",	30	,"	comfort	"	),																	
-(	8	,"	TR1	","	MEDE	",	30	,"	comfort	"	),																	
-(	9	,"	TR1	","	MEFI	",	30	,"	comfort	"	),																	
-(	10	,"	TR1	","	CHGE	",	50	,"	suite	"	),																	
-(	11	,"	TR1	","	CHMA	",	50	,"	suite	"	),																	
-(	12	,"	TR1	","	CHVA	",	50	,"	suite	"	),																	
-(	13	,"	TR1	","	MEDE	",	50	,"	suite	"	),																	
-(	14	,"	TR1	","	MEFI	",	50	,"	suite	"	),																	
-(	15	,"	TR1	","	CHGE	",	50	,"	suite	"	),																	
-(	1,00	,"	BL1	","	CHMA	",	20	,"	standard	"	),																	
-(	2,00	,"	BL1	","	CHVA	",	20	,"	standard	"	),																	
-(	3,00	,"	BL1	","	MEDE	",	20	,"	standard	"	),																	
-(	4,00	,"	BL1	","	MEFI	",	20	,"	standard	"	),																	
-(	5,00	,"	BL1	","	CHGE	",	30	,"	comfort	"	),																	
-(	6,00	,"	BL1	","	CHMA	",	30	,"	comfort	"	),																	
-(	7,00	,"	BL1	","	CHVA	",	30	,"	comfort	"	),																	
-(	8,00	,"	BL1	","	MEDE	",	30	,"	comfort	"	),																	
-(	9,00	,"	BL1	","	MEFI	",	30	,"	comfort	"	),																	
-(	10,00	,"	BL1	","	CHGE	",	50	,"	suite	"	),																	
-(	11,00	,"	BL1	","	CHMA	",	50	,"	suite	"	),																	
-(	12,00	,"	BL1	","	CHVA	",	50	,"	suite	"	),																	
-(	13,00	,"	BL1	","	MEDE	",	50	,"	suite	"	),																	
-(	14,00	,"	BL1	","	MEFI	",	50	,"	suite	"	),																	
-(	15,00	,"	BL1	","	CHGE	",	50	,"	suite	"	),																	
+INSERT INTO StanzaRi ( n_stanza, sede, reparto, prezzo_notte, tipo) VALUES
+(1,"VI1","CHMA",20,"standard"),
+(2,"VI1","CHVA",20,"standard"),
+(3,"VI1","MEDE",20,"standard"),
+(4,"VI1","MEFI",20,"standard"),
+(5,"VI1","CHGE",30,"comfort"),
+(6,"VI1","CHMA",30,"comfort"),
+(7,"VI1","CHVA",30,"comfort"),
+(8,"VI1","MEDE",30,"comfort"),
+(9,"VI1","MEFI",30,"comfort"),
+(10,"VI1","CHGE",50,"suite"),
+(11,"VI1","CHMA",50,"suite"),
+(12,"VI1","CHVA",50,"suite"),
+(13,"VI1","MEDE",50,"suite"),
+(14,"VI1","MEFI",50,"suite"),
+(15,"VI1","CHGE",50,"suite"),
+(1,"VI2","CHMA",20,"standard"),
+(2,"VI2","CHVA",20,"standard"),
+(3,"VI2","MEDE",20,"standard"),
+(4,"VI2","MEFI",20,"standard"),
+(5,"VI2","CHGE",30,"comfort"),
+(6,"VI2","CHMA",30,"comfort"),
+(7,"VI2","CHVA",30,"comfort"),
+(8,"VI2","MEDE",30,"comfort"),
+(9,"VI2","MEFI",30,"comfort"),
+(10,"VI2","CHGE",50,"suite"),
+(11,"VI2","CHMA",50,"suite"),
+(12,"VI2","CHVA",50,"suite"),
+(13,"VI2","MEDE",50,"suite"),
+(14,"VI2","MEFI",50,"suite"),
+(15,"VI2","CHGE",50,"suite"),
+(1,"PD1","CHMA",20,"standard"),
+(2,"PD1","CHVA",20,"standard"),
+(3,"PD1","MEDE",20,"standard"),
+(4,"PD1","MEFI",20,"standard"),
+(5,"PD1","CHGE",30,"comfort"),
+(6,"PD1","CHMA",30,"comfort"),
+(7,"PD1","CHVA",30,"comfort"),
+(8,"PD1","MEDE",30,"comfort"),
+(9,"PD1","MEFI",30,"comfort"),
+(10,"PD1","CHGE",50,"suite"),
+(11,"PD1","CHMA",50,"suite"),
+(12,"PD1","CHVA",50,"suite"),
+(13,"PD1","MEDE",50,"suite"),
+(14,"PD1","MEFI",50,"suite"),
+(15,"PD1","CHGE",50,"suite"),
+(1,"TR1","CHMA",20,"standard"),
+(2,"TR1","CHVA",20,"standard"),
+(3,"TR1","MEDE",20,"standard"),
+(4,"TR1","MEFI",20,"standard"),
+(5,"TR1","CHGE",30,"comfort"),
+(6,"TR1","CHMA",30,"comfort"),
+(7,"TR1","CHVA",30,"comfort"),
+(8,"TR1","MEDE",30,"comfort"),
+(9,"TR1","MEFI",30,"comfort"),
+(10,"TR1","CHGE",50,"suite"),
+(11,"TR1","CHMA",50,"suite"),
+(12,"TR1","CHVA",50,"suite"),
+(13,"TR1","MEDE",50,"suite"),
+(14,"TR1","MEFI",50,"suite"),
+(15,"TR1","CHGE",50,"suite"),
+(1,00,"BL1","CHMA",20,"standard"),
+(2,00,"BL1","CHVA",20,"standard"),
+(3,00,"BL1","MEDE",20,"standard"),
+(4,00,"BL1","MEFI",20,"standard"),
+(5,00,"BL1","CHGE",30,"comfort"),
+(6,00,"BL1","CHMA",30,"comfort"),
+(7,00,"BL1","CHVA",30,"comfort"),
+(8,00,"BL1","MEDE",30,"comfort"),
+(9,00,"BL1","MEFI",30,"comfort"),
+(10,00,"BL1","CHGE",50,"suite"),
+(11,00,"BL1","CHMA",50,"suite"),
+(12,00,"BL1","CHVA",50,"suite"),
+(13,00,"BL1","MEDE",50,"suite"),
+(14,00,"BL1","MEFI",50,"suite"),
+(15,00,"BL1","CHGE",50,"suite"),
 
 Insert into StanzaSp(n_stanza, sede, reparto) values (
-(	"	1	","	VI1	","	CHMA	"),
-(	"	2	","	VI1	","	CHVA	"),
-(	"	3	","	VI1	","	MEDE	"),
-(	"	4	","	VI1	","	MEFI	"),
-(	"	5	","	VI1	","	CHGE	"),
-(	"	1	","	VI2	","	CHMA	"),
-(	"	2	","	VI2	","	CHVA	"),
-(	"	3	","	VI2	","	MEDE	"),
-(	"	1	","	PD1	","	CHMA	"),
-(	"	2	","	PD1	","	CHVA	"),
-(	"	3	","	PD1	","	MEDE	"),
-(	"	4	","	PD1	","	MEFI	"),
-(	"	5	","	PD1	","	CHGE	"),
-(	"	1	","	TR1	","	CHVA	"),
-(	"	2	","	TR1	","	MEDE	"),
-(	"	3	","	TR1	","	MEFI	"),
-(	"	4	","	TR1	","	CHGE	"),
-(	"	1	","	BL1	","	MEDE	"),
-(	"	2	","	BL1	","	MEFI	"),
-(	"	3	","	BL1	","	CHGE	");																							
-																												
-Insert Into Reparto ('codice', 'tipo', 'primario') Values																												
-("	CHMA	","	Maxillo	","	FNCGLG68E05F399E		"),																					
-("	CHVA	","	Chirurgia vascolare	","	ANDDND68E05F399E		"),																					
-("	MEDE	","	Dermatologia	","	QNTSVT69P09G712B		"),																					
-("	MEFI	","	Fisioterapia	","	PCLNCL63A31D128G		"),																					
-("	CHGE	","	Chirurgia Generale	","	MRNTRN80P28L049T		");																					
-																												
-																												
-Insert Into TipoEsame (nome, prezzo) values																												
-("	TAC	",	100	),																								
-("	Ecografia	",	70	),																								
-("	Visita medica 	",	75	),																								
-("	Visita chirurgica	",	85	),																								
-("	Prelievo	",	45	);																								
-																												
-Insert Into PrenotazioneStanza (data_inizio, data_fine, data_p, pagamento, paziente, stanza, reparto, sede)	values																											
-("	2020-02-10	","	2020-02-15	","	2020-01-04	",	0	,"	FABFER31D34A106D	","	1	","	CHMA	","	VI1	"),												
-("	2020-02-11	","	2020-02-16	","	2020-01-03	",	0	,"	LINDE 31D34A106D	","	3	","	MEDE	","	PD1	"),												
-("	2020-02-12	","	2020-02-17	","	2020-01-02	",	0	,"	GIOPIS31D34A106D	","	10	","	MEFI	","	BL1	"),												
-("	2020-02-05	","	2020-02-13	","	2020-01-01	",	1	,"	MELARC31D34A106D	","	12	","	MEDE	","	TR1	"),												
-("	2020-02-14	","	2020-02-19	","	2019-12-31	",	0	,"	LODPIC31D34A106D	","	2	","	MEFI	","	VI1	"),												
-("	2020-02-15	","	2020-02-20	","	2019-12-30	",	0	,"	IOLROS31D34A106D	","	5	","	CHGE	","	VI2	"),												
-("	2020-02-16	","	2020-02-21	","	2019-12-29	",	0	,"	ALISCH31D34A106D	","	7	","	CHGE	","	VI2	");												
+("1","VI1","CHMA"),
+("2","VI1","CHVA"),
+("3","VI1","MEDE"),
+("4","VI1","MEFI"),
+("5","VI1","CHGE"),
+("1","VI2","CHMA"),
+("2","VI2","CHVA"),
+("3","VI2","MEDE"),
+("1","PD1","CHMA"),
+("2","PD1","CHVA"),
+("3","PD1","MEDE"),
+("4","PD1","MEFI"),
+("5","PD1","CHGE"),
+("1","TR1","CHVA"),
+("2","TR1","MEDE"),
+("3","TR1","MEFI"),
+("4","TR1","CHGE"),
+("1","BL1","MEDE"),
+("2","BL1","MEFI"),
+("3","BL1","CHGE");
+
+Insert Into Reparto ('codice', 'tipo', 'primario') Values
+("CHMA","Maxillo","FNCGLG68E05F399E"),
+("CHVA","Chirurgia vascolare","ANDDND68E05F399E"),
+("MEDE","Dermatologia","QNTSVT69P09G712B"),
+("MEFI","Fisioterapia","PCLNCL63A31D128G"),
+("CHGE","Chirurgia Generale","MRNTRN80P28L049T");
+
+
+Insert Into TipoEsame (nome, prezzo) values
+("TAC",100),
+("Ecografia",70),
+("Visita medica ",75),
+("Visita chirurgica",85),
+("Prelievo",45);
+
+Insert Into PrenotazioneStanza (data_inizio, data_fine, data_p, pagamento, paziente, stanza, reparto, sede)values
+("2020-02-10","2020-02-15","2020-01-04",0,"FABFER31D34A106D","1","CHMA","VI1"),
+("2020-02-11","2020-02-16","2020-01-03",0,"LINDE 31D34A106D","3","MEDE","PD1"),
+("2020-02-12","2020-02-17","2020-01-02",0,"GIOPIS31D34A106D","10","MEFI","BL1"),
+("2020-02-05","2020-02-13","2020-01-01",1,"MELARC31D34A106D","12","MEDE","TR1"),
+("2020-02-14","2020-02-19","2019-12-31",0,"LODPIC31D34A106D","2","MEFI","VI1"),
+("2020-02-15","2020-02-20","2019-12-30",0,"IOLROS31D34A106D","5","CHGE","VI2"),
+("2020-02-16","2020-02-21","2019-12-29",0,"ALISCH31D34A106D","7","CHGE","VI2");
 
 
 INSERT INTO PrenotazioneEsame(data_p, data_e, pagamento, paziente, stanza, reparto, sede, tipo) values
-(	"	2019-01-01 08:07:22	","	2019-01-10 08:07:22	",	0	,	"	FRGLLI43H50H807Q	"),
-(	"	2019-02-02 09:07:22	","	2019-02-08 09:07:22	",	0	,	"	BRRMTA62T13C849G	"),
-(	"	2019-03-03 10:07:22	","	2019-03-03 10:07:22	",	0	,	"	DNCNZR40B03H524V	"),
-(	"	2019-01-01 08:07:23	","	2019-08-09 08:07:23	",	0	,	"	VRTGLL30H56F782L	"),
-(	"	2019-02-02 09:07:23	","	2019-02-02 09:07:23	",	0	,	"	GRSDMN53H08C025S	"),
-(	"	2019-03-03 10:07:23	","	2019-01-10 08:07:23	",	0	,	"	JNNPRM52C18B921X	"),
-(	"	2019-01-01 08:07:24	","	2019-02-08 09:07:23	",	0	,	"	TRNGTN93M02A861A	"),
-(	"	2019-02-02 09:07:24	","	2019-03-03 10:07:23	",	0	,	"	NLZGNR50T67B808E	"),
-(	"	2019-03-03 10:07:24	","	2019-08-09 08:07:24	",	0	,	"	VRCMRM58M50C473E	"),
-(	"	2019-01-01 08:07:25	","	2019-02-02 09:07:24	",	0	,	"	SCHLVN58R61G128E	"),
-(	"	2019-02-02 09:07:25	","	2019-01-10 08:07:24	",	0	,	"	DANROM31D34A106D	"),
-(	"	2019-03-03 10:07:25	","	2019-02-08 09:07:24	",	0	,	"	ANNTRE31D34A106D	"),
-(	"	2019-01-01 08:07:26	","	2019-03-03 10:07:24	",	0	,	"	CHRMON31D34A106D	"),
-(	"	2019-02-02 09:07:26	","	2019-08-09 08:07:25	",	0	,	"	ANTDAV31D34A106D	"),
-(	"	2019-03-03 10:07:26	","	2019-02-02 09:07:25	",	0	,	"	BRUMIL31D34A106D	"),
-(	"	2019-01-01 08:07:27	","	2019-01-10 08:07:25	",	0	,	"	GABRUS31D34A106D	"),
-(	"	2019-02-02 09:07:27	","	2019-02-08 09:07:25	",	0	,	"	BIBFIO31D34A106D	"),
-(	"	2019-03-03 10:07:27	","	2019-03-03 10:07:25	",	1	,	"	RENCOS31D34A106D	"),
-(	"	2019-01-01 08:07:28	","	2019-08-09 08:07:26	",	1	,	"	ANGDEL31D34A106D	"),
-(	"	2019-02-02 09:07:28	","	2019-02-02 09:07:26	",	1	,	"	BENLO 31D34A106D	"),
-(	"	2019-03-03 10:07:28	","	2019-01-10 08:07:26	",	1	,	"	PIEGAL31D34A106D	"),
-(	"	2019-01-01 08:07:29	","	2019-02-08 09:07:26	",	1	,	"	PIEBAR31D34A106D	"),
-(	"	2019-02-02 09:07:29	","	2019-03-03 10:07:26	",	1	,	"	NAZBON31D34A106D	"),
-(	"	2019-03-03 10:07:29	","	2019-08-09 08:07:27	",	1	,	"	LIBONI31D34A106D	"),
-(	"	2019-01-01 08:07:30	","	2019-02-02 09:07:27	",	1	,	"	ROBBER31D34A106D	"),
-(	"	2019-02-02 09:07:30	","	2019-01-10 08:07:27	",	1	,	"	CARGRE31D34A106D	"),
-(	"	2019-01-01 08:07:23	","	2019-02-08 09:07:27	",	1	,	"	VALMON31D34A106D	"),
-(	"	2019-02-02 09:07:23	","	2019-03-03 10:07:27	",	1	,	"	VITGRE31D34A106D	"),
-(	"	2019-03-03 10:07:23	","	2019-08-09 08:07:28	",	1	,	"	RINNAP31D34A106D	"),
-(	"	2019-01-01 08:07:24	","	2019-02-02 09:07:28	",	1	,	"	SARBEL31D34A106D	"),
-(	"	2019-02-02 09:07:24	","	2019-01-10 08:07:28	",	1	,	"	OMEBEN31D34A106D	"),
-(	"	2019-03-03 10:07:24	","	2019-02-08 09:07:28	",	1	,	"	ADOFOL31D34A106D	"),
-(	"	2019-01-01 08:07:25	","	2019-03-03 10:07:28	",	1	,	"	GERRIZ31D34A106D	"),
-(	"	2019-02-02 09:07:25	","	2019-08-09 08:07:29	",	1	,	"	LIAMAZ31D34A106D	"),
-(	"	2019-03-03 10:07:25	","	2019-02-02 09:07:29	",	1	,	"	IGODAV31D34A106D	"),
-(	"	2019-01-01 08:07:26	","	2019-01-10 08:07:29	",	1	,	"	ORTPAL31D34A106D	"),
-(	"	2019-02-02 09:07:26	","	2019-02-08 09:07:29	",	1	,	"	ALFIAD31D34A106D	"),
-(	"	2019-03-03 10:07:26	","	2019-03-03 10:07:29	",	1	,	"	NICCAS31D34A106D	"),
-(	"	2019-01-01 08:07:27	","	2019-08-09 08:07:30	",	1	,	"	PIOMAN31D34A106D	"),
-(	"	2019-02-02 09:07:27	","	2019-02-02 09:07:30	",	1	,	"	MELMIL31D34A106D	"),
-(	"	2019-03-03 10:07:27	","	2019-01-10 08:07:30	",	1	,	"	EMICAL31D34A106D	"),
-(	"	2019-01-01 08:07:28	","	2019-02-08 09:07:30	",	1	,	"	VIRGEN31D34A106D	"),
-(	"	2019-02-02 09:07:28	","	2019-03-03 10:07:30	",	1	,	"	CARBRU31D34A106D	"),
-(	"	2019-03-03 10:07:28	","	2019-08-09 08:07:31	",	1	,	"	ANTLON31D34A106D	");
-																								
-Insert Into Macchinario (n_serie, nome, casa_prod, ultima_revisione, n_stanza, reparto, sede) VALUES												
-(	23927102734	,"	Armadio porta farmaci	","	2019-10-10	",	1	,"	CHMA	","	VI2	"),
-(	23927102740	,"	Aspiratore	","	2019-10-11	",	2	,"	CHVA	","	VI2	"),
-(	23927102746	,"	ECG	","	2019-10-12	",	2	,"	CHVA	","	VI1	"),
-(	23927102752	,"	Autoclave	","	2019-10-13	",	4	,"	CHGE	","	TR1	"),
-(	23927102758	,"	Armadio porta farmaci	","	2019-10-14	",	1	,"	MEDE	","	BL1	"),
-(	23927102764	,"	Aspiratore	","	2019-10-15	",	3	,"	MEFI	","	TR1	"),
-(	23927102770	,"	ECG	","	2019-10-16	",	2	,"	CHMA	","	PD1	"),
-(	23927102776	,"	Autoclave	","	2019-10-17	",	4	,"	MEDE	","	PD1	");															
-																												
-Insert Into Costituisce (sede, reparto) VALUES																												
-("	VI1	","	CHMA	"),																								
-("	VI1	","	CHVA	"),																								
-("	VI1	","	MEDE	"),																								
-("	VI1	","	MEFI	"),																								
-("	VI1	","	CHGE	"),																								
-("	VI2	","	CHMA	"),																								
-("	VI2	","	CHVA	"),																								
-("	VI2	","	MEDE	"),																								
-("	VI2	","	MEFI	"),																								
-("	VI2	","	CHGE	"),																								
-("	PD1	","	CHMA	"),																								
-("	PD1	","	CHVA	"),																								
-("	PD1	","	MEDE	"),																								
-("	PD1	","	MEFI	"),																								
-("	PD1	","	CHGE	"),																								
-("	TR1	","	CHMA	"),																								
-("	TR1	","	CHVA	"),																								
-("	TR1	","	MEDE	"),																								
-("	TR1	","	MEFI	"),																								
-("	TR1	","	CHGE	"),																								
-("	BL1	","	CHMA	"),																								
-("	BL1	","	CHVA	"),																								
-("	BL1	","	MEDE	"),																								
-("	BL1	","	MEFI	"),																								
-("	BL1	","	CHGE	");																								
-																												
-Insert Into EsameEffettuato (paziente, tipo_esame, stanza, terapia, diagnosi, medico) Values																												
-("	CHM131D34A106D	","	CHMA	","	1	VI1	CHMA	",	Null	,	Null	,"	MHMNCN37C42A001Z		"),													
-("	CHV231D34A106D	","	CHVA	","	2	VI1	CHVA	",	Null	,	Null	,"	DND SVT 65T22 L477D		"),													
-("	MED331D34A106D	","	MEDE	","	3	VI1	MEDE	",	Null	,	Null	,"	BND NDR 90E15 G712A		"),													
-("	MEF431D34A106D	","	MEFI	","	4	VI1	MEFI	",	Null	,	Null	,"	MTR GNN 50T17 I954Q		"),													
-("	CHG531D34A106D	","	CHGE	","	5	VI1	CHGE	",	Null	,	Null	,"	TRC GPR 64P01 F907M		"),													
-("	CHM131D34A106D	","	CHMA	","	1	VI2	CHMA	",	Null	,	Null	,"	MGN VTI 48A30 F839B		"),													
-("	CHV231D34A106D	","	CHVA	","	2	VI2	CHVA	",	Null	,	Null	,"	MGN VTI 48A30 F839B		"),													
-("	MED331D34A106D	","	MEDE	","	3	VI2	MEDE	",	Null	,	Null	,"	TRC GPR 64P01 F907M		");													
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
-																												
+("2019-01-01 08:07:22","2019-01-10 08:07:22",0,"FRGLLI43H50H807Q"),
+("2019-02-02 09:07:22","2019-02-08 09:07:22",0,"BRRMTA62T13C849G"),
+("2019-03-03 10:07:22","2019-03-03 10:07:22",0,"DNCNZR40B03H524V"),
+("2019-01-01 08:07:23","2019-08-09 08:07:23",0,"VRTGLL30H56F782L"),
+("2019-02-02 09:07:23","2019-02-02 09:07:23",0,"GRSDMN53H08C025S"),
+("2019-03-03 10:07:23","2019-01-10 08:07:23",0,"JNNPRM52C18B921X"),
+("2019-01-01 08:07:24","2019-02-08 09:07:23",0,"TRNGTN93M02A861A"),
+("2019-02-02 09:07:24","2019-03-03 10:07:23",0,"NLZGNR50T67B808E"),
+("2019-03-03 10:07:24","2019-08-09 08:07:24",0,"VRCMRM58M50C473E"),
+("2019-01-01 08:07:25","2019-02-02 09:07:24",0,"SCHLVN58R61G128E"),
+("2019-02-02 09:07:25","2019-01-10 08:07:24",0,"DANROM31D34A106D"),
+("2019-03-03 10:07:25","2019-02-08 09:07:24",0,"ANNTRE31D34A106D"),
+("2019-01-01 08:07:26","2019-03-03 10:07:24",0,"CHRMON31D34A106D"),
+("2019-02-02 09:07:26","2019-08-09 08:07:25",0,"ANTDAV31D34A106D"),
+("2019-03-03 10:07:26","2019-02-02 09:07:25",0,"BRUMIL31D34A106D"),
+("2019-01-01 08:07:27","2019-01-10 08:07:25",0,"GABRUS31D34A106D"),
+("2019-02-02 09:07:27","2019-02-08 09:07:25",0,"BIBFIO31D34A106D"),
+("2019-03-03 10:07:27","2019-03-03 10:07:25",1,"RENCOS31D34A106D"),
+("2019-01-01 08:07:28","2019-08-09 08:07:26",1,"ANGDEL31D34A106D"),
+("2019-02-02 09:07:28","2019-02-02 09:07:26",1,"BENLO31D34A106D"),
+("2019-03-03 10:07:28","2019-01-10 08:07:26",1,"PIEGAL31D34A106D"),
+("2019-01-01 08:07:29","2019-02-08 09:07:26",1,"PIEBAR31D34A106D"),
+("2019-02-02 09:07:29","2019-03-03 10:07:26",1,"NAZBON31D34A106D"),
+("2019-03-03 10:07:29","2019-08-09 08:07:27",1,"LIBONI31D34A106D"),
+("2019-01-01 08:07:30","2019-02-02 09:07:27",1,"ROBBER31D34A106D"),
+("2019-02-02 09:07:30","2019-01-10 08:07:27",1,"CARGRE31D34A106D"),
+("2019-01-01 08:07:23","2019-02-08 09:07:27",1,"VALMON31D34A106D"),
+("2019-02-02 09:07:23","2019-03-03 10:07:27",1,"VITGRE31D34A106D"),
+("2019-03-03 10:07:23","2019-08-09 08:07:28",1,"RINNAP31D34A106D"),
+("2019-01-01 08:07:24","2019-02-02 09:07:28",1,"SARBEL31D34A106D"),
+("2019-02-02 09:07:24","2019-01-10 08:07:28",1,"OMEBEN31D34A106D"),
+("2019-03-03 10:07:24","2019-02-08 09:07:28",1,"ADOFOL31D34A106D"),
+("2019-01-01 08:07:25","2019-03-03 10:07:28",1,"GERRIZ31D34A106D"),
+("2019-02-02 09:07:25","2019-08-09 08:07:29",1,"LIAMAZ31D34A106D"),
+("2019-03-03 10:07:25","2019-02-02 09:07:29",1,"IGODAV31D34A106D"),
+("2019-01-01 08:07:26","2019-01-10 08:07:29",1,"ORTPAL31D34A106D"),
+("2019-02-02 09:07:26","2019-02-08 09:07:29",1,"ALFIAD31D34A106D"),
+("2019-03-03 10:07:26","2019-03-03 10:07:29",1,"NICCAS31D34A106D"),
+("2019-01-01 08:07:27","2019-08-09 08:07:30",1,"PIOMAN31D34A106D"),
+("2019-02-02 09:07:27","2019-02-02 09:07:30",1,"MELMIL31D34A106D"),
+("2019-03-03 10:07:27","2019-01-10 08:07:30",1,"EMICAL31D34A106D"),
+("2019-01-01 08:07:28","2019-02-08 09:07:30",1,"VIRGEN31D34A106D"),
+("2019-02-02 09:07:28","2019-03-03 10:07:30",1,"CARBRU31D34A106D"),
+("2019-03-03 10:07:28","2019-08-09 08:07:31",1,"ANTLON31D34A106D");
+
+Insert Into Macchinario (n_serie, nome, casa_prod, ultima_revisione, n_stanza, reparto, sede) VALUES
+(23927102734,"Armadio porta farmaci","2019-10-10",1,"CHMA","VI2"),
+(23927102740,"Aspiratore","2019-10-11",2,"CHVA","VI2"),
+(23927102746,"ECG","2019-10-12",2,"CHVA","VI1"),
+(23927102752,"Autoclave","2019-10-13",4,"CHGE","TR1"),
+(23927102758,"Armadio porta farmaci","2019-10-14",1,"MEDE","BL1"),
+(23927102764,"Aspiratore","2019-10-15",3,"MEFI","TR1"),
+(23927102770,"ECG","2019-10-16",2,"CHMA","PD1"),
+(23927102776,"Autoclave","2019-10-17",4,"MEDE","PD1");
+
+Insert Into Costituisce (sede, reparto) VALUES
+("VI1","CHMA"),
+("VI1","CHVA"),
+("VI1","MEDE"),
+("VI1","MEFI"),
+("VI1","CHGE"),
+("VI2","CHMA"),
+("VI2","CHVA"),
+("VI2","MEDE"),
+("VI2","MEFI"),
+("VI2","CHGE"),
+("PD1","CHMA"),
+("PD1","CHVA"),
+("PD1","MEDE"),
+("PD1","MEFI"),
+("PD1","CHGE"),
+("TR1","CHMA"),
+("TR1","CHVA"),
+("TR1","MEDE"),
+("TR1","MEFI"),
+("TR1","CHGE"),
+("BL1","CHMA"),
+("BL1","CHVA"),
+("BL1","MEDE"),
+("BL1","MEFI"),
+("BL1","CHGE");
+
+Insert Into EsameEffettuato (paziente, tipo_esame, stanza, terapia, diagnosi, medico) Values
+("CHM131D34A106D","CHMA","1VI1CHMA",Null,Null,"MHMNCN37C42A001Z"),
+("CHV231D34A106D","CHVA","2VI1CHVA",Null,Null,"DND SVT 65T22 L477D"),
+("MED331D34A106D","MEDE","3VI1MEDE",Null,Null,"BND NDR 90E15 G712A"),
+("MEF431D34A106D","MEFI","4VI1MEFI",Null,Null,"MTR GNN 50T17 I954Q"),
+("CHG531D34A106D","CHGE","5VI1CHGE",Null,Null,"TRC GPR 64P01 F907M"),
+("CHM131D34A106D","CHMA","1VI2CHMA",Null,Null,"MGN VTI 48A30 F839B"),
+("CHV231D34A106D","CHVA","2VI2CHVA",Null,Null,"MGN VTI 48A30 F839B"),
+("MED331D34A106D","MEDE","3VI2MEDE",Null,Null,"TRC GPR 64P01 F907M");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
