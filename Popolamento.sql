@@ -145,7 +145,7 @@ CREATE TABLE PrenotazioneStanza (
     paziente VARCHAR(16),
     stanza TINYINT,
     reparto CHAR(4),
-    sede VARCHAR(2),
+    sede VARCHAR(3),
     PRIMARY KEY (ID),
     FOREIGN KEY (stanza) REFERENCES StanzaSP(n_stanza),
     FOREIGN KEY (reparto) REFERENCES StanzaSP(reparto),
