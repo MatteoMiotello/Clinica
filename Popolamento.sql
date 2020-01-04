@@ -15,17 +15,17 @@ CREATE TABLE Stipendio (
 )ENGINE=InnoDb;
 CREATE TABLE Paziente (
     CF VARCHAR (16),
-    nome VARCHAR (20),
+    nome VARCHAR (30),
     cognome VARCHAR (30),
     telefono VARCHAR (13),
-    via VARCHAR (25) NOT NULL,
+    via VARCHAR (35) NOT NULL,
     n_civico TINYINT NOT NULL,
     CAP CHAR (5) NOT NULL,
     PRIMARY KEY (CF)
 )ENGINE=InnoDb;
 CREATE TABLE Personale ( 
     CF VARCHAR (16),
-    nome VARCHAR (20),
+    nome VARCHAR (30),
     cognome VARCHAR (30),
     datadinascita DATE,
     sesso ENUM ('M','F'),

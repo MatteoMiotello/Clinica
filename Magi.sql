@@ -338,7 +338,7 @@ Insert Into Macchinario VALUES
 (23927102770,"ECG","quirumed","2019-10-16",2,"CHMA","PD1"),
 (23927102776,"Autoclave","quirumed","2019-10-17",4,"MEDE","PD1");
 
-Insert Into Costituisce (sedeMEFI
+Insert Into Costituisce VALUES
 ("VI1","MEFI"),
 ("VI1","CHGE"),
 ("VI2","CHMA"),
