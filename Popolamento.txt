@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS Sede,
-CREATE TABLE Sede (
+CREATE TABLE Sede(
     ID VARCHAR (3),
     CAP CHAR (5) not null,
     via VARCHAR (25) not null,
