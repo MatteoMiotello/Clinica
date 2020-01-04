@@ -163,7 +163,7 @@ CREATE TABLE Costituisce (
 DROP TABLE IF EXISTS EsameEffettuato,
 
 CREATE TABLE EsameEffettuato (
-    ID INT(11),
+    ID INT(11) auto_increment,
     paziente VARCHAR(16),
     tipo_esame VARCHAR(10),
     stanza TINYINT NOT NULL,
