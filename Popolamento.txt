@@ -176,7 +176,7 @@ CREATE TABLE EsameEffettuato (
 )ENGINE=InnoDb;
 
 CREATE TABLE PrenotazioneStanza (
-    ID INT(11),
+    ID INT(11) auto_increment,
     data_inizio DATETIME NOT NULL,
     data_fine DATETIME NOT NULL,
     data_p DATETIME NOT NULL,
