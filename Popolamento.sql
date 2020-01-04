@@ -17,10 +17,10 @@ CREATE TABLE Paziente (
     CF VARCHAR (16),
     nome VARCHAR (20),
     cognome VARCHAR (30),
-    telefono VARCHAR (13) NOT NULL, 
-    via VARCHAR (25) NOT NULL,
-    n_civico TINYINT NOT NULL,
-    CAP CHAR (5) NOT NULL,
+    telefono VARCHAR (13)
+    via VARCHAR (25) NOT 
+    n_civico TINYINT NOT 
+    CAP CHAR (5) NOT NULL,g
     PRIMARY KEY (CF)
 )ENGINE=InnoDb;
 CREATE TABLE Personale ( 
