@@ -26,9 +26,9 @@ diagnosi not null
 stanza not null  
 medico not null  
 **Prenotazione Esame**  
-orario not null  
+data_e not null  
 ID primary key  
-data not null  
+data_p not null  
 **PrenotazioneStanza**  
 ID primary key  
 data_p not null  
