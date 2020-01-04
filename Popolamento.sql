@@ -88,7 +88,7 @@ CREATE TABLE PrenotazioneStanza (
     FOREIGN KEY (paziente) REFERENCES Paziente(CF)
 )ENGINE=InnoDb;
 CREATE TABLE PrenotazioneEsame (
-    ID INT(11)auto_increment,
+    ID INT(11) auto_increment,
     data_p  DATETIME NOT NULL,
     orario TIME NOT NULL,    
     pagamento BOOLEAN,
@@ -125,7 +125,7 @@ CREATE TABLE Costituisce (
     PRIMARY KEY (sede, reparto)
 )ENGINE=InnoDb;
 CREATE TABLE EsameEffettuato (
-    ID INT(11)auto_increment,
+    ID INT(11) auto_increment,
     paziente VARCHAR(16),
     tipo_esame VARCHAR(10),
     stanza TINYINT NOT NULL,
@@ -145,7 +145,7 @@ CREATE TABLE PrenotazioneStanza (
     paziente VARCHAR(16),
     stanza TINYINT,
     reparto CHAR(4),
-    sede VARCHAR(2),
+    sede VARCHAR(3),
     PRIMARY KEY (ID),
     FOREIGN KEY (stanza) REFERENCES StanzaSP(n_stanza),
     FOREIGN KEY (reparto) REFERENCES StanzaSP(reparto),
