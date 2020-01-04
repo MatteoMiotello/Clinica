@@ -1,4 +1,64 @@
-																										
+Insert into Sede ('ID','CAP', 'via', 'n_civico' ,'telefono') values(							
+("VI1",	"36100", "	Via roma	",	2,	"0444977328"),	
+("VI2",	"36040","Via dellindustria",		24	,"0444354022"	),
+("PD1",	"35100","Via IV novembre"	,	39	,"0492314458"	),
+("TR1",	"38014","Via Venezia	",	3	,"0461556321"	),
+("BL1",	"32100","Via Col di Lana", 102,	"0437823145"	);
+
+
+Insert Into Stipendio (tipo, imp_netto, imp_lordo) values (	'medico'	,	'2800'	,	'3360'	),
+(	"primario"	,	3180	,	3816	),
+(	"infermiere"	,	2100	,	2520	),
+(	"c.infermiere"	,	2310	,	2772	),
+(	"segreteria"	,	1750	,	2100	),
+(	"ata"	,	1820	,	2184	),
+(	"tecnico"	,	1960	,	2352	);
+
+(	"	INNOCENZA	","	MOHAMMADIAN	","	2/3/1937	","	F	","	MHMNCN37C42A001Z	","	ata	","	3937815668	","	36033	","	Brioli	","	VI1	","	IT 60 X054 2811 1010 0000 0123 456	"),
+(	"	CRISTIAN	","	GASTALDON	","	5/6/2006	","	M	","	MHMNCN37C42A001Z	","	medico	","	3737815668	","	36032	","	Roma	","	VI2	","	IT 60 X054 2811 1010 0000 0123 455	"),
+(	"	SARA	","	FORALOSSO	","	1/12/1999	","	F	","	FNC GLG 68E05 F399E	","	primario	","	3537815668	","	36031	","	Firenze	","	PD1	","	IT 60 X054 2811 1010 0000 0123 457"),
+(	"	GIANNI	","	HU	","	12/7/2000	","	M	","	DND SVT 65T22 L477D	","	infermiere 	","	3337815668	","	36030	","	Pino	","	TR1	","	IT 60 X054 2811 1010 0000 0123 456	"),
+(	"	SALVATORE	","	CARRINO	","	27/02/1956	","	M	","	CRR SVT 56B27 F399B	","	ata	","	3137815668	","	36029	","	Ragazzi del 99	","	BL	","		IT 60 X054 2811 1010 0000 0123 458	"),
+(	"	MAURA ROSARIA	","	DONADIO	","	20/09/1964	","	F	","	DND MRS 64P60 F399G	","	segreteria	","	2937815668	","	36028	","	All'acqua	","	PD1	","	IT 60 X054 2811 1010 0000 0123 457	"),
+(	"	NICOLA	","	DONADIO	","	24/07/1976	","	M	","	DND NCL 76L24 G786K	","	segreteria	","	2737815668	","	36027	","	Chiodo	","	TR1	","		IT 60 X054 2811 1010 0000 0123 459	"),
+(	"	DOMENICO SANTO	","	TUCCI	","	25/04/1973	","	M	","	TCC DNC 73D25 F052A	","	tecnico	","	2537815668	","	36026	","	Napoleone	","	PD1	","	IT 60 X054 2811 1010 0000 0123 458	"),
+(	"	ANTONIO ROCCO	","	MONTESANO	","	15/08/1966	","	M	","	MNT NNR 66M15 F052I	","	c.infermiere	","	2337815668	","	36025	","	Mazzini	","	PD1	","	IT 60 X054 2811 1010 0000 0123 460"),
+(	"	SALVATORE	","	DONADIO	","	22/12/1965	","	M	","	DND SVT 65T22 L477D	","	medico	","	2137815668	","	36024	","	Parigini	","	VI1	","	IT 60 X054 2811 1010 0000 0123 459	"),
+(	"	GIANLUIGI	","	FINOCCHIARO	","	05/05/2008	","	M	","	FNC GLG 68E05 F399E	","	primario	","	1937815668	","	36023	","	Sassolini	","	PD1	","	IT 60 X054 2811 1010 0000 0123 461"),
+(	"	ANDREA	","	BENEDETTO	","	15/05/1990	","	F	","	BND NDR 90E15 G712A	","	medico	","	1737815668	","	36022	","	Pisa	","	TR1	","	IT 60 X054 2811 1010 0000 0123 460	"),
+(	"	VINCENZO	","	BELLINO	","	22/07/1972	","	M	","	BLL VCN 72L22 F052W	","	tecnico	","	1537815668	","	36021	","	Milano	","	BL	","	IT 60 X054 2811 1010 0000 0123 462"),
+(	"	GIUSEPPE	","	PIZZOLLA	","	15/06/1979	","	M	","	PZZ GPP 79H15 G786W	","	c.infermiere	","	1337815668	","	36020	","	Torino	","	TR1	","	IT 60 X054 2811 1010 0000 0123 461	"),
+(	"	VITO MAURIZIO ANTONIO	","	TUCCI	","	20/09/1966	","	M	","	TCC VMR 66P20 F052Q	","	infermire	","	1137815668	","	36019	","	Giotto	","	VI2	","	IT 60 X054 2811 1010 0000 0123 463"),
+(	"	ROCCO	","	SIFREDI	","	16/06/1966	","	M	","	SCR RCC 66H16 F052M	","	ata	","	6937815668	","	36018	","	Leopardi	","	BL	","	IT 60 X054 2811 1010 0000 0123 462	"),
+(	"	MICHELE	","	IANNUZZI	","	28/08/1973	","	M	","	NNZ MHL 73M28 L477R	","	ata	","	8737815668	","	36017	","	Navon	","	BL	","	IT 60 X054 2811 1010 0000 0123 464"),
+(	"	STEFANO GIOVANNI	","	SANTARCANGELO	","	24/06/1961	","	M	","	SNT SFN 61H24 A942B	","	ata	","	5378156689	","	36016	","	4 novembre	","	VI1	","	IT 60 X054 2811 1010 0000 0123 463	"),
+(	"	RAFFAELE	","	CONTE	","	08/11/1958	","	M	","	CNT RFL 58S08 F399L	","	tecnico	","	3378156689	","	36015	","	Gesù   Cristo	","	BL	","	IT 60 X054 2811 1010 0000 0123 465"),
+(	"	GIUSEPPE	","	STIGLIANO	","	28/01/1961	","	M	","	STG GPP 61A28 A801X	","	segreteria	","	1378156688	","	36014	","	Dei santi	","	BL	","	IT 60 X054 2811 1010 0000 0123 464	"),
+(	"	NICOLA	","	LOMBARDI	","	09/07/1967	","	M	","	LMB NCL 67L09 I954F	","	infermiere	","	4621843326	","	36013	","	Giuseppe Maria 	","	TR1	","	IT 60 X054 2811 1010 0000 0123 466"),
+(	"	MARCO IGINO NICOLA	","	D'ANDREA	","	20/05/1978	","	M	","	DND MRC 78E20 F839E	","	ata	","	4621843326	","	36012	","	Firenze	","	VI2	","	IT 60 X054 2811 1010 0000 0123 465	"),
+(	"	ROCCO	","	MATARRESE	","	16/07/1978	","	M	","	MTR RCC 76L16 I954B	","	segreteria	","	4621843326	","	36011	","	 Ologna	","	BL	","	IT 60 X054 2811 1010 0000 0123 467"),
+(	"	GIOVANNI	","	MATARRESE	","	17/12/1950	","	M	","	MTR GNN 50T17 I954Q	","	medico	","	4621843326	","	36010	","	Bologna	","	VI1	","	IT 60 X054 2811 1010 0000 0123 466	"),
+(	"	GINO PROSPERO	","	TRUNCELLITO	","	01/09/1964	","	M	","	TRC GPR 64P01 F907M	","	medico	","	4621843326	","	36009	","	Lucrezia	","	TR1	","	IT 60 X054 2811 1010 0000 0123 468"),
+(	"	VINCENZO	","	ANTEZZA	","	13/08/1954	","	M	","	NTZ VCN 54M13 F052E	","	c.infermiere	","	4621843326	","	36008	","	Miotello	","	BL	","	IT 60 X054 2811 1010 0000 0123 467	"),
+(	"	VINCENZO FABIO	","	RUSSO	","	24/04/1963	","	M	","	RSS VCN 63D28 G712W	","	tecnico	","	4621843326	","	36007	","	Vicenza	","	VI2	","	IT 60 X054 2811 1010 0000 0123 469"),
+(	"	SALVATORE GAETANO	","	QUINTO	","	09/09/1969	","	M	","	QNT SVT 69P09 G712B	","	primario	","	4621843326	","	36006	","	Francesco Guardi	","	BL	","	IT 60 X054 2811 1010 0000 0123 468	"),
+(	"	NICOLA	","	VIGGIANO	","	13/09/1976	","	M	","	VGG NCL 76P13 I954H	","	infermiere	","	4621843326	","	36005	","	Fornaci	","	PD1	","	IT 60 X054 2811 1010 0000 0123 470"),
+(	"	DOMENICO	","	PIZZOLLA	","	17/04/1953	","	M	","	PZZ DNC 53D17 F201X	","	segreteria	","	4621843326	","	36004	","	Murano	","	TR1	","	IT 60 X054 2811 1010 0000 0123 469	"),
+(	"	GIUSEPPE	","	BARTOLOMEO	","	27/06/1969	","	M	","	BRT GPP 69H27 E093G	","	ata	","	4621843326	","	36003	","	Bologna	","	VI1	","	IT 60 X054 2811 1010 0000 0123 471"),
+(	"	MARIO SALVATORE	","	LIUZZI	","	17/02/1969	","	M	","	LZZ MSL 69B17 I954Q	","	tecnico	","	4621843326	","	36002	","	Cristo Re	","	VI1	","	IT 60 X054 2811 1010 0000 0123 470	"),
+(	"	ANTONIO	","	DARAIA	","	23/08/1961	","	M	","	DRA NTN 61M23 F052U	","	infermiere	","	4621843326	","	36001	","	4 novembre	","	PD1	","	IT 60 X054 2811 1010 0000 0123 472"),
+(	"	NICOLA	","	PACILIO	","	31/01/1963	","	M	","	PCL NCL 63A31 D128G	","	primario	","	4621843326	","	36000	","	 Ologna	","	PD1	","	IT 60 X054 2811 1010 0000 0123 471	"),
+(	"	FRANCESCO	","	MARINO	","	01/02/1951	","	M	","	MRN FNC 51B01 G786M	","	tecnico	","	4621843326	","	35999	","	Ragazzi del 99	","	VI1	","	IT 60 X054 2811 1010 0000 0123 473"),
+(	"	NICOLA	","	MARINO	","	27/02/1956	","	M	","	MRN NCL 56B27 H591V	","	primario	","	4621843326	","	35998	","	Vicenza	","	BL	","	IT 60 X054 2811 1010 0000 0123 472	"),
+(	"	ETTORE ANTONIO	","	MARINO	","	28/09/1980	","	M	","	MRN TRN 80P28 L049T	","	primario	","	4621843326	","	35997	","	Leopardi	","	VI1	","	IT 60 X054 2811 1010 0000 0123 474"),
+(	"	DOMENICO	","	MARINO	","	09/05/1986	","	M	","	MRN DNC 86E09 G786Z	","	ata	","	4621843326	","	35996	","	Giuseppe Maria 	","	VI1	","	IT 60 X054 2811 1010 0000 0123 473	"),
+(	"	VITO	","	MAGNANTE	","	30/01/1948	","	M	","	MGN VTI 48A30 F839B	","	medico	","	4621843326	","	35995	","	Miotello	","	VI1	","	IT 60 X054 2811 1010 0000 0123 475"),
+(	"	GIOVANNI	","	MANOLIO	","	18/08/1987	","	M	","	MNL GNN 87M18 I954Z	","	c.infermiere	","	4621843326	","	35994	","	Firenze	","	VI1	","	IT 60 X054 2811 1010 0000 0123 474	"),
+(	"	FABIO	","	QUINTO	","	23/08/1984	","	M	","	QNT FBA 84M23 F052A	","	infermiere	","	4621843326	","	35993	","	Napoleone	","	PD1	","	IT 60 X054 2811 1010 0000 0123 476"),
+
+
+
+
 Insert into Paziente (CF nome cognome telefono via n_civico CAP) insert (																												
 ("	FRGLLI43H50H807Q	","	Lilia	","	Fragomena	","	Via Monte Amiata	","	00013	"	)	,																
 ("	BRRMTA62T13C849G	","	Amato	","	Oberarzbacher	","	Via Gino Cervi	","	40133	"	)	,																
