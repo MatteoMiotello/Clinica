@@ -89,8 +89,8 @@ CREATE TABLE PrenotazioneStanza (
 )ENGINE=InnoDb;
 CREATE TABLE PrenotazioneEsame (
     ID INT(11) auto_increment,
-    data_p  DATETIME NOT NULL,
-    orario TIME NOT NULL,    
+    data_p DATETIME NOT NULL,
+    data_e DATETIME NOT NULL,    
     pagamento BOOLEAN,
     paziente VARCHAR(16),
     stanza TINYINT,
@@ -105,7 +105,7 @@ CREATE TABLE PrenotazioneEsame (
     FOREIGN KEY (tipo) REFERENCES TipoEsame(nome)
 )ENGINE=InnoDb;
 CREATE TABLE Macchinario (
-    n_serie INT (11),
+    n_serie VARCHAR (11),
     nome VARCHAR (15),
     casa_prod VARCHAR (15),
     ultima_revisione DATE,
