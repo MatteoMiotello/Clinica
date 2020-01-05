@@ -62,7 +62,7 @@ CREATE TABLE StanzaRi (
     sede VARCHAR (3),
     reparto CHAR (4),
     prezzo_notte DECIMAL (6,2) NOT NULL,
-    tipo VARCHAR(25) NOT NULL,
+    tipo VARCHAR(10),
     FOREIGN KEY (sede) REFERENCES Sede (ID),
     FOREIGN KEY (reparto) REFERENCES Reparto (codice),
     PRIMARY KEY (n_stanza, sede, reparto, tipo)
@@ -82,13 +82,13 @@ CREATE TABLE PrenotazioneStanza (
     stanza TINYINT,
     reparto CHAR (4),
     sede VARCHAR (3),
-    tipo VARCHAR(25),
+    tipo VARCHAR(10),
+    PRIMARY KEY (ID),
     FOREIGN KEY (stanza) REFERENCES StanzaRi (n_stanza),
     FOREIGN KEY (sede) REFERENCES StanzaRi (sede),
     FOREIGN KEY (reparto) REFERENCES StanzaRi (reparto),
     FOREIGN KEY (tipo) REFERENCES StanzaRi (tipo),
-    FOREIGN KEY (paziente) REFERENCES Paziente (CF),
-    PRIMARY KEY (ID)
+    FOREIGN KEY (paziente) REFERENCES Paziente (CF)
 )ENGINE=InnoDb;
 CREATE TABLE PrenotazioneEsame (
     ID INT (11) auto_increment,

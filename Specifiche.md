@@ -73,7 +73,7 @@ ok Aggiunta paziente|I| 5 al giorno
 ni Prenotazione esame|I| 100 al giorno
 ni Prenotazione StanzaRi|I| 30 al giorno
 ok Verifica StanzaRi (dove si trova un paziente)|B| 5000 al giorno
-Verifica stanze disponibili (ricovero)|B| 100 al giorno
+ok Verifica stanze disponibili (ricovero)|B| 100 al giorno
 Calcolo spese totali paziente|B|50 al giorno
 Verifica pagamento|B| 5 al giorno
 Verifica importo totale|B| 100 al giorno

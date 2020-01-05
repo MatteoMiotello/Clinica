@@ -15,17 +15,17 @@ CREATE TABLE Stipendio (
 )ENGINE=InnoDb;
 CREATE TABLE Paziente (
     CF VARCHAR (16),
-    nome VARCHAR (30),
+    nome VARCHAR (20),
     cognome VARCHAR (30),
     telefono VARCHAR (13),
-    via VARCHAR (35) NOT NULL,
+    via VARCHAR (25) NOT NULL,
     n_civico TINYINT NOT NULL,
     CAP CHAR (5) NOT NULL,
     PRIMARY KEY (CF)
 )ENGINE=InnoDb;
 CREATE TABLE Personale ( 
     CF VARCHAR (16),
-    nome VARCHAR (30),
+    nome VARCHAR (20),
     cognome VARCHAR (30),
     datadinascita DATE,
     sesso ENUM ('M','F'),
@@ -43,7 +43,7 @@ CREATE TABLE Personale (
 )ENGINE=InnoDb;
 CREATE TABLE Reparto (
     codice CHAR (4),
-    tipo VARCHAR (25) UNIQUE,
+    tipo VARCHAR (15) UNIQUE,
     primario VARCHAR (16),
     FOREIGN KEY (primario) REFERENCES Personale (CF),
     PRIMARY KEY (codice)
@@ -67,7 +67,7 @@ CREATE TABLE StanzaRi (
     PRIMARY KEY (n_stanza, sede, reparto)
 )ENGINE=InnoDb;
 CREATE TABLE TipoEsame (
-    nome VARCHAR(25),
+    nome VARCHAR(10),
     prezzo DECIMAL NOT NULL,
     PRIMARY KEY (nome)
 ) ENGINE=InnoDb;
@@ -89,14 +89,14 @@ CREATE TABLE PrenotazioneStanza (
 )ENGINE=InnoDb;
 CREATE TABLE PrenotazioneEsame (
     ID INT(11) auto_increment,
-    data_p DATETIME NOT NULL,
-    data_e DATETIME NOT NULL,    
+    data_p  DATETIME NOT NULL,
+    orario TIME NOT NULL,    
     pagamento BOOLEAN,
     paziente VARCHAR(16),
     stanza TINYINT,
     reparto CHAR (4),
     sede VARCHAR (3),
-    tipo VARCHAR(25),
+    tipo VARCHAR(10),
     PRIMARY KEY(ID),
     FOREIGN KEY (stanza) REFERENCES StanzaSp(n_stanza),
     FOREIGN KEY (reparto) REFERENCES StanzaSp(reparto),
@@ -105,9 +105,9 @@ CREATE TABLE PrenotazioneEsame (
     FOREIGN KEY (tipo) REFERENCES TipoEsame(nome)
 )ENGINE=InnoDb;
 CREATE TABLE Macchinario (
-    n_serie VARCHAR (11),
-    nome VARCHAR (30),
-    casa_prod VARCHAR (30),
+    n_serie INT (11),
+    nome VARCHAR (15),
+    casa_prod VARCHAR (15),
     ultima_revisione DATE,
     n_stanza TINYINT,
     reparto CHAR (4),
@@ -127,10 +127,10 @@ CREATE TABLE Costituisce (
 CREATE TABLE EsameEffettuato (
     ID INT(11) auto_increment,
     paziente VARCHAR(16),
-    tipo_esame VARCHAR(25),
-    stanza VARCHAR (8) NOT NULL,
-    terapia VARCHAR(100), 
-    diagnosi VARCHAR(100),
+    tipo_esame VARCHAR(10),
+    stanza TINYINT NOT NULL,
+    terapia VARCHAR(100) NOT NULL, 
+    diagnosi VARCHAR(100) NOT NULL,
     medico VARCHAR(20) NOT NULL,
     FOREIGN KEY(tipo_esame) REFERENCES TipoEsame(nome),
     FOREIGN KEY (paziente) REFERENCES Paziente(CF),
