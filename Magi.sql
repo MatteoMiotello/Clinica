@@ -1,9 +1,154 @@
+--CREAZIONE TABELLE
+
+CREATE TABLE Sede (
+    ID VARCHAR (3),
+    CAP CHAR (5) NOT NULL,
+    via VARCHAR (25) NOT NULL,
+    n_civico SMALLINT NOT NULL,
+    telefono VARCHAR (13) NOT NULL,
+    UNIQUE (telefono),
+    PRIMARY KEY (ID)
+)ENGINE=InnoDb;
+CREATE TABLE Stipendio (
+    tipo VARCHAR (15),
+    imp_lordo DECIMAL NOT NULL,
+    imp_netto DECIMAL,
+    PRIMARY KEY (tipo)
+)ENGINE=InnoDb;
+CREATE TABLE Paziente (
+    CF VARCHAR (16),
+    nome VARCHAR (30),
+    cognome VARCHAR (30),
+    telefono VARCHAR (13),
+    via VARCHAR (35) NOT NULL,
+    n_civico TINYINT NOT NULL,
+    CAP CHAR (5) NOT NULL,
+    PRIMARY KEY (CF)
+)ENGINE=InnoDb;
+CREATE TABLE Personale ( 
+    CF VARCHAR (16),
+    nome VARCHAR (30),
+    cognome VARCHAR (30),
+    datadinascita DATE,
+    sesso ENUM ('M','F'),
+    telefono VARCHAR (13),
+    tipo VARCHAR (30),
+    grado VARCHAR (30) default null,
+    CAP CHAR (5),
+    via VARCHAR (25),
+    n_civico SMALLINT,
+    IBAN VARCHAR (27) NOT NULL,
+    sede VARCHAR (3),
+    PRIMARY KEY (CF),
+    FOREIGN KEY (sede) REFERENCES Sede (ID),
+    FOREIGN KEY (tipo) REFERENCES Stipendio (tipo)
+)ENGINE=InnoDb;
+CREATE TABLE Reparto (
+    codice CHAR (4),
+    tipo VARCHAR (25) UNIQUE,
+    primario VARCHAR (16),
+    FOREIGN KEY (primario) REFERENCES Personale (CF),
+    PRIMARY KEY (codice)
+)ENGINE=InnoDb;
+CREATE TABLE StanzaSp ( 
+    n_stanza TINYINT,
+    sede VARCHAR (3),
+    reparto CHAR (4),
+    FOREIGN KEY (sede) REFERENCES Sede (ID),
+    FOREIGN KEY (reparto) REFERENCES Reparto (codice),
+    PRIMARY KEY (n_stanza, sede, reparto)
+)ENGINE=InnoDb;
+CREATE TABLE StanzaRi ( 
+    n_stanza TINYINT,
+    sede VARCHAR (3),
+    reparto CHAR (4),
+    prezzo_notte DECIMAL (6,2) NOT NULL,
+    tipo VARCHAR (20),
+    FOREIGN KEY (sede) REFERENCES Sede (ID),
+    FOREIGN KEY (reparto) REFERENCES Reparto (codice),
+    PRIMARY KEY (n_stanza, sede, reparto)
+)ENGINE=InnoDb;
+CREATE TABLE TipoEsame (
+    nome VARCHAR(25),
+    prezzo DECIMAL NOT NULL,
+    PRIMARY KEY (nome)
+) ENGINE=InnoDb;
+CREATE TABLE PrenotazioneStanza (
+    ID INT(11) auto_increment,
+    data_inizio DATETIME NOT NULL,
+    data_fine DATETIME NOT NULL,
+    data_p DATETIME NOT NULL,
+    pagamento BOOLEAN,
+    paziente VARCHAR(16),
+    stanza TINYINT,
+    reparto CHAR(4),
+    sede VARCHAR(3),
+    tipo VARCHAR(20),
+    PRIMARY KEY (ID),
+    FOREIGN KEY (tipo) REFERENCES StanzaRi (tipo),
+    FOREIGN KEY (stanza) REFERENCES StanzaRi (n_stanza),
+    FOREIGN KEY (reparto) REFERENCES StanzaRi (reparto),
+    FOREIGN KEY (sede) REFERENCES StanzaRi (sede),
+    FOREIGN KEY (paziente) REFERENCES Paziente (CF)
+)ENGINE=InnoDb;
+CREATE TABLE PrenotazioneEsame (
+    ID INT(11) auto_increment,
+    data_p DATETIME NOT NULL,
+    data_e DATETIME NOT NULL,    
+    pagamento BOOLEAN,
+    paziente VARCHAR(16),
+    stanza TINYINT,
+    reparto CHAR (4),
+    sede VARCHAR (3),
+    tipo VARCHAR(25),
+    PRIMARY KEY(ID),
+    FOREIGN KEY (stanza) REFERENCES StanzaSp(n_stanza),
+    FOREIGN KEY (reparto) REFERENCES StanzaSp(reparto),
+    FOREIGN KEY (sede) REFERENCES StanzaSp(sede),
+    FOREIGN KEY (paziente) REFERENCES Paziente(CF),
+    FOREIGN KEY (tipo) REFERENCES TipoEsame(nome)
+)ENGINE=InnoDb;
+CREATE TABLE Macchinario (
+    n_serie VARCHAR (11),
+    nome VARCHAR (30),
+    casa_prod VARCHAR (30),
+    ultima_revisione DATE,
+    n_stanza TINYINT,
+    reparto CHAR (4),
+    sede VARCHAR (3),
+    FOREIGN KEY (n_stanza) REFERENCES StanzaSp (n_stanza),
+    FOREIGN KEY (reparto) REFERENCES StanzaSp (reparto),
+    FOREIGN KEY (sede) REFERENCES StanzaSp (sede),
+    PRIMARY KEY (n_serie)
+)ENGINE=InnoDb;
+CREATE TABLE Costituisce ( 
+    sede VARCHAR(3),
+    reparto CHAR (4),
+    FOREIGN KEY (sede) REFERENCES Sede (ID),
+    FOREIGN KEY (reparto) REFERENCES Reparto (codice),
+    PRIMARY KEY (sede, reparto)
+)ENGINE=InnoDb;
+CREATE TABLE EsameEffettuato (
+    ID INT(11) auto_increment,
+    paziente VARCHAR(16),
+    tipo_esame VARCHAR(25),
+    stanza VARCHAR (8) NOT NULL,
+    terapia VARCHAR(100), 
+    diagnosi VARCHAR(100),
+    medico VARCHAR(20) NOT NULL,
+    FOREIGN KEY(tipo_esame) REFERENCES TipoEsame(nome),
+    FOREIGN KEY (paziente) REFERENCES Paziente(CF),
+    PRIMARY KEY(ID)
+)ENGINE=InnoDb;
+
+--POPOLAMENTO TABELLE
+
 INSERT INTO Sede VALUES
-("VI1","36100", "Via roma", 2,"0444977328"),
-("VI2","36040", "Via dellindustria", 24 ,"0444354022"),
-("PD1","35100", "Via IV novembre", 39, "0492314458"),
-("TR1","38014", "Via Venezia",3 ,"0461556321"),
-("BL1","32100", "Via Col di Lana", 102, "0437823145");
+("VI1","36100","Via roma", 2,"0444977328"),
+("VI2","36040","Via dellindustria", 24 ,"0444354022"),
+("PD1","35100","Via IV novembre", 39,"0492314458"),
+("TR1","38014","Via Venezia",3 ,"0461556321"),
+("BL1","32100","Via Col di Lana", 102,"0437823145");
 
 
 INSERT INTO Stipendio VALUES 
@@ -20,7 +165,7 @@ INSERT INTO Personale VALUES
 ("MHMNCN37C42A001Z","INNOCENZA","MOHAMMADIAN","1937-03-02","F","3937815668","ata",NULL,"36033","Brioli",51,"IT60X0542811101000000123456","VI1"),
 ("MHDNCN37C42A001Z","CRISTIAN","GASTALDON","2006-06-05","M","3737815668","medico",NULL,"36032","Roma",50,"IT60X0542811101000000123455","VI2"),
 ("ANDDND68E05F399E","SARA","FORALOSSO","1999-12-01","F","3537815668","primario",NULL,"36031","Firenze",8,"IT60X0542811101000000123457","PD1"),
-("DNDSVT65T22L477D","GIANNI","HU","2000-07-12","M","3337815668","infermiere ",NULL,"36030","Pino",98,"IT60X0542811101000000123456","TR1"),
+("DNDSVT65T22L477D","GIANNI","HU","2000-07-12","M","3337815668","infermiere",NULL,"36030","Pino",98,"IT60X0542811101000000123456","TR1"),
 ("CRRSVT56B27F399B","SALVATORE","CARRINO","1956-02-27","M","3137815668","ata",NULL,"36029","Ragazzi del 99",32,"IT60X0542811101000000123458","BL1"),
 ("DNDMRS64P60F399G","MAURA ROSARIA","DONADIO","1964-09-20","F","2937815668","segreteria",NULL,"36028","All'acqua",37,"IT60X0542811101000000123457","PD1"),
 ("DNDNCL76L24G786K","NICOLA","DONADIO","1976-07-24","M","2737815668","segreteria",NULL,"36027","Chiodo",21,"IT60X0542811101000000123459","TR1"),
@@ -37,9 +182,9 @@ INSERT INTO Personale VALUES
 ("SNTSFN61H24A942B","STEFANO GIOVANNI","SANTARCANGELO","1961-06-24","M","5378156689","ata",NULL,"36016","4 novembre",56,"IT60X0542811101000000123463","VI1"),
 ("CNTRFL58S08F399L","RAFFAELE","CONTE","1958-11-08","M","3378156689","tecnico",NULL,"36015","Gesù   Cristo",11,"IT60X0542811101000000123465","BL1"),
 ("STGGPP61A28A801X","GIUSEPPE","STIGLIANO","1961-01-28","M","1378156688","segreteria",NULL,"36014","Dei santi",89,"IT60X0542811101000000123464","BL1"),
-("LMBNCL67L09I954F","NICOLA","LOMBARDI","1967-07-09","M","4621843326","infermiere",NULL,"36013","Giuseppe Maria ",26,"IT60X0542811101000000123466","TR1"),
+("LMBNCL67L09I954F","NICOLA","LOMBARDI","1967-07-09","M","4621843326","infermiere",NULL,"36013","Giuseppe Maria",26,"IT60X0542811101000000123466","TR1"),
 ("DNDMRC78E20F839E","MARCO IGINO NICOLA","D'ANDREA","1978-05-20","M","4621843326","ata",NULL,"36012","Firenze",84,"IT60X0542811101000000123465","VI2"),
-("MTRRCC76L16I954B","ROCCO","MATARRESE","1978-07-16","M","4621843326","segreteria",NULL,"36011"," Ologna",12,"IT60X0542811101000000123467","BL1"),
+("MTRRCC76L16I954B","ROCCO","MATARRESE","1978-07-16","M","4621843326","segreteria",NULL,"36011","Ologna",12,"IT60X0542811101000000123467","BL1"),
 ("MTRGNN50T17I954Q","GIOVANNI","MATARRESE","1950-12-17","M","4621843326","medico",NULL,"36010","Bologna",91,"IT60X0542811101000000123466","VI1"),
 ("TRCGPR64P01F907M","GINO PROSPERO","TRUNCELLITO","1964-09-01","M","4621843326","medico",NULL,"36009","Lucrezia",51,"IT60X0542811101000000123468","TR1"),
 ("NTZVCN54M13F052E","VINCENZO","ANTEZZA","1954-08-13","M","4621843326","c.infermiere",NULL,"36008","Miotello",70,"IT60X0542811101000000123467","BL1"),
@@ -50,11 +195,11 @@ INSERT INTO Personale VALUES
 ("BRTGPP69H27E093G","GIUSEPPE","BARTOLOMEO","1969-06-27","M","4621843326","ata",NULL,"36003","Bologna",17,"IT60X0542811101000000123471","VI1"),
 ("LZZMSL69B17I954Q","MARIO SALVATORE","LIUZZI","1969-02-17","M","4621843326","tecnico",NULL,"36002","Cristo Re",56,"IT60X0542811101000000123470","VI1"),
 ("DRANTN61M23F052U","ANTONIO","DARAIA","1961-08-23","M","4621843326","infermiere",NULL,"36001","4 novembre",91,"IT60X0542811101000000123472","PD1"),
-("PCLNCL63A31D128G","NICOLA","PACILIO","1963-01-31","M","4621843326","primario",NULL,"36000"," Ologna",84,"IT60X0542811101000000123471","PD1"),
+("PCLNCL63A31D128G","NICOLA","PACILIO","1963-01-31","M","4621843326","primario",NULL,"36000","Ologna",84,"IT60X0542811101000000123471","PD1"),
 ("MRNFNC51B01G786M","FRANCESCO","MARINO","1951-02-01","M","4621843326","tecnico",NULL,"35999","Ragazzi del 99",46,"IT60X0542811101000000123473","VI1"),
 ("MRNNCL56B27H591V","NICOLA","MARINO","1956-02-27","M","4621843326","primario",NULL,"35998","Vicenza",76,"IT60X0542811101000000123472","BL1"),
 ("MRNTRN80P28L049T","ETTORE ANTONIO","MARINO","1980-09-28","M","4621843326","primario",NULL,"35997","Leopardi",50,"IT60X0542811101000000123474","VI1"),
-("MRNDNC86E09G786Z","DOMENICO","MARINO","1986-05-09","M","4621843326","ata",NULL,"35996","Giuseppe Maria ",80,"IT60X0542811101000000123473","VI1"),
+("MRNDNC86E09G786Z","DOMENICO","MARINO","1986-05-09","M","4621843326","ata",NULL,"35996","Giuseppe Maria",80,"IT60X0542811101000000123473","VI1"),
 ("MGNVTI48A30F839B","VITO","MAGNANTE","1948-01-30","M","4621843326","medico",NULL,"35995","Miotello",65,"IT60X0542811101000000123475","VI1"),
 ("MNLGNN87M18I954Z","GIOVANNI","MANOLIO","1987-08-18","M","4621843326","c.infermiere",NULL,"35994","Firenze",17,"IT60X0542811101000000123474","VI1"),
 ("QNTFBA84M23F052A","FABIO","QUINTO","1984-08-23","M","4621843326","infermiere",NULL,"35993","Napoleone",27,"IT60X0542811101000000123476","PD1");
@@ -247,23 +392,23 @@ INSERT INTO StanzaRi ( n_stanza, sede, reparto, prezzo_notte, tipo) VALUES
 (15,"BL1","CHGE",50,"suite");
 
 INSERT INTO StanzaSp VALUES 
-(1,"VI1","CHMA"),
-(2,"VI1","CHVA"),
-(3,"VI1","MEDE"),
-(4,"VI1","MEFI"),
-(5,"VI1","CHGE"),
-(1,"VI2","CHMA"),
-(2,"VI2","CHVA"),
-(3,"PD1","MEDE"),
-(4,"PD1","MEFI"),
-(5,"PD1","CHGE"),
-(1,"TR1","CHVA"),
-(2,"TR1","MEDE"),
-(3,"TR1","MEFI"),
-(4,"TR1","CHGE"),
-(1,"BL1","MEDE"),
-(2,"BL1","MEFI"),
-(3,"BL1","CHGE");
+(100,"VI1","CHMA"),
+(102,"VI1","CHVA"),
+(103,"VI1","MEDE"),
+(104,"VI1","MEFI"),
+(105,"VI1","CHGE"),
+(101,"VI2","CHMA"),
+(102,"VI2","CHVA"),
+(103,"PD1","MEDE"),
+(104,"PD1","MEFI"),
+(105,"PD1","CHGE"),
+(101,"TR1","CHVA"),
+(102,"TR1","MEDE"),
+(103,"TR1","MEFI"),
+(104,"TR1","CHGE"),
+(101,"BL1","MEDE"),
+(102,"BL1","MEFI"),
+(103,"BL1","CHGE");
 
 Insert Into TipoEsame (nome, prezzo) values
 ("TAC",100),
@@ -272,61 +417,61 @@ Insert Into TipoEsame (nome, prezzo) values
 ("Visita chirurgica",85),
 ("Prelievo",45);
 
-Insert Into PrenotazioneStanza (data_inizio, data_fine, data_p, pagamento, paziente, stanza, reparto, sede)values
-("2020-02-10","2020-02-15","2020-01-04",0,"FABFER31D34A106D",1,"CHMA","VI1"),
-("2020-02-11","2020-02-16","2020-01-03",0,"GERPIS31D34A106D",3,"MEDE","PD1"),
-("2020-02-12","2020-02-17","2020-01-02",0,"ERMLUC31D34A106D",1,"MEFI","BL1"),
-("2020-02-05","2020-02-13","2020-01-01",1,"MELARC31D34A106D",2,"MEDE","TR1"),
-("2020-02-14","2020-02-19","2019-12-31",0,"LODPIC31D34A106D",2,"MEFI","VI1"),
-("2020-02-15","2020-02-20","2019-12-30",0,"CLACAM31D34A106D",5,"CHGE","VI2"),
-("2020-02-16","2020-02-21","2019-12-29",0,"ALISCH31D34A106D",3,"CHGE","VI2");
+Insert Into PrenotazioneStanza (data_inizio, data_fine, data_p, pagamento, paziente, stanza, reparto, sede)
+("2020-02-10","2020-02-15","2020-01-04",0,"FABFER31D34A106D","1","CHMA","VI1","suite"),
+("2020-02-11","2020-02-16","2020-01-03",0,"LINDE 31D34A106D","3","MEDE","PD1","standard"),
+("2020-02-12","2020-02-17","2020-01-02",0,"GIOPIS31D34A106D","10","MEFI","BL1","standard"),
+("2020-02-05","2020-02-13","2020-01-01",1,"MELARC31D34A106D","12","MEDE","TR1","standard"),
+("2020-02-14","2020-02-19","2019-12-31",0,"LODPIC31D34A106D","2","MEFI","VI1","standard"),
+("2020-02-15","2020-02-20","2019-12-30",0,"IOLROS31D34A106D","5","CHGE","VI2","comfort"),
+("2020-02-16","2020-02-21","2019-12-29",0,"ALISCH31D34A106D","7","CHGE","VI2","comfort");
 
 
 INSERT INTO PrenotazioneEsame (data_p, data_e, pagamento, paziente, stanza, reparto, sede, tipo) values
-("2019-01-01 08:07:22","2019-01-10 08:07:22",0,"FRGLLI43H50H807Q"),
-("2019-02-02 09:07:22","2019-02-08 09:07:22",0,"BRRMTA62T13C849G"),
-("2019-03-03 10:07:22","2019-03-03 10:07:22",0,"DNCNZR40B03H524V"),
-("2019-01-01 08:07:23","2019-08-09 08:07:23",0,"VRTGLL30H56F782L"),
-("2019-02-02 09:07:23","2019-02-02 09:07:23",0,"GRSDMN53H08C025S"),
-("2019-03-03 10:07:23","2019-01-10 08:07:23",0,"JNNPRM52C18B921X"),
-("2019-01-01 08:07:24","2019-02-08 09:07:23",0,"TRNGTN93M02A861A"),
-("2019-02-02 09:07:24","2019-03-03 10:07:23",0,"NLZGNR50T67B808E"),
-("2019-03-03 10:07:24","2019-08-09 08:07:24",0,"VRCMRM58M50C473E"),
-("2019-01-01 08:07:25","2019-02-02 09:07:24",0,"SCHLVN58R61G128E"),
-("2019-02-02 09:07:25","2019-01-10 08:07:24",0,"DANROM31D34A106D"),
-("2019-03-03 10:07:25","2019-02-08 09:07:24",0,"ANNTRE31D34A106D"),
-("2019-01-01 08:07:26","2019-03-03 10:07:24",0,"CHRMON31D34A106D"),
-("2019-02-02 09:07:26","2019-08-09 08:07:25",0,"ANTDAV31D34A106D"),
-("2019-03-03 10:07:26","2019-02-02 09:07:25",0,"BRUMIL31D34A106D"),
-("2019-01-01 08:07:27","2019-01-10 08:07:25",0,"GABRUS31D34A106D"),
-("2019-02-02 09:07:27","2019-02-08 09:07:25",0,"BIBFIO31D34A106D"),
-("2019-03-03 10:07:27","2019-03-03 10:07:25",1,"RENCOS31D34A106D"),
-("2019-01-01 08:07:28","2019-08-09 08:07:26",1,"ANGDEL31D34A106D"),
-("2019-02-02 09:07:28","2019-02-02 09:07:26",1,"BENLO31D34A106D"),
-("2019-03-03 10:07:28","2019-01-10 08:07:26",1,"PIEGAL31D34A106D"),
-("2019-01-01 08:07:29","2019-02-08 09:07:26",1,"PIEBAR31D34A106D"),
-("2019-02-02 09:07:29","2019-03-03 10:07:26",1,"NAZBON31D34A106D"),
-("2019-03-03 10:07:29","2019-08-09 08:07:27",1,"LIBONI31D34A106D"),
-("2019-01-01 08:07:30","2019-02-02 09:07:27",1,"ROBBER31D34A106D"),
-("2019-02-02 09:07:30","2019-01-10 08:07:27",1,"CARGRE31D34A106D"),
-("2019-01-01 08:07:23","2019-02-08 09:07:27",1,"VALMON31D34A106D"),
-("2019-02-02 09:07:23","2019-03-03 10:07:27",1,"VITGRE31D34A106D"),
-("2019-03-03 10:07:23","2019-08-09 08:07:28",1,"RINNAP31D34A106D"),
-("2019-01-01 08:07:24","2019-02-02 09:07:28",1,"SARBEL31D34A106D"),
-("2019-02-02 09:07:24","2019-01-10 08:07:28",1,"OMEBEN31D34A106D"),
-("2019-03-03 10:07:24","2019-02-08 09:07:28",1,"ADOFOL31D34A106D"),
-("2019-01-01 08:07:25","2019-03-03 10:07:28",1,"GERRIZ31D34A106D"),
-("2019-02-02 09:07:25","2019-08-09 08:07:29",1,"LIAMAZ31D34A106D"),
-("2019-03-03 10:07:25","2019-02-02 09:07:29",1,"IGODAV31D34A106D"),
-("2019-01-01 08:07:26","2019-01-10 08:07:29",1,"ORTPAL31D34A106D"),
-("2019-02-02 09:07:26","2019-02-08 09:07:29",1,"ALFIAD31D34A106D"),
-("2019-03-03 10:07:26","2019-03-03 10:07:29",1,"NICCAS31D34A106D"),
-("2019-01-01 08:07:27","2019-08-09 08:07:30",1,"PIOMAN31D34A106D"),
-("2019-02-02 09:07:27","2019-02-02 09:07:30",1,"MELMIL31D34A106D"),
-("2019-03-03 10:07:27","2019-01-10 08:07:30",1,"EMICAL31D34A106D"),
-("2019-01-01 08:07:28","2019-02-08 09:07:30",1,"VIRGEN31D34A106D"),
-("2019-02-02 09:07:28","2019-03-03 10:07:30",1,"CARBRU31D34A106D"),
-("2019-03-03 10:07:28","2019-08-09 08:07:31",1,"ANTLON31D34A106D");
+("2019-01-01 08:07:22","2019-01-10 08:07:22",0,"ABETOS31D34A106D",100,"CHMA","VI1","TAC"),
+("2019-02-02 09:07:22","2019-02-08 09:07:22",0,"ADAEND31D34A106D",102,"CHVA","VI1","Ecografia"),
+("2019-03-03 10:07:22","2019-03-03 10:07:22",0,"ADATRE31D34A106D",102,"MEDE","VI2","Visita medica"),
+("2019-01-01 08:07:23","2019-08-09 08:07:23",0,"ADOFOL31D34A106D",104,"MEFI","VI2","Visita chirurgica"),
+("2019-02-02 09:07:23","2019-02-02 09:07:23",0,"ADRBRU31D34A106D",105,"CHGE","VI2","Prelievo"),
+("2019-03-03 10:07:23","2019-01-10 08:07:23",1,"ALFIAD31D34A106D",102,"CHMA","PD1","TAC"),
+("2019-01-01 08:07:24","2019-02-08 09:07:23",1,"ALISCH31D34A106D",103,"CHVA","PD1","Ecografia"),
+("2019-02-02 09:07:24","2019-03-03 10:07:23",1,"ALVNAP31D34A106D",104,"MEDE","PD1","Visita medica"),
+("2019-03-03 10:07:24","2019-08-09 08:07:24",1,"AMAMIL31D34A106D",101,"CHMA","PD1","Visita chirurgica"),
+("2019-01-01 08:07:25","2019-02-02 09:07:24",1,"AMBTOS31D34A106D",103,"CHVA","PD1","Prelievo"),
+("2019-02-02 09:07:25","2019-01-10 08:07:24",1,"ANGCAL31D34A106D",102,"MEDE","TR1","TAC"),
+("2019-03-03 10:07:25","2019-02-08 09:07:24",1,"ANGDEL31D34A106D",104,"MEFI","TR1","Ecografia"),
+("2019-01-01 08:07:26","2019-03-03 10:07:24",0,"ANNTRE31D34A106D",105,"CHGE","TR1","Visita medica"),
+("2019-02-02 09:07:26","2019-08-09 08:07:25",0,"ANTDAV31D34A106D",102,"CHVA","TR1","Visita chirurgica"),
+("2019-03-03 10:07:26","2019-02-02 09:07:25",0,"ANTLON31D34A106D",103,"MEDE","BL1","Prelievo"),
+("2019-01-01 08:07:27","2019-01-10 08:07:25",0,"ARTARC31D34A106D",104,"MEFI","BL1","TAC"),
+("2019-02-02 09:07:27","2019-02-08 09:07:25",0,"BEAFAL31D34A106D",101,"CHGE","BL1","Ecografia"),
+("2019-03-03 10:07:27","2019-03-03 10:07:25",0,"BENLO31D34A106D ",103,"MEDE","TR1","Visita medica"),
+("2019-01-01 08:07:28","2019-08-09 08:07:26",0,"BIBFIO31D34A106D",102,"MEFI","TR1","Visita chirurgica"),
+("2019-02-02 09:07:28","2019-02-02 09:07:26",0,"BONFER31D34A106D",104,"CHGE","TR1","Prelievo"),
+("2019-03-03 10:07:28","2019-01-10 08:07:26",0,"BRUFIO31D34A106D",105,"CHMA","TR1","TAC"),
+("2019-01-01 08:07:29","2019-02-08 09:07:26",0,"BRUMIL31D34A106D",102,"CHVA","BL1","Ecografia"),
+("2019-02-02 09:07:29","2019-03-03 10:07:26",0,"CARBRU31D34A106D",103,"MEDE","VI1","Visita medica"),
+("2019-03-03 10:07:29","2019-08-09 08:07:27",1,"CARGRE31D34A106D",104,"MEFI","VI1","Visita chirurgica"),
+("2019-01-01 08:07:30","2019-02-02 09:07:27",1,"CASLOR31D34A106D",101,"CHGE","VI1","Prelievo"),
+("2019-02-02 09:07:30","2019-01-10 08:07:27",1,"CESDEL31D34A106D",103,"CHMA","VI1","TAC"),
+("2019-01-01 08:07:23","2019-02-08 09:07:27",1,"CHRMON31D34A106D",102,"CHVA","VI1","Ecografia"),
+("2019-02-02 09:07:23","2019-03-03 10:07:27",1,"CIRBIA31D34A106D",104,"MEDE","VI2","Visita medica"),
+("2019-03-03 10:07:23","2019-08-09 08:07:28",1,"CLACAM31D34A106D",105,"CHMA","VI2","Visita chirurgica"),
+("2019-01-01 08:07:24","2019-02-02 09:07:28",1,"CORLOR31D34A106D",102,"CHVA","VI2","Prelievo"),
+("2019-02-02 09:07:24","2019-01-10 08:07:28",0,"DANROM31D34A106D",103,"MEDE","PD1","TAC"),
+("2019-03-03 10:07:24","2019-02-08 09:07:28",0,"DEMLOM31D34A106D",104,"MEFI","PD1","Ecografia"),
+("2019-01-01 08:07:25","2019-03-03 10:07:28",0,"DIOPIC31D34A106D",101,"CHGE","PD1","Visita medica"),
+("2019-02-02 09:07:25","2019-08-09 08:07:29",0,"DOLBRU31D34A106D",103,"CHVA","PD1","Visita chirurgica"),
+("2019-03-03 10:07:25","2019-02-02 09:07:29",0,"ELIMAN31D34A106D",102,"MEDE","PD1","Prelievo"),
+("2019-01-01 08:07:26","2019-01-10 08:07:29",0,"EMAMAZ31D34A106D",104,"MEFI","TR1","TAC"),
+("2019-02-02 09:07:26","2019-02-08 09:07:29",0,"EMICAL31D34A106D",105,"CHGE","TR1","Ecografia"),
+("2019-03-03 10:07:26","2019-03-03 10:07:29",0,"ERMLUC31D34A106D",102,"MEDE","VI1","Visita medica"),
+("2019-01-01 08:07:27","2019-08-09 08:07:30",0,"FABFER31D34A106D",103,"MEFI","VI1","Visita chirurgica"),
+("2019-02-02 09:07:27","2019-02-02 09:07:30",0,"FACBER31D34A106D",104,"CHGE","VI1","Prelievo"),
+("2019-03-03 10:07:27","2019-01-10 08:07:30",0,"FEDNAP31D34A106D",101,"CHMA","VI1","TAC"),
+("2019-01-01 08:07:28","2019-02-08 09:07:30",1,"FILBEL31D34A106D",103,"CHVA","VI1","Ecografia"),
+("2019-02-02 09:07:28","2019-03-03 10:07:30",1,"GABRUS31D34A106D",102,"MEDE","VI2","Visita medica"),
+("2019-03-03 10:07:28","2019-08-09 08:07:31",1,"GAEMON31D34A106D",104,"MEFI","VI2","Visita chirurgica");
 
 Insert Into Macchinario VALUES
 (23927102734,"Armadio porta farmaci","quirumed","2019-10-10",1,"CHMA","VI2"),
@@ -370,711 +515,4 @@ Insert Into EsameEffettuato (paziente, tipo_esame, stanza, terapia, diagnosi, me
 ("QUIPAD31D34A106D","TAC","5VI1CHGE",Null,Null,"TRCGPR64P01F907M"),
 ("MELARC31D34A106D","Visita chirurgica","1VI2CHMA",Null,Null,"MGNVTI48A30F839B"),
 ("GIOFER31D34A106D","TAC","2VI2CHVA",Null,Null,"MGNVTI48A30F839B"),
-("JNNPRM52C18B921X","Ecografia","3VI2MEDE",Null,Null,"TRCGPR64P01F907M");drop 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+("JNNPRM52C18B921X","Ecografia","3VI2MEDE",Null,Null,"TRCGPR64P01F907M");
