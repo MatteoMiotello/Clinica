@@ -66,15 +66,14 @@ Si vuole realizzare una base di dati che contenga e gestisca una clinica con pi√
 ## Operazioni previste sulla base di dati  
 Operazione|Tipo|Frequenza
 |:-------|:-------|:-------|
-Apertura Sede  B |I|1 Anno
-Aggiunta Reparto|I|1 ogni 5 anni
-Assunzione nuovo dipendente|I|2 al mese
-Aggiunta paziente|I| 5 al giorno
-Prenotazione esame|I| 100 al giorno
-Prenotazione StanzaRi|I| 30 al giorno
-Verifica StanzaRi|B| 5000 al giorno
-Verifica stanze disponibili|B| 100 al giorno
-Calcolo busta paga dipendente|B|100 al mese
+ok Apertura Sede  B |I|1 Anno
+ok Aggiunta Reparto|I|1 ogni 5 anni
+ok Assunzione nuovo dipendente|I|2 al mese
+ok Aggiunta paziente|I| 5 al giorno
+ni Prenotazione esame|I| 100 al giorno
+ni Prenotazione StanzaRi|I| 30 al giorno
+ok Verifica StanzaRi (dove si trova un paziente)|B| 5000 al giorno
+Verifica stanze disponibili (ricovero)|B| 100 al giorno
 Calcolo spese totali paziente|B|50 al giorno
 Verifica pagamento|B| 5 al giorno
 Verifica importo totale|B| 100 al giorno
