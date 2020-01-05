@@ -66,14 +66,15 @@ Si vuole realizzare una base di dati che contenga e gestisca una clinica con pi�
 ## Operazioni previste sulla base di dati  
 Operazione|Tipo|Frequenza
 |:-------|:-------|:-------|
-ok Apertura Sede  B |I|1 Anno
-ok Aggiunta Reparto|I|1 ogni 5 anni
-ok Assunzione nuovo dipendente|I|2 al mese
-ok Aggiunta paziente|I| 5 al giorno
-ni Prenotazione esame|I| 100 al giorno
-ni Prenotazione StanzaRi|I| 30 al giorno
-ok Verifica StanzaRi (dove si trova un paziente)|B| 5000 al giorno
-ok Verifica stanze disponibili (ricovero)|B| 100 al giorno
+Apertura Sede  B |I|1 Anno
+Aggiunta Reparto|I|1 ogni 5 anni
+Assunzione nuovo dipendente|I|2 al mese
+Aggiunta paziente|I| 5 al giorno
+Prenotazione esame|I| 100 al giorno
+Prenotazione StanzaRi|I| 30 al giorno
+Verifica StanzaRi|B| 5000 al giorno
+Verifica stanze disponibili|B| 100 al giorno
+Calcolo busta paga dipendente|B|100 al mese
 Calcolo spese totali paziente|B|50 al giorno
 Verifica pagamento|B| 5 al giorno
 Verifica importo totale|B| 100 al giorno
@@ -432,12 +433,14 @@ Con la presenza di ridondanza si hanno 11 accessi in lettura e 2 in scrittura. I
 
 <p>
 
-<-p>
+<p>
 
 <p align="justify">
 Considerando che per memorizzare ogni importo_totale sono necessari 4byte,la tabella creatasi avrebbe un peso totale di 64kB e che una differenza di 200 accessi risulta minima e trascurabile, abbiamo deciso di optare per una soluzione senza ridondanza. 
 
 <p align="justify"> Facciamo notare però che la situazione cambierebbe aumentando di almeno un ordine il numero di pazienti e prenotazioni, in questo caso la soluzione con ridondanza sarebbe la più adatta.
+  
+    
 
 ## Traduzione verso il modello relazione  
 Sede( **id**, cap, via, n_civico, telefono);  
@@ -491,7 +494,17 @@ PrenotazioneStanza(**id**, *paziente, *stanza, *reparto, *sede, data_inizio, dat
 > *v20.* Prenotazione.paziente->Paziente.CF  
 > *v21.* Prenotazione.sede->StanzaSp.sede  
 > *v22.* Prenotazione.reparto->StanzaSp.reparto  
-> *v23.* Prenotazione.stanza->StanzaSp.n_stanza  
+> *v23.* Prenotazione.stanza->StanzaSp.n_stanza    
+
+## Query e Indici  
+1. Trovare le stanze di ricovero (StanzaRi) disponibili per una determinata sede (PD1) e un determinato reparto (MEFI)  
+**select** distinct StanzaRi.n_stanza from StanzaRi  
+**where** StanzaRi.sede="PD1" AND StanzaRi.reparto="MEFI" AND StanzaRi.n_stanza NOT IN  
+(**select** distinct PrenotazioneStanza.stanza    
+**from** PrenotazioneStanza, StanzaRi   
+**where** PrenotazioneStanza.sede=StanzaRi.sede  AND PrenotazioneStanza.reparto=StanzaRi.reparto AND PrenotazioneStanza.stanza=StanzaRi.n_stanza   
+AND DATEDIFF(PrenotazioneStanza.data_fine, CURDATE())>0  AND DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE())<0   
+AND StanzaRi.reparto="MEFI" AND StanzaRi.sede="PD1" );  
 
 
 

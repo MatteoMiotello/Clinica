@@ -51,11 +51,19 @@ from Paziente, PrenotazioneStanza
 where Sede.id="sede" AND Paziente.nome="nome" AND Paziente.CF=PrenotazioneStanza.persona AND (DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE()) = 0 
 OR DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE()) > 0) AND DATEDIFF(PrenotazioneStanza.data_fine, CURDATE()) > 0
 14.verifica stanze disponibili ricovero
-select StanzaRi.n_stanza
-from StanzaRi, PrenotazioneStanza
-where StanzaRi.sede="sede" AND StanzaRi.reparto="reparto" AND StanzaRi.n_stanza NOT IN (
-                                                                select PrenotazioneStanza.stanza
-                                                                from PrenotazioneStanza
-                                                                where DATEDIFF(PrenotazioneStanza.data_fine, CURDATE())<0
-                                                        );
-15. 
+select distinct StanzaRi.n_stanza from StanzaRi where StanzaRi.sede="PD1" AND StanzaRi.reparto="MEFI" AND StanzaRi.n_stanza NOT IN 
+( select distinct PrenotazioneStanza.stanza  
+from PrenotazioneStanza, StanzaRi  
+where PrenotazioneStanza.sede=StanzaRi.sede  AND PrenotazioneStanza.reparto=StanzaRi.reparto AND PrenotazioneStanza.stanza=StanzaRi.n_stanza 
+AND DATEDIFF(PrenotazioneStanza.data_fine, CURDATE())>0  AND DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE())<0 
+AND StanzaRi.reparto="MEFI" AND StanzaRi.sede="PD1" );
+15. verifica stanze disponibili ricovero indipendentemente dal reparto 
+select distinct StanzaRi.n_stanza from StanzaRi, PrenotazioneStanza 
+where StanzaRi.sede="PD1" AND StanzaRi.n_stanza NOT IN ( select distinct PrenotazioneStanza.stanza 
+from PrenotazioneStanza, StanzaRi 
+where PrenotazioneStanza.sede=StanzaRi.sede  AND DATEDIFF(PrenotazioneStanza.data_fine, CURDATE())>0 
+AND DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE())<0 AND StanzaRi.sede="PD1" );
+
+----------------------per prove-----------
+Insert into PrenotazioneStanza(data_inizio, data_fine, data_p, pagamento, paziente, stanza, reparto, sede, tipo)
+values ("2020-01-16","2020-01-03","2020-01-05",0,"ROBBER31D34A106D",14, "MEFI", "PD1","suite");

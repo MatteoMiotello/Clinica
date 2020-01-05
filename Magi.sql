@@ -87,7 +87,6 @@ CREATE TABLE PrenotazioneStanza (
     FOREIGN KEY (stanza) REFERENCES StanzaRi (n_stanza),
     FOREIGN KEY (sede) REFERENCES StanzaRi (sede),
     FOREIGN KEY (reparto) REFERENCES StanzaRi (reparto),
-    FOREIGN KEY (tipo) REFERENCES StanzaRi (tipo),
     FOREIGN KEY (paziente) REFERENCES Paziente (CF)
 )ENGINE=InnoDb;
 CREATE TABLE PrenotazioneEsame (
