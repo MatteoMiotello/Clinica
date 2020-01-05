@@ -1,5 +1,4 @@
 --CREAZIONE TABELLE
-
 CREATE TABLE Sede (
     ID VARCHAR (3),
     CAP CHAR (5) NOT NULL,
@@ -63,10 +62,10 @@ CREATE TABLE StanzaRi (
     sede VARCHAR (3),
     reparto CHAR (4),
     prezzo_notte DECIMAL (6,2) NOT NULL,
-    tipo VARCHAR (20),
+    tipo VARCHAR(25) NOT NULL,
     FOREIGN KEY (sede) REFERENCES Sede (ID),
     FOREIGN KEY (reparto) REFERENCES Reparto (codice),
-    PRIMARY KEY (n_stanza, sede, reparto)
+    PRIMARY KEY (n_stanza, sede, reparto, tipo)
 )ENGINE=InnoDb;
 CREATE TABLE TipoEsame (
     nome VARCHAR(25),
@@ -79,20 +78,20 @@ CREATE TABLE PrenotazioneStanza (
     data_fine DATETIME NOT NULL,
     data_p DATETIME NOT NULL,
     pagamento BOOLEAN,
-    paziente VARCHAR(16),
+    paziente VARCHAR (16),
     stanza TINYINT,
-    reparto CHAR(4),
-    sede VARCHAR(3),
-    tipo VARCHAR(20),
-    PRIMARY KEY (ID),
-    FOREIGN KEY (tipo) REFERENCES StanzaRi (tipo),
+    reparto CHAR (4),
+    sede VARCHAR (3),
+    tipo VARCHAR(25),
     FOREIGN KEY (stanza) REFERENCES StanzaRi (n_stanza),
-    FOREIGN KEY (reparto) REFERENCES StanzaRi (reparto),
     FOREIGN KEY (sede) REFERENCES StanzaRi (sede),
-    FOREIGN KEY (paziente) REFERENCES Paziente (CF)
+    FOREIGN KEY (reparto) REFERENCES StanzaRi (reparto),
+    FOREIGN KEY (tipo) REFERENCES StanzaRi (tipo),
+    FOREIGN KEY (paziente) REFERENCES Paziente (CF),
+    PRIMARY KEY (ID)
 )ENGINE=InnoDb;
 CREATE TABLE PrenotazioneEsame (
-    ID INT(11) auto_increment,
+    ID INT (11) auto_increment,
     data_p DATETIME NOT NULL,
     data_e DATETIME NOT NULL,    
     pagamento BOOLEAN,
@@ -101,7 +100,7 @@ CREATE TABLE PrenotazioneEsame (
     reparto CHAR (4),
     sede VARCHAR (3),
     tipo VARCHAR(25),
-    PRIMARY KEY(ID),
+    PRIMARY KEY (ID),
     FOREIGN KEY (stanza) REFERENCES StanzaSp(n_stanza),
     FOREIGN KEY (reparto) REFERENCES StanzaSp(reparto),
     FOREIGN KEY (sede) REFERENCES StanzaSp(sede),
@@ -417,14 +416,14 @@ Insert Into TipoEsame (nome, prezzo) values
 ("Visita chirurgica",85),
 ("Prelievo",45);
 
-Insert Into PrenotazioneStanza (data_inizio, data_fine, data_p, pagamento, paziente, stanza, reparto, sede)
-("2020-02-10","2020-02-15","2020-01-04",0,"FABFER31D34A106D","1","CHMA","VI1","suite"),
-("2020-02-11","2020-02-16","2020-01-03",0,"LINDE 31D34A106D","3","MEDE","PD1","standard"),
-("2020-02-12","2020-02-17","2020-01-02",0,"GIOPIS31D34A106D","10","MEFI","BL1","standard"),
-("2020-02-05","2020-02-13","2020-01-01",1,"MELARC31D34A106D","12","MEDE","TR1","standard"),
-("2020-02-14","2020-02-19","2019-12-31",0,"LODPIC31D34A106D","2","MEFI","VI1","standard"),
-("2020-02-15","2020-02-20","2019-12-30",0,"IOLROS31D34A106D","5","CHGE","VI2","comfort"),
-("2020-02-16","2020-02-21","2019-12-29",0,"ALISCH31D34A106D","7","CHGE","VI2","comfort");
+Insert Into PrenotazioneStanza (data_inizio, data_fine, data_p, pagamento, paziente, stanza, reparto, sede, tipo) VALUES
+("2020-02-10","2020-02-15","2020-01-04",0,"ROBBER31D34A106D","1","CHMA","VI1","suite"),
+("2020-02-11","2020-02-16","2020-01-03",0,"SIMCAT31D34A106D","3","MEDE","PD1","standard"),
+("2020-02-12","2020-02-17","2020-01-02",0,"STACAL31D34A106D","10","MEFI","BL1","standard"),
+("2020-02-05","2020-02-13","2020-01-01",1,"TIMMIL31D34A106D","12","MEDE","TR1","standard"),
+("2020-02-14","2020-02-19","2019-12-31",0,"VITGRE31D34A106D","2","MEFI","VI1","standard"),
+("2020-02-15","2020-02-20","2019-12-30",0,"MELMIL31D34A106D","5","CHGE","VI2","comfort"),
+("2020-02-16","2020-02-21","2019-12-29",0,"NLZGNR50T67B808E","7","CHGE","VI2","comfort");
 
 
 INSERT INTO PrenotazioneEsame (data_p, data_e, pagamento, paziente, stanza, reparto, sede, tipo) values
@@ -474,14 +473,14 @@ INSERT INTO PrenotazioneEsame (data_p, data_e, pagamento, paziente, stanza, repa
 ("2019-03-03 10:07:28","2019-08-09 08:07:31",1,"GAEMON31D34A106D",104,"MEFI","VI2","Visita chirurgica");
 
 Insert Into Macchinario VALUES
-(23927102734,"Armadio porta farmaci","quirumed","2019-10-10",1,"CHMA","VI2"),
-(23927102740,"Aspiratore","quirumed","2019-10-11",2,"CHVA","VI2"),
-(23927102746,"ECG","quirumed","2019-10-12",2,"CHVA","VI1"),
-(23927102752,"Autoclave","quirumed","2019-10-13",4,"CHGE","TR1"),
-(23927102758,"Armadio porta farmaci","quirumed","2019-10-14",1,"MEDE","BL1"),
-(23927102764,"Aspiratore","quirumed","2019-10-15",3,"MEFI","TR1"),
-(23927102770,"ECG","quirumed","2019-10-16",2,"CHMA","PD1"),
-(23927102776,"Autoclave","quirumed","2019-10-17",4,"MEDE","PD1");
+(23927102734,"Armadio porta farmaci","quirumed","2019-10-10",101,"CHMA","VI2"),
+(23927102740,"Aspiratore","quirumed","2019-10-11",102,"CHVA","VI2"),
+(23927102746,"ECG","quirumed","2019-10-12",102,"CHVA","VI1"),
+(23927102752,"Autoclave","quirumed","2019-10-13",104,"CHGE","TR1"),
+(23927102758,"Armadio porta farmaci","quirumed","2019-10-14",101,"MEDE","BL1"),
+(23927102764,"Aspiratore","quirumed","2019-10-15",103,"MEFI","TR1"),
+(23927102770,"ECG","quirumed","2019-10-16",102,"CHMA","PD1"),
+(23927102776,"Autoclave","quirumed","2019-10-17",104,"MEDE","PD1");
 
 Insert Into Costituisce VALUES
 ("VI1","MEFI"),
