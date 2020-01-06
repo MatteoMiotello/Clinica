@@ -433,12 +433,14 @@ Con la presenza di ridondanza si hanno 11 accessi in lettura e 2 in scrittura. I
 
 <p>
 
-<-p>
+<p>
 
 <p align="justify">
 Considerando che per memorizzare ogni importo_totale sono necessari 4byte,la tabella creatasi avrebbe un peso totale di 64kB e che una differenza di 200 accessi risulta minima e trascurabile, abbiamo deciso di optare per una soluzione senza ridondanza. 
 
 <p align="justify"> Facciamo notare però che la situazione cambierebbe aumentando di almeno un ordine il numero di pazienti e prenotazioni, in questo caso la soluzione con ridondanza sarebbe la più adatta.
+  
+    
 
 ## Traduzione verso il modello relazione  
 Sede( **id**, cap, via, n_civico, telefono);  
@@ -492,9 +494,37 @@ PrenotazioneStanza(**id**, *paziente, *stanza, *reparto, *sede, data_inizio, dat
 > *v20.* Prenotazione.paziente->Paziente.CF  
 > *v21.* Prenotazione.sede->StanzaSp.sede  
 > *v22.* Prenotazione.reparto->StanzaSp.reparto  
-> *v23.* Prenotazione.stanza->StanzaSp.n_stanza  
+> *v23.* Prenotazione.stanza->StanzaSp.n_stanza    
 
-
+## Query e Indici  
+1. Trovare le stanze di ricovero (StanzaRi) disponibili per una determinata sede (PD1) e un determinato reparto (MEFI)  
+**select** distinct StanzaRi.n_stanza from StanzaRi  
+**where** StanzaRi.sede="PD1" AND StanzaRi.reparto="MEFI" AND StanzaRi.n_stanza NOT IN  
+(**select** distinct PrenotazioneStanza.stanza    
+**from** PrenotazioneStanza, StanzaRi   
+**where** PrenotazioneStanza.sede=StanzaRi.sede  AND PrenotazioneStanza.reparto=StanzaRi.reparto AND PrenotazioneStanza.stanza=StanzaRi.n_stanza   
+AND DATEDIFF(PrenotazioneStanza.data_fine, CURDATE())>0  AND DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE())<0   
+AND StanzaRi.reparto="MEFI" AND StanzaRi.sede="PD1" );  
+2. Verificare in quale stanza per ricovero (StanzaRi) si trova un paziente (nel caso ci fosse) all'interno di una sede.    
+select PrenotazioneStanza.reparto AS Reparto, PrenotazioneStanza.stanza As Stanza  
+from Paziente, PrenotazioneStanza  
+where PrenotazioneStanza.sede="PD1" AND Paziente.nome="Demetrio" AND Paziente.cognome="Lombardo" AND Paziente.CF=PrenotazioneStanza.paziente AND (DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE()) = 0 OR DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE()) < 0) AND DATEDIFF(PrenotazioneStanza.data_fine, CURDATE()) > 0;  
+3. Report incasso di un periodo prestabilito (dal 2019-02-10 al 2019-02-10)  
+select sum(TOT) AS totale from (select sum(StanzaRi.prezzo_notte) as TOT from StanzaRi, PrenotazioneStanza where StanzaRi.sede="VI1" AND   StanzaRi.sede=PrenotazioneStanza.sede   
+AND StanzaRi.reparto=PrenotazioneStanza.reparto AND StanzaRi.n_stanza=PrenotazioneStanza.stanza   
+AND PrenotazioneStanza.data_fine BETWEEN '2019-01-04' AND '2019-01-17' AND PrenotazioneStanza.pagamento=1 group by StanzaRi.sede  
+UNION  
+select sum(TipoEsame.prezzo) AS SUM1  
+from PrenotazioneEsame, TipoEsame where PrenotazioneEsame.sede="VI1" AND PrenotazioneEsame.tipo=TipoEsame.nome AND  
+PrenotazioneEsame.data_e BETWEEN '2019-01-10' AND '2019-02-10' AND PrenotazioneEsame.pagamento=1  
+group by sede) AS sub1;  
+4. calcolo spese totali paziente (ho messo +1 in DATEDIFF perche altrimenti mi conta 3 giorni al posto di 4, cioe mi esclude il giorno di partenza)
+select sum(TOT) As totale_da_pagare from (select sum(StanzaRi.prezzo_notte)*(DATEDIFF(PrenotazioneStanza.data_fine, PrenotazioneStanza.data_inizio)+1) as TOT
+from Paziente, PrenotazioneStanza, StanzaRi
+where Paziente.nome="Benedetta" AND Paziente.cognome="Lo Duca" AND Paziente.CF=PrenotazioneStanza.paziente AND PrenotazioneStanza.sede=StanzaRi.sede
+AND PrenotazioneStanza.reparto=StanzaRi.reparto AND PrenotazioneStanza.stanza=StanzaRi.n_stanza AND PrenotazioneStanza.pagamento=0
+UNION select sum(TipoEsame.prezzo) from TipoEsame,PrenotazioneEsame, Paziente
+where Paziente.nome="Benedetta" AND Paziente.cognome="Lo Duca" AND TipoEsame.nome=PrenotazioneEsame.tipo AND Paziente.CF=PrenotazioneEsame.paziente AND PrenotazioneEsame.pagamento=0) as sub1;
 
 
 
