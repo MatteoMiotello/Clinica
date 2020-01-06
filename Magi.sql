@@ -311,12 +311,7 @@ INSERT INTO Reparto VALUES
 ("MEFI","Fisioterapia","PCLNCL63A31D128G"),
 ("CHGE","Chirurgia Generale","MRNTRN80P28L049T");
 
-Insert Into TipoStanza Values
-("suite",70),
-("standard",50),
-("comfort",60);
-
-INSERT INTO StanzaRi ( n_stanza, sede, reparto, prezzo_notte, tipo) VALUES
+INSERT INTO StanzaRi ( n_stanza, sede, reparto, prezzo_notte) VALUES
 (1,"VI1","CHMA",20),
 (2,"VI1","CHVA",20),
 (3,"VI1","MEDE",20),
@@ -419,14 +414,14 @@ Insert Into TipoEsame (nome, prezzo) values
 ("Visita chirurgica",85),
 ("Prelievo",45);
 
-Insert Into PrenotazioneStanza (data_inizio, data_fine, data_p, pagamento, paziente, stanza, reparto, sede, tipo) VALUES
-("2020-02-10","2020-02-15","2020-01-04",0,"ROBBER31D34A106D","1","CHMA","VI1","suite"),
-("2020-02-11","2020-02-16","2020-01-03",0,"SIMCAT31D34A106D","3","MEDE","PD1","standard"),
-("2020-02-12","2020-02-17","2020-01-02",0,"STACAL31D34A106D","10","MEFI","BL1","standard"),
-("2020-02-05","2020-02-13","2020-01-01",1,"TIMMIL31D34A106D","12","MEDE","TR1","standard"),
-("2020-02-14","2020-02-19","2019-12-31",0,"VITGRE31D34A106D","2","MEFI","VI1","standard"),
-("2020-02-15","2020-02-20","2019-12-30",0,"MELMIL31D34A106D","5","CHGE","VI2","comfort"),
-("2020-02-16","2020-02-21","2019-12-29",0,"NLZGNR50T67B808E","7","CHGE","VI2","comfort");
+Insert Into PrenotazioneStanza (data_inizio, data_fine, data_p, pagamento, paziente, stanza, reparto, sede) VALUES
+("2020-02-10","2020-02-15","2020-01-04",0,"ROBBER31D34A106D","1","CHMA","VI1"),
+("2020-02-11","2020-02-16","2020-01-03",0,"SIMCAT31D34A106D","3","MEDE","PD1"),
+("2020-02-12","2020-02-17","2020-01-02",0,"STACAL31D34A106D","10","MEFI","BL1"),
+("2020-02-05","2020-02-13","2020-01-01",1,"TIMMIL31D34A106D","12","MEDE","TR1"),
+("2020-02-14","2020-02-19","2019-12-31",0,"VITGRE31D34A106D","2","MEFI","VI1"),
+("2020-02-15","2020-02-20","2019-12-30",0,"MELMIL31D34A106D","5","CHGE","VI2"),
+("2020-02-16","2020-02-21","2019-12-29",0,"NLZGNR50T67B808E","7","CHGE","VI2");
 
 
 INSERT INTO PrenotazioneEsame (data_p, data_e, pagamento, paziente, stanza, reparto, sede, tipo) values
@@ -473,8 +468,8 @@ INSERT INTO PrenotazioneEsame (data_p, data_e, pagamento, paziente, stanza, repa
 ("2019-03-03 10:07:27","2019-01-10 08:07:30",0,"FEDNAP31D34A106D",101,"CHMA","VI1","TAC"),
 ("2019-01-01 08:07:28","2019-02-08 09:07:30",1,"FILBEL31D34A106D",103,"CHVA","VI1","Ecografia"),
 ("2019-02-02 09:07:28","2019-03-03 10:07:30",1,"GABRUS31D34A106D",102,"MEDE","VI2","Visita medica"),
-("2019-03-03 10:07:28","2019-08-09 08:07:31",1,"GAEMON31D34A106D",104,"MEFI","VI2","Visita chirurgica");
-("2019-01-01 08:07:22","2019-01-10 08:07:22",0,"ABETOS31D34A106D",105,"CHMA","VI1","TAC"),
+("2019-03-03 10:07:28","2019-08-09 08:07:31",1,"GAEMON31D34A106D",104,"MEFI","VI2","Visita chirurgica"),
+("2019-01-01 08:07:22","2019-01-10 08:07:22",0,"ABETOS31D34A106D",105,"CHMA","VI1","TAC");
 
 Insert Into Macchinario VALUES
 (23927102734,"Armadio porta farmaci","quirumed","2019-10-10",101,"CHMA","VI2"),
