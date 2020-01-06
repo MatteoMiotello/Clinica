@@ -57,5 +57,5 @@
 >prezzo not null  
 
 **Macchinario**
-casa_prod not null
-ultima_revisione not null
+>casa_prod not null
+>ultima_revisione not null
