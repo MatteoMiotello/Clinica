@@ -478,8 +478,8 @@ Insert Into Macchinario VALUES
 (23927102752,"Autoclave","quirumed","2019-10-13",104,"CHGE","TR1"),
 (23927102758,"Armadio porta farmaci","quirumed","2019-10-14",101,"MEDE","BL1"),
 (23927102764,"Aspiratore","quirumed","2019-10-15",103,"MEFI","TR1"),
-(23927102770,"ECG","quirumed","2019-10-16",102,"CHMA","PD1"),
-(23927102776,"Autoclave","quirumed","2019-10-17",104,"MEDE","PD1");
+(23927102770,"ECG","quirumed","2019-10-16",103,"MEDE","PD1"),
+(23927102776,"Autoclave","quirumed","2019-10-17",104,"MEFI","PD1");
 
 Insert Into Costituisce VALUES
 ("VI1","MEFI"),
