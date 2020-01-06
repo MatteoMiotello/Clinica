@@ -115,7 +115,7 @@ PrenotazioneStanza| Entita' figlia di Prenotazione, specifica per la prenotazion
 ## Progettazione concettuale
 
 <table>
-   <tr><th><h3> Analisi delle entita'<-h3><-th><-tr>
+   <tr><th><h3> Analisi delle entita'</h3></th></tr>
 <tr><td> 
    
 Sede||||
