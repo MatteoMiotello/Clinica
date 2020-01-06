@@ -279,6 +279,10 @@ PrenotazioneStanza|
 
 ---
 
+
+
+---
+
 ## Generalizzazione  
 - **Personale** e' generalizzazione totale non esclusiva di: **PersonaleNonMedico**,  **Dirigente**, **Infermiere**, **Medico**.  
 - **Medico** e' generalizzazione non totale e non esclusiva di **Primario**;
