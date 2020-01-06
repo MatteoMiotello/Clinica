@@ -470,6 +470,7 @@ INSERT INTO PrenotazioneEsame (data_p, data_e, pagamento, paziente, stanza, repa
 ("2019-01-01 08:07:28","2019-02-08 09:07:30",1,"FILBEL31D34A106D",103,"CHVA","VI1","Ecografia"),
 ("2019-02-02 09:07:28","2019-03-03 10:07:30",1,"GABRUS31D34A106D",102,"MEDE","VI2","Visita medica"),
 ("2019-03-03 10:07:28","2019-08-09 08:07:31",1,"GAEMON31D34A106D",104,"MEFI","VI2","Visita chirurgica");
+("2019-01-01 08:07:22","2019-01-10 08:07:22",0,"ABETOS31D34A106D",105,"CHMA","VI1","TAC"),
 
 Insert Into Macchinario VALUES
 (23927102734,"Armadio porta farmaci","quirumed","2019-10-10",101,"CHMA","VI2"),
