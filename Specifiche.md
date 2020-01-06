@@ -247,7 +247,7 @@ terapia| VARCHAR| terapia indicata dal medico a seguito dell'esame
 </td></tr>
 <tr><td>
 
-TipoEsame||||
+|TipoEsame||||
 -----------------|-------|---------------------------|-----------
 nome|VARCHAR| chiave che indica il nome dell'esame| **Chiave**
 prezzo|INT| intero che indica il prezzo di ogni esame
@@ -391,9 +391,6 @@ Richiede |R| 16000
 |Paziente|E|1|L|  
 |Richiede|R|4|L|
 
-
-
-
 </td> </tr>
 </table>
 
@@ -476,10 +473,9 @@ L'entità "Costituisce" è così composta:
 |sede|VARCHAR|Permette di identificare la sede con 3 caratteri|**Chiave**|
 |reparto|CHAR|Permette di identificare il reparto con 4 caratteri|**Chiave**|
 
-
 ## Scelta degli identificatori primari
 <p align="justify"> 
-Nella scelta dgli identificatori primari l'attenzione cade principalmente sulle entità StanzaSp e StanzaRi, nelle quali si è scelto di porre "n_stanza", "reparto" e "sede" come chiavi primarie. Così facendo riusciamo, tramite le sole chiavi principali a localizzare una stanza all'interno dell'intera clinica grazie anche all'entità "Costituisce", che relaziona le chiavi di "Reparto" e "Sede".
+Nella scelta dgli identificatori primari l'attenzione cade principalmente sulle entità StanzaSp e StanzaRi, nelle quali si è scelto di porre "n_stanza", "reparto" e "sede" come chiavi primarie. Così facendo riusciamo, tramite le sole chiavi principali a localizzare una stanza all'interno dell'intera clinica grazie anche all'entità "Costituisce", che relaziona le chiavi di "reparto" e "sede".
 
 ## Traduzione verso il modello relazione  
 <p align="justify"> 
