@@ -28,10 +28,14 @@ where Paziente.nome="Benedetta" AND Paziente.cognome="Lo Duca" AND TipoEsame.nom
 8. select PrenotazioneEsame.id
 from Paziente INNER JOIN PrenotazioneEsame ON (Paziente.CF=PrenotazioneEsame.paziente)
 where pagamento=0;
+
 9. I macchinari che non presentano una revisione da piu di un mese 
-select Macchinario.n_serie
-from (Sede INNER JOIN StanzaSp ON (Sede.id=StanzaSp.sede)) INNER JOIN Macchinario ON (StanzaSp.sede=Macchinario.sede)
-where Sede LIKE "VI%" AND DATEDIFF(CURDATE(),Macchinario.ultima_revisione);
+
+select distinct Macchinario.n_serie, StanzaSp.n_stanza, StanzaSp.reparto
+from Sede, StanzaSp, Macchinario
+where Sede.ID LIKE "VI%" AND Sede.ID=StanzaSp.sede AND Macchinario.sede=StanzaSp.sede AND Macchinario.reparto=StanzaSp.reparto 
+AND StanzaSp.n_stanza=Macchinario.n_stanza AND DATEDIFF(CURDATE(),Macchinario.ultima_revisione)>=30;
+
 10. report incasso giornaliero degli esami e stanze ri (calcolato in base al numero di esami previsti per quel girono e che sono stati pagati)
 Select sum(TipoEsame.prezzo) 
 from ((Sede INNER JOIN StanzaSp ON(Sede.id=StanzaSp.id))INNER JOIN PrenotazioneEsame ON(StanzaSp.sede=PrenotazioneEsame.sede))INNER JOIN TipoEsame ON(PrenotazioneEsame.tipo_esame=TipoEsame.nome)
