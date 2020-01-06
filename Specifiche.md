@@ -437,7 +437,9 @@ Considerando che per memorizzare ogni importo_totale sono necessari 4byte,la tab
 <p align="justify"> Facciamo notare però che la situazione cambierebbe aumentando di almeno un ordine il numero di pazienti e prenotazioni, in questo caso la soluzione con ridondanza sarebbe la più adatta.
 
 ## Eliminazione delle generalizzazioni  
-Lo schema concettuale presenta diverse generalizzazioni. Si procede all'analisi individuale al fine di permettere la traduzione verso lo schema logico.   
+<p align="justify"> 
+Lo schema concettuale presenta diverse generalizzazioni. Si procede all'analisi individuale al fine di permettere la traduzione verso lo schema logico.  
+
 ### Personale  
 Questa generalizzazione presenta diverse entita' figlie, distribuite su due livelli. Al primo livello sono presenti quattro figlie: PersonaleNonMedicom, Dirigente, Infermiere, Medico; al secondo livello e' presenta una sola figlia (specializzazione di Medico): Primario. Si procede con una valutazione sotto vari aspetti al fine di determinare il tipo di implementazione delle generalizzazioni nello schema.  
 *Attributi*: l'entita' padre presenta una serie di attributi comuni a tutte le figlie, a loro volta le entita' figlie presentano un attributo ciascuna che identifica in PersonaleNonMedico il ruolo a cui si fa riferimento, in Dirigente il settore in cui viene coperto tale incarico, in Infermiere il grado e in Medico la specializzazione. Primario non presenta attributi aggiuntivi.  
@@ -448,11 +450,31 @@ Questa generalizzazione presenta una sola figlia: EsameEffettuato.
 *Attributi*: l'entita' padre presenta due attributi comuni alla figlia. La figlia presenta attributi propri.  
 *Operazioni*: vi sono operazioni che coinvolgono separatamente sia il padre che la figlia, ed operazioni che coinvolgono entrambe (es: Calcola spesa totale paziente)   Si e' optato per una sostituzione della generalizzazione con una relationship, dato che si hanno accessi separati ma e' necessario mantenere la separazione concettuale delle due entita'.
 
-## Partizionamento/accorpamento di entita' e relationship  
+ 
+
+### Prenotazione
+<p align="justify">  Per quanto riguarda la generalizzazione "Prenotazione" si presentano due entità figlie.
+ATTRIBUTI: Le due entità figlie presentano degli attributi diversi, infatti in "PrenotazioneEsame" non è necessario inserire un attributo "data_fine" poichè la prenotazione deve essere esclusiva di una sola giornata e, per lo stesso motivo "data_inizio" sarebbe concettualmente sbagliato.
+OPERAZIONI: In tutte le operazioni si distinguono chiaramente le due entità figlie, dato che concettualmente fanno riferimento a due ambiti diversi. 
+Si è deciso quindi di optare per l'accorpamento dell'entità genitore "Prenotazione" nelle entità figlie "PrenotazioneEsame" e "PrenotazioneStanza" aggiungendo quindi gli attributi "ID", "data_p" e "pagamento" a tutte e due le figlie e "data_e" sarà aggiunta a "PrenotazioneEsame".
+
+### Reificazione relazioni
+Nello schema ER è presente una relazione ternaria: "Costituisce" tra "Sede" e "Reparto", durante le ristrutturazione si è deciso di trasformarla in Entità, la tabella creatasi localizza i vari reparti nelle varie sedi, ed ha permesso poi l'identificazione di ogni stanza.
+
+L'entità "Costituisce" è così composta:
+
+|Costituisce||||
+|---|--|-|-|
+|sede|VARCHAR|Permette di identificare la sede con 3 caratteri|**Chiave**|
+|reparto|CHAR|Permette di identificare il reparto con 4 caratteri|**Chiave**|
+
+
 ## Scelta degli identificatori primari
-    
+<p align="justify"> 
+Nella scelta dgli identificatori primari l'attenzione cade principalmente sulle entità StanzaSp e StanzaRi, nelle quali si è scelto di porre "n_stanza", "reparto" e "sede" come chiavi primarie. Così facendo riusciamo, tramite le sole chiavi principali a localizzare una stanza all'interno dell'intera clinica grazie anche all'entità "Costituisce", che relaziona le chiavi di "Reparto" e "Sede".
 
 ## Traduzione verso il modello relazione  
+<p align="justify"> 
 Sede( **id**, cap, via, n_civico, telefono);  
 Personale(**CF**, *sede, *stipendio, nome, cognome, sesso, data_nascita, telefono, IBAN, tipo, grado, n_civico, via, cap); 
 
@@ -507,6 +529,7 @@ PrenotazioneStanza(**id**, *paziente, *stanza, *reparto, *sede, data_inizio, dat
 > *v23.* Prenotazione.stanza->StanzaSp.n_stanza    
 
 ## Query e Indici  
+
 1. Trovare le stanze di ricovero (StanzaRi) disponibili per una determinata sede (PD1) e un determinato reparto (MEFI)  
 select distinct StanzaRi.n_stanza as Numero_stanza from StanzaRi
 where StanzaRi.sede="PD1" AND StanzaRi.reparto="MEFI" AND StanzaRi.n_stanza NOT IN  
