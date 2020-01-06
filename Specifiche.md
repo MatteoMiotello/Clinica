@@ -336,7 +336,6 @@ PrenotazioneStanza|
 *Paziente-EsameEffettuato*: Effettua
 - un Paziente effettua molti EsamiEffettuati (1,N)
 - un EsameEffettuato viene effettuato da un solo Paziente (1,1)
-<p>
 ---
 
 ## Tabella dei volumi
