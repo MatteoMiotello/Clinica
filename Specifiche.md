@@ -83,6 +83,7 @@ Report incasso giornaliero|B| 5 al giorno
 Report incasso mensile|B| 5 al mese
 Incasso medio giornaliero|B| 5 al mese
 Ricerca primario per reparto|I| 2 al mese
+Totale stanze di una sede|I| 1 al mese
 
 
 ---
@@ -281,9 +282,10 @@ PrenotazioneStanza|
 
 ## Generalizzazione  
 - **Personale** e' generalizzazione totale non esclusiva di: **PersonaleNonMedico**,  **Dirigente**, **Infermiere**, **Medico**.  
+- **Medico** e' generalizzazione non totale e non esclusiva di **Primario**;
 - **Prenotazione** e' generalizzazione totale ed esclusiva di **PrenotazioneEsame** e **PrenotazioneStanza**.  
 - **TipoEsame** e' generalizzazione non totatale ed esclusiva di **EsameEffettuato**.  
-- **Stanze** e' generalizzazione non totale esclusiva di **StanzaRi** e **StanzaSp**.  
+- **Stanze** e' generalizzazione totale esclusiva di **StanzaRi** e **StanzaSp**.  
 
 ---
 
@@ -441,20 +443,22 @@ Lo schema concettuale presenta diverse generalizzazioni. Si procede all'analisi 
 Questa generalizzazione presenta diverse entita' figlie, distribuite su due livelli. Al primo livello sono presenti quattro figlie: PersonaleNonMedicom, Dirigente, Infermiere, Medico; al secondo livello e' presenta una sola figlia (specializzazione di Medico): Primario. Si procede con una valutazione sotto vari aspetti al fine di determinare il tipo di implementazione delle generalizzazioni nello schema.  
 *Attributi*: l'entita' padre presenta una serie di attributi comuni a tutte le figlie, a loro volta le entita' figlie presentano un attributo ciascuna che identifica in PersonaleNonMedico il ruolo a cui si fa riferimento, in Dirigente il settore in cui viene coperto tale incarico, in Infermiere il grado e in Medico la specializzazione. Primario non presenta attributi aggiuntivi.  
 *OPERAZIONI*: vi sono poche operazioni che coinvolgono solo le figlie, la maggior parte delle operazioni non fa distinzione tra entita' padre ed entita' figlie.  
-Si e' deciso di accorpare le figlie all'interno del padre dato che aggiungendo due attributi al padre: *tipo* per identificare una figlia dall'altra, e *grado* per identificare la "specializzazione" di ognuno, si riesce ad ottimizzare lo spazio in memoria riducendo duplicazioni di attributi. Si e' optato per questa scelta considerando il fatto che *grado* non e' un attributo utile ai fini delle operazioni previste sul db, e che quindi non fosse opportuno sprecare spazio per costruire entita' il cui scopo fosse solo quello di mantenere separata tale "specializzazione".  
+Si e' deciso di accorpare le figlie all'interno del padre dato che aggiungendo due attributi al padre: *tipo* per identificare una figlia dall'altra, e *grado* per identificare la "specializzazione" di ognuno, si riesce ad ottimizzare lo spazio in memoria riducendo duplicazioni di attributi. Si e' optato per questa scelta considerando il fatto che *grado* non e' un attributo utile ai fini delle operazioni previste sul db, e che quindi non fosse opportuno sprecare spazio per costruire entita' il cui scopo fosse solo quello di mantenere separata tale "specializzazione".    
 ### TipoEsame  
 Questa generalizzazione presenta una sola figlia: EsameEffettuato.  
 *Attributi*: l'entita' padre presenta due attributi comuni alla figlia. La figlia presenta attributi propri.  
 *Operazioni*: vi sono operazioni che coinvolgono separatamente sia il padre che la figlia, ed operazioni che coinvolgono entrambe (es: Calcola spesa totale paziente)   Si e' optato per una sostituzione della generalizzazione con una relationship, dato che si hanno accessi separati ma e' necessario mantenere la separazione concettuale delle due entita'.
-
- 
-
 ### Prenotazione
 <p align="justify">  Per quanto riguarda la generalizzazione "Prenotazione" si presentano due entità figlie.
-ATTRIBUTI: Le due entità figlie presentano degli attributi diversi, infatti in "PrenotazioneEsame" non è necessario inserire un attributo "data_fine" poichè la prenotazione deve essere esclusiva di una sola giornata e, per lo stesso motivo "data_inizio" sarebbe concettualmente sbagliato.
-OPERAZIONI: In tutte le operazioni si distinguono chiaramente le due entità figlie, dato che concettualmente fanno riferimento a due ambiti diversi. 
-Si è deciso quindi di optare per l'accorpamento dell'entità genitore "Prenotazione" nelle entità figlie "PrenotazioneEsame" e "PrenotazioneStanza" aggiungendo quindi gli attributi "ID", "data_p" e "pagamento" a tutte e due le figlie e "data_e" sarà aggiunta a "PrenotazioneEsame".
-
+*Attributi*: Le due entità figlie presentano degli attributi diversi, infatti in "PrenotazioneEsame" non è necessario inserire un attributo "data_fine" poichè la prenotazione deve essere esclusiva di una sola giornata e, per lo stesso motivo "data_inizio" sarebbe concettualmente sbagliato.
+*Operazioni*: In tutte le operazioni si distinguono chiaramente le due entità figlie, dato che concettualmente fanno riferimento a due ambiti diversi. 
+Si è deciso quindi di optare per l'accorpamento dell'entità genitore "Prenotazione" nelle entità figlie "PrenotazioneEsame" e "PrenotazioneStanza" aggiungendo quindi gli attributi "ID", "data_p" e "pagamento" a tutte e due le figlie e "data_e" sarà aggiunta a "PrenotazioneEsame".  
+  
+### Stanza  
+Questa generalizzazione presenta due figlie: StanzaSp e StanzaRi  
+*Attributi*: l'entita' padre presenta un attributo ereditato dalle figlie: n_stanza, StanzaSp non presenta attributi propri, mentre StanzaRi presenta un attributo proprio: prezzo_notte.  
+*Operazioni*: le entita' figlie presentano operazioni che non coinvolgono il padre, vi e' una sola operazione che coinvolge il padre e le figlie (totale stanze in una sede).  
+Dato che la generalizzazione e' totale ed esclusiva, e che la maggior parte delle operazioni coinvolgono solo le figlie, si e' optato per un accorpamento del padre nelle figlie.  
 ### Reificazione relazioni
 Nello schema ER è presente una relazione ternaria: "Costituisce" tra "Sede" e "Reparto", durante le ristrutturazione si è deciso di trasformarla in Entità, la tabella creatasi localizza i vari reparti nelle varie sedi, ed ha permesso poi l'identificazione di ogni stanza.
 
