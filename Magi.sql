@@ -91,14 +91,15 @@ CREATE TABLE PrenotazioneStanza (
     data_inizio DATETIME NOT NULL,
     data_fine DATETIME NOT NULL,
     data_p DATETIME NOT NULL,
-    pagamento BOOLEAN,
+    pagamento BOOLEAN default 0,
     paziente VARCHAR (16),
     n_stanza TINYINT,
     reparto CHAR (4),
     sede VARCHAR (3),
     FOREIGN KEY (n_stanza, sede, reparto) REFERENCES StanzaRi (n_stanza, sede, reparto),
     FOREIGN KEY (paziente) REFERENCES Paziente (CF),
-    PRIMARY KEY (ID)
+    PRIMARY KEY (ID),
+    constraint check_data CHECK((DATEDIFF(data_inizio,data_fine)>=0) AND (DATEDIFF(data_inizio,data_p)>=0))
 )ENGINE=InnoDb;
 DROP TABLE IF EXISTS PrenotazioneEsame;
 CREATE TABLE PrenotazioneEsame (
@@ -114,14 +115,15 @@ CREATE TABLE PrenotazioneEsame (
     PRIMARY KEY (ID),
     FOREIGN KEY (n_stanza, sede, reparto) REFERENCES StanzaSp (n_stanza, sede, reparto),
     FOREIGN KEY (paziente) REFERENCES Paziente(CF),
-    FOREIGN KEY (tipo) REFERENCES TipoEsame(nome)
+    FOREIGN KEY (tipo) REFERENCES TipoEsame(nome),
+    constraint check_data CHECK((DATEDIFF(data_e,data_p)>=0))
 )ENGINE=InnoDb;
 DROP TABLE IF EXISTS Macchinario;
 CREATE TABLE Macchinario (
     n_serie VARCHAR (11),
     nome VARCHAR (30),
     casa_prod VARCHAR (30),
-    ultima_revisione DATE,
+    ultima_revisione DATE NOT NULL,
     n_stanza TINYINT,
     reparto CHAR (4),
     sede VARCHAR (3),

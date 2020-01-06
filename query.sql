@@ -87,3 +87,4 @@ AND DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE())<0 AND StanzaRi.sede="PD1
 
 ----------------------per prove-----------
     Insert into PrenotazioneStanza(data_inizio, data_fine, data_p, pagamento, paziente, stanza, reparto, sede, tipo) values ("2019-01-01","2019-01-04","2019-01-10",1,"ROBBER31D34A106D",14, "MEFI", "VI1","suite");
+    
