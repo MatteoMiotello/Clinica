@@ -438,7 +438,13 @@ Con la presenza di ridondanza si hanno 11 accessi in lettura e 2 in scrittura. I
 Considerando che per memorizzare ogni importo_totale sono necessari 4byte,la tabella creatasi avrebbe un peso totale di 64kB e che una differenza di 200 accessi risulta minima e trascurabile, abbiamo deciso di optare per una soluzione senza ridondanza. 
 
 <p align="justify"> Facciamo notare però che la situazione cambierebbe aumentando di almeno un ordine il numero di pazienti e prenotazioni, in questo caso la soluzione con ridondanza sarebbe la più adatta.
-  
+
+## Eliminazione delle generalizzazioni  
+Lo schema concettuale presenta diverse generalizzazioni. Si procede all'analisi individuale al fine di permettere la traduzione verso lo schema logico.  
+### Personale  
+
+## Partizionamento/accorpamento di entita' e relationship  
+## Scelta degli identificatori primari
     
 
 ## Traduzione verso il modello relazione  
@@ -497,11 +503,11 @@ PrenotazioneStanza(**id**, *paziente, *stanza, *reparto, *sede, data_inizio, dat
 
 ## Query e Indici  
 1. Trovare le stanze di ricovero (StanzaRi) disponibili per una determinata sede (PD1) e un determinato reparto (MEFI)  
-**select** distinct StanzaRi.n_stanza from StanzaRi  
-**where** StanzaRi.sede="PD1" AND StanzaRi.reparto="MEFI" AND StanzaRi.n_stanza NOT IN  
-(**select** distinct PrenotazioneStanza.stanza    
-**from** PrenotazioneStanza, StanzaRi   
-**where** PrenotazioneStanza.sede=StanzaRi.sede  AND PrenotazioneStanza.reparto=StanzaRi.reparto AND PrenotazioneStanza.stanza=StanzaRi.n_stanza   
+select distinct StanzaRi.n_stanza as Numero_stanza from StanzaRi
+where StanzaRi.sede="PD1" AND StanzaRi.reparto="MEFI" AND StanzaRi.n_stanza NOT IN  
+(select distinct PrenotazioneStanza.n_stanza    
+from PrenotazioneStanza, StanzaRi   
+where PrenotazioneStanza.sede=StanzaRi.sede  AND PrenotazioneStanza.reparto=StanzaRi.reparto AND PrenotazioneStanza.n_stanza=StanzaRi.n_stanza   
 AND DATEDIFF(PrenotazioneStanza.data_fine, CURDATE())>0  AND DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE())<0   
 AND StanzaRi.reparto="MEFI" AND StanzaRi.sede="PD1" );  
 2. Verificare in quale stanza per ricovero (StanzaRi) si trova un paziente (nel caso ci fosse) all'interno di una sede.    
