@@ -83,6 +83,7 @@ Report incasso giornaliero|B| 5 al giorno
 Report incasso mensile|B| 5 al mese
 Incasso medio giornaliero|B| 5 al mese
 Ricerca primario per reparto|I| 2 al mese
+Totale stanze di una sede|I| 1 al mese
 
 
 ---
@@ -283,7 +284,7 @@ PrenotazioneStanza|
 - **Personale** e' generalizzazione totale non esclusiva di: **PersonaleNonMedico**,  **Dirigente**, **Infermiere**, **Medico**.  
 - **Prenotazione** e' generalizzazione totale ed esclusiva di **PrenotazioneEsame** e **PrenotazioneStanza**.  
 - **TipoEsame** e' generalizzazione non totatale ed esclusiva di **EsameEffettuato**.  
-- **Stanze** e' generalizzazione non totale esclusiva di **StanzaRi** e **StanzaSp**.  
+- **Stanze** e' generalizzazione totale esclusiva di **StanzaRi** e **StanzaSp**.  
 
 ---
 
@@ -449,15 +450,17 @@ Si e' deciso di accorpare le figlie all'interno del padre dato che aggiungendo d
 Questa generalizzazione presenta una sola figlia: EsameEffettuato.  
 *Attributi*: l'entita' padre presenta due attributi comuni alla figlia. La figlia presenta attributi propri.  
 *Operazioni*: vi sono operazioni che coinvolgono separatamente sia il padre che la figlia, ed operazioni che coinvolgono entrambe (es: Calcola spesa totale paziente)   Si e' optato per una sostituzione della generalizzazione con una relationship, dato che si hanno accessi separati ma e' necessario mantenere la separazione concettuale delle due entita'.
-
- 
-
 ### Prenotazione
 <p align="justify">  Per quanto riguarda la generalizzazione "Prenotazione" si presentano due entità figlie.
-ATTRIBUTI: Le due entità figlie presentano degli attributi diversi, infatti in "PrenotazioneEsame" non è necessario inserire un attributo "data_fine" poichè la prenotazione deve essere esclusiva di una sola giornata e, per lo stesso motivo "data_inizio" sarebbe concettualmente sbagliato.
-OPERAZIONI: In tutte le operazioni si distinguono chiaramente le due entità figlie, dato che concettualmente fanno riferimento a due ambiti diversi. 
-Si è deciso quindi di optare per l'accorpamento dell'entità genitore "Prenotazione" nelle entità figlie "PrenotazioneEsame" e "PrenotazioneStanza" aggiungendo quindi gli attributi "ID", "data_p" e "pagamento" a tutte e due le figlie e "data_e" sarà aggiunta a "PrenotazioneEsame".
-
+*Attributi*: Le due entità figlie presentano degli attributi diversi, infatti in "PrenotazioneEsame" non è necessario inserire un attributo "data_fine" poichè la prenotazione deve essere esclusiva di una sola giornata e, per lo stesso motivo "data_inizio" sarebbe concettualmente sbagliato.
+*Operazioni*: In tutte le operazioni si distinguono chiaramente le due entità figlie, dato che concettualmente fanno riferimento a due ambiti diversi. 
+Si è deciso quindi di optare per l'accorpamento dell'entità genitore "Prenotazione" nelle entità figlie "PrenotazioneEsame" e "PrenotazioneStanza" aggiungendo quindi gli attributi "ID", "data_p" e "pagamento" a tutte e due le figlie e "data_e" sarà aggiunta a "PrenotazioneEsame".  
+  
+### Stanza  
+Questa generalizzazione presenta due figlie: StanzaSp e StanzaRi  
+*Attributi*: l'entita' padre presenta un attributo ereditato dalle figlie: n_stanza, StanzaSp non presenta attributi propri, mentre StanzaRi presenta un attributo proprio: prezzo_notte.  
+*Operazioni*: le entita' figlie presentano operazioni che non coinvolgono il padre, vi e' una sola operazione che coinvolge il padre e le figlie (totale stanze in una sede).  
+Dato che la generalizzazione e' totale ed esclusiva, e che la maggior parte delle operazioni coinvolgono solo le figlie, si e' optato per un accorpamento del padre nelle figlie.  
 ### Reificazione relazioni
 Nello schema ER è presente una relazione ternaria: "Costituisce" tra "Sede" e "Reparto", durante le ristrutturazione si è deciso di trasformarla in Entità, la tabella creatasi localizza i vari reparti nelle varie sedi, ed ha permesso poi l'identificazione di ogni stanza.
 
