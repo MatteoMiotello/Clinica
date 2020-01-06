@@ -82,7 +82,7 @@ CREATE TABLE PrenotazioneStanza (
     stanza TINYINT,
     reparto CHAR (4),
     sede VARCHAR (3),
-    tipo VARCHAR(25),
+    tipo VARCHAR(25) NOT NULL,
     FOREIGN KEY (stanza) REFERENCES StanzaRi (n_stanza),
     FOREIGN KEY (sede) REFERENCES StanzaRi (sede),
     FOREIGN KEY (reparto) REFERENCES StanzaRi (reparto),
