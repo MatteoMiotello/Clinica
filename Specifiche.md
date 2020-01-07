@@ -732,9 +732,3 @@ SELECT COUNT(Personale.sede), Sede.ID FROM Personale, Sede WHERE Personale.sede=
 ~~~
 
 ![visual_dipendenti](./img/VisualizzaDipendenti.png)
-
-
-
-
-
-
