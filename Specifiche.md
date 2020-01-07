@@ -4,14 +4,15 @@ table {
 }
 
 #home{
-   height: 1000px;
-   
+   height: 1000px;   
 }
+
 
 #home h1{
    font-size:70px;
    text-align:right;
    font-weight: bold;
+   margin-bottom: none;
 }
 
 #home h2{
@@ -28,7 +29,7 @@ table {
 #home p{
    text-align:right;
    position: bottom;
-   margin-top:600px;
+   margin-top:620px;
 }
 
 body{
@@ -652,7 +653,7 @@ StanzaSp(***sede**, ***reparto**, **n_stanza**);
 > *v3.* StanzaSp.sede -> Sede.id  
 > *v4.* StanzaSp.reparto -> Reparto.codice  
 
-Macchinario(**N_serie**, *n_stanza, *reparto, *sede, nome, casa_prod, ultima_revisione);  
+Macchinario(**N_serie**, *n_stanza*, *reparto, *sede, nome, casa_prod, ultima_revisione);  
 
 > *v5.* Macchinario.n_stanza->StanzaSp.n_stanza  
 > *v6.* Macchinario.reparto->StanzaSp.reparto    
