@@ -81,6 +81,12 @@ Siamo nel 1958, il Prof. Vitangelo Moscarda, chirurgo ortopedico, e la moglie Ad
 Si vuole realizzare una base di dati che contenga e gestisca una clinica con più sedi sparse per il torritorio. La clinica presenta una serie di reparti, identificati dal tipo di reparto e da un codice. La clinica presenta più sedi, ognuna di esse deve essere identificata dalla località in cui si trova (numero civico, capoluogo e via) e un numero di telefono, in modo tale da poter essere contattati. Ogni sede presenta uno o più reparti, ogni reparto in ogni sede presenta più stanze, identificate da un numero, dal reparto a cui appartengono e dalla sede in cui si trovano. Vengono identificate due tipi di stanze, la stanza per il ricovero, nel caso in cui un paziente debba intrattenersi più giorni nella clinica per effettuare esami o per degenza, che presenta un prezzo per notte in base al tipo di stanza che il paziente sceglie; e la stanza specializzata, in cui vengono effettuati gli esami. Ogni stanza specializzata contiene al suo interno una serie di macchinari, identificati dal nome, dalla casa produttrice, un numero di serie e una data dell'ultima revisione effettuata su tal macchinario. Un paziente, di cui si vuole memorizzare il nome, il cognome, il sesso, l'indirizzo di residenza (numero civico, capoluogo e via), il numero di telefono e il codice fiscale, può effettuare delle prenotazioni. Ogni prenotazione e' identificata da una data in cui e' stata fatta la prenotazione e un campo pagamento usato per capire se e' gia' stato effettuato o meno il versamento dei soldi. Ogni prenotazione di un esame e' riferito ad un tipo di esame specifico, per tale tipo di prenotazione si vuole memorizzare l'ora in cui verra' effettuato, in modo da poter gestire le prenotazioni con le stanze disponibili. Ogni tipo di esame e' comune ad ogni sede che presenta quel reparto, e si vuole memorizzare il nome e il prezzo. Ogni prenotazione di una stanza riserva una stanza ricovero, di tale prenotazione vogliamo conoscere la data di inizio prenotazione e la data in cui la stanza verra' liberata. Un paziente puo' effetturare degli esami. Degli esami effettuati vogliamo memorizzare la stanza in cui e' stata effettuato, la diagnosi, la terapia, il medico che ha effettuato l'esame, il nome e il prezzo dell'esame. In ogni sede lavorano diversi dipendenti (personale), di ogni sede vogliamo memorizzare: i dirigenti, identificati dal settore, gli infermieri, identificati dal grado, i medici con la propria specializzazione, i primari per ogni reparto (un reparto ha piu' primari perche' ogni reparto in ogni sede ha il suo) e i restanti dipendenti (personale non medico). Ogni dipendente (personale) in base al ruolo che ricopre percepirà uno stipendio fisso, di cui si vogliono memorizzare l'importo lordo e l'importo netto. Di ogni dipendente (personale) si vuole tener traccia del: nome, cognome, data di nascita, sesso, residenza (numero civico, capoluogo e via), telefono, IBAN per versare mensilmente lo stipendio e codice fiscale. 
 </p>
 
+## Assunzioni  
+1. Il personale (ad eccezzione del primario) lavora in una e una sola sede.   
+2. Vi possono essere piu' dirigenti per lo stesso settore.  
+3. Per ogni reparto, anche se ci sono piu' reparti in piu' sedi, il primario e' uno e uno solo per reparto.  
+4. L'entita' reparto e' intesa come insieme dei reparti che Clinica Magi mette a disposizione, indipendentemente dal fatto che una sede puo' avere tutti o parte di questi reparti.   
+5. 
 ## **Progettazione concettuale**
 
 ## Glossario dei termini  
@@ -169,8 +175,8 @@ Reparto| Si intendono i reparti specialistici della clinica, differenziati per t
 Stanza| Stanze generiche all'interno di ogni sede| n_stanza
 StanzaRi| Entita' figlia di Stanze, identifica le stanze adibite al ricovero| prezzo_notte
 StanzaSp| Entita' figlia di Stanze, identifica le stanze specialistiche della clinica.| *Nessun Attibuto*
-Macchinari| Entita' che identifica il tipo di macchinario utilizzato per effettuare gli esami| n_serie{PK}, casa_prod, nome, ultima_revisione
-Personale| Entita' che indica le persone che lavorano nella clinica| CF{PK}, nome, cognome, data_nascita, sesso, telefono, IBAN, indirizzo(CAP, via, n_civico)
+Macchinari| Entita' che identifica il tipo di macchinario utilizzato per effettuare gli esami| n{PK}, casa_prod, nome, ultima_revisione
+Personale| Entita' che indica le persone che lavorano nella clinica| CF{PK}, nome, cognome, _, sesso, telefono, IBAN, indirizzo(CAP, via, n_civico)
 Personale non medico| Entita' figlia di Personale, specifica per il personale non medico| tipo
 Dirigente| Entita' figlia di Personale, specifica per il dirigente della sede| settore
 Infermieri| Entita' figlia di Personale, specifica per gli infermieri| grado
@@ -230,7 +236,7 @@ Nessun attributo|
 
 Macchinario||||
 -----------------|-------|----------------------------|----------
-n_serie|VARCHAR |codice identificativo univoco del macchinario| **Chiave**
+n|VARCHAR |codice identificativo univoco del macchinario| **Chiave**
 casa_prod| VARCHAR| nome della casa produttrice
 nome| VARCHAR | nome rappresentativo del macchinario
 ultima_revisione| DATE| data dell'ultima revisione effettuata
@@ -330,7 +336,7 @@ prezzo|DECIMAL| intero che indica il prezzo di ogni esame
 <tr><td>
 
 |Prenotazione||||
-|-----------------|-------|---------------------------:|-----------:|
+|-----------------|-------|:---------------------------|-----------|
 ID|VARCHAR| chiave identificativa univoca di ogni prenotazione| **Chiave**
 data| DATE| data in cui è stata effettuata la prenotazione
 pagamento|BOOL| check che identifica l'avvenuto pagamento
@@ -368,7 +374,7 @@ PrenotazioneStanza||
 >imp_lordo not null
 
 **Macchinario**  
->n_serie primary key  
+>n primary key  
 
 **StanzaSp**  
 >n_stanza primary key
@@ -432,28 +438,28 @@ PrenotazioneStanza||
 ## Analisi delle relazioni e delle cardinalita'
 
 *Sede-Personale*: Lavora
-   - In una sede lavora piu personale
-   - Un membro di personale lavora in una sola sede
+   - In una sede lavora piu personale (1,N)
+   - Un membro di personale lavora in una sola sede(1,1)
 
 *Personale-Stipendio*: Percepisce
    - Un membro del personale percepisce uno stipendio (1,1)
    - Uno stesso stipendio (stesso codice e quindi stesso importo) può essere percepito da più membri del personale (1,N)
 
 
-*Sede-Reparto*: Possiede
+*Sede-Reparto*: Costituisce
 - una sede può possedere più reparti (1,N)
 - un reparto puo' essere posseduto da piu' sedi (1,N)
 
-*Sede-Stanza*: Possiede
+*Sede-Stanza*: Costituisce
 - una sede può possedere molte stane (1,N)
 - una stanza fa parte di una sola sede (1,1)
 
-*Reparto-Stanza*: Contiene
+*Reparto-Stanza*: Costituisce
 - un reparto può contere molte stanze (1,N)
 - una stanza può essere contenuta in un solo reparto (1,1)
 
 *Reparto-TipoEsame*: Effettua
-- in un reparto si possono effettuare molti esami (1,n)
+- in un reparto si possono effettuare molti esami (1,N)
 - un esame può essere effettuato in un solo reparto (1,1) 
 
 *Reparto-Primario*: Presiede
@@ -466,19 +472,23 @@ PrenotazioneStanza||
 
 *PrenotazioneEsame-StanzaSp*: Riserva
 - una PrenotazioneEsame può riservare una sola StanzaSp (1,1)
-- una Stanzasp può essere riservata da più PrenotazioneEsame (1,N)
+- una Stanzasp può essere riservata da più PrenotazioneEsame (0,N)
 
 *StanzaSp-Macchinario*: Contiene
-- una StanzaSp contiene molti Macchinario (1,N)
+- una StanzaSp contiene molti Macchinario (0,N)
 - un Macchinario puo' essere contenuto in una sola StanzaSp (1,1)
 
 *Paziente-Prenotazione*: Richiede
-- un Paziente può richiedere più prenotazioni (1,N)
+- un Paziente può richiedere più prenotazioni (0,N)
 - una Prenotazione è richiesta da un solo Paziente (1,1)
 
 *Paziente-EsameEffettuato*: Effettua
-- un Paziente effettua molti EsamiEffettuati (1,N)
-- un EsameEffettuato viene effettuato da un solo Paziente (1,1)
+- un Paziente effettua molti EsamiEffettuati (0,N)
+- un EsameEffettuato viene effettuato da un solo Paziente (1,1)  
+
+*PrenotazioneStanza-StanzaRi*: Riserva  
+- una stanza puo' essere riservata per piu' prenotazioni(0,N)  
+- una prenotazione stanza puo' riservare una e una sola stanza(1,1)  
 ---
 
 <div id="diagramma">
@@ -642,33 +652,33 @@ Nella scelta dgli identificatori primari l'attenzione cade principalmente sulle 
 ## Traduzione verso il modello relazione  
 
 Sede( **ID**, cap, via, n_civico, telefono);  
-Personale(**CF**, *sede, *stipendio, nome, cognome, sesso, data_nascita, telefono, IBAN, tipo, grado, n_civico, via, cap); 
+Personale(**CF**, *sede, *tipo, nome, cognome, sesso, datadinascita, telefono, IBAN, grado, n_civico, via, cap); 
 
 > *v1.* Personale.sede -> Sede.ID  
-> *v2.* Personale.stipndio -> Stipendio.tipo   
+> *v2.* Personale.tipo -> Stipendio.tipo   
 
 Stipendio(**tipo**, imp_lordo, imp_netto);  
 StanzaSp(***sede**, ***reparto**, **n_stanza**);  
 
-> *v3.* StanzaSp.sede -> Sede.id  
-> *v4.* StanzaSp.reparto -> Reparto.codice  
+> *v3.* StanzaSp.sede -> Costituisce.sede  
+> *v4.* StanzaSp.reparto -> Costituisce.reparto  
 
-Macchinario(**N_serie**, *n_stanza*, *reparto, *sede, nome, casa_prod, ultima_revisione);  
+Macchinario(**n_serie**, *n_stanza, *reparto, *sede, nome, casa_prod, ultima_revisione);  
 
 > *v5.* Macchinario.n_stanza->StanzaSp.n_stanza  
 > *v6.* Macchinario.reparto->StanzaSp.reparto    
 > *v7.* Macchinario.sede->StanzaSp.sede  
 
-StanzaRi(**n_stanza**,***sede**, ***reparto**, prezzo_notte, tipo)   
+StanzaRi(**n_stanza**,***sede**, ***reparto**, prezzo_notte)   
 
-> *v8.* StanzaRi.sede->Sede.ID  
-> *v9.* StanzaRi.reparto->Sede.codice  
+> *v8.* StanzaRi.sede->Costituisce.sede  
+> *v9.* StanzaRi.reparto->Costituisce.reparto  
 Reparto(**codice**, tipo, *primario);  
 > *v10.* Reparto.primario->Personale.CF  
 
 Costituisce(***sede**, ***reparto**);  
 
-> *v11.* Costituisce.sede->Sede.id  
+> *v11.* Costituisce.sede->Sede.ID  
 > *v12.* Costituisce.reparto->Reparto.codice  
 
 Paziente(**CF**, nome, cognome,sesso, telefono, via, n_civico, cap);  
@@ -678,22 +688,22 @@ EsameEffettuato(**ID**, *paziente, *tipo_esame, stanza, terapia, diagnosi, medic
 > *v14.* EsameEffettuato.tipo_esame->TipoEsame.nome  
 
 TipoEsame(**nome**, prezzo)  
-PrenotazioneEsame(**ID**, *nome, *stanza, *reparto, *sede,*paziente, data_p, data_e, pagamento)  
+PrenotazioneEsame(**ID**, *tipo, *n_stanza, *reparto, *sede,*paziente, data_p, data_e, pagamento)  
 
 > *v15.* PrenotazioneEsame.tipo->TipoEsame.nome  
-> *v16.* PrenotazioneEsame.stanza->StanzaSp.n_stanza  
+> *v16.* PrenotazioneEsame.n_stanza->StanzaSp.n_stanza  
 > *v17.* PrenotazioneEsame.reparto->StanzaSp.reparto  
 > *v18.* PrenotazioneEsame.sede->StanzaSp.sede  
 > *v19.* PrenotazioneEsame.paziente->Paziente.CF  
 
-PrenotazioneStanza(**ID**, *paziente, *stanza, *reparto, *sede, data_inizio, data_fine, data_p, pagamento)  
+PrenotazioneStanza(**ID**, *paziente, *n_stanza, *reparto, *sede, data_inizio, data_fine, data_p, pagamento)  
 
 > *v20.* Prenotazione.paziente->Paziente.CF  
 > *v21.* Prenotazione.sede->StanzaSp.sede  
 > *v22.* Prenotazione.reparto->StanzaSp.reparto  
-> *v23.* Prenotazione.stanza->StanzaSp.n_stanza    
+> *v23.* Prenotazione.n_stanza->StanzaSp.n_stanza    
 
-## Query e Indici  
+## Query  
 
 1. Trovare le stanze di ricovero (StanzaRi) disponibili per una determinata sede (PD1) e un determinato reparto (MEFI)  
 ~~~sql
@@ -745,7 +755,7 @@ WHERE Paziente.nome="Benedetta" AND Paziente.cognome="Lo Duca" AND TipoEsame.nom
 
 5. La sede, il reparto, la stanza e il numero di serie dei macchinari che non effettuano una revisione da piu' di un mese  
 ~~~sql
-SELECT StanzaSp.sede, StanzaSp.n_stanza, StanzaSp.reparto,Macchinario.n_serie 
+SELECT StanzaSp.sede, StanzaSp.n_stanza, StanzaSp.reparto,Macchinario.n 
 FROM StanzaSp, Macchinario  
 WHERE Macchinario.sede=StanzaSp.sede AND Macchinario.reparto=StanzaSp.reparto   
 AND StanzaSp.n_stanza=Macchinario.n_stanza AND DATEDIFF(CURDATE(),Macchinario.ultima_revisione)>=30; 
