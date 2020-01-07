@@ -163,9 +163,9 @@ tipo| VARCHAR| identifica la specialita' medica che viene trattata
 
 Stanza|||
 -----------------|-------|--------------------------------------
-n_stanza|VARCHAR|
-sede|VARCHAR|
-reparto|VARCHAR|
+n_stanza|TINYINT| **Chiave**
+sede|VARCHAR| **Chiave** (esterna)
+reparto|VARCHAR| **Chiave**** (esterna)
 
 </td></tr>
 <tr><td>
@@ -184,12 +184,12 @@ Nessun attributo|
 </td></tr>
 <tr><td>
 
-Macchinari||||
+Macchinario||||
 -----------------|-------|----------------------------|----------
 n_serie|VARCHAR |codice identificativo univoco del macchinario| **Chiave**
 casa_prod| VARCHAR| nome della casa produttrice
 nome| VARCHAR | nome rappresentativo del macchinario
-ultima_rev| DATE| data dell'ultima revisione effettuata
+ultima_revisione| DATE| data dell'ultima revisione effettuata
 
 </td></tr>
 <tr><td>
@@ -297,9 +297,9 @@ PrenotazioneEsame|
 </td></tr>
 <tr><td>
 
-PrenotazioneStanza|
-|---------------|
-|Nessun Attributo|
+PrenotazioneStanza||
+|data_inizio| DATETIME|
+|data_fine| DATETIME|
 
 </td></tr>
 </table>
