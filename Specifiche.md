@@ -759,3 +759,15 @@ SELECT COUNT(Personale.sede), Sede.ID FROM Personale, Sede WHERE Personale.sede=
 ~~~
 
 ![visual_dipendenti](./img/VisualizzaDipendenti.png)
+
+
+## Indici
+
+<p align="justify">
+Durante l'analisi delle prestazioni si è visto che le tabelle "PrenotazioneEsame" e "PrenotazioneStanza" saranno le più popolate e quindi le più dispendiose in termini di tempo per quanto riguarda la ricerca. Si è quindi deciso di creare un indice per ogni tabella in questione rendendo così la ricerca più veloce. Si fa notare che con l'attuale mole di dati le performance rimangono invariate sia che si utilizzino o meno gli indici.
+
+~~~sql
+CREATE INDEX idx_PrenotazioneEsame ON PrenotazioneEsame (data_e);
+
+CREATE INDEX idx_PrenotazioneStanza ON PrenotazioneStanza (data_inizio, data_fine);
+~~~

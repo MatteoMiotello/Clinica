@@ -148,7 +148,7 @@ CREATE TABLE EsameEffettuato (
 
 CREATE INDEX idx_PrenotazioneEsame ON PrenotazioneEsame (data_e);
 
-CREATE INDEX idx_PrenotazioneStanza ON PrenotazioneStanza (data_inizio);
+CREATE INDEX idx_PrenotazioneStanza ON PrenotazioneStanza (data_inizio, data_fine);
 
 --POPOLAMENTO TABELLE
 
