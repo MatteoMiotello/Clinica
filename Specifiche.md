@@ -12,6 +12,8 @@ Siamo nel 1958, il Prof. Vitangelo Moscarda, chirurgo ortopedico, e la moglie Ad
 Si vuole realizzare una base di dati che contenga e gestisca una clinica con più sedi sparse per il torritorio. La clinica presenta una serie di reparti, identificati dal tipo di reparto e da un codice. La clinica presenta più sedi, ognuna di esse deve essere identificata dalla località in cui si trova (numero civico, capoluogo e via) e un numero di telefono, in modo tale da poter essere contattati. Ogni sede presenta uno o più reparti, ogni reparto in ogni sede presenta più stanze, identificate da un numero, dal reparto a cui appartengono e dalla sede in cui si trovano. Vengono identificate due tipi di stanze, la stanza per il ricovero, nel caso in cui un paziente debba intrattenersi più giorni nella clinica per effettuare esami o per degenza, che presenta un prezzo per notte in base al tipo di stanza che il paziente sceglie; e la stanza specializzata, in cui vengono effettuati gli esami. Ogni stanza specializzata contiene al suo interno una serie di macchinari, identificati dal nome, dalla casa produttrice, un numero di serie e una data dell'ultima revisione effettuata su tal macchinario. Un paziente, di cui si vuole memorizzare il nome, il cognome, l'indirizzo di residenza (numero civico, capoluogo e via), il numero di telefono e il codice fiscale, può effettuare delle prenotazioni. Ogni prenotazione e' identificata da una data in cui e' stata fatta la prenotazione e un campo pagamento usato per capire se e' gia' stato effettuato o meno il versamento dei soldi. Ogni prenotazione di un esame e' riferito ad un tipo di esame specifico, per tale tipo di prenotazione si vuole memorizzare l'ora in cui verra' effettuato, in modo da poter gestire le prenotazioni con le stanze disponibili. Ogni tipo di esame e' comune ad ogni sede che presenta quel reparto, e si vuole memorizzare il nome e il prezzo. Ogni prenotazione di una stanza riserva una stanza ricovero, di tale prenotazione vogliamo conoscere la data di inizio prenotazione e la data in cui la stanza verra' liberata. Un paziente puo' effetturare degli esami. Degli esami effettuati vogliamo memorizzare la stanza in cui e' stata effettuato, la diagnosi, la terapia, il medico che ha effettuato l'esame, il nome e il prezzo dell'esame. In ogni sede lavorano diversi dipendenti (personale), di ogni sede vogliamo memorizzare: i dirigenti, identificati dal settore, gli infermieri, identificati dal grado, i medici con la propria specializzazione, i primari per ogni reparto (un reparto ha piu' primari perche' ogni reparto in ogni sede ha il suo) e i restanti dipendenti (personale non medico). Ogni dipendente (personale) in base al ruolo che ricopre percepirà uno stipendio fisso, di cui si vogliono memorizzare l'importo lordo e l'importo netto. Di ogni dipendente (personale) si vuole tener traccia del: nome, cognome, data di nascita, sesso, residenza (numero civico, capoluogo e via), telefono, IBAN per versare mensilmente lo stipendio e codice fiscale. 
 </p>
 
+## Assunzioni database  
+
 ## Glossario dei termini  
 
 | Termine | Descrizione | Collegamento |
@@ -74,7 +76,6 @@ Prenotazione esame|I| 100 al giorno
 Prenotazione StanzaRi|I| 30 al giorno
 Verifica StanzaRi|B| 5000 al giorno
 Verifica stanze disponibili|B| 100 al giorno
-Calcolo busta paga dipendente|B|100 al mese
 Calcolo spese totali paziente|B|50 al giorno
 Verifica pagamento|B| 5 al giorno
 Verifica importo totale|B| 100 al giorno
@@ -84,7 +85,7 @@ Report incasso mensile|B| 5 al mese
 Incasso medio giornaliero|B| 5 al mese
 Ricerca primario per reparto|I| 2 al mese
 Totale stanze di una sede|I| 1 al mese
-
+Stipendio medio (importo netto) persepito dal personale della Clinica Magi|B| 1 al mese
 
 ---
 
@@ -278,7 +279,7 @@ PrenotazioneStanza|
 </table>
 
 ---
-## Vincoli
+## Vincoli    
 **Sede**  
 >telefono not null e unique  
 >indirizzo not null  
@@ -316,19 +317,19 @@ PrenotazioneStanza|
 >stanza not null  
 >medico not null  
 
-**Prenotazione Esame**  
+**PrenotazioneEsame**  
 >data_e not null  
 >ID primary key  
 >data_p not null 
 >data_e not null 
-
+>constraint check_data CHECK((DATEDIFF(data_e,data_p)>=0))
 **PrenotazioneStanza**  
 >ID primary key  
 >data_p not null  
 >data_inizio not null  
 >data_fine not null  
 >pagamento default 0
-
+>constraint check_data CHECK((DATEDIFF(data_inizio,data_fine)>=0) AND (DATEDIFF(data_inizio,data_p)>=0))
 **StanzaRi**  
 >n_stanza primary key
 >prezzo_notte not null  
@@ -604,31 +605,44 @@ where PrenotazioneStanza.sede=StanzaRi.sede  AND PrenotazioneStanza.reparto=Stan
 AND DATEDIFF(PrenotazioneStanza.data_fine, CURDATE())>0  AND DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE())<0   
 AND StanzaRi.reparto="MEFI" AND StanzaRi.sede="PD1" );  
 2. Verificare in quale stanza per ricovero (StanzaRi) si trova un paziente (nel caso ci fosse) all'interno di una sede.    
-select PrenotazioneStanza.reparto AS Reparto, PrenotazioneStanza.stanza As Stanza  
+select PrenotazioneStanza.reparto AS Reparto, PrenotazioneStanza.n_stanza As Stanza  
 from Paziente, PrenotazioneStanza  
-where PrenotazioneStanza.sede="PD1" AND Paziente.nome="Demetrio" AND Paziente.cognome="Lombardo" AND Paziente.CF=PrenotazioneStanza.paziente AND (DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE()) = 0 OR DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE()) < 0) AND DATEDIFF(PrenotazioneStanza.data_fine, CURDATE()) > 0;  
-3. Report incasso di un periodo prestabilito (dal 2019-02-10 al 2019-02-10)  
+where PrenotazioneStanza.sede="VI1" AND Paziente.nome="Demetrio" AND Paziente.cognome="Lombardo" AND Paziente.CF=PrenotazioneStanza.paziente AND (DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE()) = 0 OR DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE()) < 0) AND DATEDIFF(PrenotazioneStanza.data_fine, CURDATE()) > 0;  
+3. Report incasso di un periodo prestabilito (dal 2020-01-1 al 2020-02-1)  
 select sum(TOT) AS totale from (select sum(StanzaRi.prezzo_notte) as TOT from StanzaRi, PrenotazioneStanza where StanzaRi.sede="VI1" AND   StanzaRi.sede=PrenotazioneStanza.sede   
-AND StanzaRi.reparto=PrenotazioneStanza.reparto AND StanzaRi.n_stanza=PrenotazioneStanza.stanza   
-AND PrenotazioneStanza.data_fine BETWEEN '2019-01-04' AND '2019-01-17' AND PrenotazioneStanza.pagamento=1 group by StanzaRi.sede  
+AND StanzaRi.reparto=PrenotazioneStanza.reparto AND StanzaRi.n_stanza=PrenotazioneStanza.n_stanza   
+AND PrenotazioneStanza.data_fine BETWEEN '2020-01-01' AND '2020-02-01' AND PrenotazioneStanza.pagamento=1 group by StanzaRi.sede  
 UNION  
 select sum(TipoEsame.prezzo) AS SUM1  
 from PrenotazioneEsame, TipoEsame where PrenotazioneEsame.sede="VI1" AND PrenotazioneEsame.tipo=TipoEsame.nome AND  
-PrenotazioneEsame.data_e BETWEEN '2019-01-10' AND '2019-02-10' AND PrenotazioneEsame.pagamento=1  
+PrenotazioneEsame.data_e BETWEEN '2020-01-01 ' AND '2020-02-01' AND PrenotazioneEsame.pagamento=1  
 group by sede) AS sub1;  
-4. calcolo spese totali paziente (ho messo +1 in DATEDIFF perche altrimenti mi conta 3 giorni al posto di 4, cioe mi esclude il giorno di partenza)  
-select sum(TOT) As totale_da_pagare from (select sum(StanzaRi.prezzo_notte)*(DATEDIFF(PrenotazioneStanza.data_fine, PrenotazioneStanza.data_inizio)+1) as TOT  
-from Paziente, PrenotazioneStanza, StanzaRi  
-where Paziente.nome="Benedetta" AND Paziente.cognome="Lo Duca" AND Paziente.CF=PrenotazioneStanza.paziente AND PrenotazioneStanza.sede=StanzaRi.sede  
-AND PrenotazioneStanza.reparto=StanzaRi.reparto AND PrenotazioneStanza.stanza=StanzaRi.n_stanza AND PrenotazioneStanza.pagamento=0  
+4. calcolo spese totali che il paziente deve ancora effettuare    
+select sum(TOT) As totale_da_pagare from (select sum(StanzaRi.prezzo_notte)*(DATEDIFF(PrenotazioneStanza.data_fine, PrenotazioneStanza.data_inizio)+1) as TOT   
+from Paziente, PrenotazioneStanza, StanzaRi    
+where Paziente.nome="Benedetta" AND Paziente.cognome="Lo Duca" AND Paziente.CF=PrenotazioneStanza.paziente AND PrenotazioneStanza.sede=StanzaRi.sede   
+AND PrenotazioneStanza.reparto=StanzaRi.reparto AND PrenotazioneStanza.n_stanza=StanzaRi.n_stanza AND PrenotazioneStanza.pagamento=0   
 UNION select sum(TipoEsame.prezzo) from TipoEsame,PrenotazioneEsame, Paziente  
 where Paziente.nome="Benedetta" AND Paziente.cognome="Lo Duca" AND TipoEsame.nome=PrenotazioneEsame.tipo AND Paziente.CF=PrenotazioneEsame.paziente AND   PrenotazioneEsame.pagamento=0) as sub1;  
-5. La sede, il reparto, la stanza e il numero di serie dei macchinari che non presentano una revisione da piu di un mese 
+5. La sede, il reparto, la stanza e il numero di serie dei macchinari che non effettuano una revisione da piu' di un mese  
 select StanzaSp.sede, StanzaSp.n_stanza, StanzaSp.reparto,Macchinario.n_serie 
 from StanzaSp, Macchinario  
 where Macchinario.sede=StanzaSp.sede AND Macchinario.reparto=StanzaSp.reparto   
 AND StanzaSp.n_stanza=Macchinario.n_stanza AND DATEDIFF(CURDATE(),Macchinario.ultima_revisione)>=30;  
-
+6. Report incasso giornaliero medio di un periodo prestabilito (2020-01-01,2020-02-01)  
+select (sum(TOT)/(DATEDIFF("2020-02-01","2020-01-01")+1)) AS Guadagno_giornaliero_medio from (select sum(StanzaRi.prezzo_notte) as TOT from StanzaRi, PrenotazioneStanza where StanzaRi.sede="VI1" AND   StanzaRi.sede=PrenotazioneStanza.sede   
+AND StanzaRi.reparto=PrenotazioneStanza.reparto AND StanzaRi.n_stanza=PrenotazioneStanza.n_stanza   
+AND PrenotazioneStanza.data_fine BETWEEN '2020-01-01' AND '2020-02-01' AND PrenotazioneStanza.pagamento=1 group by StanzaRi.sede  
+UNION  
+select sum(TipoEsame.prezzo) AS SUM1  
+from PrenotazioneEsame, TipoEsame where PrenotazioneEsame.sede="VI1" AND PrenotazioneEsame.tipo=TipoEsame.nome AND  
+PrenotazioneEsame.data_e BETWEEN '2020-01-01 ' AND '2020-02-01' AND PrenotazioneEsame.pagamento=1  
+group by sede) AS sub1;  
+7. Stipendio medio (importo netto) del personale della Clinica Magi    
+select ROUND(AVG(Stipendio.imp_netto), 0) AS Stipendio_medio_personale  
+from Personale inner join Stipendio on(Personale.tipo=Stipendio.tipo);  
+8. numero medio di esami per paziente  
+select 
 
 
 
