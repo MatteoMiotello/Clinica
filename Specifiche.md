@@ -174,7 +174,7 @@ Reparto| Si intendono i reparti specialistici della clinica, differenziati per t
 Stanza| Stanze generiche all'interno di ogni sede| n_stanza
 StanzaRi| Entita' figlia di Stanze, identifica le stanze adibite al ricovero| prezzo_notte
 StanzaSp| Entita' figlia di Stanze, identifica le stanze specialistiche della clinica.| *Nessun Attibuto*
-Macchinari| Entita' che identifica il tipo di macchinario utilizzato per effettuare gli esami| n_serie{PK}, casa_prod, nome, ultima_revisione
+Macchinari| Entita' che identifica il tipo di macchinario utilizzato per effettuare gli esami| n{PK}, casa_prod, nome, ultima_revisione
 Personale| Entita' che indica le persone che lavorano nella clinica| CF{PK}, nome, cognome, _, sesso, telefono, IBAN, indirizzo(CAP, via, n_civico)
 Personale non medico| Entita' figlia di Personale, specifica per il personale non medico| tipo
 Dirigente| Entita' figlia di Personale, specifica per il dirigente della sede| settore
@@ -235,7 +235,7 @@ Nessun attributo|
 
 Macchinario||||
 -----------------|-------|----------------------------|----------
-n_serie|VARCHAR |codice identificativo univoco del macchinario| **Chiave**
+n|VARCHAR |codice identificativo univoco del macchinario| **Chiave**
 casa_prod| VARCHAR| nome della casa produttrice
 nome| VARCHAR | nome rappresentativo del macchinario
 ultima_revisione| DATE| data dell'ultima revisione effettuata
@@ -373,7 +373,7 @@ PrenotazioneStanza||
 >imp_lordo not null
 
 **Macchinario**  
->n_serie primary key  
+>n primary key  
 
 **StanzaSp**  
 >n_stanza primary key
@@ -659,26 +659,26 @@ Personale(**CF**, *sede, *tipo, nome, cognome, sesso, datadinascita, telefono, I
 Stipendio(**tipo**, imp_lordo, imp_netto);  
 StanzaSp(***sede**, ***reparto**, **n_stanza**);  
 
-> *v3.* StanzaSp.sede -> Sede.id  
-> *v4.* StanzaSp.reparto -> Reparto.codice  
+> *v3.* StanzaSp.sede -> Costituisce.sede  
+> *v4.* StanzaSp.reparto -> Costituisce.reparto  
 
-Macchinario(**N_serie**, *n_stanza, *reparto, *sede, nome, casa_prod, ultima_revisione);  
+Macchinario(**n_serie**, *n_stanza, *reparto, *sede, nome, casa_prod, ultima_revisione);  
 
 > *v5.* Macchinario.n_stanza->StanzaSp.n_stanza  
 > *v6.* Macchinario.reparto->StanzaSp.reparto    
 > *v7.* Macchinario.sede->StanzaSp.sede  
 
-StanzaRi(**n_stanza**,***sede**, ***reparto**, prezzo_notte, tipo)   
+StanzaRi(**n_stanza**,***sede**, ***reparto**, prezzo_notte)   
 
-> *v8.* StanzaRi.sede->Sede.ID  
-> *v9.* StanzaRi.reparto->Sede.codice  
+> *v8.* StanzaRi.sede->Costituisce.sede  
+> *v9.* StanzaRi.reparto->Costituisce.reparto  
 Reparto(**codice**, tipo, *primario);  
 
 > *v10.* Reparto.primario->Personale.CF  
 
 Costituisce(***sede**, ***reparto**);  
 
-> *v11.* Costituisce.sede->Sede.id  
+> *v11.* Costituisce.sede->Sede.ID  
 > *v12.* Costituisce.reparto->Reparto.codice  
 
 Paziente(**CF**, nome, cognome,sesso, telefono, via, n_civico, cap);  
@@ -688,20 +688,20 @@ EsameEffettuato(**ID**, *paziente, *tipo_esame, stanza, terapia, diagnosi, medic
 > *v14.* EsameEffettuato.tipo_esame->TipoEsame.nome  
 
 TipoEsame(**nome**, prezzo)  
-PrenotazioneEsame(**ID**, *nome, *stanza, *reparto, *sede,*paziente, data_p, data_e, pagamento)  
+PrenotazioneEsame(**ID**, *tipo, *n_stanza, *reparto, *sede,*paziente, data_p, data_e, pagamento)  
 
 > *v15.* PrenotazioneEsame.tipo->TipoEsame.nome  
-> *v16.* PrenotazioneEsame.stanza->StanzaSp.n_stanza  
+> *v16.* PrenotazioneEsame.n_stanza->StanzaSp.n_stanza  
 > *v17.* PrenotazioneEsame.reparto->StanzaSp.reparto  
 > *v18.* PrenotazioneEsame.sede->StanzaSp.sede  
 > *v19.* PrenotazioneEsame.paziente->Paziente.CF  
 
-PrenotazioneStanza(**ID**, *paziente, *stanza, *reparto, *sede, data_inizio, data_fine, data_p, pagamento)  
+PrenotazioneStanza(**ID**, *paziente, *n_stanza, *reparto, *sede, data_inizio, data_fine, data_p, pagamento)  
 
 > *v20.* Prenotazione.paziente->Paziente.CF  
 > *v21.* Prenotazione.sede->StanzaSp.sede  
 > *v22.* Prenotazione.reparto->StanzaSp.reparto  
-> *v23.* Prenotazione.stanza->StanzaSp.n_stanza    
+> *v23.* Prenotazione.n_stanza->StanzaSp.n_stanza    
 
 ## Query e Indici  
 
@@ -755,7 +755,7 @@ WHERE Paziente.nome="Benedetta" AND Paziente.cognome="Lo Duca" AND TipoEsame.nom
 
 5. La sede, il reparto, la stanza e il numero di serie dei macchinari che non effettuano una revisione da piu' di un mese  
 ~~~sql
-SELECT StanzaSp.sede, StanzaSp.n_stanza, StanzaSp.reparto,Macchinario.n_serie 
+SELECT StanzaSp.sede, StanzaSp.n_stanza, StanzaSp.reparto,Macchinario.n 
 FROM StanzaSp, Macchinario  
 WHERE Macchinario.sede=StanzaSp.sede AND Macchinario.reparto=StanzaSp.reparto   
 AND StanzaSp.n_stanza=Macchinario.n_stanza AND DATEDIFF(CURDATE(),Macchinario.ultima_revisione)>=30; 
