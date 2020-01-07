@@ -4,14 +4,15 @@ table {
 }
 
 #home{
-   height: 1000px;
-   
+   height: 1000px;   
 }
+
 
 #home h1{
    font-size:70px;
    text-align:right;
    font-weight: bold;
+   margin-bottom: none;
 }
 
 #home h2{
@@ -28,7 +29,7 @@ table {
 #home p{
    text-align:right;
    position: bottom;
-   margin-top:600px;
+   margin-top:620px;
 }
 
 body{
@@ -85,6 +86,9 @@ Si vuole realizzare una base di dati che contenga e gestisca una clinica con pi√
 2. Vi possono essere piu' dirigenti per lo stesso settore.  
 3. Per ogni reparto, anche se ci sono piu' reparti in piu' sedi, il primario e' uno e uno solo per reparto.  
 4. L'entita' reparto e' intesa come insieme dei reparti che Clinica Magi mette a disposizione, indipendentemente dal fatto che una sede puo' avere tutti o parte di questi reparti.   
+   
+---
+
 ## **Progettazione concettuale**
 
 ## Glossario dei termini  
@@ -164,6 +168,9 @@ Stipendio medio personale Clinica Magi|B|1 al mese
 Trovare il personale che lavora in una data sede|I| 3 al mese
 Numero dipendenti per ogni sede|B|1 al mese
 
+
+---
+
 ## Tabella delle entit√† 
 
 Entita'|Descrizione|Attributi
@@ -234,7 +241,7 @@ Nessun attributo|
 
 Macchinario||||
 -----------------|-------|----------------------------|----------
-n|VARCHAR |codice identificativo univoco del macchinario| **Chiave**
+n_serie|VARCHAR |codice identificativo univoco del macchinario| **Chiave**
 casa_prod| VARCHAR| nome della casa produttrice
 nome| VARCHAR | nome rappresentativo del macchinario
 ultima_revisione| DATE| data dell'ultima revisione effettuata
@@ -349,7 +356,8 @@ PrenotazioneEsame|
 </td></tr>
 <tr><td>
 
-PrenotazioneStanza||
+PrenotazioneStanza|
+|-----------|-------|
 |data_inizio| DATETIME|
 |data_fine| DATETIME|
 
@@ -672,7 +680,6 @@ StanzaRi(**n_stanza**,***sede**, ***reparto**, prezzo_notte)
 > *v8.* StanzaRi.sede->Costituisce.sede  
 > *v9.* StanzaRi.reparto->Costituisce.reparto  
 Reparto(**codice**, tipo, *primario);  
-
 > *v10.* Reparto.primario->Personale.CF  
 
 Costituisce(***sede**, ***reparto**);  
@@ -702,7 +709,7 @@ PrenotazioneStanza(**ID**, *paziente, *n_stanza, *reparto, *sede, data_inizio, d
 > *v22.* Prenotazione.reparto->StanzaSp.reparto  
 > *v23.* Prenotazione.n_stanza->StanzaSp.n_stanza    
 
-## Query e Indici  
+## Query  
 
 1. Trovare le stanze di ricovero (StanzaRi) disponibili per una determinata sede (PD1) e un determinato reparto (MEFI)  
 ~~~sql
