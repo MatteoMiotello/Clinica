@@ -7,10 +7,19 @@ body{
    font-size: 10px;
    font-family: Arial;
    line-height: 1.4;
-   text-align:justify;
 }
 img {
    width: 30%;
+   padding-left: 10%;
+}
+
+#diagramma{
+   width:100%;
+}
+
+#diagramma img{
+   width:100%;
+   padding-left:0;
 }
 </style>
 
@@ -424,6 +433,14 @@ PrenotazioneStanza|
 - un EsameEffettuato viene effettuato da un solo Paziente (1,1)
 ---
 
+<div id="diagramma">
+
+![diagramma](./img/diagrammaER.png)
+
+</div>
+
+## **Progettazione Logica**
+
 ## Tabella dei volumi
 
 |Concetto|Tipo|Volume|
@@ -556,8 +573,14 @@ L'entità "Costituisce" è così composta:
 <p align="justify"> 
 Nella scelta dgli identificatori primari l'attenzione cade principalmente sulle entità StanzaSp e StanzaRi, nelle quali si è scelto di porre "n_stanza", "reparto" e "sede" come chiavi primarie. Così facendo riusciamo, tramite le sole chiavi principali a localizzare una stanza all'interno dell'intera clinica grazie anche all'entità "Costituisce", che relaziona le chiavi di "reparto" e "sede".
 
+<div id="diagramma">
+
+![schemalogico](./img/SchemaLogico.png)
+
+</div>
+
 ## Traduzione verso il modello relazione  
-<p align="justify"> 
+
 Sede( **id**, cap, via, n_civico, telefono);  
 Personale(**CF**, *sede, *stipendio, nome, cognome, sesso, data_nascita, telefono, IBAN, tipo, grado, n_civico, via, cap); 
 
@@ -614,75 +637,105 @@ PrenotazioneStanza(**id**, *paziente, *stanza, *reparto, *sede, data_inizio, dat
 ## Query e Indici  
 
 1. Trovare le stanze di ricovero (StanzaRi) disponibili per una determinata sede (PD1) e un determinato reparto (MEFI)  
-select distinct StanzaRi.n_stanza as Numero_stanza from StanzaRi
-where StanzaRi.sede="PD1" AND StanzaRi.reparto="MEFI" AND StanzaRi.n_stanza NOT IN  
-(select distinct PrenotazioneStanza.n_stanza    
-from PrenotazioneStanza, StanzaRi   
-where PrenotazioneStanza.sede=StanzaRi.sede  AND PrenotazioneStanza.reparto=StanzaRi.reparto AND PrenotazioneStanza.n_stanza=StanzaRi.n_stanza   
+~~~sql
+SELECT DISTINCT StanzaRi.n_stanza as Numero_stanza FROM StanzaRi
+WHERE StanzaRi.sede="PD1" AND StanzaRi.reparto="MEFI" AND StanzaRi.n_stanza NOT IN  
+(SELECT DISTINCT PrenotazioneStanza.n_stanza    
+FROM PrenotazioneStanza, StanzaRi   
+WHERE PrenotazioneStanza.sede=StanzaRi.sede  AND PrenotazioneStanza.reparto=StanzaRi.reparto AND PrenotazioneStanza.n_stanza=StanzaRi.n_stanza   
 AND DATEDIFF(PrenotazioneStanza.data_fine, CURDATE())>0  AND DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE())<0   
 AND StanzaRi.reparto="MEFI" AND StanzaRi.sede="PD1" );  
+~~~
 
-![n_stanza](./img/n_stanza.jpg)
+![n_stanza](./img/n_stanza.png)
 
-2. Verificare in quale stanza per ricovero (StanzaRi) si trova un paziente (nel caso ci fosse) all'interno di una sede.    
-select PrenotazioneStanza.reparto AS Reparto, PrenotazioneStanza.stanza As Stanza  
-from Paziente, PrenotazioneStanza  
-where PrenotazioneStanza.sede="VI1" AND Paziente.nome="Demetrio" AND Paziente.cognome="Lombardo" AND Paziente.CF=PrenotazioneStanza.paziente AND (DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE()) = 0 OR DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE()) < 0) AND DATEDIFF(PrenotazioneStanza.data_fine, CURDATE()) > 0;  
+2. Verificare in quale stanza per ricovero (StanzaRi) si trova un paziente (nel caso ci fosse) all'interno di una sede.  
+~~~sql  
+SELECT PrenotazioneStanza.reparto AS Reparto, PrenotazioneStanza.n_stanza As Stanza  
+FROM Paziente, PrenotazioneStanza  
+WHERE PrenotazioneStanza.sede="VI1" AND Paziente.nome="Demetrio" AND Paziente.cognome="Lombardo" AND Paziente.CF=PrenotazioneStanza.paziente AND (DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE()) = 0 OR DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE()) < 0) AND DATEDIFF(PrenotazioneStanza.data_fine, CURDATE()) > 0;
+~~~  
 
-![stanzari_paz](./img/stanzari_paz.jpg)
+![stanzari_paz](./img/stanzari_paz.png)
 
 3. Report incasso di un periodo prestabilito (dal 2020-01-1 al 2020-02-1)  
-select sum(TOT) AS totale from (select sum(StanzaRi.prezzo_notte) as TOT from StanzaRi, PrenotazioneStanza where StanzaRi.sede="VI1" AND   StanzaRi.sede=PrenotazioneStanza.sede   
-AND StanzaRi.reparto=PrenotazioneStanza.reparto AND StanzaRi.n_stanza=PrenotazioneStanza.stanza   
+~~~sql
+SELECT sum(TOT) AS totale FROM (SELECT sum(StanzaRi.prezzo_notte) as TOT FROM StanzaRi, PrenotazioneStanza WHERE StanzaRi.sede="VI1" AND   StanzaRi.sede=PrenotazioneStanza.sede   
+AND StanzaRi.reparto=PrenotazioneStanza.reparto AND StanzaRi.n_stanza=PrenotazioneStanza.n_stanza   
 AND PrenotazioneStanza.data_fine BETWEEN '2019-01-04' AND '2019-01-17' AND PrenotazioneStanza.pagamento=1 group by StanzaRi.sede  
 UNION  
-select sum(TipoEsame.prezzo) AS SUM1  
-from PrenotazioneEsame, TipoEsame where PrenotazioneEsame.sede="VI1" AND PrenotazioneEsame.tipo=TipoEsame.nome AND  
+SELECT sum(TipoEsame.prezzo) AS SUM1  
+FROM PrenotazioneEsame, TipoEsame WHERE PrenotazioneEsame.sede="VI1" AND PrenotazioneEsame.tipo=TipoEsame.nome AND  
 PrenotazioneEsame.data_e BETWEEN '2020-01-01 ' AND '2020-02-01' AND PrenotazioneEsame.pagamento=1  
 group by sede) AS sub1;  
+~~~
 
-![tot_periodo  ](/img/tot_periodo.jpg)
+![tot_periodo  ](./img/tot_periodo.png)
 
-4. calcolo spese totali paziente (ho messo +1 in DATEDIFF perche altrimenti mi conta 3 giorni al posto di 4, cioe mi esclude il giorno di partenza)  
-select sum(TOT) As totale_da_pagare from (select sum(StanzaRi.prezzo_notte)*(DATEDIFF(PrenotazioneStanza.data_fine, PrenotazioneStanza.data_inizio)+1) as TOT  
-from Paziente, PrenotazioneStanza, StanzaRi  
-where Paziente.nome="Benedetta" AND Paziente.cognome="Lo Duca" AND Paziente.CF=PrenotazioneStanza.paziente AND PrenotazioneStanza.sede=StanzaRi.sede  
+4. calcolo spese totali paziente (ho messo +1 in DATEDIFF perche altrimenti mi conta 3 giorni al posto di 4, cioe mi esclude il giorno di partenza)
+~~~sql  
+SELECT sum(TOT) As totale_da_pagare FROM (SELECT sum(StanzaRi.prezzo_notte)*(DATEDIFF(PrenotazioneStanza.data_fine, PrenotazioneStanza.data_inizio)+1) as TOT  
+FROM Paziente, PrenotazioneStanza, StanzaRi  
+WHERE Paziente.nome="Benedetta" AND Paziente.cognome="Lo Duca" AND Paziente.CF=PrenotazioneStanza.paziente AND PrenotazioneStanza.sede=StanzaRi.sede  
 AND PrenotazioneStanza.reparto=StanzaRi.reparto AND PrenotazioneStanza.n_stanza=StanzaRi.n_stanza AND PrenotazioneStanza.pagamento=0 
-UNION select sum(TipoEsame.prezzo) from TipoEsame,PrenotazioneEsame, Paziente  
-where Paziente.nome="Benedetta" AND Paziente.cognome="Lo Duca" AND TipoEsame.nome=PrenotazioneEsame.tipo AND Paziente.CF=PrenotazioneEsame.paziente AND   PrenotazioneEsame.pagamento=0) as sub1;  
+UNION SELECT sum(TipoEsame.prezzo) FROM TipoEsame,PrenotazioneEsame, Paziente  
+WHERE Paziente.nome="Benedetta" AND Paziente.cognome="Lo Duca" AND TipoEsame.nome=PrenotazioneEsame.tipo AND Paziente.CF=PrenotazioneEsame.paziente AND   PrenotazioneEsame.pagamento=0) as sub1;  
+~~~
 
-![tot_da_pagare](/img/tot_da_pagare.jpg)
+![tot_da_pagare](./img/tot_da_pagare.png)
 
 5. La sede, il reparto, la stanza e il numero di serie dei macchinari che non effettuano una revisione da piu' di un mese  
-select StanzaSp.sede, StanzaSp.n_stanza, StanzaSp.reparto,Macchinario.n_serie 
-from StanzaSp, Macchinario  
-where Macchinario.sede=StanzaSp.sede AND Macchinario.reparto=StanzaSp.reparto   
+~~~sql
+SELECT StanzaSp.sede, StanzaSp.n_stanza, StanzaSp.reparto,Macchinario.n_serie 
+FROM StanzaSp, Macchinario  
+WHERE Macchinario.sede=StanzaSp.sede AND Macchinario.reparto=StanzaSp.reparto   
 AND StanzaSp.n_stanza=Macchinario.n_stanza AND DATEDIFF(CURDATE(),Macchinario.ultima_revisione)>=30; 
+~~~
+ ![query_5](./img/query_5.png)
 
- ![query_5](/img/query_5.jpg)
-
-6. Report incasso giornaliero medio di un periodo prestabilito (2020-01-01,2020-02-01)  
-select ROUND((sum(TOT)/(DATEDIFF("2020-02-01","2020-01-01")+1)),2) AS Guadagno_giornaliero_medio from (select sum(StanzaRi.prezzo_notte) as TOT from StanzaRi, PrenotazioneStanza where StanzaRi.sede="VI1" AND   StanzaRi.sede=PrenotazioneStanza.sede   
+6. Report incasso giornaliero medio di un periodo prestabilito (2020-01-01,2020-02-01) 
+~~~sql
+SELECT ROUND((sum(TOT)/(DATEDIFF("2020-02-01","2020-01-01")+1)),2) AS Guadagno_giornaliero_medio FROM (SELECT sum(StanzaRi.prezzo_notte) as TOT FROM StanzaRi, PrenotazioneStanza WHERE StanzaRi.sede="VI1" AND   StanzaRi.sede=PrenotazioneStanza.sede   
 AND StanzaRi.reparto=PrenotazioneStanza.reparto AND StanzaRi.n_stanza=PrenotazioneStanza.n_stanza   
 AND PrenotazioneStanza.data_fine BETWEEN '2020-01-01' AND '2020-02-01' AND PrenotazioneStanza.pagamento=1 group by StanzaRi.sede  
 UNION  
-select sum(TipoEsame.prezzo) AS SUM1  
-from PrenotazioneEsame, TipoEsame where PrenotazioneEsame.sede="VI1" AND PrenotazioneEsame.tipo=TipoEsame.nome AND  
+SELECT sum(TipoEsame.prezzo) AS SUM1  
+FROM PrenotazioneEsame, TipoEsame WHERE PrenotazioneEsame.sede="VI1" AND PrenotazioneEsame.tipo=TipoEsame.nome AND  
 PrenotazioneEsame.data_e BETWEEN '2020-01-01 ' AND '2020-02-01' AND PrenotazioneEsame.pagamento=1  
 group by sede) AS sub1;  
+~~~
 
-![guadagno_medio](/img/guadagno_medio.jpg)
+![guadagno_medio](./img/guadagno_medio.png)
 
-7. Stipendio medio (importo netto) del personale della Clinica Magi    
-select ROUND(AVG(Stipendio.imp_netto), 0) AS Stipendio_medio_personale  
-from Personale inner join Stipendio on(Personale.tipo=Stipendio.tipo);  
+7. Stipendio medio (importo netto) del personale della Clinica Magi  
+~~~sql  
+SELECT ROUND(AVG(Stipendio.imp_netto), 0) AS Stipendio_medio_personale  
+FROM Personale inner join Stipendio on(Personale.tipo=Stipendio.tipo);  
+~~~
 
- ![stipendio_medio](./img/stipendio_medio.jpg)
+ ![stipendio_medio](./img/stipendio_medio.png)
 
 8. numero medio di esami per paziente arrotondato all'intero  
- select ROUND((select count(*) from EsameEffettuato)/(select count(*) from Paziente),0) AS Media_esami_paziente  
+~~~sql
+SELECT ROUND((SELECT count(*) FROM EsameEffettuato)/(SELECT count(*) FROM Paziente),0) AS Media_esami_paziente; 
+~~~
 
- ![media_esami](./img/media_esami.jpg)
+ ![media_esami](./img/media_esami.png)
+
+9. Ricerca di Personale tramite l'inserimento della sede, ordinato poi per il tipo di impiego. (in questo caso la sede è "VI1")
+~~~sql 
+SELECT Personale.nome, Personale.cognome, Personale.tipo FROM Personale, Sede WHERE Personale.sede=Sede.ID AND Sede.ID="VI1" GROUP BY Personale.nome, Personale.cognome, Personale.tipo order by Personale.tipo;
+~~~
+
+![ricerca_personale](./img/RicercaPersonale.png)
+
+10. Visualizza il numero di dipendenti che lavorano per ogni sede
+~~~sql
+SELECT COUNT(Personale.sede), Sede.ID FROM Personale, Sede WHERE Personale.sede=Sede.ID GROUP BY Sede.ID;
+~~~
+
+![visual_dipendenti](./img/VisualizzaDipendenti.png)
+
 
 
 
