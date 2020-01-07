@@ -163,7 +163,9 @@ tipo| VARCHAR| identifica la specialita' medica che viene trattata
 
 Stanza|||
 -----------------|-------|--------------------------------------
-id_stanza|VARCHAR|chiave composta: n_stanza, id_reparto, id_sede
+n_stanza|VARCHAR|
+sede|VARCHAR|
+reparto|VARCHAR|
 
 </td></tr>
 <tr><td>
