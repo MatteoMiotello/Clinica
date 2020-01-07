@@ -41,6 +41,12 @@ Siamo nel 1958, il Prof. Vitangelo Moscarda, chirurgo ortopedico, e la moglie Ad
 Si vuole realizzare una base di dati che contenga e gestisca una clinica con più sedi sparse per il torritorio. La clinica presenta una serie di reparti, identificati dal tipo di reparto e da un codice. La clinica presenta più sedi, ognuna di esse deve essere identificata dalla località in cui si trova (numero civico, capoluogo e via) e un numero di telefono, in modo tale da poter essere contattati. Ogni sede presenta uno o più reparti, ogni reparto in ogni sede presenta più stanze, identificate da un numero, dal reparto a cui appartengono e dalla sede in cui si trovano. Vengono identificate due tipi di stanze, la stanza per il ricovero, nel caso in cui un paziente debba intrattenersi più giorni nella clinica per effettuare esami o per degenza, che presenta un prezzo per notte in base al tipo di stanza che il paziente sceglie; e la stanza specializzata, in cui vengono effettuati gli esami. Ogni stanza specializzata contiene al suo interno una serie di macchinari, identificati dal nome, dalla casa produttrice, un numero di serie e una data dell'ultima revisione effettuata su tal macchinario. Un paziente, di cui si vuole memorizzare il nome, il cognome, il sesso, l'indirizzo di residenza (numero civico, capoluogo e via), il numero di telefono e il codice fiscale, può effettuare delle prenotazioni. Ogni prenotazione e' identificata da una data in cui e' stata fatta la prenotazione e un campo pagamento usato per capire se e' gia' stato effettuato o meno il versamento dei soldi. Ogni prenotazione di un esame e' riferito ad un tipo di esame specifico, per tale tipo di prenotazione si vuole memorizzare l'ora in cui verra' effettuato, in modo da poter gestire le prenotazioni con le stanze disponibili. Ogni tipo di esame e' comune ad ogni sede che presenta quel reparto, e si vuole memorizzare il nome e il prezzo. Ogni prenotazione di una stanza riserva una stanza ricovero, di tale prenotazione vogliamo conoscere la data di inizio prenotazione e la data in cui la stanza verra' liberata. Un paziente puo' effetturare degli esami. Degli esami effettuati vogliamo memorizzare la stanza in cui e' stata effettuato, la diagnosi, la terapia, il medico che ha effettuato l'esame, il nome e il prezzo dell'esame. In ogni sede lavorano diversi dipendenti (personale), di ogni sede vogliamo memorizzare: i dirigenti, identificati dal settore, gli infermieri, identificati dal grado, i medici con la propria specializzazione, i primari per ogni reparto (un reparto ha piu' primari perche' ogni reparto in ogni sede ha il suo) e i restanti dipendenti (personale non medico). Ogni dipendente (personale) in base al ruolo che ricopre percepirà uno stipendio fisso, di cui si vogliono memorizzare l'importo lordo e l'importo netto. Di ogni dipendente (personale) si vuole tener traccia del: nome, cognome, data di nascita, sesso, residenza (numero civico, capoluogo e via), telefono, IBAN per versare mensilmente lo stipendio e codice fiscale. 
 </p>
 
+## Assunzioni  
+1. Il personale (ad eccezzione del primario) lavora in una e una sola sede.   
+2. Vi possono essere piu' dirigenti per lo stesso settore.  
+3. Per ogni reparto, anche se ci sono piu' reparti in piu' sedi, il primario e' uno e uno solo per reparto.  
+4. L'entita' reparto e' intesa come insieme dei reparti che Clinica Magi mette a disposizione, indipendentemente dal fatto che una sede puo' avere tutti o parte di questi reparti.   
+5. 
 ## **Progettazione concettuale**
 
 ## Glossario dei termini  
@@ -130,7 +136,7 @@ Stanza| Stanze generiche all'interno di ogni sede| n_stanza
 StanzaRi| Entita' figlia di Stanze, identifica le stanze adibite al ricovero| prezzo_notte
 StanzaSp| Entita' figlia di Stanze, identifica le stanze specialistiche della clinica.| *Nessun Attibuto*
 Macchinari| Entita' che identifica il tipo di macchinario utilizzato per effettuare gli esami| n_serie{PK}, casa_prod, nome, ultima_revisione
-Personale| Entita' che indica le persone che lavorano nella clinica| CF{PK}, nome, cognome, data_nascita, sesso, telefono, IBAN, indirizzo(CAP, via, n_civico)
+Personale| Entita' che indica le persone che lavorano nella clinica| CF{PK}, nome, cognome, _, sesso, telefono, IBAN, indirizzo(CAP, via, n_civico)
 Personale non medico| Entita' figlia di Personale, specifica per il personale non medico| tipo
 Dirigente| Entita' figlia di Personale, specifica per il dirigente della sede| settore
 Infermieri| Entita' figlia di Personale, specifica per gli infermieri| grado
@@ -606,10 +612,10 @@ Nella scelta dgli identificatori primari l'attenzione cade principalmente sulle 
 ## Traduzione verso il modello relazione  
 
 Sede( **ID**, cap, via, n_civico, telefono);  
-Personale(**CF**, *sede, *stipendio, nome, cognome, sesso, data_nascita, telefono, IBAN, tipo, grado, n_civico, via, cap); 
+Personale(**CF**, *sede, *tipo, nome, cognome, sesso, datadinascita, telefono, IBAN, grado, n_civico, via, cap); 
 
 > *v1.* Personale.sede -> Sede.ID  
-> *v2.* Personale.stipndio -> Stipendio.tipo   
+> *v2.* Personale.tipo -> Stipendio.tipo   
 
 Stipendio(**tipo**, imp_lordo, imp_netto);  
 StanzaSp(***sede**, ***reparto**, **n_stanza**);  
