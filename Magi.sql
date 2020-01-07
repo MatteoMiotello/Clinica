@@ -1,8 +1,8 @@
 --CREAZIONE TABELLE--
 DROP TABLE IF EXISTS Sede;
 CREATE TABLE Sede (
-    id VARCHAR (3),
-    CAP CHAR (5) NOT NULL,
+    ID VARCHAR (3),
+    CAP VARCHAR (5) NOT NULL,
     via VARCHAR (25) NOT NULL,
     n_civico SMALLINT NOT NULL,
     telefono VARCHAR (13) NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE Paziente (
     telefono VARCHAR (13),
     via VARCHAR (35) NOT NULL,
     n_civico TINYINT NOT NULL,
-    CAP CHAR (5) NOT NULL,
+    CAP VARCHAR (5) NOT NULL,
     PRIMARY KEY (CF)
 )ENGINE=InnoDb;
 DROP TABLE IF EXISTS Personale;
@@ -38,7 +38,7 @@ CREATE TABLE Personale (
     telefono VARCHAR (13),
     tipo VARCHAR (30),
     grado VARCHAR (30) default null,
-    CAP CHAR (5),
+    CAP VARCHAR (5),
     via VARCHAR (25),
     n_civico SMALLINT,
     IBAN VARCHAR (27) NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE Personale (
 )ENGINE=InnoDb;
 DROP TABLE IF EXISTS Reparto;
 CREATE TABLE Reparto (
-    codice CHAR (4),
+    codice VARCHAR (4),
     tipo VARCHAR (25) UNIQUE,
     primario VARCHAR (16),
     FOREIGN KEY (primario) REFERENCES Personale (CF),
@@ -58,7 +58,7 @@ CREATE TABLE Reparto (
 DROP TABLE IF EXISTS Costituisce;
 CREATE TABLE Costituisce ( 
     sede VARCHAR(3),
-    reparto CHAR (4),
+    reparto VARCHAR (4),
     FOREIGN KEY (sede) REFERENCES Sede (ID),
     FOREIGN KEY (reparto) REFERENCES Reparto (codice),
     PRIMARY KEY (sede, reparto)
@@ -67,7 +67,7 @@ DROP TABLE IF EXISTS StanzaSp;
 CREATE TABLE StanzaSp ( 
     n_stanza TINYINT,
     sede VARCHAR (3),
-    reparto CHAR (4),
+    reparto VARCHAR (4),
     FOREIGN KEY (sede, reparto) REFERENCES Costituisce (sede, reparto),
     PRIMARY KEY (n_stanza, sede, reparto)
 )ENGINE=InnoDb;
@@ -75,7 +75,7 @@ DROP TABLE IF EXISTS StanzaRi;
 CREATE TABLE StanzaRi ( 
     n_stanza TINYINT,
     sede VARCHAR (3),
-    reparto CHAR (4),
+    reparto VARCHAR (4),
     prezzo_notte DECIMAL (6,2) NOT NULL,
     FOREIGN KEY (sede, reparto) REFERENCES Costituisce (sede,reparto),
     PRIMARY KEY (n_stanza, sede, reparto)
@@ -83,7 +83,7 @@ CREATE TABLE StanzaRi (
 DROP TABLE IF EXISTS TipoEsame;
 CREATE TABLE TipoEsame (
     nome VARCHAR(25),
-    prezzo DECIMAL NOT NULL,
+    prezzo DECIMAL (6,2) NOT NULL,
     PRIMARY KEY (nome)
 ) ENGINE=InnoDb;
 DROP TABLE IF EXISTS PrenotazioneStanza;
@@ -95,7 +95,7 @@ CREATE TABLE PrenotazioneStanza (
     pagamento BOOLEAN default 0,
     paziente VARCHAR (16),
     n_stanza TINYINT,
-    reparto CHAR (4),
+    reparto VARCHAR (4),
     sede VARCHAR (3),
     FOREIGN KEY (n_stanza, sede, reparto) REFERENCES StanzaRi (n_stanza, sede, reparto),
     FOREIGN KEY (paziente) REFERENCES Paziente (CF),
@@ -110,7 +110,7 @@ CREATE TABLE PrenotazioneEsame (
     pagamento BOOLEAN,
     paziente VARCHAR(16),
     n_stanza TINYINT,
-    reparto CHAR (4),
+    reparto VARCHAR (4),
     sede VARCHAR (3),
     tipo VARCHAR(25),
     PRIMARY KEY (ID),
@@ -126,7 +126,7 @@ CREATE TABLE Macchinario (
     casa_prod VARCHAR (30),
     ultima_revisione DATE NOT NULL,
     n_stanza TINYINT,
-    reparto CHAR (4),
+    reparto VARCHAR (4),
     sede VARCHAR (3),
     FOREIGN KEY (n_stanza, sede, reparto) REFERENCES StanzaSp (n_stanza, sede, reparto),
     PRIMARY KEY (n_serie)
