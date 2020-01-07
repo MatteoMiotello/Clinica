@@ -348,7 +348,7 @@ PrenotazioneStanza|
 
 ## Generalizzazione  
 - **Personale** e' generalizzazione totale non esclusiva di: **PersonaleNonMedico**,  **Dirigente**, **Infermiere**, **Medico**.  
-- **Medico** e' generalizzazione non totale e non esclusiva di **Primario**;
+- **Medico** e' generalizzazione non totale ed esclusiva di **Primario**;
 - **Prenotazione** e' generalizzazione totale ed esclusiva di **PrenotazioneEsame** e **PrenotazioneStanza**.  
 - **TipoEsame** e' generalizzazione non totatale ed esclusiva di **EsameEffettuato**.  
 - **Stanze** e' generalizzazione totale esclusiva di **StanzaRi** e **StanzaSp**.  
@@ -630,7 +630,7 @@ from StanzaSp, Macchinario
 where Macchinario.sede=StanzaSp.sede AND Macchinario.reparto=StanzaSp.reparto   
 AND StanzaSp.n_stanza=Macchinario.n_stanza AND DATEDIFF(CURDATE(),Macchinario.ultima_revisione)>=30;  
 6. Report incasso giornaliero medio di un periodo prestabilito (2020-01-01,2020-02-01)  
-select (sum(TOT)/(DATEDIFF("2020-02-01","2020-01-01")+1)) AS Guadagno_giornaliero_medio from (select sum(StanzaRi.prezzo_notte) as TOT from StanzaRi, PrenotazioneStanza where StanzaRi.sede="VI1" AND   StanzaRi.sede=PrenotazioneStanza.sede   
+select ROUND((sum(TOT)/(DATEDIFF("2020-02-01","2020-01-01")+1)),2) AS Guadagno_giornaliero_medio from (select sum(StanzaRi.prezzo_notte) as TOT from StanzaRi, PrenotazioneStanza where StanzaRi.sede="VI1" AND   StanzaRi.sede=PrenotazioneStanza.sede   
 AND StanzaRi.reparto=PrenotazioneStanza.reparto AND StanzaRi.n_stanza=PrenotazioneStanza.n_stanza   
 AND PrenotazioneStanza.data_fine BETWEEN '2020-01-01' AND '2020-02-01' AND PrenotazioneStanza.pagamento=1 group by StanzaRi.sede  
 UNION  
@@ -641,9 +641,8 @@ group by sede) AS sub1;
 7. Stipendio medio (importo netto) del personale della Clinica Magi    
 select ROUND(AVG(Stipendio.imp_netto), 0) AS Stipendio_medio_personale  
 from Personale inner join Stipendio on(Personale.tipo=Stipendio.tipo);  
-8. numero medio di esami per paziente  
-select 
-
+8. numero medio di esami per paziente arrotondato all'intero  
+ select ROUND((select count(*) from EsameEffettuato)/(select count(*) from Paziente),0) AS Media_esami_paziente
 
 
 
