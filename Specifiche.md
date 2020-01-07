@@ -1,3 +1,15 @@
+<style>
+table {
+    width:100%;
+}
+
+body{
+   font-size: 10px;
+   font-family: Arial;
+   line-height: 1.4;
+}
+</style>
+
 
 # Clinica Magi  
 ## Abstract  
@@ -64,6 +76,8 @@ Si vuole realizzare una base di dati che contenga e gestisca una clinica con pi√
 | <p align= "justify"> Un paziente, di cui si vuole memorizzare il nome, il cognome, l'indirizzo di residenza (numero civico, capoluogo e via), il numero di telefono e il codice fiscale[..] |
 
 ## Operazioni previste sulla base di dati  
+
+
 Operazione|Tipo|Frequenza
 |:-------|:-------|:-------|
 Apertura Sede  B |I|1 Anno
