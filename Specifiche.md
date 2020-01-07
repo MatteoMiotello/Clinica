@@ -28,17 +28,19 @@ Siamo nel 1958, il Prof. Vitangelo Moscarda, chirurgo ortopedico, e la moglie Ad
 Si vuole realizzare una base di dati che contenga e gestisca una clinica con più sedi sparse per il torritorio. La clinica presenta una serie di reparti, identificati dal tipo di reparto e da un codice. La clinica presenta più sedi, ognuna di esse deve essere identificata dalla località in cui si trova (numero civico, capoluogo e via) e un numero di telefono, in modo tale da poter essere contattati. Ogni sede presenta uno o più reparti, ogni reparto in ogni sede presenta più stanze, identificate da un numero, dal reparto a cui appartengono e dalla sede in cui si trovano. Vengono identificate due tipi di stanze, la stanza per il ricovero, nel caso in cui un paziente debba intrattenersi più giorni nella clinica per effettuare esami o per degenza, che presenta un prezzo per notte in base al tipo di stanza che il paziente sceglie; e la stanza specializzata, in cui vengono effettuati gli esami. Ogni stanza specializzata contiene al suo interno una serie di macchinari, identificati dal nome, dalla casa produttrice, un numero di serie e una data dell'ultima revisione effettuata su tal macchinario. Un paziente, di cui si vuole memorizzare il nome, il cognome, l'indirizzo di residenza (numero civico, capoluogo e via), il numero di telefono e il codice fiscale, può effettuare delle prenotazioni. Ogni prenotazione e' identificata da una data in cui e' stata fatta la prenotazione e un campo pagamento usato per capire se e' gia' stato effettuato o meno il versamento dei soldi. Ogni prenotazione di un esame e' riferito ad un tipo di esame specifico, per tale tipo di prenotazione si vuole memorizzare l'ora in cui verra' effettuato, in modo da poter gestire le prenotazioni con le stanze disponibili. Ogni tipo di esame e' comune ad ogni sede che presenta quel reparto, e si vuole memorizzare il nome e il prezzo. Ogni prenotazione di una stanza riserva una stanza ricovero, di tale prenotazione vogliamo conoscere la data di inizio prenotazione e la data in cui la stanza verra' liberata. Un paziente puo' effetturare degli esami. Degli esami effettuati vogliamo memorizzare la stanza in cui e' stata effettuato, la diagnosi, la terapia, il medico che ha effettuato l'esame, il nome e il prezzo dell'esame. In ogni sede lavorano diversi dipendenti (personale), di ogni sede vogliamo memorizzare: i dirigenti, identificati dal settore, gli infermieri, identificati dal grado, i medici con la propria specializzazione, i primari per ogni reparto (un reparto ha piu' primari perche' ogni reparto in ogni sede ha il suo) e i restanti dipendenti (personale non medico). Ogni dipendente (personale) in base al ruolo che ricopre percepirà uno stipendio fisso, di cui si vogliono memorizzare l'importo lordo e l'importo netto. Di ogni dipendente (personale) si vuole tener traccia del: nome, cognome, data di nascita, sesso, residenza (numero civico, capoluogo e via), telefono, IBAN per versare mensilmente lo stipendio e codice fiscale. 
 </p>
 
+## **Progettazione concettuale**
+
 ## Glossario dei termini  
 
 | Termine | Descrizione | Collegamento |
 |:-------:|:-------|:-------:|
 | Sede | Una sede della clinica Magi | Reparto, Stanza, Persona |
-| Personale | Lavoratore della clinca, si suddivide in PersonaleNonMedico <br> Dirigenti, Infermieri e Medici. Primario è una specializzazione di Medici | Reparto, Stanza, Persona |
-| Stanza | Una stanza di una Sede, si suddivide in StanzaRi e StanzaSp. | PrenotazioneStanza (StanzaRi), PrenotazioneEsame(StanzaSp), Macchinario (StanzaSp)| 
-| Reparto | Reparto contiene tutti i reparti che la clinica possiede(NB: non e' detto che all'interno di una sede vi siano tutti i Reparti) | Sede, Primario, Stanze, Tipo Esame |
+| Personale | Lavoratore della clinca, si suddivide in PersonaleNonMedico <br> Dirigenti, Infermieri e Medici. Primario è una specializzazione di Medici | Reparto, Sede, Stipendio |
+| Stanza | Una stanza di una Sede, si suddivide in StanzaRi e StanzaSp. | PrenotazioneStanza (StanzaRi), PrenotazioneEsame(StanzaSp), Macchinario (StanzaSp), Reparto, Sede| 
+| Reparto | Reparto contiene tutti i reparti che la clinica possiede(NB: non e' detto che all'interno di una sede vi siano tutti i Reparti) | Sede, Primario, Stanza, TipoEsame |
 | Paziente | Un paziente della clinica | Esame Effettuato, Prenotazione |
-| Tipo Esame | Rappresenta tutti gli esami che sono possibili fare nella clinica Magi. <br> Esame Effettuato e' una specializzazione di Tipo Esame | PrenotazioneEsame |
-| Prenotazione | Rappresenta le prenotazioni che l'utente puo' fare (PrenotazioneEsame) <br> e quelle che vengono fatte dal personale interno (PrenotazioneStanze)|StanzaRi(PrenotazioneStanza), StanzaSp |
+| TipoEsame | Rappresenta tutti gli esami che sono possibili fare nella clinica Magi. <br> Esame Effettuato e' una specializzazione di Tipo Esame | PrenotazioneEsame, Reparto |
+| Prenotazione | Rappresenta le prenotazioni che l'utente puo' fare (PrenotazioneEsame) <br> e quelle che vengono fatte dal personale interno (PrenotazioneStanze)|StanzaRi(PrenotazioneStanza), TipoEsame(PrenotazioneEsame), Paziente, StanzaSp(PrenotazoneEsame) |
 | Stipendio | Lo stipendio percepito dal personale | Personale |
 | Macchinario | Macchinario usato per gli esami | StanzaSp |
 
@@ -84,29 +86,26 @@ Si vuole realizzare una base di dati che contenga e gestisca una clinica con pi�
 
 Operazione|Tipo|Frequenza
 |:-------|:-------|:-------|
-Apertura Sede  B |I|1 Anno
+Aggiunta nuova Sede |I|1 all'anno
 Aggiunta Reparto|I|1 ogni 5 anni
-Assunzione nuovo dipendente|I|2 al mese
+Aggiunta nuovo dipendente|I|2 al mese
 Aggiunta paziente|I| 5 al giorno
 Prenotazione esame|I| 100 al giorno
-Prenotazione StanzaRi|I| 30 al giorno
-Verifica StanzaRi|B| 5000 al giorno
-Verifica stanze disponibili|B| 100 al giorno
-Calcolo busta paga dipendente|B|100 al mese
-Calcolo spese totali paziente|B|50 al giorno
-Verifica pagamento|B| 5 al giorno
-Verifica importo totale|B| 100 al giorno
-Verifica revisione macchinari|B| 10 al mese
+Prenotazione StanzaRi(stanza ricovero)|I| 30 al giorno
+Verifica reparto e stanza in cui si trova un paziente (data una sede)|B| 5000 al giorno
+Trovare le stanze di ricovero (StanzaRi) disponibili per una determinata sede e un determinato reparto|I| 100 al giorno
+Totale delle spese che un dato paziente deve ancora effettuare|I|50 al giorno
+Totale spese effettuate da un determinato paziente|I| 5 al giorno
+ macchinari che non effettuano una revisione da piu' di un mese  |B| 10 al mese
 Report incasso giornaliero|B| 5 al giorno
 Report incasso mensile|B| 5 al mese
+Report incasso di un periodo da stabilire|I| 20 al mese 
 Incasso medio giornaliero|B| 5 al mese
 Ricerca primario per reparto|I| 2 al mese
 Totale stanze di una sede|I| 1 al mese
-
-
----
-
-
+Stipendio medio personale Clinica Magi|B|1 al mese
+Trovare il personale che lavora in una data sede|I| 3 al mese
+Numero dipendenti per ogni sede|B|1 al mese
 
 ## Tabella delle entità 
 
@@ -131,8 +130,6 @@ TipoEsame| Entita' che indica le varie tipologie di esame che sono disponibili n
 Prenotazione| Entita' che indica la prenotazione avvenuta| Id{PK}, tipo, data, pagamento
 PrenotazioneEsame| Entita' figlia di Prenotazione, specifica per la prenotazione di un esame| *Nessun attributo*
 PrenotazioneStanza| Entita' figlia di Prenotazione, specifica per la prenotazione di una stanza| *Nessun attributo*
-
-## Progettazione concettuale
 
 <table>
    <tr><th><h3> Analisi delle entita'</h3></th></tr>
