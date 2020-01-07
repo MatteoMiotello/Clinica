@@ -85,7 +85,6 @@ Si vuole realizzare una base di dati che contenga e gestisca una clinica con pi√
 2. Vi possono essere piu' dirigenti per lo stesso settore.  
 3. Per ogni reparto, anche se ci sono piu' reparti in piu' sedi, il primario e' uno e uno solo per reparto.  
 4. L'entita' reparto e' intesa come insieme dei reparti che Clinica Magi mette a disposizione, indipendentemente dal fatto che una sede puo' avere tutti o parte di questi reparti.   
-5. 
 ## **Progettazione concettuale**
 
 ## Glossario dei termini  
