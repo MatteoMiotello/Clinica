@@ -329,7 +329,7 @@ PrenotazioneStanza|
 >data_inizio not null  
 >data_fine not null  
 >pagamento default 0  
->constraint check_data CHECK((DATEDIFF(data_inizio,data_fine)>=0) AND (DATEDIFF(data_inizio,data_p)>=0))
+>constraint check_data CHECK((DATEDIFF(data_inizio,data_fine)<=0) AND (DATEDIFF(data_inizio,data_p)>=0))
 **StanzaRi**  
 >n_stanza primary key
 >prezzo_notte not null  
@@ -604,10 +604,12 @@ from PrenotazioneStanza, StanzaRi
 where PrenotazioneStanza.sede=StanzaRi.sede  AND PrenotazioneStanza.reparto=StanzaRi.reparto AND PrenotazioneStanza.n_stanza=StanzaRi.n_stanza   
 AND DATEDIFF(PrenotazioneStanza.data_fine, CURDATE())>0  AND DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE())<0   
 AND StanzaRi.reparto="MEFI" AND StanzaRi.sede="PD1" );  
+![n_stanza](./img/n_stanza.jpg)
 2. Verificare in quale stanza per ricovero (StanzaRi) si trova un paziente (nel caso ci fosse) all'interno di una sede.    
 select PrenotazioneStanza.reparto AS Reparto, PrenotazioneStanza.n_stanza As Stanza  
 from Paziente, PrenotazioneStanza  
 where PrenotazioneStanza.sede="VI1" AND Paziente.nome="Demetrio" AND Paziente.cognome="Lombardo" AND Paziente.CF=PrenotazioneStanza.paziente AND (DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE()) = 0 OR DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE()) < 0) AND DATEDIFF(PrenotazioneStanza.data_fine, CURDATE()) > 0;  
+![stanzari_paz](./img/stanzari_paz.jpg)
 3. Report incasso di un periodo prestabilito (dal 2020-01-1 al 2020-02-1)  
 select sum(TOT) AS totale from (select sum(StanzaRi.prezzo_notte) as TOT from StanzaRi, PrenotazioneStanza where StanzaRi.sede="VI1" AND   StanzaRi.sede=PrenotazioneStanza.sede   
 AND StanzaRi.reparto=PrenotazioneStanza.reparto AND StanzaRi.n_stanza=PrenotazioneStanza.n_stanza   
@@ -616,6 +618,7 @@ UNION
 select sum(TipoEsame.prezzo) AS SUM1  
 from PrenotazioneEsame, TipoEsame where PrenotazioneEsame.sede="VI1" AND PrenotazioneEsame.tipo=TipoEsame.nome AND  
 PrenotazioneEsame.data_e BETWEEN '2020-01-01 ' AND '2020-02-01' AND PrenotazioneEsame.pagamento=1  
+![tot_periodo  ](/img/tot_periodo.jpg)
 group by sede) AS sub1;  
 4. calcolo spese totali che il paziente deve ancora effettuare    
 select sum(TOT) As totale_da_pagare from (select sum(StanzaRi.prezzo_notte)*(DATEDIFF(PrenotazioneStanza.data_fine, PrenotazioneStanza.data_inizio)+1) as TOT   
@@ -624,11 +627,13 @@ where Paziente.nome="Benedetta" AND Paziente.cognome="Lo Duca" AND Paziente.CF=P
 AND PrenotazioneStanza.reparto=StanzaRi.reparto AND PrenotazioneStanza.n_stanza=StanzaRi.n_stanza AND PrenotazioneStanza.pagamento=0   
 UNION select sum(TipoEsame.prezzo) from TipoEsame,PrenotazioneEsame, Paziente  
 where Paziente.nome="Benedetta" AND Paziente.cognome="Lo Duca" AND TipoEsame.nome=PrenotazioneEsame.tipo AND Paziente.CF=PrenotazioneEsame.paziente AND   PrenotazioneEsame.pagamento=0) as sub1;  
+![tot_da_pagare](/img/tot_da_pagare.jpg)
 5. La sede, il reparto, la stanza e il numero di serie dei macchinari che non effettuano una revisione da piu' di un mese  
 select StanzaSp.sede, StanzaSp.n_stanza, StanzaSp.reparto,Macchinario.n_serie 
 from StanzaSp, Macchinario  
 where Macchinario.sede=StanzaSp.sede AND Macchinario.reparto=StanzaSp.reparto   
-AND StanzaSp.n_stanza=Macchinario.n_stanza AND DATEDIFF(CURDATE(),Macchinario.ultima_revisione)>=30;  
+AND StanzaSp.n_stanza=Macchinario.n_stanza AND DATEDIFF(CURDATE(),Macchinario.ultima_revisione)>=30; 
+ ![query_5](/img/query_5.jpg)
 6. Report incasso giornaliero medio di un periodo prestabilito (2020-01-01,2020-02-01)  
 select ROUND((sum(TOT)/(DATEDIFF("2020-02-01","2020-01-01")+1)),2) AS Guadagno_giornaliero_medio from (select sum(StanzaRi.prezzo_notte) as TOT from StanzaRi, PrenotazioneStanza where StanzaRi.sede="VI1" AND   StanzaRi.sede=PrenotazioneStanza.sede   
 AND StanzaRi.reparto=PrenotazioneStanza.reparto AND StanzaRi.n_stanza=PrenotazioneStanza.n_stanza   
@@ -638,11 +643,14 @@ select sum(TipoEsame.prezzo) AS SUM1
 from PrenotazioneEsame, TipoEsame where PrenotazioneEsame.sede="VI1" AND PrenotazioneEsame.tipo=TipoEsame.nome AND  
 PrenotazioneEsame.data_e BETWEEN '2020-01-01 ' AND '2020-02-01' AND PrenotazioneEsame.pagamento=1  
 group by sede) AS sub1;  
+![guadagno_medio](/img/guadagno_medio.jpg)
 7. Stipendio medio (importo netto) del personale della Clinica Magi    
 select ROUND(AVG(Stipendio.imp_netto), 0) AS Stipendio_medio_personale  
 from Personale inner join Stipendio on(Personale.tipo=Stipendio.tipo);  
+ ![stipendio_medio](./img/stipendio_medio.jpg)
 8. numero medio di esami per paziente arrotondato all'intero  
- select ROUND((select count(*) from EsameEffettuato)/(select count(*) from Paziente),0) AS Media_esami_paziente
+ select ROUND((select count(*) from EsameEffettuato)/(select count(*) from Paziente),0) AS Media_esami_paziente  
+ ![media_esami](./img/media_esami.jpg)
 
 
 

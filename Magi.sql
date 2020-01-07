@@ -99,7 +99,7 @@ CREATE TABLE PrenotazioneStanza (
     FOREIGN KEY (n_stanza, sede, reparto) REFERENCES StanzaRi (n_stanza, sede, reparto),
     FOREIGN KEY (paziente) REFERENCES Paziente (CF),
     PRIMARY KEY (ID),
-    constraint check_data CHECK((DATEDIFF(data_inizio,data_fine)>=0) AND (DATEDIFF(data_inizio,data_p)>=0))
+    constraint check_data CHECK((DATEDIFF(data_inizio,data_fine)<=0) AND (DATEDIFF(data_inizio,data_p)>=0))
 )ENGINE=InnoDb;
 DROP TABLE IF EXISTS PrenotazioneEsame;
 CREATE TABLE PrenotazioneEsame (
