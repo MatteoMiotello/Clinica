@@ -120,7 +120,7 @@ Numero dipendenti per ogni sede|B|1 al mese
 
 Entita'|Descrizione|Attributi
 ---------------|-------------------------------------------------|--------------------
-Sede| Si intende una delle sedi fisiche della clinica|id{PK}, indirizzo(n_civico, CAP, Via), telefono
+Sede| Si intende una delle sedi fisiche della clinica|ID{PK}, indirizzo(n_civico, CAP, Via), telefono
 Reparto| Si intendono i reparti specialistici della clinica, differenziati per tipo e per locazione|codice{PK}, tipo
 Stanza| Stanze generiche all'interno di ogni sede| n_stanza
 StanzaRi| Entita' figlia di Stanze, identifica le stanze adibite al ricovero| prezzo_notte
@@ -134,9 +134,9 @@ Medico| Entita' figlia di Personale, specifica per i medici| specializzazione
 Primario| Entita' figlia di Medici, specifica il primario di un certo reparto| *Nessun Attributo*
 Stipendio| Entita' che identifica lo stipendio di ogni tipo di lavoratore nella Clinica| tipo {PK}, imp_lordo, imp_netto
 Pazienti| Entita' che racchiude le generalita' di un paziente| CF {PK}, nome, cognome,sesso, telefono, indirizzo(CAP, ind_residenza, n_civico)
-EsameEffettuato| Entita' che indica un esame che e' stato effettuato ad un paziente| id {PK}, stanza, diagnosi, medico, terapia
+EsameEffettuato| Entita' che indica un esame che e' stato effettuato ad un paziente| ID {PK}, stanza, diagnosi, medico, terapia
 TipoEsame| Entita' che indica le varie tipologie di esame che sono disponibili nella Clinica| nome {PK}, prezzo
-Prenotazione| Entita' che indica la prenotazione avvenuta| Id{PK}, data_p, data_e, pagamento
+Prenotazione| Entita' che indica la prenotazione avvenuta| ID{PK}, data_p, data_e, pagamento
 PrenotazioneEsame| Entita' figlia di Prenotazione, specifica per la prenotazione di un esame| *Nessun attributo*
 PrenotazioneStanza| Entita' figlia di Prenotazione, specifica per la prenotazione di una stanza| dta_inizio, data_fine
 
@@ -146,8 +146,8 @@ PrenotazioneStanza| Entita' figlia di Prenotazione, specifica per la prenotazion
    
 Sede||||
 -----------------|-------|----------------------------|----------
-|VARCHAR| identifica univocamente le sedi| **Chiave**
-Indirizzo|VARCHAR| attributo composto: Citta', Via, n_civico, CAP
+ID|VARCHAR| identifica univocamente le sedi| **Chiave**
+Indirizzo|VARCHAR| attributo composto: Via, n_civico, CAP
 n_telefono|VARCHAR| numero di telefono di ogni sede
 
 </td></tr>
@@ -199,10 +199,13 @@ Personale||||
 CF| VARCHAR| codice fiscale identificativo per ogni dipendente| **Chiave**
 nome|VARCHAR| nome della persona fisica
 cognome|VARCHAR| cognome della persona fisica
-data_nascita|DATE | data di nascita della persona fisica
+datadinascita|DATE | data di nascita della persona fisica
 sesso |ENUM| sesso della persona fisica
 telefono|VARCHAR| numero di telefono del dipendente
+tipo|VARCHAR| identifica la masione all'interno della clinica|**Chiave** (esterna)
+grado|VARCHAR| identifica il grado riferito al tipo
 Indirizzo|VARCHAR| attributo composto: CAP, via, n_civico
+sede|VARCHAR| identifica la sede| **Chiave** (esterna)
 
 </td></tr>
 <tr><td>
@@ -244,13 +247,13 @@ Primario|
 Stipendio||||
 -----------------|-------|---------------------------|-----------
 tipo| VARCHAR| chiave identificativa univoca di ogni tipo di stipendio| **Chiave**
-imp_lordo|INT| importo lordo di ogni stipendio
-imp_netto|INT| importo netto di ogni stipendio|
+imp_lordo|DECIMAL| importo lordo di ogni stipendio
+imp_netto|DECIMAL| importo netto di ogni stipendio|
 
 </td></tr>
 <tr><td>
 
-Pazienti||||
+Paziente||||
 -----------------|-------|---------------------------|-----------
 CF|VARCHAR|codice fiscale univoco per ogni paziente| **Chiave**
 nome| VARCHAR| nome di ogni paziente
@@ -264,7 +267,8 @@ indirizzo|VARCHAR| attributo composto per l'indirizzo di residenza: CAP, via, n_
 
 EsameEffettuato||||
 -----------------|-------|---------------------------|-----------
-id|VARCHAR| chiave identificatva univoca per indicare ogni esame effettuato| **Chiave**
+ID|VARCHAR| chiave identificatva univoca per indicare ogni esame effettuato| **Chiave**
+paziente|VARCHAR| chiave esterna di Paziente| **Chiave** (esterna)
 stanza| VARCHAR| stanza in cui è stato effettuato l'esame
 diagnosi| VARCHAR| diagnosi indicata a seguito dell'esame 
 medico| VARCHAR| medico che ha effettuato l'esame
@@ -276,14 +280,14 @@ terapia| VARCHAR| terapia indicata dal medico a seguito dell'esame
 |TipoEsame||||
 -----------------|-------|---------------------------|-----------
 nome|VARCHAR| chiave che indica il nome dell'esame| **Chiave**
-prezzo|INT| intero che indica il prezzo di ogni esame
+prezzo|DECIMAL| intero che indica il prezzo di ogni esame
 
 </td></tr>
 <tr><td>
 
 |Prenotazione||||
 |-----------------|-------|---------------------------:|-----------:|
-Id|VARCHAR| chiave identificativa univoca di ogni prenotazione| **Chiave**
+ID|VARCHAR| chiave identificativa univoca di ogni prenotazione| **Chiave**
 data| DATE| data in cui è stata effettuata la prenotazione
 pagamento|BOOL| check che identifica l'avvenuto pagamento
 
@@ -567,7 +571,7 @@ L'entità "Costituisce" è così composta:
 |Costituisce||||
 |---|--|-|-|
 |sede|VARCHAR|Permette di identificare la sede con 3 caratteri|**Chiave**|
-|reparto|CHAR|Permette di identificare il reparto con 4 caratteri|**Chiave**|
+|reparto|VARCHAR|Permette di identificare il reparto con 4 caratteri|**Chiave**|
 
 ## Scelta degli identificatori primari
 <p align="justify"> 
@@ -581,10 +585,10 @@ Nella scelta dgli identificatori primari l'attenzione cade principalmente sulle 
 
 ## Traduzione verso il modello relazione  
 
-Sede( **id**, cap, via, n_civico, telefono);  
+Sede( **ID**, cap, via, n_civico, telefono);  
 Personale(**CF**, *sede, *stipendio, nome, cognome, sesso, data_nascita, telefono, IBAN, tipo, grado, n_civico, via, cap); 
 
-> *v1.* Personale.sede -> Sede.id  
+> *v1.* Personale.sede -> Sede.ID  
 > *v2.* Personale.stipndio -> Stipendio.tipo   
 
 Stipendio(**tipo**, imp_lordo, imp_netto);  
@@ -601,7 +605,7 @@ Macchinario(**N_serie**, *n_stanza, *reparto, *sede, nome, casa_prod, ultima_rev
 
 StanzaRi(**n_stanza**,***sede**, ***reparto**, prezzo_notte, tipo)   
 
-> *v8.* StanzaRi.sede->Sede.id  
+> *v8.* StanzaRi.sede->Sede.ID  
 > *v9.* StanzaRi.reparto->Sede.codice  
 Reparto(**codice**, tipo, *primario);  
 
@@ -613,13 +617,13 @@ Costituisce(***sede**, ***reparto**);
 > *v12.* Costituisce.reparto->Reparto.codice  
 
 Paziente(**CF**, nome, cognome,sesso, telefono, via, n_civico, cap);  
-EsameEffettuato(**id**, *paziente, *tipo_esame, stanza, terapia, diagnosi, medico);  
+EsameEffettuato(**ID**, *paziente, *tipo_esame, stanza, terapia, diagnosi, medico);  
 
 > *v13.* EsameEffettuato.paziente->Paziente.CF  
 > *v14.* EsameEffettuato.tipo_esame->TipoEsame.nome  
 
 TipoEsame(**nome**, prezzo)  
-PrenotazioneEsame(**id**, *nome, *stanza, *reparto, *sede,*paziente, data_p, data_e, pagamento)  
+PrenotazioneEsame(**ID**, *nome, *stanza, *reparto, *sede,*paziente, data_p, data_e, pagamento)  
 
 > *v15.* PrenotazioneEsame.tipo->TipoEsame.nome  
 > *v16.* PrenotazioneEsame.stanza->StanzaSp.n_stanza  
@@ -627,7 +631,7 @@ PrenotazioneEsame(**id**, *nome, *stanza, *reparto, *sede,*paziente, data_p, dat
 > *v18.* PrenotazioneEsame.sede->StanzaSp.sede  
 > *v19.* PrenotazioneEsame.paziente->Paziente.CF  
 
-PrenotazioneStanza(**id**, *paziente, *stanza, *reparto, *sede, data_inizio, data_fine, data_p, pagamento)  
+PrenotazioneStanza(**ID**, *paziente, *stanza, *reparto, *sede, data_inizio, data_fine, data_p, pagamento)  
 
 > *v20.* Prenotazione.paziente->Paziente.CF  
 > *v21.* Prenotazione.sede->StanzaSp.sede  
