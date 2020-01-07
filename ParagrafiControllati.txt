@@ -1,3 +1,5 @@
 - Glossario Termini
 - operazioni previste sulla base di dati 
--
+- tabella delle enita'
+- analisi edlle entita'
+-analisi delle relazioni e cardinalita'

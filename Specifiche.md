@@ -286,7 +286,7 @@ prezzo|DECIMAL| intero che indica il prezzo di ogni esame
 <tr><td>
 
 |Prenotazione||||
-|-----------------|-------|---------------------------:|-----------:|
+|-----------------|-------|:---------------------------|-----------|
 ID|VARCHAR| chiave identificativa univoca di ogni prenotazione| **Chiave**
 data| DATE| data in cui è stata effettuata la prenotazione
 pagamento|BOOL| check che identifica l'avvenuto pagamento
@@ -388,28 +388,28 @@ PrenotazioneStanza||
 ## Analisi delle relazioni e delle cardinalita'
 
 *Sede-Personale*: Lavora
-   - In una sede lavora piu personale
-   - Un membro di personale lavora in una sola sede
+   - In una sede lavora piu personale (1,N)
+   - Un membro di personale lavora in una sola sede(1,1)
 
 *Personale-Stipendio*: Percepisce
    - Un membro del personale percepisce uno stipendio (1,1)
    - Uno stesso stipendio (stesso codice e quindi stesso importo) può essere percepito da più membri del personale (1,N)
 
 
-*Sede-Reparto*: Possiede
+*Sede-Reparto*: Costituisce
 - una sede può possedere più reparti (1,N)
 - un reparto puo' essere posseduto da piu' sedi (1,N)
 
-*Sede-Stanza*: Possiede
+*Sede-Stanza*: Costituisce
 - una sede può possedere molte stane (1,N)
 - una stanza fa parte di una sola sede (1,1)
 
-*Reparto-Stanza*: Contiene
+*Reparto-Stanza*: Costituisce
 - un reparto può contere molte stanze (1,N)
 - una stanza può essere contenuta in un solo reparto (1,1)
 
 *Reparto-TipoEsame*: Effettua
-- in un reparto si possono effettuare molti esami (1,n)
+- in un reparto si possono effettuare molti esami (1,N)
 - un esame può essere effettuato in un solo reparto (1,1) 
 
 *Reparto-Primario*: Presiede
@@ -422,19 +422,23 @@ PrenotazioneStanza||
 
 *PrenotazioneEsame-StanzaSp*: Riserva
 - una PrenotazioneEsame può riservare una sola StanzaSp (1,1)
-- una Stanzasp può essere riservata da più PrenotazioneEsame (1,N)
+- una Stanzasp può essere riservata da più PrenotazioneEsame (0,N)
 
 *StanzaSp-Macchinario*: Contiene
-- una StanzaSp contiene molti Macchinario (1,N)
+- una StanzaSp contiene molti Macchinario (0,N)
 - un Macchinario puo' essere contenuto in una sola StanzaSp (1,1)
 
 *Paziente-Prenotazione*: Richiede
-- un Paziente può richiedere più prenotazioni (1,N)
+- un Paziente può richiedere più prenotazioni (0,N)
 - una Prenotazione è richiesta da un solo Paziente (1,1)
 
 *Paziente-EsameEffettuato*: Effettua
-- un Paziente effettua molti EsamiEffettuati (1,N)
-- un EsameEffettuato viene effettuato da un solo Paziente (1,1)
+- un Paziente effettua molti EsamiEffettuati (0,N)
+- un EsameEffettuato viene effettuato da un solo Paziente (1,1)  
+
+*PrenotazioneStanza-StanzaRi*: Riserva  
+- una stanza puo' essere riservata per piu' prenotazioni(0,N)  
+- una prenotazione stanza puo' riservare una e una sola stanza(1,1)  
 ---
 
 <div id="diagramma">
