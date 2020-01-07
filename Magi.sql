@@ -91,14 +91,15 @@ CREATE TABLE PrenotazioneStanza (
     data_inizio DATETIME NOT NULL,
     data_fine DATETIME NOT NULL,
     data_p DATETIME NOT NULL,
-    pagamento BOOLEAN,
+    pagamento BOOLEAN default 0,
     paziente VARCHAR (16),
     n_stanza TINYINT,
     reparto CHAR (4),
     sede VARCHAR (3),
     FOREIGN KEY (n_stanza, sede, reparto) REFERENCES StanzaRi (n_stanza, sede, reparto),
     FOREIGN KEY (paziente) REFERENCES Paziente (CF),
-    PRIMARY KEY (ID)
+    PRIMARY KEY (ID),
+    constraint check_data CHECK((DATEDIFF(data_inizio,data_fine)>=0) AND (DATEDIFF(data_inizio,data_p)>=0))
 )ENGINE=InnoDb;
 DROP TABLE IF EXISTS PrenotazioneEsame;
 CREATE TABLE PrenotazioneEsame (
@@ -114,14 +115,15 @@ CREATE TABLE PrenotazioneEsame (
     PRIMARY KEY (ID),
     FOREIGN KEY (n_stanza, sede, reparto) REFERENCES StanzaSp (n_stanza, sede, reparto),
     FOREIGN KEY (paziente) REFERENCES Paziente(CF),
-    FOREIGN KEY (tipo) REFERENCES TipoEsame(nome)
+    FOREIGN KEY (tipo) REFERENCES TipoEsame(nome),
+    constraint check_data CHECK((DATEDIFF(data_e,data_p)>=0))
 )ENGINE=InnoDb;
 DROP TABLE IF EXISTS Macchinario;
 CREATE TABLE Macchinario (
     n_serie VARCHAR (11),
     nome VARCHAR (30),
     casa_prod VARCHAR (30),
-    ultima_revisione DATE,
+    ultima_revisione DATE NOT NULL,
     n_stanza TINYINT,
     reparto CHAR (4),
     sede VARCHAR (3),
@@ -452,21 +454,22 @@ Insert Into TipoEsame (nome, prezzo) values
 ("Prelievo",45);
 
 Insert Into PrenotazioneStanza (data_inizio, data_fine, data_p, pagamento, paziente, n_stanza, reparto, sede) VALUES
-("2020-02-10","2020-02-15","2020-01-04",0,"ROBBER31D34A106D",1,"CHMA","VI1"),
+("2020-01-10","2020-01-15","2020-01-04",1,"ROBBER31D34A106D",1,"CHMA","VI1"),
 ("2020-02-11","2020-02-16","2020-01-03",0,"SIMCAT31D34A106D",3,"MEDE","PD1"),
 ("2020-02-12","2020-02-17","2020-01-02",0,"STACAL31D34A106D",10,"CHGE","BL1"),
 ("2020-02-05","2020-02-13","2020-01-01",1,"TIMMIL31D34A106D",12,"CHVA","TR1"),
 ("2020-02-14","2020-02-19","2019-12-31",0,"VITGRE31D34A106D",2,"CHVA","VI1"),
 ("2020-02-15","2020-02-20","2019-12-30",0,"MELMIL31D34A106D",5,"CHGE","VI2"),
-("2020-02-16","2020-02-21","2019-12-29",0,"NLZGNR50T67B808E",7,"CHVA","VI2");
-
+("2020-02-16","2020-02-21","2019-12-29",0,"NLZGNR50T67B808E",7,"CHVA","VI2"),
+("2020-01-01","2020-01-07","2019-01-10",1,"DEMLOM31D34A106D",14, "MEFI", "VI1"),
+("2020-01-01","2020-01-04","2020-01-10",1,"BENLO31D34A106D",8, "MEDE", "PD1");
 
 INSERT INTO PrenotazioneEsame (data_p, data_e, pagamento, paziente, n_stanza, reparto, sede, tipo) values
-("2019-01-01 08:07:22","2019-01-10 08:07:22",0,"ABETOS31D34A106D",100,"CHMA","VI1","TAC"),
+("2020-01-01 08:07:22","2020-01-10 08:07:22",1,"ABETOS31D34A106D",100,"CHMA","VI1","TAC"),
 ("2019-02-02 09:07:22","2019-02-08 09:07:22",0,"ADAEND31D34A106D",102,"MEFI","BL1","Ecografia"),
 ("2019-03-03 10:07:22","2019-03-03 10:07:22",0,"ADATRE31D34A106D",102,"MEDE","TR1","Visita medica"),
 ("2019-01-01 08:07:23","2019-08-09 08:07:23",0,"ADOFOL31D34A106D",104,"MEFI","VI1","Visita chirurgica"),
-("2019-02-02 09:07:23","2019-02-02 09:07:23",0,"ADRBRU31D34A106D",105,"CHGE","VI1","Prelievo"),
+("2020-01-02 09:07:23","2020-01-02 09:07:23",1,"ADRBRU31D34A106D",105,"CHGE","VI1","Prelievo"),
 ("2019-03-03 10:07:23","2019-01-10 08:07:23",1,"ALFIAD31D34A106D",102,"MEFI","BL1","TAC"),
 ("2019-01-01 08:07:24","2019-02-08 09:07:23",1,"ALISCH31D34A106D",103,"MEDE","VI1","Ecografia"),
 ("2019-02-02 09:07:24","2019-03-03 10:07:23",1,"ALVNAP31D34A106D",104,"MEFI","PD1","Visita medica"),
