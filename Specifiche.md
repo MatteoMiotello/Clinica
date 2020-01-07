@@ -9,6 +9,9 @@ body{
    line-height: 1.4;
    text-align:justify;
 }
+img {
+   width: 30%;
+}
 </style>
 
 
@@ -342,13 +345,8 @@ PrenotazioneStanza|
 >data_p not null  
 >data_inizio not null  
 >data_fine not null  
-<<<<<<< HEAD
 >pagamento default 0  
 >constraint check_data CHECK((DATEDIFF(data_inizio,data_fine)<=0) AND (DATEDIFF(data_inizio,data_p)>=0))
-=======
->pagamento default 0
-
->>>>>>> 6e0cfcecf1ec41a9e7602849f7de2bba59f81a42
 **StanzaRi**  
 >n_stanza primary key
 >prezzo_notte not null  
@@ -683,7 +681,7 @@ from Personale inner join Stipendio on(Personale.tipo=Stipendio.tipo);
 
 8. numero medio di esami per paziente arrotondato all'intero  
  select ROUND((select count(*) from EsameEffettuato)/(select count(*) from Paziente),0) AS Media_esami_paziente  
- 
+
  ![media_esami](./img/media_esami.jpg)
 
 
