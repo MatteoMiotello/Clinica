@@ -168,6 +168,9 @@ Stipendio medio personale Clinica Magi|B|1 al mese
 Trovare il personale che lavora in una data sede|I| 3 al mese
 Numero dipendenti per ogni sede|B|1 al mese
 
+
+---
+
 ## Tabella delle entità 
 
 Entita'|Descrizione|Attributi
@@ -238,7 +241,7 @@ Nessun attributo|
 
 Macchinario||||
 -----------------|-------|----------------------------|----------
-n|VARCHAR |codice identificativo univoco del macchinario| **Chiave**
+n_serie|VARCHAR |codice identificativo univoco del macchinario| **Chiave**
 casa_prod| VARCHAR| nome della casa produttrice
 nome| VARCHAR | nome rappresentativo del macchinario
 ultima_revisione| DATE| data dell'ultima revisione effettuata
