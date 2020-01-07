@@ -71,7 +71,7 @@ select PrenotazioneStanza.reparto, PrenotazioneStanza.n_stanza
 from Paziente, PrenotazioneStanza
 where Sede.id="sede" AND Paziente.nome="nome" AND Paziente.CF=PrenotazioneStanza.persona AND (DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE()) = 0 
 OR DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE()) > 0) AND DATEDIFF(PrenotazioneStanza.data_fine, CURDATE()) > 0
-14.verifica stanze disponibili ricovero
+14.isponibili ricovero
 select distinct StanzaRi.n_stanza from StanzaRi where StanzaRi.sede="PD1" AND StanzaRi.reparto="MEFI" AND StanzaRi.n_stanza NOT IN 
 ( select distinct PrenotazioneStanza.stanza  
 from PrenotazioneStanza, StanzaRi  
