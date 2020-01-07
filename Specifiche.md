@@ -3,6 +3,34 @@ table {
     width:100%;
 }
 
+#home{
+   height: 1000px;
+   
+}
+
+#home h1{
+   font-size:70px;
+   text-align:right;
+   font-weight: bold;
+}
+
+#home h2{
+   font-size:20px;
+   text-align: right;
+}
+
+#home h3{
+    font-size:40px;
+   text-align: right;
+   line-height: 0.5;
+}
+
+#home p{
+   text-align:right;
+   position: bottom;
+   margin-top:600px;
+}
+
 body{
    font-size: 10px;
    font-family: Arial;
@@ -27,6 +55,17 @@ img {
 }
 </style>
 
+<div id="home">
+
+# Clinica Magi
+
+## Componenti:
+### Matteo Miotello
+### Giosuè Calgaro
+
+Anno Accademico 2019-2020
+
+</div>
 
 # Clinica Magi  
 ## Abstract  
