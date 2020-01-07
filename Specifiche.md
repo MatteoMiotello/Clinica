@@ -664,7 +664,6 @@ StanzaRi(**n_stanza**,***sede**, ***reparto**, prezzo_notte, tipo)
 > *v8.* StanzaRi.sede->Sede.ID  
 > *v9.* StanzaRi.reparto->Sede.codice  
 Reparto(**codice**, tipo, *primario);  
-
 > *v10.* Reparto.primario->Personale.CF  
 
 Costituisce(***sede**, ***reparto**);  
