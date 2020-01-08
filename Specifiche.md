@@ -79,7 +79,7 @@ Il loro obiettivo è creare una nuova struttura per soddisfare le crescenti nece
 ## Analisi dei requisiti 
 
 <p align="justify">
-L'obiettivo del progettoiè la realizzazione di una base di dati che contenga e gestisca una clinica con più sedi sparse nel torritorio. La clinica presenta una serie di reparti, identificati dal tipo di reparto e da un codice. La clinica presenta più sedi, ognuna di esse deve essere identificata dalla località in cui si trova (numero civico, capoluogo e via) e un numero di telefono, in modo tale da poter essere contattati. Ogni sede presenta uno o più reparti, ogni reparto in ogni sede presenta più stanze, identificate da un numero, dal reparto a cui appartengono e dalla sede in cui si trovano. Vengono identificate due tipi di stanze, la stanza per il ricovero, nel caso in cui un paziente debba intrattenersi più giorni nella clinica per effettuare esami o per degenza, che presenta un prezzo per notte in base al tipo di stanza che il paziente sceglie; e la stanza specializzata, in cui vengono effettuati gli esami. Ogni stanza specializzata contiene al suo interno una serie di macchinari, identificati dal nome, dalla casa produttrice, un numero di serie e dalla data dell'ultima revisione effettuata su tal macchinario. Un paziente, di cui si vuole memorizzare il nome, il cognome, il sesso, l'indirizzo di residenza (numero civico, capoluogo e via), il numero di telefono e il codice fiscale, può effettuare delle prenotazioni. Ogni prenotazione e' identificata da una data in cui e' stata fatta la prenotazione e un campo pagamento usato per capire se e' gia' stato effettuato o meno il versamento del corrispettivo della prenotazione. Ogni prenotazione di un esame e' riferito ad un tipo di esame specifico, per tale tipo di prenotazione si vuole memorizzare l'ora in cui verra' effettuato, in modo da poter gestire le prenotazioni in base alle stanze disponibili. Ogni tipo di esame e' comune ad ogni sede che presenta quel reparto. Per ogni prestazione medica si vuole memorizzare il nome e il prezzo. Ogni prenotazione che prevede una degenza riserva una stanza ricovero, di tale prenotazione sarà registrata la data di inizio prenotazione e la data in cui la stanza verra' liberata. Un paziente puo' effetturare degli esami. Degli esami effettuati verranno memorizzati: la stanza in cui e' stata effettuato, la diagnosi, la terapia, il medico che ha effettuato l'esame, il nome e il prezzo dell'esame. In ogni sede lavorano diversi dipendenti (personale), di ogni sede vogliamo memorizzare: i dirigenti, identificati dal settore, gli infermieri, identificati dal grado, i medici con la propria specializzazione, i primari per ogni reparto (un reparto ha piu' primari perche' ogni reparto in ogni sede ha il suo) e i restanti dipendenti (personale non medico). Ogni dipendente (personale) in base al ruolo che ricopre percepirà uno stipendio fisso, di cui si vogliono memorizzare l'importo lordo e l'importo netto. Di ogni dipendente (personale) si vuole tener traccia del: nome, cognome, data di nascita, sesso, residenza (numero civico, capoluogo e via), telefono, IBAN per versare mensilmente lo stipendio e codice fiscale. 
+L'obiettivo del progetto è la realizzazione di una base di dati che contenga e gestisca una clinica con più sedi sparse nel torritorio. La clinica presenta una serie di reparti, identificati dal tipo di reparto e da un codice. La clinica presenta più sedi, ognuna di esse deve essere identificata dalla località in cui si trova (numero civico, capoluogo e via) e un numero di telefono, in modo tale da poter essere contattati. Ogni sede presenta uno o più reparti, ogni reparto in ogni sede presenta più stanze, identificate da un numero, dal reparto a cui appartengono e dalla sede in cui si trovano. Vengono identificate due tipi di stanze, la stanza per il ricovero, nel caso in cui un paziente debba intrattenersi più giorni nella clinica per effettuare esami o per degenza, che presenta un prezzo per notte in base al tipo di stanza che il paziente sceglie; e la stanza specializzata, in cui vengono effettuati gli esami. Ogni stanza specializzata contiene al suo interno una serie di macchinari, identificati dal nome, dalla casa produttrice, un numero di serie e dalla data dell'ultima revisione effettuata su tal macchinario. Un paziente, di cui si vuole memorizzare il nome, il cognome, il sesso, l'indirizzo di residenza (numero civico, capoluogo e via), il numero di telefono e il codice fiscale, può effettuare delle prenotazioni. Ogni prenotazione e' identificata da una data in cui e' stata fatta la prenotazione e un campo pagamento usato per capire se e' gia' stato effettuato o meno il versamento del corrispettivo della prenotazione. Ogni prenotazione di un esame e' riferito ad un tipo di esame specifico, per tale tipo di prenotazione si vuole memorizzare l'ora in cui verra' effettuato, in modo da poter gestire le prenotazioni in base alle stanze disponibili. Ogni tipo di esame e' comune ad ogni sede che presenta quel reparto. Per ogni prestazione medica si vuole memorizzare il nome e il prezzo. Ogni prenotazione che prevede una degenza riserva una stanza ricovero, di tale prenotazione sarà registrata la data di inizio prenotazione e la data in cui la stanza verra' liberata. Un paziente puo' effetturare degli esami. Degli esami effettuati verranno memorizzati: la stanza in cui e' stata effettuato, la diagnosi, la terapia, il medico che ha effettuato l'esame, il nome e il prezzo dell'esame. In ogni sede lavorano diversi dipendenti (personale), di ogni sede vogliamo memorizzare: i dirigenti, identificati dal settore, gli infermieri, identificati dal grado, i medici con la propria specializzazione, i primari per ogni reparto (un reparto ha piu' primari perche' ogni reparto in ogni sede ha il suo) e i restanti dipendenti (personale non medico). Ogni dipendente (personale) in base al ruolo che ricopre percepirà uno stipendio fisso, di cui si vogliono memorizzare l'importo lordo e l'importo netto. Di ogni dipendente (personale) si vuole tener traccia del: nome, cognome, data di nascita, sesso, residenza (numero civico, capoluogo e via), telefono, IBAN per versare mensilmente lo stipendio e codice fiscale. 
 </p>
 
 ## Assunzioni  
@@ -221,7 +221,7 @@ Stanza|||
 -----------------|-------|--------------------------------------
 n_stanza|TINYINT| **Chiave**
 sede|VARCHAR| **Chiave** (esterna)
-reparto|VARCHAR| **Chiave**** (esterna)
+reparto|VARCHAR| **Chiave** (esterna)
 
 </td></tr>
 <tr><td>
@@ -258,7 +258,7 @@ cognome|VARCHAR| cognome della persona fisica
 datadinascita|DATE | data di nascita della persona fisica
 sesso |ENUM| sesso della persona fisica
 telefono|VARCHAR| numero di telefono del dipendente
-tipo|VARCHAR| identifica la masione all'interno della clinica|**Chiave** (esterna)
+tipo|VARCHAR| identifica la masione all'interno della clinica|
 grado|VARCHAR| identifica il grado riferito al tipo
 Indirizzo|VARCHAR| attributo composto: CAP, via, n_civico
 sede|VARCHAR| identifica la sede| **Chiave** (esterna)
@@ -324,7 +324,7 @@ indirizzo|VARCHAR| attributo composto per l'indirizzo di residenza: CAP, via, n_
 EsameEffettuato||||
 -----------------|-------|---------------------------|-----------
 ID|VARCHAR| chiave identificatva univoca per indicare ogni esame effettuato| **Chiave**
-paziente|VARCHAR| chiave esterna di Paziente| **Chiave** (esterna)
+paziente|VARCHAR| chiave esterna di Paziente| 
 stanza| VARCHAR| stanza in cui è stato effettuato l'esame
 diagnosi| VARCHAR| diagnosi indicata a seguito dell'esame 
 medico| VARCHAR| medico che ha effettuato l'esame
@@ -656,7 +656,7 @@ Nella scelta dgli identificatori primari l'attenzione cade principalmente sulle 
 
 </div>
 
-## Traduzione verso il modello relazione  
+## Traduzione verso il modello relazionale  
 
 Sede( **ID**, cap, via, n_civico, telefono);  
 Personale(**CF**, *sede, *tipo, nome, cognome, sesso, datadinascita, telefono, IBAN, grado, n_civico, via, cap); 
