@@ -418,7 +418,7 @@ PrenotazioneStanza|
 >pagamento default 0  
 >constraint check_data CHECK((DATEDIFF(data_inizio,data_fine)<=0) AND (DATEDIFF(data_inizio,data_p)>=0))
 **StanzaRi**  
->n_stanza primary key
+>n_stanza primary key  
 >prezzo_notte not null  
 
 **TipoEsame**  
