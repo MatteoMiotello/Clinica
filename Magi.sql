@@ -341,6 +341,14 @@ Insert Into Costituisce VALUES
 ("VI1","MEDE"),
 ("VI1","MEFI"),
 ("VI1","CHGE"),
+</div>
+
+# Clinica Magi  
+## Abstract  
+
+<p align= "justify"> 
+Nel 1958, il Prof. Vito Mosca, chirurgo ortopedico, e la moglie Ada fondano "Clinica Magi". 
+Il loro obiettivo è creare una nuova struttura per soddisfare le crescenti necessità assistenziali dei cittadini vicentini,
 ("VI2","CHMA"),
 ("VI2","CHVA"),
 ("VI2","MEDE"),
