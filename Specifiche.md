@@ -475,7 +475,7 @@ PrenotazioneStanza|
 
 *TipoEsame-PrenotazioneEsame*: Riferisce
 - una PrenotazioneEsame può riferirsi ad un solo esame (1,1)
-- un TipoEsame può essere riferito a più PrenotazioniEsami (1,N)
+- un TipoEsame può essere riferito a più PrenotazioniEsami (0,N)
 
 *PrenotazioneEsame-StanzaSp*: Riserva
 - una PrenotazioneEsame può riservare una sola StanzaSp (1,1)
