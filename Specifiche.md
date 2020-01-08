@@ -79,7 +79,7 @@ Il loro obiettivo è creare una nuova struttura per soddisfare le crescenti nece
 ## Analisi dei requisiti 
 
 <p align="justify">
-L'obiettivo del progetto è la realizzazione di una base di dati che contenga e gestisca una clinica con più sedi sparse nel torritorio. La clinica presenta una serie di reparti, identificati dal tipo di reparto e da un codice. La clinica presenta più sedi, ognuna di esse deve essere identificata dalla località in cui si trova (numero civico, capoluogo e via) e un numero di telefono, in modo tale da poter essere contattati. Ogni sede presenta uno o più reparti, ogni reparto in ogni sede presenta più stanze, identificate da un numero, dal reparto a cui appartengono e dalla sede in cui si trovano. Vengono identificate due tipi di stanze, la stanza per il ricovero, nel caso in cui un paziente debba intrattenersi più giorni nella clinica per effettuare esami o per degenza, che presenta un prezzo per notte in base al tipo di stanza che il paziente sceglie; e la stanza specializzata, in cui vengono effettuati gli esami. Ogni stanza specializzata contiene al suo interno una serie di macchinari, identificati dal nome, dalla casa produttrice, un numero di serie e dalla data dell'ultima revisione effettuata su tal macchinario. Un paziente, di cui si vuole memorizzare il nome, il cognome, il sesso, l'indirizzo di residenza (numero civico, capoluogo e via), il numero di telefono e il codice fiscale, può effettuare delle prenotazioni. Ogni prenotazione e' identificata da una data in cui e' stata fatta la prenotazione e un campo pagamento usato per capire se e' gia' stato effettuato o meno il versamento del corrispettivo della prenotazione. Ogni prenotazione di un esame e' riferito ad un tipo di esame specifico, per tale tipo di prenotazione si vuole memorizzare l'ora in cui verra' effettuato, in modo da poter gestire le prenotazioni in base alle stanze disponibili. Ogni tipo di esame e' comune ad ogni sede che presenta quel reparto. Per ogni prestazione medica si vuole memorizzare il nome e il prezzo. Ogni prenotazione che prevede una degenza riserva una stanza ricovero, di tale prenotazione sarà registrata la data di inizio prenotazione e la data in cui la stanza verra' liberata. Un paziente puo' effetturare degli esami. Degli esami effettuati verranno memorizzati: la stanza in cui e' stata effettuato, la diagnosi, la terapia, il medico che ha effettuato l'esame, il nome e il prezzo dell'esame. In ogni sede lavorano diversi dipendenti (personale), di ogni sede vogliamo memorizzare: i dirigenti, identificati dal settore, gli infermieri, identificati dal grado, i medici con la propria specializzazione, i primari per ogni reparto (un reparto ha piu' primari perche' ogni reparto in ogni sede ha il suo) e i restanti dipendenti (personale non medico). Ogni dipendente (personale) in base al ruolo che ricopre percepirà uno stipendio fisso, di cui si vogliono memorizzare l'importo lordo e l'importo netto. Di ogni dipendente (personale) si vuole tener traccia del: nome, cognome, data di nascita, sesso, residenza (numero civico, capoluogo e via), telefono, IBAN per versare mensilmente lo stipendio e codice fiscale. 
+L'obiettivo del progetto e' la realizzazione di una base di dati che contenga e gestisca una clinica con più sedi sparse nel torritorio. La clinica presenta una serie di reparti, identificati dal tipo di reparto e da un codice. La clinica presenta più sedi, ognuna di esse deve essere identificata dalla località in cui si trova (numero civico, capoluogo e via) e un numero di telefono, in modo tale da poter essere contattati. Ogni sede presenta uno o più reparti, ogni reparto in ogni sede presenta più stanze, identificate da un numero, dal reparto a cui appartengono e dalla sede in cui si trovano. Vengono identificate due tipi di stanze, la stanza per il ricovero, nel caso in cui un paziente debba intrattenersi più giorni nella clinica per effettuare esami o per degenza, che presenta un prezzo per notte in base al tipo di stanza che il paziente sceglie; e la stanza specializzata, in cui vengono effettuati gli esami. Ogni stanza specializzata contiene al suo interno una serie di macchinari, identificati dal nome, dalla casa produttrice, un numero di serie e dalla data dell'ultima revisione effettuata su tal macchinario. Un paziente, di cui si vuole memorizzare il nome, il cognome, il sesso, l'indirizzo di residenza (numero civico, capoluogo e via), il numero di telefono e il codice fiscale, può effettuare delle prenotazioni. Ogni prenotazione e' identificata da una data in cui e' stata fatta la prenotazione e un campo pagamento usato per capire se e' gia' stato effettuato o meno il versamento del corrispettivo della prenotazione. Ogni prenotazione di un esame e' riferito ad un tipo di esame specifico, per tale tipo di prenotazione si vuole memorizzare l'ora in cui verra' effettuato, in modo da poter gestire le prenotazioni in base alle stanze disponibili. Ogni tipo di esame e' comune ad ogni sede che presenta quel reparto. Per ogni prestazione medica si vuole memorizzare il nome e il prezzo. Ogni prenotazione che prevede una degenza riserva una stanza ricovero, di tale prenotazione sarà registrata la data di inizio prenotazione e la data in cui la stanza verra' liberata. Un paziente puo' effetturare degli esami. Degli esami effettuati verranno memorizzati: la stanza in cui e' stata effettuato, la diagnosi, la terapia, il medico che ha effettuato l'esame, il nome e il prezzo dell'esame. In ogni sede lavorano diversi dipendenti (personale), di ogni sede vogliamo memorizzare: i dirigenti, identificati dal settore, gli infermieri, identificati dal grado, i medici con la propria specializzazione, i primari per ogni reparto (un reparto ha piu' primari perche' ogni reparto in ogni sede ha il suo) e i restanti dipendenti (personale non medico). Ogni dipendente (personale) in base al ruolo che ricopre percepirà uno stipendio fisso, di cui si vogliono memorizzare l'importo lordo e l'importo netto. Di ogni dipendente (personale) si vuole tener traccia del: nome, cognome, data di nascita, sesso, residenza (numero civico, capoluogo e via), telefono, IBAN per versare mensilmente lo stipendio e codice fiscale. 
 </p>
 
 ## Assunzioni  
@@ -154,7 +154,7 @@ Aggiunta nuovo dipendente|I|2 al mese
 Aggiunta paziente|I| 5 al giorno
 Prenotazione esame|I| 100 al giorno
 Prenotazione StanzaRi(stanza ricovero)|I| 30 al giorno
-Verifica reparto e stanza in cui si trova un paziente (data una sede)|B| 5000 al giorno
+Verifica reparto e stanza in cui si trova un paziente (data una sede)|I| 5000 al giorno
 Trovare le stanze di ricovero (StanzaRi) disponibili per una determinata sede e un determinato reparto|I| 100 al giorno
 Totale delle spese che un dato paziente deve ancora effettuare|I|50 al giorno
 Totale spese effettuate da un determinato paziente|I| 5 al giorno
@@ -220,8 +220,8 @@ tipo| VARCHAR| identifica la specialita' medica che viene trattata
 Stanza|||
 -----------------|-------|--------------------------------------
 n_stanza|TINYINT| **Chiave**
-sede|VARCHAR| **Chiave** (esterna)
-reparto|VARCHAR| **Chiave** (esterna)
+sede|VARCHAR| **Chiave** 
+reparto|VARCHAR| **Chiave**
 
 </td></tr>
 <tr><td>
@@ -258,10 +258,10 @@ cognome|VARCHAR| cognome della persona fisica
 datadinascita|DATE | data di nascita della persona fisica
 sesso |ENUM| sesso della persona fisica
 telefono|VARCHAR| numero di telefono del dipendente
-tipo|VARCHAR| identifica la masione all'interno della clinica|
+tipo|VARCHAR| identifica la masione all'interno della clinica|**Chiave** 
 grado|VARCHAR| identifica il grado riferito al tipo
 Indirizzo|VARCHAR| attributo composto: CAP, via, n_civico
-sede|VARCHAR| identifica la sede| **Chiave** (esterna)
+sede|VARCHAR| identifica la sede| **Chiave** 
 
 </td></tr>
 <tr><td>
@@ -434,7 +434,7 @@ PrenotazioneStanza|
 ---
 
 ## Generalizzazione  
-- **Personale** e' generalizzazione totale non esclusiva di: **PersonaleNonMedico**,  **Dirigente**, **Infermiere**, **Medico**.  
+- **Personale** e' generalizzazione totale ed esclusivo di: **PersonaleNonMedico**,  **Dirigente**, **Infermiere**, **Medico**.  
 - **Medico** e' generalizzazione non totale e non esclusiva di **Primario**;
 - **Prenotazione** e' generalizzazione totale ed esclusiva di **PrenotazioneEsame** e **PrenotazioneStanza**.  
 - **TipoEsame** e' generalizzazione non totatale ed esclusiva di **EsameEffettuato**.  
@@ -475,7 +475,7 @@ PrenotazioneStanza|
 
 *TipoEsame-PrenotazioneEsame*: Riferisce
 - una PrenotazioneEsame può riferirsi ad un solo esame (1,1)
-- un TipoEsame può essere riferito a più PrenotazioniEsami (1,N)
+- un TipoEsame può essere riferito a più PrenotazioniEsami (0,N)
 
 *PrenotazioneEsame-StanzaSp*: Riserva
 - una PrenotazioneEsame può riservare una sola StanzaSp (1,1)
@@ -659,7 +659,7 @@ Nella scelta dgli identificatori primari l'attenzione cade principalmente sulle 
 ## Traduzione verso il modello relazionale  
 
 Sede( **ID**, cap, via, n_civico, telefono);  
-Personale(**CF**, *sede, *tipo, nome, cognome, sesso, datadinascita, telefono, IBAN, grado, n_civico, via, cap); 
+Personale(**CF**, *sede, *tipo, nome, cognome, sesso, datadinascita, telefono, IBAN, grado, n_civico, via, cap);
 
 > *v1.* Personale.sede -> Sede.ID  
 > *v2.* Personale.tipo -> Stipendio.tipo   
@@ -748,21 +748,21 @@ group by sede) AS sub1;
 
 ![tot_periodo  ](./img/tot_periodo.png)
 
-4. calcolo spese totali paziente (ho messo +1 in DATEDIFF perche altrimenti mi conta 3 giorni al posto di 4, cioe mi esclude il giorno di partenza)
+4. Calcolo delle spese totatali che il paziente deve ancora effettuare.
 ~~~sql  
 SELECT sum(TOT) As totale_da_pagare FROM (SELECT sum(StanzaRi.prezzo_notte)*(DATEDIFF(PrenotazioneStanza.data_fine, PrenotazioneStanza.data_inizio)+1) as TOT  
 FROM Paziente, PrenotazioneStanza, StanzaRi  
 WHERE Paziente.nome="Benedetta" AND Paziente.cognome="Lo Duca" AND Paziente.CF=PrenotazioneStanza.paziente AND PrenotazioneStanza.sede=StanzaRi.sede  
 AND PrenotazioneStanza.reparto=StanzaRi.reparto AND PrenotazioneStanza.n_stanza=StanzaRi.n_stanza AND PrenotazioneStanza.pagamento=0 
 UNION SELECT sum(TipoEsame.prezzo) FROM TipoEsame,PrenotazioneEsame, Paziente  
-WHERE Paziente.nome="Benedetta" AND Paziente.cognome="Lo Duca" AND TipoEsame.nome=PrenotazioneEsame.tipo AND Paziente.CF=PrenotazioneEsame.paziente AND   PrenotazioneEsame.pagamento=0) as sub1;  
+WHERE Paziente.nome="Benedetta" AND Paziente.cognome="Lo Duca" AND TipoEsame.nome=PrenotazioneEsame.tipo AND Paziente.CF=PrenotazioneEsame.paziente AND PrenotazioneEsame.pagamento=0) as sub1;  
 ~~~
 
 ![tot_da_pagare](./img/tot_da_pagare.png)
 
 5. La sede, il reparto, la stanza e il numero di serie dei macchinari che non effettuano una revisione da piu' di un mese  
 ~~~sql
-SELECT StanzaSp.sede, StanzaSp.n_stanza, StanzaSp.reparto,Macchinario.n 
+SELECT StanzaSp.sede, StanzaSp.n_stanza, StanzaSp.reparto,Macchinario.n_serie 
 FROM StanzaSp, Macchinario  
 WHERE Macchinario.sede=StanzaSp.sede AND Macchinario.reparto=StanzaSp.reparto   
 AND StanzaSp.n_stanza=Macchinario.n_stanza AND DATEDIFF(CURDATE(),Macchinario.ultima_revisione)>=30; 
