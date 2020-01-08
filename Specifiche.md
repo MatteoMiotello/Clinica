@@ -154,7 +154,7 @@ Aggiunta nuovo dipendente|I|2 al mese
 Aggiunta paziente|I| 5 al giorno
 Prenotazione esame|I| 100 al giorno
 Prenotazione StanzaRi(stanza ricovero)|I| 30 al giorno
-Verifica reparto e stanza in cui si trova un paziente (data una sede)|B| 5000 al giorno
+Verifica reparto e stanza in cui si trova un paziente (data una sede)|I| 5000 al giorno
 Trovare le stanze di ricovero (StanzaRi) disponibili per una determinata sede e un determinato reparto|I| 100 al giorno
 Totale delle spese che un dato paziente deve ancora effettuare|I|50 al giorno
 Totale spese effettuate da un determinato paziente|I| 5 al giorno
@@ -220,8 +220,8 @@ tipo| VARCHAR| identifica la specialita' medica che viene trattata
 Stanza|||
 -----------------|-------|--------------------------------------
 n_stanza|TINYINT| **Chiave**
-sede|VARCHAR| **Chiave** (esterna)
-reparto|VARCHAR| **Chiave**** (esterna)
+sede|VARCHAR| **Chiave** 
+reparto|VARCHAR| **Chiave**** 
 
 </td></tr>
 <tr><td>
@@ -258,10 +258,10 @@ cognome|VARCHAR| cognome della persona fisica
 datadinascita|DATE | data di nascita della persona fisica
 sesso |ENUM| sesso della persona fisica
 telefono|VARCHAR| numero di telefono del dipendente
-tipo|VARCHAR| identifica la masione all'interno della clinica|**Chiave** (esterna)
+tipo|VARCHAR| identifica la masione all'interno della clinica|**Chiave** 
 grado|VARCHAR| identifica il grado riferito al tipo
 Indirizzo|VARCHAR| attributo composto: CAP, via, n_civico
-sede|VARCHAR| identifica la sede| **Chiave** (esterna)
+sede|VARCHAR| identifica la sede| **Chiave** 
 
 </td></tr>
 <tr><td>
@@ -324,7 +324,7 @@ indirizzo|VARCHAR| attributo composto per l'indirizzo di residenza: CAP, via, n_
 EsameEffettuato||||
 -----------------|-------|---------------------------|-----------
 ID|VARCHAR| chiave identificatva univoca per indicare ogni esame effettuato| **Chiave**
-paziente|VARCHAR| chiave esterna di Paziente| **Chiave** (esterna)
+paziente|VARCHAR| chiave esterna di Paziente| **Chiave** 
 stanza| VARCHAR| stanza in cui è stato effettuato l'esame
 diagnosi| VARCHAR| diagnosi indicata a seguito dell'esame 
 medico| VARCHAR| medico che ha effettuato l'esame
@@ -755,14 +755,14 @@ FROM Paziente, PrenotazioneStanza, StanzaRi
 WHERE Paziente.nome="Benedetta" AND Paziente.cognome="Lo Duca" AND Paziente.CF=PrenotazioneStanza.paziente AND PrenotazioneStanza.sede=StanzaRi.sede  
 AND PrenotazioneStanza.reparto=StanzaRi.reparto AND PrenotazioneStanza.n_stanza=StanzaRi.n_stanza AND PrenotazioneStanza.pagamento=0 
 UNION SELECT sum(TipoEsame.prezzo) FROM TipoEsame,PrenotazioneEsame, Paziente  
-WHERE Paziente.nome="Benedetta" AND Paziente.cognome="Lo Duca" AND TipoEsame.nome=PrenotazioneEsame.tipo AND Paziente.CF=PrenotazioneEsame.paziente AND   PrenotazioneEsame.pagamento=0) as sub1;  
+WHERE Paziente.nome="Benedetta" AND Paziente.cognome="Lo Duca" AND TipoEsame.nome=PrenotazioneEsame.tipo AND Paziente.CF=PrenotazioneEsame.paziente AND PrenotazioneEsame.pagamento=0) as sub1;  
 ~~~
 
 ![tot_da_pagare](./img/tot_da_pagare.png)
 
 5. La sede, il reparto, la stanza e il numero di serie dei macchinari che non effettuano una revisione da piu' di un mese  
 ~~~sql
-SELECT StanzaSp.sede, StanzaSp.n_stanza, StanzaSp.reparto,Macchinario.n 
+SELECT StanzaSp.sede, StanzaSp.n_stanza, StanzaSp.reparto,Macchinario.n_serie 
 FROM StanzaSp, Macchinario  
 WHERE Macchinario.sede=StanzaSp.sede AND Macchinario.reparto=StanzaSp.reparto   
 AND StanzaSp.n_stanza=Macchinario.n_stanza AND DATEDIFF(CURDATE(),Macchinario.ultima_revisione)>=30; 
