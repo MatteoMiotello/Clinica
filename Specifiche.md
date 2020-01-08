@@ -87,8 +87,6 @@ L'obiettivo del progetto e' la realizzazione di una base di dati che contenga e 
 2. Vi possono essere piu' dirigenti per lo stesso settore.  
 3. Per ogni reparto, anche se ci sono piu' reparti in piu' sedi, il primario e' uno e uno solo per reparto.  
 4. L'entita' reparto e' intesa come insieme dei reparti che Clinica Magi mette a disposizione, indipendentemente dal fatto che una sede puo' avere tutti o parte di questi reparti.   
-   
----
 
 ## **Progettazione concettuale**
 
@@ -168,9 +166,6 @@ Totale stanze di una sede|I| 1 al mese
 Stipendio medio personale Clinica Magi|B|1 al mese
 Trovare il personale che lavora in una data sede|I| 3 al mese
 Numero dipendenti per ogni sede|B|1 al mese
-
-
----
 
 ## Tabella delle entità 
 
@@ -365,7 +360,6 @@ PrenotazioneStanza|
 </td></tr>
 </table>
 
----
 ## Vincoli
 **Sede**  
 >telefono not null e unique  
@@ -812,14 +806,11 @@ SELECT COUNT(Personale.sede), Sede.ID FROM Personale, Sede WHERE Personale.sede=
 
 ![visual_dipendenti](./img/VisualizzaDipendenti.png)
 
-
 ## Indici
-
 <p align="justify">
 Durante l'analisi delle prestazioni si è visto che le tabelle "PrenotazioneEsame" e "PrenotazioneStanza" saranno le più popolate e quindi le più dispendiose in termini di tempo per quanto riguarda la ricerca. Si è quindi deciso di creare un indice per ogni tabella in questione rendendo così la ricerca più veloce. Si fa notare che con l'attuale mole di dati le performance rimangono invariate sia che si utilizzino o meno gli indici.
 
 ~~~sql
 CREATE INDEX idx_PrenotazioneEsame ON PrenotazioneEsame (data_e);
-
 CREATE INDEX idx_PrenotazioneStanza ON PrenotazioneStanza (data_inizio, data_fine);
 ~~~
