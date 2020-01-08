@@ -341,14 +341,6 @@ Insert Into Costituisce VALUES
 ("VI1","MEDE"),
 ("VI1","MEFI"),
 ("VI1","CHGE"),
-</div>
-
-# Clinica Magi  
-## Abstract  
-
-<p align= "justify"> 
-Nel 1958, il Prof. Vito Mosca, chirurgo ortopedico, e la moglie Ada fondano "Clinica Magi". 
-Il loro obiettivo è creare una nuova struttura per soddisfare le crescenti necessità assistenziali dei cittadini vicentini,
 ("VI2","CHMA"),
 ("VI2","CHVA"),
 ("VI2","MEDE"),
@@ -478,7 +470,7 @@ Insert Into PrenotazioneStanza (data_inizio, data_fine, data_p, pagamento, pazie
 ("2020-02-11","2020-02-16","2020-01-03",0,"BRRMTA62T13C849G",3,"MEDE","PD1"),
 ("2020-02-12","2020-02-17","2020-01-02",0,"DNCNZR40B03H524V",10,"CHGE","BL1"),
 ("2020-02-05","2020-02-13","2020-01-01",1,"VRTGLL30H56F782L",12,"CHVA","TR1"),
-("2020-02-14","2020-02-19","2019-12-31",0,"GRSDMN53H08C025S",2,"CHVA","VI1"),
+("2020-02-14","2020-02-19","2019-12-31",0,"BENLOD31D34A106D",2,"CHVA","VI1"),
 ("2020-02-15","2020-02-20","2019-12-30",0,"JNNPRM52C18B921X",5,"CHGE","VI2"),
 ("2020-02-16","2020-02-21","2019-12-29",0,"TRNGTN93M02A861A",7,"CHVA","VI2"),
 ("2020-01-01","2020-01-30","2019-01-10",1,"NLZGNR50T67B808E",14, "MEFI", "VI1"),
@@ -508,7 +500,7 @@ INSERT INTO PrenotazioneEsame (data_p, data_e, pagamento, paziente, n_stanza, re
 ("2019-03-03 10:07:28","2020-01-10 08:07:26",0,"GERRIZ31D34A106D",105,"CHGE","PD1","TAC"),
 ("2019-01-01 08:07:29","2019-02-08 09:07:26",0,"LIAMAZ31D34A106D",102,"MEFI","BL1","Ecografia"),
 ("2019-02-02 09:07:29","2019-03-03 10:07:26",0,"IGODAV31D34A106D",103,"MEDE","VI1","Visita medica"),
-("2019-03-03 10:07:29","2019-08-09 08:07:27",1,"ORTPAL31D34A106D",104,"MEFI","VI1","Visita chirurgica"),
+("2019-03-03 10:07:29","2019-08-09 08:07:27",1,"DEMLOM31D34A106D",104,"MEFI","VI1","Visita chirurgica"),
 ("2019-01-01 08:07:30","2019-02-02 09:07:27",1,"ALFIAD31D34A106D",101,"MEDE","BL1","Prelievo");
 
 Insert Into Macchinario VALUES
