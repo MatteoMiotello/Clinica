@@ -522,3 +522,66 @@ Insert Into EsameEffettuato (paziente, tipo_esame, stanza, terapia, diagnosi, me
 ("MELARC31D34A106D","Visita chirurgica","1VI2CHMA",Null,Null,"MGNVTI48A30F839B"),
 ("GIOFER31D34A106D","TAC","2VI2CHVA",Null,Null,"MGNVTI48A30F839B"),
 ("JNNPRM52C18B921X","Ecografia","3VI2MEDE",Null,Null,"TRCGPR64P01F907M");
+
+--QUERY
+
+--1
+SELECT DISTINCT StanzaRi.n_stanza as Numero_stanza FROM StanzaRi
+WHERE StanzaRi.sede="PD1" AND StanzaRi.reparto="MEFI" AND StanzaRi.n_stanza NOT IN  
+(SELECT DISTINCT PrenotazioneStanza.n_stanza    
+FROM PrenotazioneStanza, StanzaRi   
+WHERE PrenotazioneStanza.sede=StanzaRi.sede  AND PrenotazioneStanza.reparto=StanzaRi.reparto AND PrenotazioneStanza.n_stanza=StanzaRi.n_stanza   
+AND DATEDIFF(PrenotazioneStanza.data_fine, CURDATE())>0  AND DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE())<0   
+AND StanzaRi.reparto="MEFI" AND StanzaRi.sede="PD1" );
+
+--2
+SELECT PrenotazioneStanza.reparto AS Reparto, PrenotazioneStanza.n_stanza As Stanza  
+FROM Paziente, PrenotazioneStanza  
+WHERE PrenotazioneStanza.sede="VI1" AND Paziente.nome="Demetrio" AND Paziente.cognome="Lombardo" AND Paziente.CF=PrenotazioneStanza.paziente AND (DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE()) = 0 OR DATEDIFF(PrenotazioneStanza.data_inizio, CURDATE()) < 0) AND DATEDIFF(PrenotazioneStanza.data_fine, CURDATE()) > 0;
+
+--3
+SELECT sum(TOT) AS totale FROM (SELECT sum(StanzaRi.prezzo_notte) as TOT FROM StanzaRi, PrenotazioneStanza WHERE StanzaRi.sede="VI1" AND   StanzaRi.sede=PrenotazioneStanza.sede   
+AND StanzaRi.reparto=PrenotazioneStanza.reparto AND StanzaRi.n_stanza=PrenotazioneStanza.n_stanza   
+AND PrenotazioneStanza.data_fine BETWEEN '2019-01-04' AND '2019-01-17' AND PrenotazioneStanza.pagamento=1 group by StanzaRi.sede  
+UNION  
+SELECT sum(TipoEsame.prezzo) AS SUM1  
+FROM PrenotazioneEsame, TipoEsame WHERE PrenotazioneEsame.sede="VI1" AND PrenotazioneEsame.tipo=TipoEsame.nome AND  
+PrenotazioneEsame.data_e BETWEEN '2020-01-01 ' AND '2020-02-01' AND PrenotazioneEsame.pagamento=1  
+group by sede) AS sub1;  
+
+--4
+SELECT sum(TOT) As totale_da_pagare FROM (SELECT sum(StanzaRi.prezzo_notte)*(DATEDIFF(PrenotazioneStanza.data_fine, PrenotazioneStanza.data_inizio)+1) as TOT  
+FROM Paziente, PrenotazioneStanza, StanzaRi  
+WHERE Paziente.nome="Benedetta" AND Paziente.cognome="Lo Duca" AND Paziente.CF=PrenotazioneStanza.paziente AND PrenotazioneStanza.sede=StanzaRi.sede  
+AND PrenotazioneStanza.reparto=StanzaRi.reparto AND PrenotazioneStanza.n_stanza=StanzaRi.n_stanza AND PrenotazioneStanza.pagamento=0 
+UNION SELECT sum(TipoEsame.prezzo) FROM TipoEsame,PrenotazioneEsame, Paziente  
+WHERE Paziente.nome="Benedetta" AND Paziente.cognome="Lo Duca" AND TipoEsame.nome=PrenotazioneEsame.tipo AND Paziente.CF=PrenotazioneEsame.paziente AND PrenotazioneEsame.pagamento=0) as sub1; 
+
+--5
+SELECT StanzaSp.sede, StanzaSp.n_stanza, StanzaSp.reparto,Macchinario.n_serie 
+FROM StanzaSp, Macchinario  
+WHERE Macchinario.sede=StanzaSp.sede AND Macchinario.reparto=StanzaSp.reparto   
+AND StanzaSp.n_stanza=Macchinario.n_stanza AND DATEDIFF(CURDATE(),Macchinario.ultima_revisione)>=30;
+
+--6
+SELECT ROUND((sum(TOT)/(DATEDIFF("2020-02-01","2020-01-01")+1)),2) AS Guadagno_giornaliero_medio FROM (SELECT sum(StanzaRi.prezzo_notte) as TOT FROM StanzaRi, PrenotazioneStanza WHERE StanzaRi.sede="VI1" AND   StanzaRi.sede=PrenotazioneStanza.sede   
+AND StanzaRi.reparto=PrenotazioneStanza.reparto AND StanzaRi.n_stanza=PrenotazioneStanza.n_stanza   
+AND PrenotazioneStanza.data_fine BETWEEN '2020-01-01' AND '2020-02-01' AND PrenotazioneStanza.pagamento=1 group by StanzaRi.sede  
+UNION  
+SELECT sum(TipoEsame.prezzo) AS SUM1  
+FROM PrenotazioneEsame, TipoEsame WHERE PrenotazioneEsame.sede="VI1" AND PrenotazioneEsame.tipo=TipoEsame.nome AND  
+PrenotazioneEsame.data_e BETWEEN '2020-01-01 ' AND '2020-02-01' AND PrenotazioneEsame.pagamento=1  
+group by sede) AS sub1;
+
+--7
+SELECT ROUND(AVG(Stipendio.imp_netto), 0) AS Stipendio_medio_personale  
+FROM Personale inner join Stipendio on(Personale.tipo=Stipendio.tipo);
+
+--8
+SELECT ROUND((SELECT count(*) FROM EsameEffettuato)/(SELECT count(*) FROM Paziente),0) AS Media_esami_paziente;
+
+--9
+SELECT Personale.nome, Personale.cognome, Personale.tipo FROM Personale, Sede WHERE Personale.sede=Sede.ID AND Sede.ID="VI1" GROUP BY Personale.nome, Personale.cognome, Personale.tipo order by Personale.tipo;
+
+--10
+SELECT COUNT(Personale.sede), Sede.ID FROM Personale, Sede WHERE Personale.sede=Sede.ID GROUP BY Sede.ID;
