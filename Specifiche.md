@@ -221,7 +221,7 @@ Stanza|||
 -----------------|-------|--------------------------------------
 n_stanza|TINYINT| **Chiave**
 sede|VARCHAR| **Chiave** 
-reparto|VARCHAR| **Chiave**** 
+reparto|VARCHAR| **Chiave**
 
 </td></tr>
 <tr><td>
@@ -748,7 +748,7 @@ group by sede) AS sub1;
 
 ![tot_periodo  ](./img/tot_periodo.png)
 
-4. calcolo spese totali paziente (ho messo +1 in DATEDIFF perche altrimenti mi conta 3 giorni al posto di 4, cioe mi esclude il giorno di partenza)
+4. Calcolo delle spese totatali che il paziente deve ancora effettuare.
 ~~~sql  
 SELECT sum(TOT) As totale_da_pagare FROM (SELECT sum(StanzaRi.prezzo_notte)*(DATEDIFF(PrenotazioneStanza.data_fine, PrenotazioneStanza.data_inizio)+1) as TOT  
 FROM Paziente, PrenotazioneStanza, StanzaRi  
